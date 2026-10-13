@@ -1,0 +1,533 @@
+.\" File generated using by MAQAO.
+.TH MAQAO-LPROF "1" "2026/07/13" "MAQAO-LPROF 2026.1.0" "User Commands"
+.SH NAME
+maqao-lprof \- manual page for maqao lprof module.
+.SH SYNOPSIS
+
+.br
+	Data collection mode : maqao lprof [options] -- <APPLICATION> [arguments, if any]
+.br
+	Data display mode    : maqao lprof -xp=<EXPERIMENT_DIRECTORY> [--display-functions | --display-loops | --display-blocks | --display-src-lines] [options]
+.SH DESCRIPTION
+
+.br
+The MAQAO Lightweight Profiler (LProf) allows profiling of target applications to detect hot functions and loops in 2 steps.
+.br
+	1) Data collection (sampling)
+.br
+	2) Data display
+.SH OPTIONS
+.TP
+\fB\-xp\fR, \fB\-\-experiment-path\fR\=<path>
+Experiment directory where the collected data is stored. It is generated in the current directory during data collection step. 
+.br
+If not specified, a default pattern will be used: maqao_lprof_YYYY-MM-DD-hh-mm-ss. 
+.br
+Y: year, M: month, D: day, h: hour, m: minute, s: second. 
+.br
+/!\ Warning: at display, this directory is used to load the collected data and is a mandatory parameter.
+.TP
+\fB\-\-verbose\fR
+Increases verbosity of stdout/stderr messages.
+.TP
+\fB\-\-timers-lvl\fR\=<positive integer>
+Print internal LProf timers up to level X (0=disabled, higher levels correspond to lower importance).
+.TP
+\fB\-\-timers-scope\fR\=<string>
+Print internal LProf timers for processes: "none" (timers disabled), "cluster-master", "node-masters" or "all".
+.TP
+\fB\-\-mute\fR
+Silents stdout/stderr messages at collect and display (CSV/HTML) steps.
+.SH "    DATA COLLECTION (MAIN OPTIONS)"
+.TP
+\fB\-\-exclude-kernel\fR
+No effect with the 'no-perf' engine. Do not count kernel samples.
+.TP
+\fB\-mc\fR, \fB\-\-mpi-command\fR\=<MPI command>
+MPI command used to interactively run application. LProf prepends this to application command. ppn/processes-per-node is recommended if known and > 1. When combined with launch-script, substitutes <mpi_command> in launch script
+.TP
+\fB\-ls\fR, \fB\-\-launch-script\fR\=<path to launch script>
+Script used to launch application. If it is executable (user-exec perm. and shebang), LProf directly executes it, otherwise Lprof executes <launch-command> <launch-script>. In this script, replace application run command with "<run_command>".
+.TP
+\fB\-lc\fR, \fB\-\-launch-command\fR\=<launch command>
+Interpreter (e.g bash, python) or batch submission command (e.g sbatch, qsub) to launch <launch-script> (as prefix). If omitted, guessed from <launch-script> extension.
+.TP
+\fB\-\-stdin-path\fR\=<path to a stdin-redirection file>
+Defines a file for redirection to stdin.
+.TP
+\fB\-\-sampling-rate\fR\=lowest/low/medium/high/highest
+Change the sampling rate (collected samples per second). 
+.br
+Five rates are available depending on the execution time of the application: 
+.br
+  - highest (2000 Hz): less than one second (btm=off recommended) 
+.br
+  - high    (1000 Hz): few seconds (prefer btm=fp to limit overhead) 
+.br
+  - medium  ( 200 Hz): less than one minute (default) 
+.br
+  - low     (  50 Hz): few minutes 
+.br
+  - lowest  (  10 Hz): longer runs
+.TP
+\fB\-ldi\fR, \fB\-\-library-debug-info\fR\=<list>/on/dbg-inf/off
+Analyze libraries debug information to locate loops with the --display-loops option, and also retrieve inlined library functions. 
+.br
+Libraries need to be compiled with the -g option. 
+.br
+Allowed values are: 
+.br
+  - "lib1.so, lib2.so, ..." : Get loops information only for libraries in the list. Use names as displayed by ldd <application executable>. 
+.br
+  - on                      : Get loops information for all libraries. 
+.br
+  - dbg-inf                 : Get loops information only for libraries with debug info. 
+.br
+  - off                     : Get only functions information using ELF information for all libraries (default). 
+.br
+
+.br
+/!\ Warning: this option can increase the analysis overhead.
+.TP
+\fB\-\-start-after-seconds\fR\=-1 or positive integer
+[perf-* engines] Setup sampling start delay: 
+.br
+ -1: never start sampling (use SIGTSTP or stdout keywords). 
+.br
+ n, positive integer: start sampling after n seconds.
+.TP
+\fB\-\-stop-after-seconds\fR\=-1 or positive integer
+[perf-* engines] Setup sampling stop delay: 
+.br
+ -1: sampling stops with application (default). 
+.br
+ n, positive integer: stop sampling after n seconds. Remark: if start-after-seconds > 0, stop-after-seconds has to be strictly higher.
+.TP
+\fB\-\-pause-resume-at-SIGTSTP\fR
+[perf-* engines] Each time LProf receives SIGTSTP (from the target application [CF maqao lprof --help-guided-profile] or CTRL+Z), sampling is paused (if running) or resumed (if paused).
+.TP
+\fB\-\-stdout-start-keywords\fR\=<comma-separated list of words>
+[perf-* engines] Each time LProf detects a keyword from stdout, sampling is started (no effet if already running).
+.TP
+\fB\-\-stdout-stop-keywords\fR\=<comma-separated list of words>
+[perf-* engines] Each time LProf detects a keyword from stdout, sampling is stopped (no effet if already paused).
+.TP
+\fB\-btm\fR, \fB\-\-backtrace-mode\fR\=fp/stack/branch/off
+[Advanced] Select backtraces (callchains) collection method: 
+.br
+  - fp     : native, frame-pointer based, perf-events method 
+.br
+             Requires compilation with -fno-omit-frame-pointer. 
+.br
+  - stack  : (default) user stack unwinding (since Linux 3.7). 
+.br
+             Higher sampling overhead but no need to recompile. 
+.br
+  - branch : use hardware branch recording (since Linux 3.4). 
+.br
+             No need to recompile. In the current version, this will display the history of the last calls instead of the full callchain. 
+.br
+  - off    : disable backtraces collection. 
+.br
+             Reduces sampling overhead and experiment directory size but some 
+.br
+             OpenMP/MPI functions will no more be correctly categorized at display.
+.SH "    DATA COLLECTION (OTHER OPTIONS)"
+.TP
+\fB\-\-lprof-path\fR\=<string>
+Enforces path to an alternative MAQAO for the collect step. You can also export the MAQAO_LPROF_PATH environment variable. That is needed when LProf is launched on a node with a different architecture than the compute nodes. In that case, the MAQAO used on the login node has to support both architectures while the one used to collect samples on compute nodes (defined by this option) has to support only their architecture.
+.TP
+\fB\-\-cpu-clock-MHz\fR\=<number>
+[perf-* engines] Override the "cpu-clock" perf-event rate (in MHz), otherwise assuming 1 tick = 1 nanosecond (1000 MHz).
+.TP
+\fB\-\-replace\fR
+Overwrites an already existing output directory (reuse it). Remark: no effect on a not yet existing directory.
+.TP
+\fB\-tpp\fR, \fB\-\-maximum-threads-per-process\fR\=<integer>
+[perf-high-ppn only] Maximum number of concurrent threads per process. Default is OMP_NUM_THREADS. Used to set buffers and files size. Can be overridden with allow-extra-threads.
+.TP
+\fB\-\-allow-extra-threads\fR
+[perf-high-ppn only] Allows monitoring of threads above maximum-threads-per-process. /!\ Warning: Monitoring too many threads slowdowns the application.
+.TP
+\fB\-ppn\fR, \fB\-\-maximum-processes-per-node\fR\=<integer>
+Maximum number of processes per node, to use with mpi-command, recommended if known and > 1. Used to set buffers and files size.
+.TP
+\fB\-\-maximum-buffer-megabytes\fR\=<integer>
+Limit size of RAM buffers to X Megabytes per node. Default is 50 MB per CPU (HW thread).
+.TP
+\fB\-\-maximum-tmpfiles-megabytes\fR\=<integer>
+Limit total temporary files size to X Megabytes per node. Default is 100 MB per CPU (HW thread).
+.TP
+\fB\-\-processes-whitelist\fR\=<comma-separated list of strings>
+[perf-* engines] Collect samples only for processes among: cluster-master, node-masters and PID<rank>. For instance, processes-whitelist=cluster-master,PID8 collects samples only for the cluster-master process (the first one being observed among all nodes) and the process having MPI rank 8.
+.TP
+\fB\-\-interposer-compiler\fR\=compilation command or "none"
+[Advanced] Override the command (for instance 'clang') used to compile the LD_PRELOAD interposer (used to get MPI/OMP rank). Use "none" to disable LD_PRELOAD interposition.
+.TP
+\fB\-\-poller-bind\fR\=<string>
+[Advanced, perf-low-ppn only] Set to "close" to bind poller threads to the same CPU as the ring-buffer. That may improve performance, but also degrade it with SMT.
+.TP
+\fB\-e\fR, \fB\-\-evts\fR\=<list>
+Provide a custom list of events (maqao --list-events) to profile (PC-sampling). 
+.br
+For each event, the threshold value should be set using format "@VALUE". 
+.br
+Raw codes can be used as well as event names. 
+.br
+ex: evts=CPU_CLK_UNHALTED@1000000,0x412e@1000000,INST_RETIRED@500000
+.TP
+\fB\-\-cnt-evts\fR\=<list> [EXPERIMENTAL]
+Provide a custom list of events (maqao --list-events) to profile (counting). 
+.br
+Use only dynamic PMU events (not counted by the CPU cores PMUs), which requires 0 or negative paranoid level (sudo sysctl -w kernel.perf_event_paranoid=0). 
+.br
+ex: cnt-evts=RAPL_ENERGY_CORES,UNC_M_CAS_COUNT_IMC0.RD
+.TP
+\fB\-p\fR, \fB\-\-evts-profiles\fR\=<string>
+Use ready-to-use lists of events (PC-sampling). Not yet supporting more than one profile.
+.TP
+\fB\-\-cnt-evts-profiles\fR\=<CSV string> [EXPERIMENTAL]
+Use ready-to-use lists of events (counting). Presently supported: ENERGY, DRAM_READS and DRAM_WRITES.
+.TP
+\fB\-\-cnt-metrics\fR\=<string> [EXPERIMENTAL]
+Counting metrics. Presently supported:  - ENERGY_{PKG,DRAM} (add ENERGY into cnt-evts-profiles)  - DRAM_{READS,WRITES} (add DRAM_{READS,WRITES} into cnt-evts-profiles).
+.TP
+\fB\-\-metadata-scope\fR\=<string>
+Scope for metadata (address ranges for code regions like functions or loops). Presently supported:  - block (granularity is basic blocks, default)  - srcline (granularity is source line, higher overhead).
+.TP
+\fB\-\-max-callchain-length\fR[\=<positive integer>]
+Maximum callchain length (default: 20), useful to reduce btm=stack overhead.
+.TP
+\fB\-\-stack-size\fR
+Size (in bytes) of stack to dump on samples (default: 8192). 
+.br
+Using a smaller size (typically 4096) reduces profiling overhead but may cut (or loose) callchains. 
+.br
+Using a bigger size (typically 16384) increases profiling overhead but should guarantee minimal callchains loss.
+.TP
+\fB\-\-mmap-pages\fR
+Overrides autotuned number of mmap pages for ring buffer payload.
+.TP
+\fB\-\-collect-calls-info\fR\=[on]/off
+Collects source file/line information for callchain nodes (calls). To display them, add --use-calls-info=on at display step.
+.TP
+\fB\-\-engine\fR\=no-perf/perf-low-ppn/perf-high-ppn
+[Advanced] Enforces usage of a specific sampling engine:  - no-perf: auto-selected when Linux-perf is not supported on the running kernel or when 'sysctl kernel.perf_event_paranoid' displays 4 or higher. Use ptrace() and periodic signal to read the PC register for all application threads. Only active/running time is accounted (excluding sleep/wait time) (to include sleep time, use --include-sleep-time). Hardware events and callchains cannot be collected. Profiling overhead is higher than the other engines. Hence it should be used only when regular engines cannot operate.  - perf-low-ppn: auto-selected when Linux-perf is available/allowed and no over-subscription detected. Use the Linux kernel to collect SW/HW events and to follow child threads/processes (inherit mode). This is the recommended engine  - perf-high-ppn: auto-selected when Linux-perf is available/allowed and with over-subscription detected. Use the Linux kernel to collect SW/HW events but ptrace() to follow child threads/processes.
+.TP
+\fB\-\-include-sleep-time\fR
+[no-perf only] Include sleep time (walltime).
+.TP
+\fB\-\-keep-external-threads\fR\=on/[off]
+[perf-high-ppn engine only] Profile threads with a different command line than the monitored application.
+.TP
+\fB\-\-keep-indirect-threads\fR\=[on]/off
+[perf-high-ppn engine only] Profile threads that are not direct children of the monitored application.
+.TP
+\fB\-\-collect-topology\fR
+Collects node topology and processes affinity as SVG files generated by lstopo.
+.TP
+\fB\-\-ignore-exit-status\fR\=[on]/off
+[perf-low-ppn only] Ignore non zero exit status.
+.TP
+\fB\-\-ignore-signals\fR\=<comma-separated list of integers>
+Prevents signals from being interpreted as termination signals. Allows to adapt to various runtimes. Remark for no-perf and perf-high-ppn engines: for ignored signals also specified in set-exit-signals or set-abort-signals, evaluation order is set-abort-signals, set-exit-signals and then ignore-signals.
+.TP
+\fB\-\-set-exit-signals\fR\=<comma-separated list of integers>
+[no-perf and perf-high-ppn engines] Interpret signals as normal application exit. Allows to adapt no-perf and perf-high-ppn engines to various runtimes. Remark: for exit signals also specified in ignore-signals or set-abort-signals, evaluation order is set-abort-signals, set-exit-signals and then ignore-signals.
+.TP
+\fB\-\-set-abort-signals\fR\=<comma-separated list of integers>
+[no-perf and perf-high-ppn engines] Interpret signals as abnormal application exit. Allows to adapt no-perf and perf-high-ppn engines to various runtimes. Remark: for abort signals also specified in ignore-signals or set-exit-signals, evaluation order is set-abort-signals, set-exit-signals and then ignore-signals.
+.TP
+\fB\-\-legacy-maps\fR\=<positive integer> [ADVANCED]
+Use only if unknown functions coverage is high for executable or libraries. Collect maps via legacy method (out of perf-events) after <legacy-maps> milliseconds and fallback to them in case of unresolved addresses.
+.TP
+\fB\-\-collect-CPU-time-intervals\fR
+[perf-low-ppn and perf-high-ppn engines] Collect per-thread CPU-time intervals. Allows to trace when and where (CPU) threads was running, and display them  by adding -verbose at display step.
+.TP
+\fB\-\-target-exe\fR\=Path to the actual executable (hidden in a wrapper script)
+Use that option when LProf cannot be interposed into a wrapper script, typically when mpirun ./wrapper.sh with wrapper.sh running <target-exe>.
+.TP
+\fB\-\-disable-libs-links\fR
+[ADVANCED] No more make unique (using links) files in <node>/libs directories. May help on a cluster with different versions of a same library installed across nodes.
+.SH "    DATA DISPLAY (MAIN OPTIONS)"
+.TP
+\fB\-df\fR, \fB\-\-display-functions\fR
+Display the exclusive time spent in the application, libraries and system functions.
+.TP
+\fB\-dl\fR, \fB\-\-display-loops\fR
+Display the exclusive time spent in the application loops. 
+.br
+If used with library-debug-information option during the collection, library loops information will be displayed too.
+.TP
+\fB\-db\fR, \fB\-\-display-blocks\fR
+Display the exclusive time spent in the application basic-blocks. 
+.br
+If used with library-debug-information option during the collection, library blocks information will be displayed too.
+.TP
+\fB\-ds\fR, \fB\-\-display-src-lines\fR
+Display the exclusive time spent in instructions attributed to a same source line, requires --metadata-scope=srcline at collect step. 
+.br
+If used with library-debug-information option during the collection, library source-lines information will be displayed too.
+.TP
+\fB\-dn\fR, \fB\-\-display-nodes\fR
+Information is displayed at node-level. 
+.br
+The categorization table shows the time percentage for each of the categories below: 
+.br
+  - Application   : application executable. 
+.br
+  - MPI           : MPI runtime (openmpi, mpich, intel mpi,...). 
+.br
+  - OMP           : OpenMP runtime (gomp, iomp...). 
+.br
+  - TBB           : TBB runtime. 
+.br
+  - Math          : Math libraries (libm, libmkl, libblas...). 
+.br
+  - System        : system interface (linux system calls). 
+.br
+  - Pthread       : Pthread runtime. 
+.br
+  - I/O           : I/O functions. 
+.br
+  - String        : string manipulation functions (strcpy, trim...). 
+.br
+  - Memory        : memory management functions (malloc, free...). 
+.br
+  - Others        : functions that are not of the categories above.
+.TP
+\fB\-dp\fR, \fB\-\-display-processes\fR
+Information is displayed at process-level. See display-nodes for categories.
+.TP
+\fB\-dt\fR, \fB\-\-display-threads\fR
+Information is displayed at thread-level. See display-nodes for categories.
+.TP
+\fB\-lec\fR, \fB\-\-libraries-extra-categories\fR\=<comma-separated list>/analyzed/[off]
+Consider specified libraries as extra categories: 
+.br
+  - lib1.so,lib2.so...: add one category per library in the list. Use basename on paths displayed by ldd <application executable>. 
+.br
+  - analyzed          : add one category per library analyzed by library-debug-info/ldi. 
+.br
+  - off               : don't add library categories (default).
+.TP
+\fB\-of\fR, \fB\-\-output-format\fR\=html/csv
+Output results in a file of the given format: 
+.br
+  - html : generate a web page in <PROFILING_DIRECTORY>/html directory. Open html/index.html in a web browser to view the results. 
+.br
+  - csv  : generate a csv file for each thread (default name: <CURRENT_DIRECTORY>/maqao_<NODE-NAME>_<THREAD-ID>.csv).
+.TP
+\fB\-cc\fR, \fB\-\-callchain\fR\=exe/lib/all/off
+Specify objects for callchains analysis: 
+.br
+  - exe: display the callchain (if available) for each function with a scope limited to the application. 
+.br
+  - lib: extend the callchain scope to external libraries function calls. 
+.br
+  - all: display the callchain with no limited scope (application + libraries + system calls). 
+.br
+  - off: disable callchains analysis. Some OpenMP/MPI functions/loops will no more be correctly categorized. Use this only when display takes too much time/memory.
+.TP
+\fB\-ct\fR, \fB\-\-cumulative-threshold\fR\=<integer between 0 and 100>
+Display the top loops/functions which cumulative percentage is greater than the given value (e.g: ct=50).
+.SH "    DATA DISPLAY (OTHER OPTIONS)"
+.TP
+\fB\-op\fR, \fB\-\-output-path\fR\=<path> [SHOULD BE USED WITH THE output-format OPTION]
+Specifiy the path of the generated results files.
+.TP
+\fB\-\-output-prefix\fR\=<string> [SHOULD BE USED WITH THE output-format OPTION]
+Add a custom prefix to the generated results files.
+.TP
+\fB\-\-show-full-paths\fR
+For module and source files, display full path instead of basename.
+.TP
+\fB\-\-use-calls-info\fR\=[on]/off
+Use source file/line information for callchain nodes (calls). At collect step, add --collect-calls-info=on.
+.TP
+\fB\-\-display-time-slices\fR
+While building node's results, display time slices. If combined with -verbose, display related CPU-time intervals too.
+.TP
+\fB\-\-display-walltime\fR
+While building node's results, display processes's duration measured with gettimeofday().If combined with -verbose, display extra per thread info: 
+.br
+  - duration 
+.br
+  - time elapsed after process's start 
+.br
+  - time elapsed before process's end.
+.TP
+\fB\-\-display-CPU-time\fR
+While building node's results, display processes's user and system CPU time (getrusage).
+.TP
+\fB\-\-display-raw-events\fR\=comma-separated list of {percentage, samples, events}
+Use raw events instead of default metrics (coverage, walltime...). Possible to select only one or two items, for instance "samples,events".
+.TP
+\fB\-\-display-metrics\fR\=comma-separated list of sampling metrics names
+Underlying events must have been collected. For instance, to display FLOPs on a x86 processor, collect events with p=SSE_AVX_FLOP and use display-metrics="FLOPS_SP,FLOPS_DP" or "FLOPS".
+.TP
+\fB\-fec\fR, \fB\-\-functions-extra-categories\fR\=<comma-separated list>
+Consider specified groups of functions as extra categories. Applied after libraries-extra-categories Rule name (supported: mkl for Intel MKL functions).
+.TP
+\fB\-cwf\fR, \fB\-\-callchain-weight-filter\fR\=<integer between 0 and 100>
+Filter callchains that don't represent at least X percent of time in the function reference
+.TP
+\fB\-\-disable-callchain-categorization\fR
+[ADVANCED] No more refine categorization from callchains.
+.TP
+\fB\-\-thread-time-filter\fR\=<real number >= 0> (default = 0.01) [ADVANCED]
+During profile generation, ignore contribution from threads lasting less than X seconds. Use this option to control pollution from micro-threads, typically cloned by system ("<cmd>") calls.
+.TP
+\fB\-\-function-weight-filter\fR\=<real number between 0 and 100> [ADVANCED]
+During profile generation, ignore contribution from functions that represent less than X percent of thread time. Aggregated (e.g node level) contributions will consequently be slightly underestimated, especially with X > 0.1. Use this option to reduce memory footprint for wide workloads, during profile generation and display steps.
+.TP
+\fB\-\-loop-weight-filter\fR\=<real number between 0 and 100> [ADVANCED]
+Idem function-weight-filter but for loops.
+.TP
+\fB\-\-function-name-filter\fR\=<substring to lookup> [ADVANCED]
+During profile generation, ignore regions whose function name contains a given substring. For C++ functions, lookup is done on the demangled name.
+.TP
+\fB\-\-disable-kernel-merge\fR
+[ADVANCED] Disable symbols merging for kernels similar between nodes.
+.TP
+\fB\-\-time-format\fR
+[ADVANCED] Format to use when displaying times, for instance "%.03f".
+.TP
+\fB\-\-CPU-time-intervals-merge-window\fR\=<positive integer> [ADVANCED]
+[perf-low-ppn and perf-high-ppn engines] Minimum consecutive time in millisecond between consecutive CPU-time intervals. Default behavior is twice the sampling period. Allows to merge neighbor (and then save) intervals (limit set by maximum-CPU-time-intervals).
+.TP
+\fB\-\-CPU-time-interval-minimum-duration\fR\=<positive integer> [ADVANCED]
+[perf-low-ppn and perf-high-ppn engines] Minimum duration in milliseconds for a CPU-time interval. Default behavior is a sample (identical start and end timestamps). Allows to reuse/overwrite (and then save) intervals (limit set by maximum-CPU-time-intervals).
+.SH "    MAN PAGE"
+.TP
+\fB\-\-generate-man\fR
+Generate the man page of the module based on the module help in the current directory. The generated file is called maqao-<module>.1. Once the man page is generated, the program exits.
+.TP
+\fB\-\-generate-man-all\fR
+Generate man pages for all modules available based on each module help in the current directory. Each generated file is called maqao-<module>.1. Once the man pages are generated, the program exits.
+.TP
+\fB\-\-output\fR\=<path>
+Specify the path where the man page is generated.
+.TP
+\fB\-\-generate-wiki\fR
+Generate the wiki page of the module based on the module help on the standard output. Once the man page is generated, the program exits.
+.SH "    OPTIONAL FLAGS COMMON TO ALL MODULES"
+.TP
+\fB\-\-arch\fR\=<architecture>
+Select the architecture used for analysis. Available values are: 
+x86_64.
+
+.TP
+\fB\-\-disable-debug\fR
+Disable debug data loading. WARNING, this option may alter the tool's accuracy.
+.TP
+\fB\-\-compiler\fR\=<compiler>
+Select the compiler used to create the binary. Available values are: 
+GNU, Intel.
+
+.TP
+\fB\-\-language\fR\=<language>
+Select the source language. Available values are: 
+c, c++, fortran.
+
+.TP
+\fB\-\-lcore-flow-all\fR
+Analyze all instructions returned by MADRAS. Default behaviour is to analyze instructions from sections .text, .init, .fini and .madras.code. 
+.TP
+\fB\-\-uarch\fR\=<uarch>
+Select the micro architecture used for analysis. Available values are: 
+.TP 20 
+\fB       For x86_64 architecture:\fR 
+CORE (CORE2_65), ENHANCED_CORE (CORE2_45), NEHALEM (NHM), WESTMERE, SANDY_BRIDGE (SNB), IVY_BRIDGE (IVB),             IVY_BRIDGE_E (IVBE), HASWELL (HWL), BROADWELL (BWL), SKYLAKE, ICELAKE, ICELAKE_SP,             TIGER_LAKE, ROCKET_LAKE, ALDER_LAKE, SAPPHIRE_RAPIDS, EMERALD_RAPIDS, GRANITE_RAPIDS,             SIERRA_FOREST, RAPTOR_LAKE, METEOR_LAKE, HASWELL_E (HWLE), KNIGHTS_LANDING (KNL),             KNIGHTS_MILL (KNM), KABY_LAKE, COMET_LAKE, ZEN_V1 (ZEN), ZEN_PLUS (ZEN+), ZEN_V2 (ZEN2),             ZEN_V3 (ZEN3), ZEN_V4 (ZEN4), ZEN_V5 (ZEN5)
+.
+.SH ""
+.TP
+\fB\-\-proc\fR\=<proc>
+Select the processor model used for analysis. maqao --list-procs to display supported processors
+.TP
+\fB\-ifr\fR, \fB\-\-interleaved-functions-recognition\fR\=<mode>
+Select the mode of interleaved functions recognition. Available values are: 
+.TP 20 
+\fB       off\fR 
+Functions are not extracted from connected components.
+.TP 20 
+\fB       debug_based\fR  (default)
+Functions are extracted from connected components matching with debug data.
+.TP 20 
+\fB       all\fR 
+All connected components are extracted into new functions whether they correspond to the debug information or not.
+.
+.SH ""
+.TP
+\fB\-dbg\fR, \fB\-\-debug\fR[\=<level>]
+Enable debug messages. <level> can be used to specify the level of debug messages to display. Available values are: 
+0, 1 (default).
+
+.TP
+\fB\-\-\fR
+Specify binary parameters for dynamic analysis. Next options are ignored by MAQAO.
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+Print the current help.
+.TP
+\fB\-v\fR, \fB\-\-version\fR
+Print the current version.
+.SH EXAMPLES
+.TP
+maqao lprof -- <APPLICATION>
+Launch the profiler in collect sampling mode on a sequential application. 
+.br
+It stores the results into a default experiment directory (maqao_lprof_YYYY-MM-DD-hh-mm-ss). 
+.br
+Y: year, M: month, D: day, h: hour, m: minute, s: second 
+.TP
+maqao lprof --mpi-command="mpirun -n 4" ppn=X -- <APPLICATION>
+Same as previous example but for MPI application with 4 processes (X per node). 
+.TP
+maqao lprof -xp=<EXPERIMENT_DIRECTORY> [--mpi-command="mpirun -n 4" ppn=X] -- <APPLICATION>  arg1 arg2 ...
+If the application needs one or more arguments, make sure to use the '--' delimiter. 
+.br
+Here, results are stored into the directory given by the user. 
+.TP
+maqao lprof -xp=<EXPERIMENT_DIRECTORY> -df
+Display the list of functions coming from the experiment directory into the terminal. 
+.br
+The function display mode allows to localized where are the hot functions of the application. 
+.TP
+maqao lprof -xp=<EXPERIMENT_DIRECTORY> -df -cc=exe
+Display the list of functions coming from the experiment directory into the terminal. 
+.br
+The -cc=exe (--callchain) option allows to display the callchains. 
+.br
+The function display mode allows to localized where are the hot functions of the application. 
+.TP
+maqao lprof -xp=<EXPERIMENT_DIRECTORY> -df -dt -of=csv -op=$PWD/help_example
+Generate a CSV file (-of=csv) for each thread (-dt) with the functions info (-df) into $PWD/help_example (-op=...). Specified directory for -op option must exist. If not, files will not be created. 
+.TP
+maqao lprof -xp=<EXPERIMENT_DIRECTORY> -dl
+Display the list of loops coming from the experiment directory into the terminal. 
+.br
+The loop display mode pinpoints hot loops in application. 
+.TP
+maqao lprof -xp=<EXPERIMENT_DIRECTORY> -of=html
+Generate the "html" directory into <EXPERIMENT_DIRECTORY>/html. 
+.br
+Open file <EXPERIMENT_DIRECTORY>/html/index.html in a web browser to view the results. 
+.SH AUTHOR
+Written by The MAQAO team.
+.SH "REPORTING BUGS"
+Report bugs to <contact@maqao.org>.
+.SH COPYRIGHT
+MAQAO (C), 2004 - 2026 Universite de Versailles Saint-Quentin-en-Yvelines (UVSQ), 
+is distributed under the GNU Lesser General Public License (GNU LGPL). MAQAO is 
+free software; you can use it under the terms of the GNU Lesser General 
+Public License as published by the Free Software Foundation; either version 2.1 
+of the License, or (at your option) any later version. This software is distributed 
+in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the 
+implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
+GNU Lesser General Public License for more details.
+
+The full legal text of the GNU Lesser General Public License (GNU LGPL) is available
+at http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+.SH "SEE ALSO"
+maqao(1), maqao-madras(1), maqao-mil2(1), maqao-disass(1), maqao-cqa(1), maqao-otter(1), maqao-oneview(1), maqao-mil(1), maqao-analyze(1)

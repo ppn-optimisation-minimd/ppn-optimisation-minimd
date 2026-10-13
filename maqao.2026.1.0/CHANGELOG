@@ -1,0 +1,1191 @@
+**** 2026.1.0 (2026-07-13) ****
+- Known issues
+		Graphs in ONE View Statistics reports are not available
+		Categorisation arrays on ONE View Application tab in Multirun or Comparison mode lack user-defined libraries
+		Some "unable to assemble" errors can be displayed during analysis of an aarch64 code. They will not prevent the report to be successfully generated
+- New features
+		New ONE View option --flamegraph/-FG, adding a Flame Graph to Application tab (beta version)
+		ONE View Categorisation charts can now use larger number of different colours
+		Incorrect sampling rate in LProf now triggers a critical (halt) error
+		Numerical identifiers for the runs in ONE View Scalability mode are [OTTER] Uniformized how runs are counted in scalability (#6149)
+		LProf can categorise correctly functions from libc-2.43.so
+		ONE View Summary item on code specialisation handles more variants of the option for Sapphire Rapides architectures
+		Improved LProf warning message signaling that some extra threads were not profiled when using perf-high-ppn engine
+		CQA now suggests the correct specialisation flags fro Emerald- and Granite-Rapids instead of "sapphirerapids"
+		Updated ONE View external-libraries option to accept keywords: none (no external library), auto (corresponds to LProf ldi=dbg-inf option) and all
+		New LProf option lec/libraries-extra-categories=analyzed allowing to add one category per library processed by ldi/library-debug-info
+		LProf displays a warning when libraries are found to be different from one node to another
+		New LProf option -disable-libs-links to handle the case where libraries could be different across various nodes (disabled by default)
+		LProf detects whether ptrace is available and selects 'perf-low-ppn' engine if not and no engine was specified by the user
+		Improved ONE View Summary item on architecture specialisation options for applications not compiled with debug information
+		New LProf metrics for multi node runs:job submission, first/last process arrival, last process exit, duration before and inside MPI_Init.
+		ONE View now displays library coverage in Application Libraries section
+		New LProf option ldi=dbg-inf (enabled by default), allowing to automatically analyse all libraries with debug information not already used for categorisation and where at least 1% of time samples are found
+		LProf and ONE View Categorisation now identify fast AMD math library (libalmfast.so) as math library
+		Improved ONE View Summary Code Quality item on Libm/SVML usage
+		Improved ONE View output when launched withou show-program-output
+		Handled aliases for aarch64 instructions MSUB (MNEG), MADD (MUL), SMSUBL (SMNEGL), SMADDL (SMULL), UMSUBL (UMNEGL) and UMADDL (UMULL)
+		Improved machine model for AMD Zen 5 (fixed imprecisions in latency values)
+		LProf displays a warning if too many processes are created compared to the number of cores (for engine=perf-low-ppn)
+		Disabled sorting of ONE View reports tree tables containing a single level 0 entry
+		Disabled display of LProf completion message when invoked from ONE View
+		LProf displays a warning on paranoid level=3 only after checking that sampling is actually prevented
+		ONE View Experiment Summary displays Maximal Frequency limited to 2 decimal digits
+		LProf now displays a warning when over-subscription is detected
+		Improved ONE View Summary compilation options guidance
+		Improved ONE View Summary for undetected or unknown compilers
+		LProf recognition of libc-2.39.so symbols for categorisation
+		ONE View Summary levels renamed to Experiment Quality (was Stylizer), Code Quality (was Strategizer) and Loop Overview (was Optimizer)
+		New ONE View Summary item focusing on source info retrieval
+		New LProf option: lprof-path, for specifying the location of MAQAO for computation nodes in the case of architecture mismatch between login and compute nodes.
+		Updated ONE View progression message when generating a thread file
+		New ONE View option: compress-html, for autcompressing
+		Optimised handling of temporary files by LProf during profiling
+		Improved LProf error output
+		Large output files are not included by default to ONE View reports. New option force-full-output allows to include them
+		Removed deprecated LProf options: user-guided, batch-script and batch-command
+		LProf displays customized messages when called from ONE View for allow-extra-threads, keep-indirect-threads and keep-external-threads options
+		Support of the 0x75 Hawk Point Zen 4 processor
+		Improved information in ONE View Summary when -fno-omit-frame-pointer is missing
+- Bugs
+		Fixed issue in ONE View display of GFlops in Loops or Functions tabs
+		Fixed issues with colours for libraries in ONE View Categorisation charts for multirun or comparison modes
+		Fixed incoherent max values for Y axes on ONE View charts
+		Fixed issue causing ONE View Global "Only FP Arithmetic" chart to be empty
+		Fixed issue when loading ONE View parameter 'frequencies'
+		Removed erroneous ONE View warning about a missing file
+		Fixed issues in LProf computation of process per node.
+		Fixed crash when generating ONE View Aggregate (statistics) reports
+		Fixed LProf reporting samples before the start of the application
+		Fixed LProf computation of process/node timings
+		Fixed ONE View showing an empty thread profile when a LPROF metric is missing or wrong
+		Fixed behaviour of ONE View --include-detailed option for isobinary multiruns reports
+		Fixed incorrect ONE View metrics when using external-libraries
+		Fixed ONE View Global Compilation Score metric taking into account libraries not flagged as to be analysed
+		Fixed race condition in LProf when multiple users where profiling on the same node
+		Fixed crash when refreshing LProf reports
+		Fixed ONE View Global metric Compilation Score being set to NaN when using external-libraries=auto option
+		Fixed errors on the ONE View Application Detailed Function Times graph
+		Fixed issues with library identifiers when generating LProf HTML output
+		Fixed issue with LProf HTML output format
+		Fixed x86_64 instructions LAHF and SAHF not recognised during static analysis
+		Fixed LProf issue when using ldi=on
+		Fixed sorting of threads in ONE View Topology tab to use numerical sorting instead of lexicographical
+		Fixed issues when handling source line information in LProf
+		Fixed LProf crash when missing cluster-level timings were missing
+		Fixed typos on ONE View Summary page
+		Fixed ONE View crashing when some data from LProf was missing
+		Fixed handling of aarch64 CMN and CMP instructions aliases
+		Fixed issues with ONE View HTML reports stylesheets
+		Fixed duplicated name in Zen5 AGU
+		Fixed overhead regression in LProf when using engine=perf-low-ppn (was introduced after removing interposer functions from the results)
+		Fixed aarch64 RET instruction not being detected as a branch
+		Fixed ONE View report generation failing when ASCII control character were present in the program output
+		Fixed tooltip position issue on HTML reports
+		Fixed error when computing stride for aarch64 loops containing PSRAD instruction
+		Fixed ONE View crashing when using with-FLOPS option on an application where no code could be analysed
+		Fixed option 'lcore-flow-all' being ignored by LProf when invoked from ONE View
+		Fixed missing Output and Environment Variables pages in ONE View reports
+		Fixed issue when using quotes in ONE View option lprof_params
+		Fixed issues in handling debug information stored by AOCC compilers
+		Fixed crash when attempting to patch a file lacking a .got.plt section (MAQAO will exit with an error instead)
+		Fixed various issues when analysed application path or experiment directory contains spaces
+		Fixed issue when reusing a ONE View experiment directory to add new runs
+		Fixed issue when generating a ONE View report from an existing LProf experiment directory
+		Fixed LProf missing some samples at startup on old Linux kernels
+		Fixed crash when attempting to analyse a corrupted ELF file
+		Fixed ONE View Loop column selection being overwritten when accessing Array Access Efficiency view
+		Fixed random crash when generating ONE View comparison report
+		Fixed issues with behaviour of checkboxes for selecting visible columns in ONE View Loop report
+		Fixed architecture specialisation flag for Skylake_SP being incorrectly detected in ONE View Summary
+
+**** 2026.0.0 (2026-02-04) ****
+- New features
+		Improved readbility of LProf warning messages for parallel runs
+		New ONE View Summary Level 0 report on unprofiled system CPU time
+		New ONE View option create-xpdir-from-lprofdir for generating a ONE View xpdir from a LProf dir
+		New LProf option: 'exclude-kernel', for excluding sampling of kernel events.
+		New LProf option: 'interposer-compiler' allowing to disable LD_PRELOAD interposition (used for retrieving MPI/OMP ranks)
+		New LProf environment variable: MAQAO_LPROF_PATH for bypassing the MAQAO executable used to profile the application, useful when launching job from a node with a different architecture than the nodes that will actually run the application
+		New ONE View option detail-level, allowing to reduce final report content by excluding ALL analyses done at thread/process/node level
+		New ONE View option no-regen, allowing not regenerate most of HTML report files
+		New LProf option: '--allow-extra-threads', allowing to monitor more threads than max-threads-per-process/tpp with engine=perf-high-ppn
+		New LProf option: processes-whitelist, allowing to disable samples collection for a selection of processes (number of precesses actually excluded will be displayed). Also supports (start/stop)-after-seconds, stdout-(start/stop)-keywords and pause-resume-at-SIGTSTP
+		New ONE View tag log_dir for use in script to help handling slurm output
+		New ONE View configuration option --profile-stop
+		New LProf option -stop-after-seconds
+		New CQA metric "cycles if no FP convert"
+		New LProf option: 'target-exe', allowing to enforce a different executable than the first command argument. 
+		HTML chart generation can now use log scale
+		LProf no longer warns about restricted kernel calls if less than 10% of CPU time is actually spent in kernel space
+		ONE View no longer supports experiments with and without profile-start option enabled in a single experiment directory
+		Improved LProf computation of elapsed time for multi-nodes runs by using cluster elapsed time (MAX across processes) for computing time slices and assuming that all processes end at the same time.
+		LProf option include-kernel is now enabled by default.
+		Improved CQA aarch64 model to take into account unexpensive FP math modifier
+		Limited memory that LProf allocates to profiled processes when there are more than one process per node
+		Support of the Golden Cove Server (SPR/GNR) extensions corresponding to the newly introduced AVX512-FP16 instructions
+		ONE View displays the count of functions / loops filtered by LPROF
+		Support of all recent x86 instructions, including FP16 and AMX, for disassembly and assembly
+		Reduced time and memory usage of ONE View processing of LProf data during report generation
+		Added compilation options in ONE View Stability "Experiment Summary" section
+		Updated ONE View Number of active threads Global graph to add active thread count
+		Identified functions from (nvhpc) support for LProf categorisation
+		Added callchains in ONE View iso binary reports comparison
+		Reduced time and memory usage when demangling ifort and gfortran function names
+		Reduced time and disk usage during LProf results aggregation during multi-nodes runs
+		LProf now considers perf_event_paranoid=3 as sufficient for perf-events monitoring and displays a warning to invite the user to lower perf_event_paranoid or rerun with engine=no-perf in case of trouble.
+		Reduced LProf time and memory usage during during CSV/stdout reports generation for very large analyses
+		Improved LProf verbose output on affinity by displaying CPUs into intervals when consecutive (0,1,2,3 => 0-3)
+		Updated LProf help message on using probes (-help-guided-profile)
+		Improved LProf callchain collection to reduce memory stress
+		Updated ONE View help message on time categorisation to specify when coverage-threshhold is taken into account
+		Updated ONE View help message on '--help-guided-profile' to replace 'ug=on' '--pause-resume-at-SIGTSTP'
+		Removed LProf help message on obsolete option '-use-OS-timers' option
+		Disabled ONE View dynamic analysis when static analysis is disabled
+		Escaped special characters when displaying logs in ONE View
+		Improved tooltips display in HTML reports
+		Updated ONE View Categorisation online help to specify filter is not used
+		Updated behaviour of ONE View option object_coverage_threshold when filtering loops
+		Enforced grey colour for the "unused" GFLOPS category in ONE View
+		Handled labels stored in external file
+		Disabled display of profile_start when not set / set to none in ONE View Global Experiment section
+		Added FLOPS tab in ONE View Application tab
+		Added FLOPS chart in ONE View Global tab for single run
+		Updated AMD Zen 5 extensions, mostly for GATHER/SCATTER instructions
+		In LProf categorisation, handled debug/internal symbols introduced by libc-2.34.so (again) and libastring.so (acfl/24.10.1) (AArch64)
+		Allow to disable grouping analysis with --disable-grouping in ONE View (but not from CQA)
+		Change default columns in loops / functions tabs and updated metric name and description for the ONE View reports to put emphasis on regions running on less than max threads
+		Added perf metrics: FLOPS_SCA, FLOPS_VEC, FLOPS_SCA_{SP/DP}, FLOPS_VEC_{SP/DP} for Zen5 + most of Intel processors
+		Added the 'display-metrics' option to the CLI LProf tool to display sampling metrics along with other sampling events (both CSV and TXT are supported)
+		Added a TOTAL row to the CLI LProf tool when 'display-raw-events' or 'display-metrics' are used
+		Improve support, in ONE View, of clang compilers in compilation options analysis
+		Remove tooltips from prev / next buttons on Loop / Function for HTML ONE View reports
+		Improved user experience when LProf interposer compilation fails. In non-verbose mode, display the failing compiler (for instance 'clang'). In verbose mode, complement with output of the failing compilation command
+		Restricted LProf OMP rank detection to processes corresponding to the target executable (discarding system(cmd), scripts etc.)
+		LProf can now handle different versions of the same library being invoked in the same application
+		Handled debug information from Rust language
+		Handled compressed debug sections when parsing binary files
+		LProf no longer prevents engine=perf-low-ppn with more than INHERIT_MAX_PPN processes.
+		Improve advices in ONE View for ARM compiler 
+		Added TBB in ONE View Global Metrics "Perfect OpenMP/MPI/Pthread/TBB" and "Perfect OpenMP/MPI/Pthread/TBB + Perfect Load Distribution" 
+		Update ONE View documentation of object_coverage_threshold
+		New ONE View Summary Level 1 analysis detecting functions not using the max number of threads
+		ONE View threshold for excluding very short functions is now based on max time over threads instead of global coverage
+		ONE View zoomable bar charts not include a tooltip displaying the value
+		ONE View Detailed Function Times Application chart now displays threads in order
+		New ONE View option: number_threads_per_process
+		CQA now displays the compiler march/mcpu targets for ARM Neoverse N1, V1 and V2
+		Updated OTTER documentation for custom_menu option
+		LProf now logs process-level pause/resume events, along with related timestamp
+		New ONE View and LProf Category: TBB
+		Removed dependency to nm utility
+		ONE View now displays explicit sampling events counts for functions / loops and application tab
+		Improved retrieval of debug information for LLVM compilers
+- Bug
+		Fixed LProf issue causing some library functions to be reported as Unknown Functions
+		Fixed LProf error when computing walltime distributions when kernel functions were profiled
+		Fixed issue in LProf retrieval of process walltime
+		Fixed issues in ONE View configuration file generation
+		Fixed bug on size of data read by aarch64 instructions
+		Fixed a bug in ONE View stability mode due to detail-level
+		Fixed display issues in ONE View reports when compiliation options contained special characters
+		Fixed wrong value reported by LProf for threads start/end/elapsed time
+		Fixed issues when handling log files during ONE View reports generation
+		Fixed race condition in LProf when using --pause-resume-at-SIGTSTP
+		Fixed error in ONE View "Average Active Threads Count" metric when a thread migrated from a core to another
+		Fixed bug in ONE View thread filtering when thread_filter_threshold option is used
+		Fixed time metric in ONE View Topology to be negative because of rounding / accuracy error
+		Fixed dissassembly/assembly issue for VGETEXPSS instruction with {sae}
+		Fixed printing of some x86_64 CVT instructions to have correct size suffix
+		Fixed an issue when grouping threads for ONE View Topology report
+		Fixed memory leak in LProf when demangling failed
+		Fixed issue with popus in ONE View Stability report
+		Fixed experiment type ONE View Stability runs
+		Fixed LProf MPI detection for Fortran executables: symbol to match is not 'MPI_Init' (C/C++) but 'mpi_init_'
+		Fixed erroneous ONE View Application metric Peak GFlops (was not multiplied by number of cores)
+		Fixed ONE View bug appearing when reusing an experiment directory
+		Fixed instruction set for aarch64 SMMLA
+		Fixed MAQAO crash due to memory corruption in grouping analysis
+		Fixed LProf issue causing libray interposed by LProf to appear as a library invoked by the application when the current folder was reached through a symboling link
+		Fixed LProf issue when displaying source file path for callchain nodes with multiple nodes
+		Fixed incorrect LProf metrics multi-nodes
+		Fixed crash when analysing loops containing an instruction with an operand equal to NULL due to a disassembling error
+		Fixed crash in ONE View report generation when custom Hardware counters are used
+		Fixed crash in ONE View report comparison
+		Fixed LProf crashing with a memory error on perf-mmap size
+		Fxied various bugs in HTML reports generation
+		Fixed issue in LProf inclusive time computation causing to exit at first unresolved address
+		Fixed issue when printing immediate operands for aarch64 instructions
+		Removed erroneous option in MADRAS short help
+		Fixed immediate encoding for some aarch64 instructions
+		Fixed a bug in ONE View 2+ when scripts are not used
+		Fixed issue when disassembling aarch64 instructions containing immediate bitmask
+		Reduced overhead caused by mostly lscpu and cpuinfo in LProf and ONE View
+		Fixed error in coding of aarch64 instruction SDOT
+		Fixed some issues in aarch64 disassembling
+		Fixed an issue in ONE View at parameter loading when both executable and '-- <cmd>' are used
+		Fixed issue in LProf causing a discrepancy between reported value and graph for average number of active threads due to overflow when multiplying nanoseconds
+		Fixed unknown format error when parsing ELF files larger than 2 GB due to integer overflow
+		Fixed issue with zoomable bar charts in HTML reports
+		Fixed issue in dataset generation in ONE View throughput multiruns
+		Fixed ONE View crash when analyzing ARM compiler options
+		Fixed LProf results aggregation (e.g processes to node) for end-time (MIN was used instead of MAX)
+		Fixed erroneous value for profile_start value one ONE View Global tab
+		Fixed issue with loop exclusive time for functions in LProf / ONE View
+		Fixed LProf overhead when OMP_WAIT_POLICY is set to active due to rank computation
+		Fixed issue when retrieving FLOPS values on Intel processors
+		Fixed issue in CQA 'cycles if perfect FP-FMA pairing' metric
+		Fixed SIGTSTP LProf pause/resume: was active only for node-master processes (typically MPI rank 0)
+		Fixed LProf compilation error with debug profile
+		Fixed a bug in Oneview configuration printing
+		Fixed a bug when printing ONE View configuration in debug mode when profile_start was set to probe
+		Fixed issue in LProf caused by micro tasks spawning very short threads
+		Prevented ONE View crash when LProf return value can not be retrieved
+		Fixed discrepancy on categorisation between ONE View Global and Application panel when regenerating a report 
+		Prevented ONE View crash if CQA analysis fails
+		Fix a ONE View issue appearing when called from LProf
+		Improved LProf termination when trying to attach to a non longer existing process
+		Fixed issue with FLOPS metric for Neoverse V1: scale_ops must be multiplied by VL/128 with VL=128 on Neoverse N2/V2 but 256 on Neoverse V1
+		Fixed incorrect ONE View option name (object-coverage_threshold instead of object-coverage-threshold)
+		Fixed issue causing ONE View object_coverage_threshold to be used at x100 of its value
+		Fixed the 'increase sampling rate' error message displayed by ONE View not containing the correct option name in some cases
+		Fixing ONE View issue when adding tpp option to LProf invocation
+		Fixed issues with FLOPS collection for Zen4 and Zen5
+		Fixed ONE view display of function names in Detailed Function Times chart
+		Fixed broken links in ONE View Detailed Application Categorization to thread profiles
+		Fixed incorrect number of decimal digits when hovering over Application Categorisation diagram
+		Fixed some console output not being prefixed with MAQAO
+		Fixed ONE View displaying an error when uarch was unknown by CQA
+		Fixed crash in group analysis when analysing a stripped binary
+		Fixed ONE View Summary incorrectly displaying an "Application Time is 0 seconds" warning
+		Fixed error when displaying callchains for C++ functions
+		Fixed LProf error when requesting custom hardware counters
+		Fixed missing thread identifiers on ONE View Topology lstopo view
+		Fixed CQA throwing an error when attempting to estimate perfect FMA pairing
+		Fixed blank spaces appearing in ONE View output
+		Fixed ONE View Application to remove some preloaded LProf libraries from the list of external libraries
+		Fixed NaN appearing in ONE View POP metrics
+		Fixed error (infinite loop) when extracting source code in ONE View
+
+**** 2025.1.0 (2025-05-26) ****
+	- New features
+		Modified MAQAO version numbering scheme so that the first number corresponds to the year, and the second number corresponds to the web releases during that year
+		In ONE View Loops, the display of modules coverage in the filters tab is limited to 2 decimals
+		In ONE View, improved error handling when batch_script is missing when batch_command is
+		Updated help for ONE View Throughput mode
+		ONE View uses the same identifiers for multiple runs across Global tab and Summary Optimizer tab
+		New ONE View option: --skip-profile-analysis, allowing to stop after LPRof profiling, allowing to perform LProf data formatting/processing in a subsequent pass.
+		Updated ONE View Report Comparison help
+		Added tooltip to explain which time metric is used to compute ONE View Potential Speedups
+		Added exemple for profile_start stdout mode in ONE View config template
+		ONE View can toggle profiling on and off based on keywords detected on application output
+		ONE View output will now avoid printing extraneous spaces when redirected to a file
+		Improved ONE View Summary to report when compile code specialization option was used for a different uarch than the system's
+		ONE View now displays warning if invoked with unsupported options
+		ONE View options names can use either '-' or '_'
+		Improved ONE View guided profiling help
+		ONE View Loops Report tab now displays full profile by default instead of "Innermost only"
+		Added ONE View Summary reports for all runs
+		ONE View checks that executable parameter is defined
+		Added link from ONE View Global Array Access Efficiency metric to the loop tab with stride metrics enabled
+		Added Array Access Efficiency into ONE View Loops report
+		Displayed OMP ranks in ONE View
+		Handled Throughput mode in ONE View multirun
+		Improve execution logging in ONE View Throughtput mode
+		Removed ONE View check on numactl when refreshing a non-throughput report
+		ONE View Loop Expert report now contains help tooltips
+		ONE View Summary 0 now contains warnings if lstopo is unavailable or perf_event_paranoid was too high to allow sampling
+		Improved online help for ONE View --refresh option
+		ONE View Topology lstopo page include an "Expand all" button in PID list
+		ONE View POP metrics section now include colours and filters
+		ONE View displays progression status during threads profiles generation
+		New ONE View Stats on functions / loops load distribution
+		Improved ONE View comparison when Average Number of Active Threads charts are not available
+		Reduced disk usage of ONE View reports by grouping similar threads and generate one report per threads group
+		Reduced LProf default output in non-verbose mode
+		Added LProf options -display-time-slices and -display-walltime for LProf verbose mode (-verbose) to display all info related to CPU-time intervals along with time slices and per-thread elapsed/start/end along with process walltimes (-display-walltime)
+		Updated help of LProf -ds option to specify that metadata-scope=srcline is required at collect step
+		Replaced LProf ug option with pause-resume-at-SIGTSTP and start-after-seconds options
+		Added LProf options stdout-start-keywords and stdout-stop-keywords to start and stop sampling when detecting keywords on application's standard output.
+		New LProf options: metadata-scope=srcline (for collection) and --display-src-lines/-ds (for display) to provide profiling results at source line granularity
+		Removed LProf warning when failing to retrieve MPI/OMP ranks
+		Improved compiler detection when retreiving MPI/OMP rank in LProf
+		Disabled lstopo decoration of CPU types for hybrid systems in LProf (for latest versions of lstopo)
+		New LProf option 'ignore-exit-status' for ignoring non-zero exit status with engine=perf-low-ppn
+		LProf now uses btm=stack by default on x86_64
+		LProf option 'ignore-signals' taken into account for engine=perf-low-ppn when the application was terminated by a signal
+		Removed some LProf warnings in non-verbose mode ('ref-cycles' not supported and fallback to 'cpu-clock' + sub-threads exiting with nonzero)
+		Reduced LProf overhead when using btm=stack
+		Improved FLOPS metric retrieval by LProf for aarch64 (Neoverse N2 and V1/V2)
+		Extended retrieval of MPI rank in LProf to other MPI runtimes than Intel
+		LProf text output for -dp/-dt options now includes the MPI/OMP rank along with PID/TID
+		Added CQA metrics for aarch 64
+		Used architecture-independent metric for counting FP instructions in CQA reports
+		All console messages now prefixed with [MAQAO]
+		Added AMD Zen 4 model 74h (Phoenix) support
+		Support of METEOR_LAKE micro-architecture
+		Handled compilers identified as "Ubuntu clang" in debug information
+	- Bugs
+		Fixed demangling errors for some Intel MPI functions
+		Fixed infinite loop error occurring when retrieving debug information from files compiled with some versions of gcc
+		Fixed crashes in LProf occurring when finding the path to a dynamic library failed
+		Fixed issue causing LProf to start profiling from the application launch onward when using -stdout-start-keywords in ONE View
+		Fixed LProf issue causing sampling to start before the application actual start
+		Fix counting of stack registers used in CQA for aarch64
+		Fixed formatting error in LProf "Finished collect step" verbose message
+		Fixed erroneous function "perfect efficiency" speed-up in ONE View Scalability mode
+		Fixed issues when using ONE View external-libraries option
+		Fixed buffer overflow error in LPROF
+		Limited number of dataset directories created in ONE View throughput mode
+		Fixed crash when invoking ONE View
+		Fixed ONE View crash with some combination of command line options
+		Fixed an issue in ONE View config generation
+		Fixed incorrect computation of ONE View "Activity Ratio", "Average number of active threads" and "Affinity Stability" metrics when profile_start is used
+		Fixed crash in ONE View Compare Reports mode
+		Fixed an issue in ONE View compilation option analysis
+		Fixed ONE View Tools Status page
+		Fixed issue in ONE View table columns sorting
+		Fixed LProf unsupported architecture errors appearing on aarch64
+		Fixed an issue in ONE View when throughput_max_core was greater than number of available cores
+		Fixed timeout issue in LProf when retrieving the OMP/MPI ranks id
+		Fixed ONE View bug when using --run-index option
+		Fixed crash during ONE View report generation when sorting threads
+		Fixed crash when trying to access some hardware counters
+		Fixed ONE View sample config generation issue
+		Fixed issues when some of ONE View multirun parameters were detected as duplicated
+		Fixed incorrect number of instances in ONE View throughput mode
+		Fixed formatting error in ONE View sample configuration file
+		Fixed issue when handling shift in some aarch64 instructions
+		Fixed issue in handling ONE View dataset_handler parameter
+		Fixed a ONE View issue causing some environment variables to be duplicated
+		Fixed issue in ONE View dataset directory duplication
+		Fixed issue on ONE View Experiment type causing it to be reported always as throughput
+		Fixed LProf error in AArch64 architecture detection
+		Fixed sampling corruption in LProf when requesting FLOPS and CPU-time intervals
+		Improved handling of function names that cannot be demangled
+		Fixed an issue when loading in LProf results in ONE View
+		Fixed ONE View POP metrics error for loops/functions
+		Fixed "Presence of expensive FP instructions" in ONE View Summary Level 2
+		Fixed bug in retrieval of FLOPS in Neon
+		Added missing Hardware events for METEOR_LAKE
+		Fixed failed assertion when generating LProf metadata
+		Fixed regression in LProf when using btm=stack (now by default on x86-64) in the case of undetected/supported processors
+		Fixed regression in ONE View throughput mode
+		Fixed error in ONE View on threads stats
+
+**** 2.21.1 (2025-01-21) ****
+	- New features
+		Disabled generation of ONE View "Average Number of Active Threads" chart when security settings prevent LProf from retrieving the necessary values
+	- Bug fixes
+		Fixed regression causing LProf to crash when profiling applications with more than 4 MPI process
+
+**** 2.21.0 (2025-01-17) ****
+	- New features
+		New ONE View Global chart: CPU usage
+		New ONE View metric in report comparison: max time over threads
+		New ONE View Topology charts for thread usage
+		New ONE View Global chart: Active Threads
+		New ONE View Global metric: Affinity Stability
+		New ONE View Global metric: Activity Ratio
+		New ONE View Global metric: Average number of active threads
+		New ONE View Summary analyses
+		New ONE View Global metric: Average Active Time
+		New ONE View Topology metric: Percentage of time active
+		New ONE View Topology metric: Maximum time between two context switches
+		New ONE View option: indir for report comparison
+		New ONE View report mode: Statistics
+		ONE View compare report available in text output
+		ONE View Global metric "Profiled Time" renamed to "Max thread active time"
+		ONE View now displays MPI rank along with the process ID
+		ONE View Summary Level 2 analysis detects if loops are in user code or not
+		ONE View now displays all config values with dbg=1+
+		ONE View accepts --refresh option for comparison and statistics reports
+		ONE View Summary Level 0 checks if fastmath was used
+		ONE View compiler flags hints now advise to use O3 when O2 is used (and not only when both O2 and O3 are missing)
+		ONE View comparison report now includes Summary Level 2
+		ONE View Summary Level 0 and 1 added to report comparison XLSX output
+		ONE View now allows to choose the number of loops analyzed in Summary Level 2
+		ONE View Global metric "scalability gap" moved to Potential Speedup section
+		ONE View/LProf now display information on ignored threads
+		ONE View Summary Level 0 advises using -grecord-gcc-switches if applicable
+		ONE View option thread-filter-threshold now set to 1% by default + added info message about option effect in multirun reports
+		ONE View Global metric "Power" renamed into "Average Power"
+		ONE View with-topology option now enabled by default
+		ONE View now displays inclusive and exclusive times in Functions and Loops reports
+		ONE View Summary Level 2 now available with XLSX output
+		Advices on math libraries in ONE View Summary Level 1 now adapted to compiler vendor
+		Added breakdown of issues in ONE View Summary
+		Allowed to hide source location column in ONE View Loop Expert report
+		"Level" column appears in ONE View Full Loops report
+		LProf now aborts with more accurate message when the number of threads per process is unknown and the 'perf-high-ppn' engine is selected
+		LProf now displays an error instead of aborting when unsupported events are requested (they will be ignored)
+		Support of AMD Zen 5 micro architecture
+		Handled Branch Unit in CQA analyses
+		Displayed vectorization status in CQA Expert reports for Aarch64
+		Enabled CQA array access efficiency computation for AArch64
+		Support of Arm Neoverse V2 processors
+		ONE View displays warning if topology is requested while 'lstopo-no-graphics' cannot be run (once per affected node)
+		Identified symbols from libc-2.28.so (AArch64) and libc-2.34.so (AArch64) for LProf categorisation
+		Simplified output of LProf
+		Source code hidden in ONE View Function comparison tab
+		Supported new aarch64 instruction sets for CQA analyses
+		Support of Intel SIERRA_FOREST and GRANITE_RAPIDS micro-architectures
+		Add aarch64 SVE2 instructions support for disassembler
+		Improved detection of math library for LProf categorisation
+		Threads ordered in ONE View Topology report (lstopo view)
+		Analyze module now requires arch parameter when analyzing assembly files
+		Vectorisation status is displayed on CQA expert reports for x86 applications
+		Improved LProf output when invoked from ONE View
+		Thread start/end time now displayed in ONE View Topology tab
+		Man pages now generated during compilation
+	- Bug fixes
+		Fixed issue with btm=stack mode in LProf
+		Fixed "Average Number of Active Threads" chart in ONE View report comparison
+		Fixed Source Location width in ONE View Expert Summary
+		Fixed handling of macro-fusion in CQA
+		Fixed random Lua crash when printing error message
+		Fixed crash when parsing some Dwarf information
+		Fixed double free error when trying to parse a non-ELF file
+		Fixed bug when loading multirun_params from ONE View configuration
+		Fixed bugs when retrieving MPI ranks in ONE View/LProf
+		Fixed thread ordering in ONE View Application tab, in load balancing charts and Topology tab
+		Fixed issues in Neoverse V2 machine model (vectorisation status)
+		Fixed memory leaks in LProf when building results/profile for multiple nodes
+		Fixed functions from the Intel/LLVM OpenMP runtime not correctly categorised as OMP by LProf
+		Fixed errors when loading some ONE View parameters
+		x86 MOVSXD/MOVZXD instructions are not longer considered as expensive conversion instructions
+		In ONE View Functions and Loops tab, fixed issue with the "Select/Deselect All Coverages" button
+		Fixed an issue in ONE View load balancing charts for functions in modals
+		Fixed bugs in array access detection
+		Fixed an issue during ONE View Summary JSON export
+		Fixed scalability table on ONE View Application tab
+		Fixed bug in ordering on ONE View Functions tab
+		Fixed bug causing ONE View to fail with when --with-FLOPS and --with-RAM options were used simultaneously
+		Fixed error in CQA analyses where x86 LEA instruction could be considered as a load
+		Fixed missing CQA metric when requesting only the 'potential' or the 'expert' report
+		Fixed crash in LProf when using --with-RAM or --with-energy on ARM processor
+		Fixed disassembly error on aarch64 ST2G instruction
+		Fixed issues in ONE View when the xpdir name contains spaces
+		Fixed issue in ONE View "Select All Times Over Threads" button
+		Fixed bug causing flickering in some ONE View tree tables
+		Fixed issues in ONE View Summary when no data are available
+		Fixed errors in ONE View decimal charts labels
+		Fixed error occurring when requesting ONE View XLSX output on systems where ZIP is not available
+		Fixed an issue in stride detection
+
+**** 2.20.1 (2024-04-18) ****
+	- Bug fixes
+		Fixed error when demangling the name of some F90 functions
+**** 2.20.0 (2024-04-10) ****
+	- New features
+		Added support of instruction sets from Intel ICE_LAKE and later
+		Improved display of ONE View configuration when debug enabled
+		Configuration and environment now available in ONE View comparison reports
+		Added "Expand All" button in ONE View Summary
+		Added progression messages during ONE View report generation
+		Improved display of ONE View Expert Loop report
+		ONE View now displays program output in real time during LProf profiling
+		Improved display of tooltips in ONE View for long host names
+		Counting metrics collected by LProf now display units (for instance Joules or bytes)
+		New ONE View Global metric: DRAM traffic
+		New ONE View Global metric: Energy (kJ) and Power (W)
+		LProf no longer displays categorisation errors for unknown functions
+		LProf now displays counting metrics in verbose mode
+		Sorting modules in ONE View compilation options Experiment Eummary entry
+		Support of AMD Zen 3 model 44h in CQA
+		Support of Emerald Rapids in CQA
+		Handled ARM math and string libraries for LProf categorisation
+		Improved ONE View Topology lstopo report to display processing units by threads
+		Supported sections when generating ONE View custom HTML pages
+		LProf now collects DRAM and ENERGY metrics
+		Support of 0xBA and 0xBF Raptor Lake processors when detecting micro architecture
+	- Bug fixes
+		Fixed issues in ONE View Topology lstopo view
+		Fixed disassembly bug for x86 VSCALEFPD/S and VREDUCEPD/S instructions with {sae} operands
+		Fixed issue when regenerating ONE View reports lacking energy metrics
+		Fixed values in ONE View Comparison report appearing as NaN
+		Fixed module filter in ONE View Comparison report on Functions page
+		Fixed errors in CQA vectorisation report for ZMM/512b on recent AVX-512 processors
+		Fixed memory error when failing to parse an ELF file
+		Fixed issues when collecting counting events/metrics in LProf
+		Fixed an issue preventing to load callchains when generating ONE View reports
+		Limit machine name length in ONE View displays
+		Fixed LProf event collection errors on multi-sockets machines
+		Fixed crash on unsupported architectures
+		Fixed a conflict between ONE View configuration files in existing directories
+		Fix run index in ONE View Comparison Report
+		Fixed a display issue for long node names in ONE View
+
+**** 2.19.0 (2024-01-19) ****
+	- New features
+		ONE View configuration template generation
+		New ONE View Topology report based on lstopo
+		Handling of custom images in OTTER
+		LProf collection of DRAM reads/writes events for Intel desktop processors
+		Feedback message when generating ONE View config template
+		Value checking on ONE View -dbg / --debug option
+		Added deviceId and streamId when displaying Nsight memcpy report in ONE View
+	- Bug fixes
+		Fixed issues when associating debug information to instructions for codes compiled with gcc10
+		Fixed computation of reciprocal throughput in CQA for aarch64
+		Fixed DIV and SQRT throughput information for aarch64
+		Fixed issues when generating custom reports with OTTER
+		Handled '\t' in ONE View json configuration files
+		Fixed LProf categorization report not displayed at node level
+		Fixed issue with ONE View with-FLOPS option
+		Fixed a bug causing ONE View XLSX output to be always generated
+		Fixed an issue in proc detection in LPROF
+		Fixed an issue with static analysis of versionned libraries
+		Fixed issue in ONE View config generation
+		Fixed an issue in cell alignment on ONE View Loops report
+		Fixed an issue when using custom input files during ONE View Comparison report generation
+		Fixed issue in ONE View report generation when CQA results do not exist for some loops
+
+*** 2.18.0 (2023-10-11) ****
+	- New features
+		New option allowing to display a JSON NSight report as a ONE View page
+		New ONE View option allowing to add a delay between two runs
+		New ONE View Application section displaying the status of MAQAO modules execution
+		New ONE View metric for Function and Loop reports: FLOP
+		New ONE View Global Metric: GFLOP/s (also available in report comparison mode)
+		Added OV alias for ONE View
+		Added tooltips over table column filters in ONE View
+		Added graphics to ONE View Loop CQA Reports describing vectorisation ratio and alignment, and matrix access
+		Added description of each execution port (width and execution units) in ONE View Loop CQA Export report
+		Added horizontal scrolling in ONE View Loop CQA reports
+		Added Text output to ONE View Stability report
+		Added XLSX output for ONE View Stability report
+		Added tooptips on ONE View Global Metrics
+		Added Loops page on ONE View Stability reports
+		Improved detection of Intel compiler when reporting architecture specialization issues in the ONE View Global report
+		Improved ONE View Experiment Summaries readability in multirun mode
+		Improved ONE View Global Metrics display
+		Improved online documentation in ONE View Summary
+		Improved architecture specific analysis of compilation options in ONE View reports
+		Improved ONE View logging during directory generation
+		Improved readability of ONE View Stability reports
+		Improved ONE View Summary Level 0 when no compilation options were found
+		Improved compilation options display in ONE View reports
+		Detected additional hardware information (sockets, cores per sockets, threads per core) in LProf, displayed in ONE View reports
+		Reordered ONE View Global metrics
+		Handled binary files using RUNPATH (in addition to RPATH) in ONE View
+		Handled static analysis of linked libraries in ONE View
+		In ONE View Global Metric compilation option analysis, handled the case where the processor is AMD and the compiler is Intel
+		Highlighted CQA analysed source code in ONE View Loop Reports
+		Hidden FLOPS metrics in ONE View Global page if the option has not been used
+		ONE View no longer tries to invoke static analysis on "Unknown function"
+		ONE View does not attempt any more to compute FLOPS metrics on non-supported processors
+		ONE View Experiment Summary material configuration can handle both single material configuration and heterogeneous node configurations
+		ONE View Global Metrics use median instead of the first run metrics
+		ONE View Stability report now includes Function categories
+		Allowed chart extraction in ONE View Comparison and Stability reports
+		ONE View Stability reports now displays run counts for loops and functions
+		Default graph on ONE View Stability report is now "Profiled Time"
+		Supported text files as input for OTTER
+
+		Restricted number of opened files by LProf and advised to use different engine if max number is reached
+		Improved LProf categorisation of functions from OMP runtimes to detect those from LLVM runtime
+		Significantly reduced LProf memory consumption for runs with large number of MPI ranks per node or large binary files
+		libopenblas is now categorised as MATH in LProf
+
+
+		Added missing Zen 4 specialization flags in CQA reports
+		Improved CQA language/compiler specific reports to include LLVM-clang and C advices also valid in C++
+		CQA analysis takes ZMM into account for Icelake Server processors
+		Updated CQA machine model for Cortex-A57 CPU model
+		Added reciprocal throughput in CQA Reports for aarch64
+
+
+
+		Added extensions from Icelake, Icelake Server, Goldencove Server and Zen 4 to machine model
+		Handling of C11 when detecting language from debug (DWARF) info
+		Added definition of Zen 4 processor
+		Improved/fixed retrieval of debug information for files using debuglink
+		Updated manpages directory to comply with man standards
+
+		Added a new option to Analyse for generating CSV files
+
+	- Bug fixes
+		Fixed issue when generating LProf HTML reports with OTTER
+		Fixed errors in LProf categorisation of functions invoked by OMP runtime
+		Fixed multiple warning messages from LProf when requesting FLOPS when unavailable on the current system
+		Fixed errors when handling "Unknown function" in LProf
+
+		Fixed ONE View crash when generating material configuration if an error occurred in LProf
+		Fixed ONE View bug when -WC was used without -WS
+		Fixed ONE View issue when handling external libraries in Summary
+		Fixed issues when displaying assembly in ONE View CQA Loop reports
+		Fixed issue in ONE View summary on source location
+		Prevented error in ONE View due to a metric not computed for AArch64
+		Fixed occasional crash in ONE View when encountering erroneous cases
+		Fixed broken links in ONE View reports generated with --replace option
+		Fixed ONE View categorisation bug
+		Fixed bug in ONE View Loop Expert report generation
+		Fixed ONE View Topology chart axis label
+		Fixed style issue in ONE View index
+		Fixed bug in ONE View compare reports
+		Fixed bug on table headers display in ONE View Stability reports
+		Fixed an issue on some ONE View Scalability Report panels
+
+		Fixed crash in CQA analysis when requesting an unsupported micro-architecture
+
+
+		Fixed error when parsing debug info in members of an archive file (.a)
+		Fixed disassembly errors in aarch64
+		Fixed issue with links between loops and function pages
+		Added option missing from maqao --help
+		Fixed a bug when statically analysing functions from linked libraries
+		Fixed disassembly bugs for aarch64 CBZ*, TBZ* and CBNZ instructions
+
+
+
+		Fixed crash in dataflow analysis
+		Fixed memory error when parsing 32-bits files
+		Fixed vectorisation efficiency above 100%
+		Fixed crash when performing dataflow analysis on some binaries
+		Fixed hanging on grouping analysis
+		Fixed handling of one variant of aarch64 instruction FMLS
+
+**** 2.17.0 (2023-04-19) ****
+	- New features
+		New ONE View Application panel listing libraries used by the application
+		New ONE View option allowing include XLSX reports into HTML comparison reports
+		Added dynamic filters on ONE View Loops Comparison table
+		Added XLSX output for ONE View Summary reports
+		Added to ONE View Experiment Summary more information about freq (governor + driver) and huge pages
+		Added disclaimer to ONE View compilation options report
+		Added help on ONE View Loop comparison page
+		Improved error recovery in ONE View
+		Improved ONE View analysis of compilation options when the hottest module do not have any compilation options
+		Improved ONE View analysis of march compilation option
+		Improved display of compilation options in ONE View
+		Improved ONE View Summary report when analysing an application not compiled using -g
+		Improved ONE View configuration generation to include stability options
+		Improved ONE View loops comparison by looking for +/- 1 start line
+		Improved ONE View Loop Comparison
+		Updated OTTER documentation
+		ONE View LProf log now includes stderror
+		ONE View handled applications exiting with non 0 value
+		ONE View compilation options report does not display nameless files
+		ONE View now displays callchains for all runs in multi-run mode
+		ONE View Comparison reports now have the same structure as the standard reports
+		ONE View now generates an OTTER output manifest
+		Handled mcpu option in ONE View reports
+		Handled -mcpu=<target> for ARM in ONE View
+		Level column hidden in ONE View Loops report
+		Reduced some columns header size for better readability in ONE View Loop Comparison
+		Reduced HTML pages sizes for ONE View Functions and Loops reports
+		Reduced number of generated HTML files for ONE View reports
+		Taken into account object_coverage_threshold in ONE View Topology reports
+		Added text output for ONE View Summary Report
+		Copied ONE View config file into xp_dir
+		Do not display Intel compilation options -xTARGET in ONE View reports when the compiler is unknow
+		Removed scalabiltiy gap metric in ONE View Report Comparison
+		Handled quotes in compilation options when computing ONE View Global Metrics
+		OTTER now allows to generate an empty report from an empty input manifest
+		Handled OTTER custom CSV in XLSX reports
+		Handled user defined CSV file in HTML output by OTTER
+		Handled user defined menus on OTTER
+		Allowed OTTER to generate reports without any default page
+		Displayed functions that were statically analysed even with a coverage below object_coverage_threshold in ONE View Topology reports
+		Added priority to syntax -- <command> over other way to pass parameters to ONE View
+		
+		Improved memory allocation in LProf for better performance
+		Improved exit codes returned by LProf to allow better detection of the cause of exit
+		Improved LProf display-raw-events option to allow displaying any combination of percentage, samples and events and making related colums easier to parse in the CSV output
+		Removed deprecated LProf option cd/check-directory
+		Replaced LProf option check-directory/cd=off for overwriting an existing xp-dir with --replace for coherence with oneview
+		Taken the Arm Performance Libraries into account for LProf categorisation
+		LProf now displays error instead of warning for each process without time samples during collection. For engine=no-perf, message displayed even if -verbose is not set
+		Fixed nil or empty values for LProf cluster or node results appearing as NaN in LProf reports
+
+		Added fallback to CQA when some metrics could not be computed
+		In CQA, added test on architecture when checking validity of uarch parameter
+		Masked instruction metric restricted to x86 architectures on CQA reports
+
+
+		Handled XLSX inclusion for classic reports
+		Added support for aarch64 Neoverse N1
+
+
+		Added aarch64 architecture support
+		Added AMD Zen v4 support for x86-64
+		Added demangling for f90 ARM
+		Updated Golden Cove machine model for some versions
+		Updated Zen4 hardware events from libpfm4 for x86_64
+		Handled L2 hardware events for Intel Sapphire Rapids
+
+		Handled instructions where first operand is not the source when computing SSA
+		Handled disassembly of little-endian architectures
+		Handled quotes in option values of MAQAO and its modules
+		Improved grouping analysis to better handle new architectures
+	- Bug fixes
+		Fixed an issue on ONE View Topology report
+		Fixed an issue in ONE View with absolute paths when using --include-detailed
+		Fixed display in ONE View Expert Loops
+		Fixed an issue with compilation options analysis on ONE View Summary
+		Fixed bug during ONE View Summary generation
+		Fixed error in ONE View custom report template
+		Fixed use of grouping analysis in ONE View
+		Fixed handling of ONE View confidentiality option
+		Fixed checkbox behaviour for optional columns in ONE View
+		Fixed error in ONE View Application categorization chart in report comparison
+		Fixed ONE View error during report generation when a config option was uninitialized
+		Fixed issue in ONE View Stability chart rendering
+		Fixed computation of inclusive coverage computation in ONE View Function report
+		Fixed description of runs in ONE View multi-runs reports
+		Fixed XSLX output for ONE View report comparison
+		Fixed an error in ONE View computation of compilation options score for applications compiled using GNU
+		Fixed an issue with ONE View --refresh command
+		Fixed use of hardware events in ONE View Report 3 for Icelake SP and Sapphire Rapids
+		Fixed error during generation of ONE View QPROF XLSX report
+		Fixed error in ONE View source sort in loops comparison
+		Fixed errors in ONE View weak scalability mode
+		Fixed regression on --include-detailed option in ONE View
+		Fixed ONE View crash when compilation options chain contained quotes (")
+		Fixed issue in ONE view XLSX report due to deviations
+		Fixed ONE View issue when compilation options chain contained spaces
+		Fixed obsolete reference to ONE View option --binary in error message
+		Fixed iteration count appearing twice in ONE View reports
+		Fixed issue in ONE View scalability gap
+		Fixed a bug in OTTER preventing report generation when no output is given
+
+		Fixed CQA error when printing the list of available archs (only Intel architectures were printed)
+		Fixed bug in LProf event collection for multi-nodes runs
+		Fixed bugs in LProf when trying to access missing cpuinfo elements
+		Fixed LProf CSV output with -db option
+		Added missing EOL in LProf warning message
+		Fixed error in LProf categorisation when library path contained name of known library
+		Fixed LProf crash when the cpu-list option was set to a single value
+		Fixed LProf crash when missing value for display-raw-events
+
+		Fixed handling of some aarch64 instruction sets in CQA
+
+
+		Fixed regression on disabling debug parsing
+		Fixed some crashes during dataflow analysis on aarch64
+		Fixed crash when failing to disassemble an instruction
+		Fixed error on long archive member names when parsing archive files
+		Removed error message appearing during disassembly when trying to add .plt symbols for architecture lacking patching functionality
+		Fixed regression in LUA API causing constants representing submodules parameters to be unavailable
+		Fixed errors in handling of Zen4 hardware events (fix sent to libpfm4)
+		Fixed some Zen 4 extensions
+		Fixed potential errors when parsing registers from string
+		Fixed display issue on chromium based browsers
+		Fixed some chart labels
+		Fixed possible crash when parsing internal flags for events collection
+		Fixed bugs in uarch detection
+
+**** 2.16.0	(2022-11-16) ****
+	- New features
+		New LProf collect-step option: maximum-CPU-time-intervals, allowing to trace per-thread running periods with allocated CPU
+		New LProf option: time-format, allowing to customize format used when displaying times
+		Improved help message in case of incompatible LProf results
+		Improved LProf output at process termination (0-exited, nonzero-exited, signaled, stopped, etc)
+		Improved error message in case of error when invoking the patcher from Lua API
+		Improved clarity of message displayed in case of LProf running with 64K or bigger pages and 3+ processes per node
+		Updated LProf categorisation to identify symbols from libc-2.17.so, libc-2.28.so, libc-2.35.so and libc-2.36.so
+		Updated LProf help to reference db/display-blocks option
+		Updated LProf categorisation to identify symbols from 
+		Removed LProf deprecated options: --use-alternative-engine (now engine=perf-high-ppn) and --use-interrupt-engine (now engine=no-perf)
+		New LProf option: "disable-callchain-categorization" for disabling refining of categories from callchains
+		LProf now checks for unsupported arguments on the command line
+
+
+		Added support for the RAPTOR_LAKE, ROCKET_LAKE, Alder Lake and Sapphire Rapids micro-architectures (events and machine model)
+		Added hardware events for Icelake Server
+		Added machine model for the KNIGHTS MILL (KNM) micro-architecture
+		Support of new CPUID: AMD Lucienne 8F68 (fam=17h/Zen2 model=68h)
+		Updated Icelake/Icelake-AVX512 and Zen 3 machine model 
+		Updated hardware events for Skylake, Icelake (client), Alder Lake and Sapphire Rapids. 
+		Updated characteristics of x86 conversion instructions
+		Updated handling of Zen3 libpfm4 events
+		Updated reciprocal throughput of VZEROUPPER for Zen v3
+		Updated machine model for x86 masked loads and reg-to-reg moves
+		Displaying boxes in HTML reports with rounded corners
+		Prevented browser from auto-translating HTML reports
+		Improved demangling of function names
+		Updated README to fix minimal version of CMake in requirements
+		Updated handling of LEA for Zen v2/3 in machine model
+		First row of tables in HTML reports is now frozen when scrolling down
+		Height of filter boxes is limited in HTML reports
+
+		Analyse module now displays basic block identifier when printing instructions
+
+		New CQA metrics: "nb packed loads/stores" and "nb vector unaligned loads/stores"
+		New CQA new metrics and related reports: perfect FMA-pairing, removal of expensive insns = {gather/scatter, special single-port, FP-math calls/DIV/SQRT}, cycles if no front-end or infinite uop cache
+		Modified CQA "vector unaligned instructions" metrics to use instructions instead of per-opcode counts.
+		CQA now displays the list of source regions actually analysed for non-innermost loops in case of difference between loop source regions (including children loops) and actually analyzed code (excluding them)
+		CQA advises use of qopt-zmm-usage=high only when not already used
+		CQA metrics "cycles if only FP" and "cycles if only FP arith" updated so that all instructions are ignored if no SIMD-FP instructions are present
+		CQA now checks for unsupported arguments on the command line
+		Improved CQA analysis for Haswell and later (more accurate unlamination)
+
+		New ONE View compile option panel in multirun mode
+		New ONE View option for specifying comments displayed in the report
+		New ONE View option for report comparison mode: --include-detailed, allowing to copy the original reports into the comparison report
+		New ONE View Functions metric: deviation
+		New ONE View HTML page: executable output
+		New ONE View page: POP metrics (mostly scalability ones)
+		New ONE View page: environment variables
+		New ONE View Summary Level: 2
+		New ONE View parameter: page title
+		New ONE View Application chart: Detailed Function Times
+		Added filter on run in ONE View report comparison functions page
+		Added if FP only in ONE View Loop Expert report
+		Added documentation on ONE View expert.csv file
+		Added option to generate the ONE View Loop Expert report as CSV file
+		Added a dynamic filter in ONE View Expert Loops View
+		Added an OTTER command to generate input manifest template
+		Added shortcut for ONE View compare-reports mode
+		Added columns to ONE View Stability Functions report
+		Added filters to ONE View Stability reports
+		Added support of CPUID AMD Cezanne AF50 (fam=19h/Zen3 model=50h)
+		Added loops to ONE View Stability Functions tabs
+		Added tooltip for Vectorization efficiency one ONE View Loop and Expert Summary tabs
+		Improve compilation options detection in ONE View Summary
+		Improved display of ONE View run parameters in Topology page
+		Improved index display in ONE View multiruns mode
+		Improved ONE View Config HTML formatting for solo runs
+		Improved display of compilation options in ONE View multiruns mode
+		Updated ONE View documentation for global metrics, functions and Stability mode options
+		Updated OTTER documentation
+		Updated ONE View messages for more clarity
+		ONE View does not generate env page if no env_path defined
+		ONE View Load distribution all threads view is not sorted
+		ONE View hints handle ICPX option syntax (-x CORE-AVX512)
+		ONE View Vectorization Efficiency metric renamed into Vector Length Use in Loop tab
+		ONE View default coverage threshold input set to 0.01
+		ONE View 3 now handles Icelake Server and Sapphire Rapids perf-events
+		ONE View displays inclusive metrics in italics
+		ONE View Topology page now specifies that metrics are inclusive
+		ONE View Loops tab and Expert Summary report now use the same names for identical columns
+		ONE View Configuration Summary does not display batch_script if not defined in config
+		ONE View main menu now depends on generated pages
+		ONE View pinning_command option can now be used in multiruns mode
+		ONE View Report Comparison output available as XLSX
+		ONE View Application charts resizing according to window size
+		ONE View generated config file now uses executable instead of binary
+		ONE View Comparison Function tab now includes a	metric filter
+		ONE View Stability report now includes percentiles
+		ONE View Total Time metric now based on LProf walltime metric
+		ONE View Stability global report now contains bucket charts
+		ONE View Configuration page for multi-runs now adapts to browser
+		ONE View Topology profile now scrollable
+		OTTER displays error messages for files that can not been loaded
+		Handling of run name in OTTER input manifest
+		Limited column width on ONE View Functions page in report comparison mode
+		Generated reports for all loops in ONE View Scalability mode (not loops only detected in base run)
+		Displayed an error message when xlsx can not been generated in ONE View compare mode
+		In ONE View Loop and Function pages, clicking on an asm line focuses source code
+		Modules are sorted dynamically in ONE View Functions filters
+		The "Select All Times" button is now split in two into on ONE View Functions and Loops pages
+		Uniformised behaviour of boxes in ONE View Topology tab
+		Uniformised run names in ONE View Scalability reports
+		Missing values now all appear as N/A in ONE View Compare report
+		Directory names are used as default report names in ONE View Report Comparison mode
+		Prevented ONE View from performing static analyses again when moving the experiment directory
+		"Vectorization Efficiency" metric now coloured depending on value on ONE View Loop and Expert Summary tabs
+		"Vectorization Ratio" metric new coloured depending on value on ONE View Expert Summary tab
+		Handled loops not profiled in ONE View Stability report
+
+
+	- Bug fixes
+		Fixed error in name of aarch64 architecture in LProf when recovering from the an application segfaulting
+		Fixed potential stack-smashing error in LProf when handling 7+ digits PID values
+		Fixed LProf categorization for external functions called in OMP regions
+		Fixed potential overflow in LProf when handling pages
+		Fixed LProf libraries analysis (ldi option): symbolic name no longer has priority over physical name when matching to the ldi list and is not used when writing data (the physical name is used)
+		Fixed issue in generation of LProf HTML report
+		Prevented LProf bug when experiment directory contained directories not created by LProf
+		Fixed LProf "Cannot retrieve map start for" warnings when using the no-perf engine
+		Fixed LProf issue when btm=stack cannot be enabled
+
+		Fixed ONE view handling of thread_filter_threshold option
+		Various bug fixing in ONE View
+		Fixed issue in ONE View report comparison mode
+		Fixed issue with ONE View custom categories in report comparison
+		Fixed OTTER input file generation in report comparison.
+		Fixed issues in ONE View Stability analysis.
+		Fixed coverage based filter in ONE View Loop & Functions tab
+		Fixed OTTER env vars page
+		Fixed JS issue in ONE View due to a space in a module name
+		Fixed missing column in ONE View Expert Loops View
+		Fixed issue in ONE View causing "OpenMP perfectly balanced" metric to be below 1
+		Fixed an issue in ONE View expert.csv generation (extra useless column)
+		Fixed configu loading in ONE View multiruns
+		Fixed broken links on ONE View Functions page in comparison mode
+		Fixed crash in ONE View Comparison mode
+		Fixed erroneous colour in ONE View Summary Level 0
+		Fixed erroneous results in ONE View Scalability mode
+		Fixed issue with ONE View compilation options Global Metric
+		Fixed missing loops hierarchy on ONE View Functions tab
+		Fixed error in generation of ONE View config file when cqa_params is used
+		Fixed erroneous thread count in ONE View Functions page
+		Fixed an issue preventing ONE View to generate expert.csv with xlsx output
+		Fixed issue with "if data in L1" speedupe in ONE View Loops tab
+		Fixed a bug in ONE View Report Comparison when a custom category definition changed between runs
+		Fixed bugs with next and previous buttons on ONE View Loop reports
+		Preventing text for being cut in ONE View Summary and tooltips
+		Fixed broken links to ONE View Loop reports
+		Fixed issues in ONE View where excluded_area is set and the executable is not defined in the config file
+		Fixed ONE View custom categories coverage in Detailed Application Categorization
+		Fixed "path number" chart in ONE View Thread Profile page
+		Fixed a NaN issue in ONE View OpenMP perfectly balanced potential speedup metric
+		Fixed erroneous number of threads displayed in ONE View Functions report when several functions have the same name
+		Fixed crash when ONE View was invoked with a configuration file along with command line parameters using quotes
+		Fixed issue with ONE View displayed index name
+		Fixed issue in ONE View display of a module name containing spaces when loop / function isn't analyzed
+		Fixed issue in display of ONE View tooltips
+		Fixed erroneous colouring of loop id in ONE View Loops tab
+		Fixed erroneous run index in ONE View Experiment Summaries when several reports are used
+		Fixed issue with ONE View scalability gap metric when used for an application with weak scalability
+		Fixed issues in ONE View POP metrics panel display
+		Fixed issues with tooltips on ONE View Assembly code view
+		Fixed an issue in ONE View report comparison mode when several functions have the same demangled name but various source names
+		Fixed some error messages thrown by ONE View in single run mode
+		Fixed display errors in ONE View Summary
+		Fixed issue in ONE View Load Distribution chart generation when several functions have the same name
+		Fixed missing name in ONE View Comparison Report
+		Fixed midding ONE View Scalability report for functions
+		Fixed ONE View issue during loop analysis when the binary name is a number (ex: '4')
+		Fixed bug in ONE View text reports when no loops are found
+		Fixed loop selection in ONE View text output
+		Fixed a bug in ONE View Summary when no loops are found
+		Fixed a bug in ONE View when functions categories are not available
+		Fixed a bug in ONE View HTML reports rendering due to tooltips
+		Fixed a bug in ONE View Stability that prevented to run all repetitions
+		Fixed ONE View crash when displaying error about a failed LProf run
+		Fixed "< br>" appearing in ONE View Functions Category column
+		Fixed issue with ONE View coverage-based filter
+
+		Fixed CQA model for Skylake and Icelake to use the correct number of decoders (3 instead of 4)
+		Fixed CQA Sapphire Rapids PRF handling
+		Fixed issue with handling of memory operand in CQA
+		Fixed a bug in CQA when requesting to analyse a path
+		Fixed issue in CQA "If perfect FP FMA pairing" metric computation when zeroing/masking operands are used
+		Fixed bug when printing CQA vectorisation report for DIV/SQRT instructions
+		Fixed bug when printing CQA report for unsupported micro-architectures
+		Fixed assembly parsing error displayed during CQA analysis
+		Fixed AMD Zen load/store cycles computation in CQA
+		Fixed error in computation of CQA "cycles if vectorized" metric
+		Fixed error when computing CQA "cycles if perfect FMA pairing" metric
+		Fixed crash during CQA analysis
+		Fixed error on dispatch for AMD Zen CQA machine model
+
+		Fixed machine model latency for packed 512 bits FP instructions on Skylake-SP and Icelake-SP
+		Fixed crash when computing line numbers
+
+		Fixed instructions VPBROADCAST[BWDQ] for Skylake-AVX512 missing from machine model
+		Fixed machine model error with [V]PCMPEQ instructions using the same operand so that they cost a micro-operation
+		Fixed Zen 3 PMIN/PMAX throuput and SHLD/SHRD/CVT latency in machine model
+		Fixed Zen 3 VPHADD/SUB incorrect port in machine model
+		Fixed parsing bug which could cause sections to be associated to the wrong segment
+		Fixed bug when attempting to generate an XLSX file with the same name as an existing directory
+		Fixed issue with tooltips in HTML reports
+
+	
+**** 2.15.0 (2021-12-09) ****
+	- New features
+		Improved LProf help on processes-per-node option
+		Improved LProf to distinguish time spent into unknown modules from JIT code
+		Updated LProf categorisation to identify symbols from libc-2.33.so and libintlc.so (Intel libc) 
+		Updated LProf categorisation to categorise err.h routines (warn, warnx, err, errx etc.), perror and terminal/tty routines (mostly in termios.h) as IO instead of SYSTEM
+		LProf auto-detects processes-per-node/ppn if it is omitted for parallel (MPI) runs
+		LProf exits correctly if the number of process per nodes is higher than processes-per-node
+		LProf displays all call chains by default in display mode
+
+		Improved ONE View help
+		Add vectorization ratio / efficiency to ONE View Expert report
+		Renamed ONE View Global Metric "Scalability Speedup" into "Scalability Gap"
+		ONE View Scalability Mode will now use the environment variables set for the base run for all runs unless changed for a sepcific run
+		New ONE View option: --refresh, for refreshing reports without relaunching profiling
+		New ONE View configuration variables: scriptv_<VAR> (similar to envv_<VAR>)
+		Added check of BLAS use to ONE View Summary Level 1
+		ONE View Summary Level 0 uses profiled time instead of walltime for retrieving application duration
+		Displayed scores for items in ONE View Summary Level 0
+		ONE View Expert Summary hides frequency impact when the metric is not available
+		ONE View Experiment Summary headers are written in bold characters
+		Reduced size of ONE View Experiment Summary in monorun report
+		ONE View Multi-Run Experiment Summary similar entries are not duplicated
+		MAQAO version and build removed from ONE View Experiment Summary
+		Improved display of compilation options on ONE View Global tab
+		Removing labels on branch instruction on the Assembly Code panel of ONE View Loop Reports
+		Handled case where running ONE View with an empty "executable" option
+		ONE View POP Metrics now consider PTHREAD-category cycles/instructions the same way as MPI/OMP-categories for load balance, communication efficiency and IPC (computation) 
+		ONE View Functions tab displays categories associated to functions
+		ONE View default behaviour is not to not use dataset and set run_directory default value as "."
+		ONE View omp_num_threads parameter removed. Number of OpenMP threads now defined through environment variable OMP_NUM_THREADS or ONE View option envv_OMP_NUM_THREADS
+		Handled case when ONE View profile-start option is set to probe when printing ONE View config
+		Update ONE View configuration file to support report comparison and report names
+		ONE View Option "binary" now renamed as "executable"
+		ONE View Report Comparison allows choosing specific run
+		Improved readability of ONE View Help Buttons
+		ONE View Export Report adapted to window size
+		ONE View Functions and Loops reports now include a button to show / hide all times
+		In ONE View Functions and Loops tabs, coverage is now optionnal
+		First version of coverage threshold based filter in ONE View Functions report
+		Updated runs ordering when ONE View scalability-reference option is used (for all but efficiency)
+		Improved sizing of ONE View Loop / Function pages
+		In ONE View Loop Report, adapted module coverage to reference run
+		Moved filters on ONE View pages into a collapsible tab
+		Add themes for ONE View Report comparison
+		Renamed ONE View options help-lprof-probes into help-guided-profile and improved
+
+efficiency)
+
+		Analyse module offers CSV output for functions and loops display, along with matching with original function demangled name
+
+		New CQA metric:	"original function name"
+		Modified CQA reports loop vectorisation qualifiers accoring to vectorisation ratio: highly (90-100) / partially (50-90) / poorly (20-50) / not (0-20)
+		In CQA reports, Added 'fma' and 'div/sqrt' sub-metrics for 'packed ratio' and 'vec eff ratio'
+		Updated CQA identification of loop control instructions to include all x86 instructions impacting flags
+		CQA reports distinguish ADD/MUL FP operations coming from FMA instructions
+		In CQA Expert Reports, moved Assembly report from first to last position
+
+
+
+	- Bug fixes
+		Fixed CQA crash when analysing code on KNL
+		
+		Fixed issue in ONE View 3 for MEM_LOAD_UOPS_RETIRED.* hardware event groups
+		Added Added missing metrics to ONE View CQA Advanced tab: vec-ratio and vec-eff ratio for FMA and DIV/SQRT
+		Fixed a broken link to kernel function charts from ONE View Functions page
+		Fixed a bug in ONE View Summary Level 0 when analysing an application with no compilation options
+		Fixed decimal formats in ONE View Summary
+		Fixed missing units in the ONE View filters tabs
+		Fixed ONE View crash when logging info
+		Fixed missing run in ONE View Scalability chart
+		Fixed erroneous warning appearing during ONE View execution
+		Fixed format of ONE View Functions categories
+		Fixed incorrect ordering in ONE View Loops tab
+		Fixed various typos in ONE View
+		Fixed ONE View Summary check -f-no-omit-frame-pointer
+		Fixed ONE View crash if profile_start option is defined but empty
+		Fixed discrepancy between ONE View CQA report advanced values
+		Fixed issue in ONE View Grouping View
+		Fixed ONE View crash during report generation
+		Fixed ONE View displaying an error after generating a report using batch script
+		Fixed an issue in categorization in ONE View XLSX report
+		Fixed an issue in ONE View causing external library analysis to fail if executable uses RPATH but LD_LIBRARY_PATH is undefined
+		Fixed an issue in ONE View experiment directories causing a problem in report comparisons
+		Fixed an issue in ONE View with localstorage use in functions
+		Fixed filter in ONE View Loops tab
+		Fixed issue in ONE View Functions report causing wrong coverages when using filter
+		Fixed an issue in ONE View Iterations Counts formatting
+		Fixed issues in loop coverages on ONE View Functions tab
+		Fixed wrong module coverage appearing in ONE View Functions filter
+		Fixed broken link in ONE View reports
+		Fixed an issue in ONE View custom report creation
+		Fixed ONE View Scalability Speedup Global Metric
+		Fixed wrong colours in some ONE View tooltips
+		Fixed various typos in ONE View
+		
+		Fixed crash when trying to retrieve missing debug information
+		Fixed bug when parsing assembly operands
+		Fixed javascript bug
+		Fixed error when searching for an instruction modifying a flag inside a block that could cause to return an instruction outside of the block
+		Fixed incorrect handling of multi-arch when detecting flags modified by a given opcode
+		Fixed error causing x86 instruction DEC to be considered as not updating the same flags as INC
+		Fixed bug when generating an HTML report with an existing directory
+
+		Prevening LProf aborting when dumping source paths longer than 10000 bytes
+
+
+
+
+
+**** 2.14.1 (2021-06-23) ****
+	- New features
+		Refactored HTML menu
+		Added themes to ONE View HTML reports
+		Fixed typos in ONE View output and HTML reports
+		ONE View displays a warning instead of info when reusing experiment directory
+		Some ONE View POP metrics now displayed as percentage
+		Added a suffix to ONE View report names when --run-index is used
+
+		Replaced LProf warning about being unable to retrieve period with info message
+		Enabled retrieval of POP metrics by LProf on AMD Zen processors
+	- Bug fixes
+		Fixed wrong formula appearing in tooltip for ONE View Scalability - Ideal Speedup Global Metric
+		Fixed ONE View error when LProf-cluster are NULL
+		Fixed links between ONE View table headers and data
+		Fixed some accuracy issues in ONE View Scalability
+		Fixed ONE View issues when using filters
+
+		Fixed LProf samples scaling with SAMPLING_ENGINE_INHERIT
+		Fixed memory error in LProf multi-threaded mode 
+		Fixed LProf virtual addresses resolution when the segment containing the .text section is not starting at the beginning of the map
+
+*** 2.14.0 (2021-06-09) ****
+	- New features
+		Renamed ONE View Global Metric "Time in loops" in "Time in analysed loops"
+		ONE View Profiled Time metric now coloured depending on reliability of metric
+		ONE View option number_tasks_nodes renamed into number_processes_per_node
+		Added horizontal scrolling on ONE View Configuration page
+		Added labels on ONE View Categorization charts in Multirun mode
+		New ONE View Global Metric: Speedup if FP only
+		New ONE View option: base_run_name, allowing to choose base run name un multirun mode
+		New ONE View option: --with-POP, to generate POP metrics
+		New ONE View option: confidentiality, allowing to remove source code and/or assembly code
+		In ONE View, clicking on a bar in Index categorization chart displays detailed categorization tables
+		New columns in ONE View Functions and Loop pages: "Max time over threads" and "Time w.r.t. wall time"
+		New columns in ONE View Loops tab: number of threads
+		ONE View now allows defining complex custom categories in Multirun Mode
+		ONE View handles environment variables in Multirun mode
+		Improved display of long function names in ONE View Functions tab
+		Load balancing charts available for all runs in ONE View Loops and Functions pages
+		Handled paths containing spaces in ONE View
+		Harmonized colours for ONE View Categorization Charts
+		Improved display of callchains in ONE View
+
+		Improved readability of LProf messages "Your experiment path is ..." and "To display your profiling results"
+		Removed redundant warning when LProf used on a run too short
+		LProf sampling engine now automatically selected according to Linux-perf availability, paranoid-level and LProf options
+		LProf now takes into account libc and libpthread when detecting pthread functions
+		Updated LProf categorisation to identify functions from math libraries libamdlibm.so (AMD libM), libmvec.so, libmvec-X.Y.so and inlined functions with name starting with __libm_ (libm) or __svml_ (Intel SVML)
+		Improved help and user output related to LProf --processes-per-node, -use-interrupt-engine and --use-alternative-engine options
+		Improved display of callchains in LProf
+
+		CQA can now analyse function bodies containing Intel CET-IBT instructions (ENDBR32/64), even on processors not supporting such instructions
+
+		Improved handling of space characters in MAQAO command line
+		Support of AMD Zen3 micro-architecture
+		Support of TIGER_LAKE micro-architecture
+		New MAQAO option: --detect-proc, allowing to display local processor and micro-arch
+	- Bug fixes
+		Fixed issues with ONE View keep-binary-location option
+		Fixed issues with ONE View excluded / included areas
+		Fixed issue with experiment type in ONE View Multirun mode
+		Fixed issues with loops contextual menus on ONE View Functions Report
+		Fixed disappeared scalability chart in ONE View Multirun mode
+		Fixed an alignment issue in ONE View HTML Application page
+		Fixed incorrect parameters used in ONE View Multirun when not filled
+		Fixed overflow error in ONE View Functions and Loop tabs
+		Fixed truncated graph panel in ONE View Global tab when the browser window is too small
+		Fixed issues in ONE View header display
+		Fixed "Total Time" value in ONE View "Scalability - Time Per Category" HTML chart
+		Fixed erroneous values for ONE View Scalability Efficiency
+		Fixed ONE View crash when using custom categories
+		Fixed issue with links from ONE View Charts to Process Profiles
+		Fixed issue with links from ONE View Detailed Categorization table to Thread profile
+		Fixed issue with ONE View scalability popup
+		Fixed ONE View crash when invoking with -c option is set without value
+		Fixed issues with links from ONE View Load Balancing to Process Profiles
+		Fixed issue in scalability display on ONE View Loops/Functions reports
+		Fixed issues in ONE View panels using buckets
+		Fixed issue in ONE View when trying to compare with old reports lacking the "speedup if FP only" metric
+		Fixed issue in display of Loops Callchains in ONE View
+
+		Fixed LProf crash when reading strings longer than 10000 chars
+		Fixed issue in LProf HTML output
+		Fixed issue with handling of LProf "maximum-threads-per-process/tpp" option
+		Fixed issue with walltime collection when LProf was invoked with --use-interrupt-engine option
+		Fixed LProf issue causing multi-threaded application to report 100% time spent in unknown module when using --use-interrupt-engine option
+
+		Fixed memory leak when retrieving source line associated to an address
+		Fixed URL for online documentation
+		Fixed issue when printing instructions from a file containing more than one code section and with non-contiguous addresses between them
+		Fixed crash happening when retrieving debug information from files containing more than one code section with addresses beginning at 0 for each
+		Fixing missing Instruction Sets for Icelake Client
+

@@ -1,0 +1,114 @@
+.\" File generated using by MAQAO.
+.TH MAQAO-MIL "1" "2026/07/13" "MAQAO-MIL 2026.1.0" "User Commands"
+.SH NAME
+maqao-mil \- manual page for maqao mil module.
+.SH SYNOPSIS
+maqao instrument i=<mil_script> [bin=]
+.SH DESCRIPTION
+This module instruments a binary given an input file written according to the MIL syntax
+.SH OPTIONS
+.TP
+\fB\-i\fR, \fB\-\-input\fR
+MIL script to process
+.TP
+\fB\-bin\fR, \fB\-\-binary\fR
+Override main binary specified in the MIL Script
+.SH "    MAN PAGE"
+.TP
+\fB\-\-generate-man\fR
+Generate the man page of the module based on the module help in the current directory. The generated file is called maqao-<module>.1. Once the man page is generated, the program exits.
+.TP
+\fB\-\-generate-man-all\fR
+Generate man pages for all modules available based on each module help in the current directory. Each generated file is called maqao-<module>.1. Once the man pages are generated, the program exits.
+.TP
+\fB\-\-output\fR\=<path>
+Specify the path where the man page is generated.
+.TP
+\fB\-\-generate-wiki\fR
+Generate the wiki page of the module based on the module help on the standard output. Once the man page is generated, the program exits.
+.SH "    OPTIONAL FLAGS COMMON TO ALL MODULES"
+.TP
+\fB\-\-arch\fR\=<architecture>
+Select the architecture used for analysis. Available values are: 
+x86_64.
+
+.TP
+\fB\-\-disable-debug\fR
+Disable debug data loading. WARNING, this option may alter the tool's accuracy.
+.TP
+\fB\-\-compiler\fR\=<compiler>
+Select the compiler used to create the binary. Available values are: 
+GNU, Intel.
+
+.TP
+\fB\-\-language\fR\=<language>
+Select the source language. Available values are: 
+c, c++, fortran.
+
+.TP
+\fB\-\-lcore-flow-all\fR
+Analyze all instructions returned by MADRAS. Default behaviour is to analyze instructions from sections .text, .init, .fini and .madras.code. 
+.TP
+\fB\-\-uarch\fR\=<uarch>
+Select the micro architecture used for analysis. Available values are: 
+.TP 20 
+\fB       For x86_64 architecture:\fR 
+CORE (CORE2_65), ENHANCED_CORE (CORE2_45), NEHALEM (NHM), WESTMERE, SANDY_BRIDGE (SNB), IVY_BRIDGE (IVB),             IVY_BRIDGE_E (IVBE), HASWELL (HWL), BROADWELL (BWL), SKYLAKE, ICELAKE, ICELAKE_SP,             TIGER_LAKE, ROCKET_LAKE, ALDER_LAKE, SAPPHIRE_RAPIDS, EMERALD_RAPIDS, GRANITE_RAPIDS,             SIERRA_FOREST, RAPTOR_LAKE, METEOR_LAKE, HASWELL_E (HWLE), KNIGHTS_LANDING (KNL),             KNIGHTS_MILL (KNM), KABY_LAKE, COMET_LAKE, ZEN_V1 (ZEN), ZEN_PLUS (ZEN+), ZEN_V2 (ZEN2),             ZEN_V3 (ZEN3), ZEN_V4 (ZEN4), ZEN_V5 (ZEN5)
+.
+.SH ""
+.TP
+\fB\-\-proc\fR\=<proc>
+Select the processor model used for analysis. maqao --list-procs to display supported processors
+.TP
+\fB\-ifr\fR, \fB\-\-interleaved-functions-recognition\fR\=<mode>
+Select the mode of interleaved functions recognition. Available values are: 
+.TP 20 
+\fB       off\fR 
+Functions are not extracted from connected components.
+.TP 20 
+\fB       debug_based\fR  (default)
+Functions are extracted from connected components matching with debug data.
+.TP 20 
+\fB       all\fR 
+All connected components are extracted into new functions whether they correspond to the debug information or not.
+.
+.SH ""
+.TP
+\fB\-dbg\fR, \fB\-\-debug\fR[\=<level>]
+Enable debug messages. <level> can be used to specify the level of debug messages to display. Available values are: 
+0, 1 (default).
+
+.TP
+\fB\-\-\fR
+Specify binary parameters for dynamic analysis. Next options are ignored by MAQAO.
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+Print the current help.
+.TP
+\fB\-v\fR, \fB\-\-version\fR
+Print the current version.
+.SH EXAMPLES
+.TP
+maqao instrument i=MIL_SCRIPT
+Load and interpretes MIL_SCRIPT using MIL
+.TP
+maqao instrument i=MIL_SCRIPT bin=BINARY
+Load and interpretes MIL_SCRIPT using MIL and considering the given binary as the main binary
+.SH AUTHOR
+Written by The MAQAO team.
+.SH "REPORTING BUGS"
+Report bugs to <contact@maqao.org>.
+.SH COPYRIGHT
+MAQAO (C), 2004 - 2026 Universite de Versailles Saint-Quentin-en-Yvelines (UVSQ), 
+is distributed under the GNU Lesser General Public License (GNU LGPL). MAQAO is 
+free software; you can use it under the terms of the GNU Lesser General 
+Public License as published by the Free Software Foundation; either version 2.1 
+of the License, or (at your option) any later version. This software is distributed 
+in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the 
+implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
+GNU Lesser General Public License for more details.
+
+The full legal text of the GNU Lesser General Public License (GNU LGPL) is available
+at http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
+.SH "SEE ALSO"
+maqao(1), maqao-madras(1), maqao-mil2(1), maqao-disass(1), maqao-cqa(1), maqao-otter(1), maqao-oneview(1), maqao-analyze(1), maqao-lprof(1)
