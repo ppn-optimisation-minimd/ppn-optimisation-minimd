@@ -43,7 +43,7 @@
       };
       maqao = pkgs.callPackage ./maqao.nix {};
     });
-    devShells = eachSystem ({ pkgs, ... }: {
+    devShells = eachSystem ({ pkgs, system, ... }: {
       default = pkgs.mkShell {
         packages = with pkgs; [
           gcc
@@ -54,7 +54,7 @@
           clang-tools
           valgrind
           gdb
-        ];
+        ] ++ [ self.packages."${system}".maqao ];
       };
     });
   };
