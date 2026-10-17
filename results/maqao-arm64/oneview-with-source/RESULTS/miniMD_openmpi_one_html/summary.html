@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html translate="no" lang="en-US"><head><title>OV - miniMD_openmpi - Summary</title>
+<meta charset="utf-8" />
+<meta name="google" content="notranslate" />
+<link rel="stylesheet" type="text/css" media="screen" href="css/ui.jqgrid.css" />
+<link rel="stylesheet" type="text/css" href="css/themes/redmond_custom/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="css/themes/redmond_custom/jquery.jqplot.min.css" />
+<link rel="stylesheet" type="text/css" href="css/MAQAO_theme.css" />
+<link rel="stylesheet" type="text/css" href="css/maqao_modal.css" />
+<link rel="stylesheet" type="text/css" href="css/global.css" />
+<link rel="stylesheet" type="text/css" href="css/maqao_menu.css" />
+<script src="js/jquery-1.9.0.min.js" ></script>
+<script src="js/jquery-ui-1.10.3.custom.min.js" ></script>
+<script src="js/grid.locale-en.js" ></script>
+<script src="js/jquery.jqGrid.min.js" ></script>
+<script src="js/d3.min.js" ></script>
+<script class="include" src="js/chart.min.js"></script>
+<script class="include" src="js/maqao_utils.js"></script>
+<script src="js/flamegraph.js" ></script>
+<script class="include" src="js/maqao_menu.js"></script>
+<script>
+addLoadEvent(function(){
+  var theme = localStorage.getItem("__MAQAO_OV_theme__");
+  if (theme) {
+    loadCSS("css/"+theme+".css");
+  }
+  else {
+    localStorage.setItem("__MAQAO_OV_theme__", "MAQAO_theme");
+    loadCSS("css/MAQAO_theme.css");
+  }
+});
+</script>
+</head><body>
+<div id="__chartJS_tooltip" class="tt_chartJS"></div>
+<div id="page_title"><img alt="MAQAO" id="maqao_logo" src="images/MAQAO_small_logo.png"/><ul id="maqao_menu"><li ><a  href="index.html">Global</a><ul><li ><a  href="config.html">Configurations</a></li><li ><a  href="env.html">Environment Variables</a></li><li ><a  href="outputs.html">Outputs</a></li><li ><a  href="log.html">Logs</a></li><li ><a  href="tools_status.html">Tools Status</a></li></ul></li><li ><a class="_current_page _first_menu_level" href="summary.html">Summary</a></li><li ><a  href="application.html">Application</a></li><li ><a  href="fcts_and_loops.html">Functions</a></li><li ><a  href="loops_index.html">Loops</a></li><li ><a  href="topology.html">Topology</a></li></ul>
+<span><img alt="options" id="menu_options_icon" src="images/gear_20.png" onclick="__open_options ()"/></span>
+</div>
+<script>
+function __change_theme () {
+  var new_theme = document.getElementById("select_theme").value;
+  localStorage.setItem("__MAQAO_OV_theme__", new_theme);
+    loadCSS("css/"+new_theme+".css");
+}
+function __open_options () {
+  var elem = document.getElementById ("options_configuration");
+  if (elem.dataset.open == "false") {
+    elem.dataset.open = "true";
+    elem.style.display = "block";
+  }
+  else {
+    elem.dataset.open = "false";
+    elem.style.display = "none";
+  }
+}
+</script>
+<div id="anchor_file_start"></div>
+<div id="maqao_content">
+<div>
+  <div id="spacer_page_title" ></div>
+  <div id="options_configuration" data-open="false" style="display:none;">
+    <h3 id="options_configuration_header">Report Configuration</h3>
+    <span style="margin-left:10px;"><label for="select_theme">Theme: </label>    <select name="theme" id="select_theme" onchange="__change_theme ()">  <option value="MAQAO_theme">MAQAO_theme</option>  <option value="darkgrey">darkgrey</option>  <option value="cyan">cyan</option></select></span>    <span style="margin-left:10px;"><label for="select_chart_theme">Chart Theme: </label>    <select name="theme" id="select_chart_theme" onchange="__change_chart_theme ()">  <option value="Default_Chart_Theme">Default_Chart_Theme</option>  <option value="grey">grey</option></select></span></div>
+</div>
+<script>
+  let theme = localStorage.getItem("__MAQAO_OV_theme__");
+  if (theme) {
+    document.getElementById("select_theme").value = theme;
+  }
+  theme = localStorage.getItem("__MAQAO_OV_chart_theme__");
+  if (theme) {
+    document.getElementById("select_chart_theme").value = theme;
+  }
+document.getElementById("spacer_page_title").style.height = (document.getElementById("page_title").clientHeight + 25)+"px";
+var obj = document.getElementById("page_title");
+if (obj) {
+  var elems = document.getElementsByClassName ("_first_menu_level")
+  if (obj.clientHeight < 90) {
+    for (var i = 0; i < elems.length; i++) {
+      elems.item(i).style.borderBottomLeftRadius = "";
+      elems.item(i).style.borderBottomRightRadius = "";
+    }
+  }
+  else {
+    for (var i = 0; i < elems.length; i++) {
+      elems.item(i).style.borderBottomLeftRadius = "10px";
+      elems.item(i).style.borderBottomRightRadius = "10px";
+    }
+  }
+}
+</script>
+<h3 style="background-color: var(--header_background);color: var(--header_font);margin: 0px;padding: 5px 0px 5px 10px;border: 1px solid var(--table_border);border-radius: 5px;" class="_header">miniMD_openmpi - 2026-10-17 15:47:09 - MAQAO 2026.1.0</h3>
+<p>Help is available by moving the cursor above any <img src="images/help_icon_20.png" style="vertical-align: middle;background-color:var(--fixed_box_header_background);"></img> symbol or by checking <a href="https://maqao.exascale-computing.eu/documentation.html">MAQAO website</a>.</p>
+<div class="_tab_box">
+  <div class="_tab_header">
+    <ul>
+      <li class="_tab_header_li selected_tab" data-tab="tab0-1" onclick="change_tab (this, 'tab0-')">run_0</li>
+    </ul>
+  </div>
+  <div class="_tab_content">
+  <div id="tab0-1">
+<div class="_accordion_box" style="margin-top:2px;"><h3 class="_header" onclick="_click_accordion_header(this)"><span class="_accordion_box_button">&#x25BC;</span>Experiment Quality<span class="tooltip-maqao-button help-maqao" title="" tooltip_id="0"></span><span class="_report_header_color_box" style="background-color:#FF3333;"><span style="background-color:#66cc00;display:inline-block;width:56.363636363636%;">&nbsp;</span><span style="background-color:#ffa64d;display:inline-block;width:7.2727272727273%;">&nbsp;</span></span></h3><div class="_content">
+<div class="row">
+  <div class="column">
+    <div class="report_entry" style="background-color: #ff4d4d;">
+      <p class="short">[ 0 / 4 ] Application profile is too short (9.58 s)</p>
+      <p class="long">If the overall application profiling time is less than 10 seconds, many of the measurements at function or loop level will very likely be under the measurement quality threshold (0,1 seconds).<br> Rerun to increase runtime duration: for example use a larger dataset or include a repetition loop.</p>
+    </div>
+    <div class="report_entry" style="background-color: #8cd98c;">
+      <p class="short">[ 3 / 3 ] Most of time spent in analyzed modules comes from functions with source/debug info</p>
+      <p class="long">-g option gives access to debugging informations, such are source locations.</p>
+    </div>
+    <div class="report_entry" style="background-color: #ffa64d;">
+      <p class="short">[ 2.40 / 3 ] Most of time spent in analyzed modules comes from functions with compilation options informations but -fno-omit-frame-pointer is missing</p>
+      <p class="long">-fno-omit-frame-pointer improves the accuracy of callchains found during the application profiling.</p>
+    </div>
+    <div class="report_entry" style="background-color: #ffa64d;">
+      <p class="short">[ 2 / 3 ] Security settings from the host restrict profiling. Some metrics will be missing or incomplete.</p>
+      <p class="long">Current value for kernel.perf_event_paranoid is 2. If possible, set it to 1 or check with your system administrator which flag can be used to achieve this.</p>
+    </div>
+    <div class="report_entry" style="background-color: #ff4d4d;">
+      <p class="short">[ 0 / 3 ] Compilation of some functions is not optimized for the target processor</p>
+      <p class="long">Architecture specific options are needed to produce efficient code for a specific processor ( -march=(target) ).</p>
+    </div>
+  </div>
+  <div class="column">
+    <div class="report_entry" style="background-color: #8cd98c;">
+      <p class="short">[ 3 / 3 ] Optimization level option is correctly used</p>
+      <p class="long"></p>
+    </div>
+    <div class="report_entry" style="background-color: #8cd98c;">
+      <p class="short">[ 2 / 2 ] Application is correctly profiled ("Others" category represents 0.00 % of the execution time)</p>
+      <p class="long">To have a representative profiling, it is advised that the category &quot;Others&quot; represents less than 20% of the execution time in order to analyze as much as possible of the user code</p>
+    </div>
+    <div class="report_entry" style="background-color: #ff4d4d;">
+      <p class="short">[ 0 / 1 ] Lstopo was not found on the host (either not installed or not loaded). The Topology lstopo report will not be generated.</p>
+      <p class="long"></p>
+    </div>
+    <div class="report_entry" style="background-color: #ffa64d;">
+      <p class="short">[ 0 / 0 ] Fastmath not used</p>
+      <p class="long">Consider to add ffast-math to compilation flags (or replace -O3 with -Ofast) to unlock potential extra speedup by relaxing floating-point computation consistency. Warning: floating-point accuracy may be reduced and the compliance to IEEE/ISO rules/specifications for math functions will be relaxed, typically &apos;errno&apos; will no longer be set after calling some math functions.</p>
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+<div class="_accordion_box" style="margin-top:2px;"><h3 class="_header" onclick="_click_accordion_header(this)"><span class="_accordion_box_button">&#x25BC;</span>Code Quality<span class="tooltip-maqao-button help-maqao" title="" tooltip_id="1"></span><span class="_report_header_color_box" style="background-color:#FF3333;"><span style="background-color:#66cc00;display:inline-block;width:89.189189189189%;">&nbsp;</span><span style="background-color:#ffa64d;display:inline-block;width:0%;">&nbsp;</span></span></h3><div class="_content">
+<div class="row">
+  <div class="column">
+    <div class="report_entry" style="background-color: #8cd98c;">
+      <p class="short">[ 4 / 4 ] Enough time of the experiment time spent in analyzed loops (99.16%)</p>
+      <p class="long">If the time spent in analyzed loops is less than 30%, standard loop optimizations will have a limited impact on application performances.</p>
+    </div>
+    <div class="report_entry" style="background-color: #8cd98c;">
+      <p class="short">[ 4 / 4 ] Threads activity is good</p>
+      <p class="long">On average, more than 96.96% of observed threads are actually active </p>
+    </div>
+    <div class="report_entry" style="background-color: #8cd98c;">
+      <p class="short">[ 4 / 4 ] CPU activity is good</p>
+      <p class="long">CPU cores are active 96.96% of time</p>
+    </div>
+    <div class="report_entry" style="background-color: #8cd98c;">
+      <p class="short">[ 4 / 4 ] Loop profile is not flat</p>
+      <p class="long">At least one loop coverage is greater than 4% (77.40%), representing an hotspot for the application</p>
+    </div>
+    <div class="report_entry" style="background-color: #8cd98c;">
+      <p class="short">[ 4 / 4 ] Enough time of the experiment time spent in analyzed innermost loops (94.99%)</p>
+      <p class="long">If the time spent in analyzed innermost loops is less than 15%, standard innermost loop optimizations such as vectorisation will have a limited impact on application performances.</p>
+    </div>
+    <div class="report_entry" style="background-color: #ff4d4d;">
+      <p class="short">[ 0 / 4 ] Affinity stability is lower than 90% (0.00%)</p>
+      <p class="long">Threads are often migrating to other CPU cores/threads. For OpenMP, typically set (OMP_PLACES=cores OMP_PROC_BIND=close) or (OMP_PLACES=threads OMP_PROC_BIND=spread). With OpenMPI + OpenMP, use --bind-to core --map-by node:PE=$OMP_NUM_THREADS --report-bindings. With IntelMPI + OpenMP, set I_MPI_PIN_DOMAIN=omp:compact or I_MPI_PIN_DOMAIN=omp:scatter and use -print-rank-map.</p>
+    </div>
+  </div>
+  <div class="column">
+    <div class="report_entry" style="background-color: #8cd98c;">
+      <p class="short">[ 3 / 3 ] Less than 10% (0.00%) is spend in BLAS1 operations</p>
+      <p class="long">It could be more efficient to inline by hand BLAS1 operations</p>
+    </div>
+    <div class="report_entry" style="background-color: #8cd98c;">
+      <p class="short">[ 3 / 3 ] Functions mostly use all threads</p>
+      <p class="long">Functions running on a reduced number of threads (typically sequential code) cover less than 10% of application walltime (0.00%)</p>
+    </div>
+    <div class="report_entry" style="background-color: #8cd98c;">
+      <p class="short">[ 3 / 3 ] Cumulative Outermost/In between loops coverage (4.18%) lower than cumulative innermost loop coverage (94.99%)</p>
+      <p class="long">Having cumulative Outermost/In between loops coverage greater than cumulative innermost loop coverage will make loop optimization more complex</p>
+    </div>
+    <div class="report_entry" style="background-color: #8cd98c;">
+      <p class="short">[ 2 / 2 ] Less than 10% (0.00%) is spend in BLAS2 operations</p>
+      <p class="long">BLAS2 calls usually could make a poor cache usage and could benefit from inlining.</p>
+    </div>
+    <div class="report_entry" style="background-color: #8cd98c;">
+      <p class="short">[ 2 / 2 ] Less than 10% (0.00%) is spend in Libm/SVML (special functions)</p>
+      <p class="long"></p>
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+<div class="_accordion_box" ><h3 id="_accordion_header_1" class="_header" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25BC;</span>Loops Overview<span class="tooltip-maqao-button help-maqao" title="" tooltip_id="2" ></span></h3><div id="_accordion_content_1" class="_content"><div class="_div_table" ><table id="_tree_table_1" class="_tree_table"><tr><th class="_freezed_row  _left  tooltip-maqao" style="width:30%;min-width:250px;"><span></span>Loop ID</th><th class="_freezed_row  tooltip-maqao"><span></span>Analysis</th><th class="_freezed_row  tooltip-maqao" title="" tooltip_id="3" style="width:80px;"><span></span>Penalty Score</th></tr>
+</table></div>
+</div></div></div>
+</div></div>
+      <style>
+      ._report_header_color_box {
+        margin-left:30px;
+        width:25%;
+        display:inline-block;
+        border:black 1px solid;
+        float:right;
+        margin-right: 60px;
+      }
+      .row {
+        display: flex;
+      }
+      .column {
+        flex: 50%;
+        padding: 1px;
+      }
+      .long {
+         margin-left: 30px;
+         margin-top: 8px;
+      }
+      .short {
+         margin-bottom: 8px;
+      }
+      .report_entry {
+         margin-bottom: 0px;
+         padding: 5px;
+      }
+      </style>
+   <script>
+function _onresize () {
+  __maqao_legacy_onresize ();
+}
+var resizeId;
+window.addEventListener("resize", function() {
+  clearTimeout(resizeId);
+  resizeId = setTimeout(_onresize, 250);
+});
+</script>
+
+  <div id="MaqaoModal" class="maqao_modal">
+    <div class="maqao_modal-content">
+      <div class="maqao_modal-header">
+        <span class="maqao_close">&times;</span>
+      </div>
+      <div id="maqao_modal-body" class="maqao_modal-body">
+      </div>
+    </div>
+  </div>
+</div><script>
+var tooltips_texts = ['Basic checkings that the run is performed according to standards',
+'Global analysis that gives an overview of the application with respect to its structure (loops) and its library use',
+'List several issues detected in loops with an estimate of how hard it is to be removed. [SA] stands for Static Analysis whereas [DA] stands for Dynamic Analysis',
+'Score representing the difficulty to get rid of the problem.<br/>Lower is better'];
+var modal = document.getElementById('MaqaoModal');
+var span = document.getElementsByClassName("maqao_close")[0];
+span.onclick = function() {
+    modal.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+const comparer = (idx, asc) => (a, b) => ((v1, v2) => 
+    v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v2 - v1 : v1.toString().localeCompare(v2)
+    )(getCellValue(asc ? a : b, idx) === '' ? -1: (getCellValue(asc ? a : b, idx).replace(/\s/g,'')), 
+      getCellValue(asc ? b : a, idx) === '' ? -1: (getCellValue(asc ? b : a, idx).replace(/\s/g,'')));
+addLoadEvent(function(){
+  document.querySelectorAll('._fixed_table:not(._no_auto_sorting) th').forEach(th => th.addEventListener('click', (() => {
+    const table = th.closest('table');
+    // Remove all symbols in header
+    table.querySelectorAll('th').forEach(function (e) {
+      e.firstChild.textContent = "";
+    });
+    // Change the symbol on the clicked header
+    if (this.asc != true) {
+      th.firstChild.textContent = "\u25BC";
+    }
+    else {
+      th.firstChild.textContent = "\u25B2";
+    }
+    Array.from(table.querySelectorAll('tr:nth-child(n+2)'))
+        .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+        .forEach(tr => table.appendChild(tr) );
+  })));
+});
+addLoadEvent(function(){
+  document.querySelectorAll('._tree_table:not(._no_auto_sorting) th').forEach(th => th.addEventListener('click', (() => {
+    const table = th.closest('table');
+    // Remove all symbols in header
+    table.querySelectorAll('th').forEach(function (e) {
+      e.firstChild.textContent = "";
+    });
+    // Change the symbol on the clicked header
+    if (this.asc != true) {
+      th.firstChild.textContent = "\u25BC";
+    }
+    else {
+      th.firstChild.textContent = "\u25B2";
+    }
+    let last_id = "";
+    const t_outermost = new Array ();
+    const t_children  = new Map ();
+    for (let i = 1, row; row = table.rows[i]; i++) {
+      if (row.classList.contains ("_outer_row")) {
+        t_outermost.push (row);
+        last_id = row.id;
+        t_children [last_id] = new Array ();
+      }
+      else {
+        t_children [last_id].push (row);
+      }
+    }
+    t_outermost.sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc));
+    for (let i = 0, row; row = t_outermost[i]; i++) {
+      table.appendChild(row)
+      for (let j = 0, child; child = t_children[row.id][j]; j++) {
+        table.appendChild(child)
+      }
+    }
+  })));
+});
+// Hide unselected tabs
+addLoadEvent(function(){
+  var x = document.getElementsByClassName("_tab_header_li");
+  for (var i = 0; i < x.length; i++) {
+    if (x[i].classList.contains("selected_tab") == false) {
+      var e = document.getElementById (x[i].dataset.tab);
+      e.style.display = "none";
+    }
+  }
+});
+</script>
+</body>
+</html>
