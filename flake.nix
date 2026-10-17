@@ -41,6 +41,7 @@
           cp minimd $out/bin/minimd
         '';
       };
+      maqao = pkgs.callPackage ./maqao.nix {};
     });
     devShells = eachSystem ({ pkgs, ... }: {
       default = pkgs.mkShell {
