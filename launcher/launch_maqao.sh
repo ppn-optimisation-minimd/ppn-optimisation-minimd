@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 THREADS=1
 FILE=in.param_analyse.miniMD
