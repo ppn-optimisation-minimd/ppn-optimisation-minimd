@@ -14,4 +14,9 @@ MINIMD_PATH="${REPO}/${VERSION}/miniMD_openmpi"
 XP_PATH="${RESULTS_PATH}/MAQAO_${MOMENT}_${REPO}"
 
 mkdir -p "${RESULTS_PATH}"
-${MAQAO_PATH} oneview -R1 --mpi-command="mpirun -np ${THREADS}" --xp=${XP_PATH} --show-program-output -- ${MINIMD_PATH} -i ${FILE_PATH} -s 100
+${MAQAO_PATH} oneview \
+  -R1 \
+  --mpi-command="mpirun -np ${THREADS}" \
+  --xp=${XP_PATH} \
+  --show-program-output \
+  -- ${MINIMD_PATH} -i ${FILE_PATH} -s 100
