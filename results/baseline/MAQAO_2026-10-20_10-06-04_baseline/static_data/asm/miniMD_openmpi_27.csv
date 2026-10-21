@@ -1,0 +1,24 @@
+address;source_location;insn;indent
+0x6f80;:0;MOVSXD	(%R14,%RDI,1),%RAX;
+0x6f84;:0;ADD	$0x18,%RBX;
+0x6f88;:0;ADD	$0x18,%RSI;
+0x6f8c;:0;LEA	(%RAX,%RAX,2),%ECX;
+0x6f8f;:0;MOV	(%R11,%RAX,4),%EAX;
+0x6f93;:0;MOVSXD	%ECX,%RCX;
+0x6f96;:0;VMOVSD	(%R8,%RCX,8),%XMM0;
+0x6f9c;:0;LEA	0x1(%RCX),%R15;
+0x6fa0;:0;VMOVSD	%XMM0,-0x18(%RBX);
+0x6fa5;:0;VMOVSD	(%R8,%R15,8),%XMM0;
+0x6fab;:0;VMOVSD	%XMM0,-0x10(%RBX);
+0x6fb0;:0;VMOVSD	0x8(%R8,%R15,8),%XMM0;
+0x6fb7;:0;VMOVSD	%XMM0,-0x8(%RBX);
+0x6fbc;:0;VMOVSD	(%R9,%RCX,8),%XMM0;
+0x6fc2;:0;VMOVSD	%XMM0,-0x18(%RSI);
+0x6fc7;:0;VMOVSD	(%R9,%R15,8),%XMM0;
+0x6fcd;:0;VMOVSD	%XMM0,-0x10(%RSI);
+0x6fd2;:0;VMOVSD	0x8(%R9,%R15,8),%XMM0;
+0x6fd9;:0;VMOVSD	%XMM0,-0x8(%RSI);
+0x6fde;:0;MOV	%EAX,(%R13,%RDI,1);
+0x6fe3;:0;ADD	$0x4,%RDI;
+0x6fe7;:0;CMP	%RDI,%R12;
+0x6fea;:0;JNE	6f80 <_ZN4Atom4sortER8Neighbor+0x270>;
