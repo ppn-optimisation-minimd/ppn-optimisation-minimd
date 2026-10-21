@@ -1,12 +1,15 @@
 #!/bin/bash
 
 THREADS=1
-FILE=in.lj.miniMD
-REPO=baseline
+FILE=in.param_analyse.miniMD
+REPO=optim-group
 VERSION=ref
 MOMENT=$(date '+%Y-%m-%d_%H-%M-%S')
 
-MAQAO_PATH="../maqao.2026.1.0/bin/maqao"
-MINIMD_PATH="../${REPO}/${VERSION}/miniMD_openmpi"
+RESULTS_PATH="../../results/${REPO}"
+FILE_PATH="../../launcher/${FILE}"
+MAQAO_PATH="../../maqao.2026.1.0/bin/maqao"
+MINIMD_PATH="../${REPO}/${VERSION}"
 
-${MAQAO_PATH} oneview -R1 --xp=MAQAO_${MOMENT}_${REPO} --show-program-output -- ${MINIMD_PATH} -i ${FILE}
+cd ${MINIMD_PATH}
+${MAQAO_PATH} oneview -R1 -uarch=ICELAKE --mpi-command="mpirun -np ${THREADS}" --xp=${RESULTS_PATH}/MAQAO_${MOMENT}_${REPO} --show-program-output -- miniMD_openmpi -i ${FILE_PATH} -s 100
