@@ -1,0 +1,576 @@
+address;source_location;insn;indent
+0x10c50;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:701;ENDBR64;
+0x10c54;:0;PUSH	%R15;
+0x10c56;:0;PUSH	%R14;
+0x10c58;:0;PUSH	%R13;
+0x10c5a;:0;MOV	%RDI,%R13;
+0x10c5d;:0;PUSH	%R12;
+0x10c5f;:0;PUSH	%RBP;
+0x10c60;:0;PUSH	%RBX;
+0x10c61;:0;SUB	$0x98,%RSP;
+0x10c68;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:701;MOV	%FS:0x28,%R15;
+0x10c71;:0;MOV	%R15,0x88(%RSP);
+0x10c79;:0;MOV	%RSI,%R15;
+0x10c7c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:709;MOVL	$0,0x8(%RSI);
+0x10c83;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:715;CALL	26d0 <.plt.sec@start+0x300>;
+0x10c88;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:715;MOV	%EAX,0x8(%RSP);
+0x10c8c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:717;CALL	26d0 <.plt.sec@start+0x300>;
+0x10c91;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:717;MOV	%EAX,0x14(%RSP);
+0x10c95;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:717;TEST	%EAX,%EAX;
+0x10c97;:0;JNE	10d7e <_ZN4Comm7bordersER4Atom+0x12e>;
+0x10c9d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:719;MOV	0x4(%R15),%EBP;
+0x10ca1;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:719;CMP	0x144(%R13),%EBP;
+0x10ca8;:0;JG	115af <_ZN4Comm7bordersER4Atom+0x95f>;
+0x10cae;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:724;MOV	0xf0(%R13),%RAX;
+0x10cb5;:0;MOV	0xc(%RAX),%R12D;
+0x10cb9;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:724;CMP	%R12D,0x140(%R13);
+0x10cc0;:0;JGE	10d7e <_ZN4Comm7bordersER4Atom+0x12e>;
+0x10cc6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:726;MOVSXD	%R12D,%R14;
+0x10cc9;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:725;MOV	%R12D,0x140(%R13);
+0x10cd0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:726;MOV	$0x1ffffffffffffffe,%RAX;
+0x10cda;:0;CMP	%R14,%RAX;
+0x10cdd;:0;JB	285e <_ZN4Comm7bordersER4Atom.cold>;
+0x10ce3;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:726;LEA	(,%R14,4),%RBP;
+0x10ceb;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:726;MOV	%RBP,%RDI;
+0x10cee;:0;CALL	23e0 <.plt.sec@start+0x10>;
+0x10cf3;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:727;MOV	%RBP,%RDI;
+0x10cf6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:726;MOV	%RAX,0x110(%R13);
+0x10cfd;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:727;CALL	23e0 <.plt.sec@start+0x10>;
+0x10d02;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:728;MOV	%RBP,%RDI;
+0x10d05;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:727;MOV	%RAX,0x118(%R13);
+0x10d0c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:728;CALL	23e0 <.plt.sec@start+0x10>;
+0x10d11;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:729;MOV	%RBP,%RDI;
+0x10d14;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:728;MOV	%RAX,0x120(%R13);
+0x10d1b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:729;CALL	23e0 <.plt.sec@start+0x10>;
+0x10d20;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:730;LEA	(,%R14,8),%RDI;
+0x10d28;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:729;MOV	%RAX,0x138(%R13);
+0x10d2f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:729;MOV	%RAX,%RBX;
+0x10d32;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:730;CALL	23e0 <.plt.sec@start+0x10>;
+0x10d37;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:730;MOV	%RAX,0x128(%R13);
+0x10d3e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:732;TEST	%R12D,%R12D;
+0x10d41;:0;JE	10d7e <_ZN4Comm7bordersER4Atom+0x12e>;
+0x10d43;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:733;MOVSXD	0xa8(%R13),%R12;
+0x10d4a;:0;MOV	%R13,0x18(%RSP);
+0x10d4f;:0;ADD	%RBX,%RBP;
+0x10d52;:0;MOV	%RAX,%R13;
+0x10d55;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:734;LEA	(,%R12,4),%R14;
+0x10d5d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:733;MOV	%R12D,(%RBX);(206) 
+0x10d60;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:734;MOV	%R14,%RDI;(206) 
+0x10d63;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:732;ADD	$0x4,%RBX;(206) 
+0x10d67;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:732;ADD	$0x8,%R13;(206) 
+0x10d6b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:734;CALL	2630 <.plt.sec@start+0x260>;(206) 
+0x10d70;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:734;MOV	%RAX,-0x8(%R13);(206) 
+0x10d74;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:732;CMP	%RBX,%RBP;(206) 
+0x10d77;:0;JNE	10d5d <_ZN4Comm7bordersER4Atom+0x10d>;(206) 
+0x10d79;:0;MOV	0x18(%RSP),%R13;
+0x10d7e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:777;MOVSXD	0x8(%RSP),%RBX;
+0x10d83;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:782;MOVL	$0,0x44(%RSP);
+0x10d8b;:0;MOV	%R13,%RBP;
+0x10d8e;:0;MOVQ	$0,0x28(%RSP);
+0x10d97;:0;LEA	(,%RBX,8),%RAX;
+0x10d9f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:777;LEA	(,%RBX,4),%R14;
+0x10da7;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:782;MOV	%RAX,0x38(%RSP);
+0x10dac;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:742;MOV	0x28(%RSP),%RAX;(199) 
+0x10db1;:0;MOV	0xd4(%RBP,%RAX,4),%EAX;(199) 
+0x10db8;:0;TEST	%EAX,%EAX;(199) 
+0x10dba;:0;JLE	11413 <_ZN4Comm7bordersER4Atom+0x7c3>;(199) 
+0x10dc0;:0;CALL	2730 <.plt.sec@start+0x360>;(199) 
+0x10dc5;:0;MOVSXD	0x44(%RSP),%RBX;(199) 
+0x10dca;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:740;MOVL	$0,0x24(%RSP);(199) 
+0x10dd2;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:766;MOV	%RBP,%R12;(199) 
+0x10dd5;:0;MOV	%EAX,0x20(%RSP);(199) 
+0x10dd9;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:742;MOVL	$0,0x18(%RSP);(199) 
+0x10de1;:0;SAL	$0x2,%RBX;(199) 
+0x10de5;:0;NOPW	%CS:(%RAX,%RAX,1);(199) 
+0x10df0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:750;MOV	0xe0(%R12),%RAX;  (203) 
+0x10df8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:757;MOV	0x10(%R15),%RBP;  (203) 
+0x10dfc;:0;LEA	(%RBX,%RBX,1),%R13;  (203) 
+0x10e00;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:750;VMOVSD	(%RAX,%RBX,2),%XMM1;  (203) 
+0x10e05;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:751;MOV	0xe8(%R12),%RAX;  (203) 
+0x10e0d;:0;VMOVSD	(%RAX,%RBX,2),%XMM3;  (203) 
+0x10e12;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:752;MOV	0x8(%R12),%RAX;  (203) 
+0x10e17;:0;MOV	(%RAX,%RBX,1),%EAX;  (203) 
+0x10e1a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:751;VMOVSD	%XMM3,0x30(%RSP);  (203) 
+0x10e20;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:752;MOV	%EAX,0x70(%RSP);  (203) 
+0x10e24;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:753;MOV	0x10(%R12),%RAX;  (203) 
+0x10e29;:0;MOV	(%RAX,%RBX,1),%EAX;  (203) 
+0x10e2c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:753;MOV	%EAX,0x74(%RSP);  (203) 
+0x10e30;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:754;MOV	0x18(%R12),%RAX;  (203) 
+0x10e35;:0;MOV	(%RAX,%RBX,1),%EAX;  (203) 
+0x10e38;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:754;MOV	%EAX,0x78(%RSP);  (203) 
+0x10e3c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:755;MOV	0x20(%R12),%RAX;  (203) 
+0x10e41;:0;MOV	(%RAX,%RBX,1),%EAX;  (203) 
+0x10e44;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:755;MOV	%EAX,0x7c(%RSP);  (203) 
+0x10e48;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:759;TESTB	$0x1,0x18(%RSP);  (203) 
+0x10e4d;:0;JNE	10e63 <_ZN4Comm7bordersER4Atom+0x213>;  (203) 
+0x10e4f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:760;MOV	0x24(%RSP),%EDI;  (203) 
+0x10e53;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:761;MOV	0x8(%R15),%EAX;  (203) 
+0x10e57;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:761;ADD	0x4(%R15),%EAX;  (203) 
+0x10e5b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:760;MOV	%EDI,0x40(%RSP);  (203) 
+0x10e5f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:761;MOV	%EAX,0x24(%RSP);  (203) 
+0x10e63;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:766;MOV	0xf0(%R12),%RAX;  (203) 
+0x10e6b;:0;MOV	0x14(%RSP),%EDI;  (203) 
+0x10e6f;:0;MOV	0xc(%RAX),%EAX;  (203) 
+0x10e72;:0;CLTD;  (203) 
+0x10e73;:0;IDIVL	0x20(%RSP);  (203) 
+0x10e77;:0;CMP	%EDX,%EDI;  (203) 
+0x10e79;:0;LEA	0x1(%RAX),%ECX;  (203) 
+0x10e7c;:0;CMOVGE	%EAX,%ECX;  (203) 
+0x10e7f;:0;MOV	$0,%EAX;  (203) 
+0x10e84;:0;CMOVL	%EAX,%EDX;  (203) 
+0x10e87;:0;MOV	%EDI,%EAX;  (203) 
+0x10e89;:0;IMUL	%ECX,%EAX;  (203) 
+0x10e8c;:0;ADD	%EDX,%EAX;  (203) 
+0x10e8e;:0;LEA	(%RCX,%RAX,1),%EDX;  (203) 
+0x10e91;:0;CMP	%EDX,%EAX;  (203) 
+0x10e93;:0;JL	11358 <_ZN4Comm7bordersER4Atom+0x708>;  (203) 
+0x10e99;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:766;VMOVSD	%XMM1,0x8(%RSP);  (203) 
+0x10e9f;:0;CALL	2720 <.plt.sec@start+0x350>;  (203) 
+0x10ea4;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:771;MOV	0x24(%RSP),%EAX;  (203) 
+0x10ea8;:0;SUB	0x40(%RSP),%EAX;  (203) 
+0x10eac;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:771;MOVL	$0,0x68(%RSP);  (203) 
+0x10eb4;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:774;CLTD;  (203) 
+0x10eb5;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:771;MOV	0x14(%RSP),%EDI;  (203) 
+0x10eb9;:0;VMOVSD	0x8(%RSP),%XMM1;  (203) 
+0x10ebf;:0;IDIVL	0x20(%RSP);  (203) 
+0x10ec3;:0;CMP	%EDX,%EDI;  (203) 
+0x10ec5;:0;LEA	0x1(%RAX),%ECX;  (203) 
+0x10ec8;:0;CMOVL	%ECX,%EAX;  (203) 
+0x10ecb;:0;MOV	$0,%ECX;  (203) 
+0x10ed0;:0;CMOVGE	%EDX,%ECX;  (203) 
+0x10ed3;:0;IMUL	%EAX,%EDI;  (203) 
+0x10ed6;:0;LEA	(%RDI,%RCX,1),%EDX;  (203) 
+0x10ed9;:0;ADD	%EDX,%EAX;  (203) 
+0x10edb;:0;CMP	%EAX,%EDX;  (203) 
+0x10edd;:0;JL	11290 <_ZN4Comm7bordersER4Atom+0x640>;  (203) 
+0x10ee3;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:771;CALL	2720 <.plt.sec@start+0x350>;  (203) 
+0x10ee8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:786;MOV	0x110(%R12),%RAX;  (203) 
+0x10ef0;:0;MOV	0x68(%RSP),%EDX;  (203) 
+0x10ef4;:0;MOV	%EDX,(%RAX,%R14,1);  (203) 
+0x10ef8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:788;CALL	2720 <.plt.sec@start+0x350>;  (203) 
+0x10efd;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:790;MOV	0x14(%RSP),%R8D;  (203) 
+0x10f02;:0;TEST	%R8D,%R8D;  (203) 
+0x10f05;:0;JE	11220 <_ZN4Comm7bordersER4Atom+0x5d0>;  (203) 
+0x10f0b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:803;CALL	2720 <.plt.sec@start+0x350>;  (203) 
+0x10f10;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:805;MOV	0x68(%RSP),%ECX;  (203) 
+0x10f14;:0;TEST	%ECX,%ECX;  (203) 
+0x10f16;:0;JLE	1159c <_ZN4Comm7bordersER4Atom+0x94c>;  (203) 
+0x10f1c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:806;MOV	0x128(%R12),%RAX;  (203) 
+0x10f24;:0;MOV	0x38(%RSP),%RDI;  (203) 
+0x10f29;:0;XOR	%EBP,%EBP;  (203) 
+0x10f2b;:0;MOV	%RBX,0x30(%RSP);  (203) 
+0x10f30;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:806;MOV	0x110(%R12),%RSI;  (203) 
+0x10f38;:0;MOV	%R12,%RBX;  (203) 
+0x10f3b;:0;MOV	%R14,%R12;  (203) 
+0x10f3e;:0;MOV	%RBP,%R14;  (203) 
+0x10f41;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:806;MOV	(%RAX,%RDI,1),%RDX;  (203) 
+0x10f45;:0;LEA	0x70(%RSP),%RAX;  (203) 
+0x10f4a;:0;MOV	%RDI,%RBP;  (203) 
+0x10f4d;:0;MOV	%RAX,0x8(%RSP);  (203) 
+0x10f52;:0;NOPL	(%RAX);  (203) 
+0x10f55;:0;NOPW	%CS:(%RAX,%RAX,1);  (203) 
+0x10f60;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:806;MOV	(%RSI,%R12,1),%EAX;    (201) 
+0x10f64;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:806;MOV	(%RDX,%R14,4),%ESI;    (201) 
+0x10f68;:0;MOV	%R15,%RDI;    (201) 
+0x10f6b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:806;ADD	%R14D,%EAX;    (201) 
+0x10f6e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:806;SUB	%ECX,%EAX;    (201) 
+0x10f70;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:806;MOV	0x90(%RBX),%RCX;    (201) 
+0x10f77;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:806;SAL	$0x2,%EAX;    (201) 
+0x10f7a;:0;CLTQ;    (201) 
+0x10f7c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:806;LEA	(%RCX,%RAX,8),%RDX;    (201) 
+0x10f80;:0;MOV	0x8(%RSP),%RCX;    (201) 
+0x10f85;:0;CALL	6760 <_ZN4Atom11pack_borderEiPdPi>;    (201) 
+0x10f8a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:807;MOV	0x128(%RBX),%RAX;    (201) 
+0x10f91;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:807;MOV	0x110(%RBX),%RSI;    (201) 
+0x10f98;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:807;MOV	0x80(%RBX),%RCX;    (201) 
+0x10f9f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:807;MOV	(%RAX,%RBP,1),%RDX;    (201) 
+0x10fa3;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:807;MOV	(%RSI,%R12,1),%EAX;    (201) 
+0x10fa7;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:807;MOV	(%RCX,%R13,1),%RCX;    (201) 
+0x10fab;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:807;MOV	(%RDX,%R14,4),%EDI;    (201) 
+0x10faf;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:807;ADD	%R14D,%EAX;    (201) 
+0x10fb2;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:807;SUB	0x68(%RSP),%EAX;    (201) 
+0x10fb6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:805;ADD	$0x1,%R14;    (201) 
+0x10fba;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:807;CLTQ;    (201) 
+0x10fbc;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:807;MOV	%EDI,(%RCX,%RAX,4);    (201) 
+0x10fbf;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:805;MOV	0x68(%RSP),%ECX;    (201) 
+0x10fc3;:0;CMP	%R14D,%ECX;    (201) 
+0x10fc6;:0;JG	10f60 <_ZN4Comm7bordersER4Atom+0x310>;    (201) 
+0x10fc8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:810;MOV	%R12,%R14;  (203) 
+0x10fcb;:0;MOV	%RBX,%R12;  (203) 
+0x10fce;:0;MOV	0x30(%RSP),%RBX;  (203) 
+0x10fd3;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:810;CALL	2720 <.plt.sec@start+0x350>;  (203) 
+0x10fd8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:817;MOV	0x14(%RSP),%ECX;  (203) 
+0x10fdc;:0;TEST	%ECX,%ECX;  (203) 
+0x10fde;:0;JNE	110d6 <_ZN4Comm7bordersER4Atom+0x486>;  (203) 
+0x10fe4;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:819;MOV	0xf0(%R12),%RAX;  (203) 
+0x10fec;:0;MOVSXD	0xc(%RAX),%RDX;  (203) 
+0x10ff0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:819;MOV	0x110(%R12),%RAX;  (203) 
+0x10ff8;:0;MOV	-0x4(%RAX,%RDX,4),%EAX;  (203) 
+0x10ffc;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:821;MOV	0x58(%R12),%RDX;  (203) 
+0x11001;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:819;MOV	%EAX,0x68(%RSP);  (203) 
+0x11005;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:821;MOV	(%RDX,%RBX,1),%ECX;  (203) 
+0x11008;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:821;CMP	(%R12),%ECX;  (203) 
+0x1100c;:0;JE	11390 <_ZN4Comm7bordersER4Atom+0x740>;  (203) 
+0x11012;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:822;LEA	0xb027(%RIP),%RAX;  (203) 
+0x11019;:0;LEA	0x68(%RSP),%RDI;  (203) 
+0x1101e;:0;PUSH	$0;  (203) 
+0x11020;:0;MOV	$0x1,%ESI;  (203) 
+0x11025;:0;PUSH	%RAX;  (203) 
+0x11026;:0;MOV	0x60(%R12),%RAX;  (203) 
+0x1102b;:0;XOR	%R8D,%R8D;  (203) 
+0x1102e;:0;PUSH	$0;  (203) 
+0x11030;:0;MOV	(%RAX,%RBX,1),%EAX;  (203) 
+0x11033;:0;PUSH	%RAX;  (203) 
+0x11034;:0;LEA	0xbe05(%RIP),%RAX;  (203) 
+0x1103b;:0;PUSH	%RAX;  (203) 
+0x1103c;:0;MOV	%RAX,%RDX;  (203) 
+0x1103f;:0;PUSH	$0x1;  (203) 
+0x11041;:0;LEA	0x9c(%RSP),%R9;  (203) 
+0x11049;:0;CALL	24e0 <.plt.sec@start+0x110>;  (203) 
+0x1104e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:826;MOV	0x9c(%RSP),%ESI;  (203) 
+0x11055;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:826;MOV	0x60(%R15),%EAX;  (203) 
+0x11059;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:826;ADD	$0x30,%RSP;  (203) 
+0x1105d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:826;IMUL	%EAX,%ESI;  (203) 
+0x11060;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:826;CMP	0xac(%R12),%ESI;  (203) 
+0x11068;:0;JG	11584 <_ZN4Comm7bordersER4Atom+0x934>;  (203) 
+0x1106e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:829;MOV	0x58(%R12),%RDX;  (203) 
+0x11073;:0;IMUL	0x68(%RSP),%EAX;  (203) 
+0x11078;:0;XOR	%R8D,%R8D;  (203) 
+0x1107b;:0;MOV	0x90(%R12),%RDI;  (203) 
+0x11083;:0;MOV	0x98(%R12),%R9;  (203) 
+0x1108b;:0;MOV	(%RDX,%RBX,1),%ECX;  (203) 
+0x1108e;:0;LEA	0xafab(%RIP),%RDX;  (203) 
+0x11095;:0;PUSH	$0;  (203) 
+0x11097;:0;PUSH	%RDX;  (203) 
+0x11098;:0;MOV	0x60(%R12),%RDX;  (203) 
+0x1109d;:0;PUSH	$0;  (203) 
+0x1109f;:0;MOV	(%RDX,%RBX,1),%EDX;  (203) 
+0x110a2;:0;PUSH	%RDX;  (203) 
+0x110a3;:0;LEA	0xb996(%RIP),%RDX;  (203) 
+0x110aa;:0;PUSH	%RDX;  (203) 
+0x110ab;:0;PUSH	%RSI;  (203) 
+0x110ac;:0;MOV	%EAX,%ESI;  (203) 
+0x110ae;:0;CALL	24e0 <.plt.sec@start+0x110>;  (203) 
+0x110b3;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:832;MOV	0x98(%R12),%RAX;  (203) 
+0x110bb;:0;MOV	%RAX,0xa0(%R12);  (203) 
+0x110c3;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:838;MOV	0x9c(%RSP),%EAX;  (203) 
+0x110ca;:0;ADD	$0x30,%RSP;  (203) 
+0x110ce;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:838;MOV	%EAX,0x148(%R12);  (203) 
+0x110d6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:842;CALL	2720 <.plt.sec@start+0x350>;  (203) 
+0x110db;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:844;MOV	0x14(%RSP),%ECX;  (203) 
+0x110df;:0;MOV	$0,%R10D;  (203) 
+0x110e5;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:844;MOV	0x148(%R12),%EAX;  (203) 
+0x110ed;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:843;MOV	0x4(%R15),%ESI;  (203) 
+0x110f1;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:843;MOV	0x8(%R15),%EDI;  (203) 
+0x110f5;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:844;CLTD;  (203) 
+0x110f6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:844;MOV	%EAX,0x6c(%RSP);  (203) 
+0x110fa;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:846;IDIVL	0x20(%RSP);  (203) 
+0x110fe;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:844;CMP	%EDX,%ECX;  (203) 
+0x11100;:0;LEA	0x1(%RAX),%R13D;  (203) 
+0x11104;:0;CMOVL	%R13D,%EAX;  (203) 
+0x11108;:0;CMOVL	%R10D,%EDX;  (203) 
+0x1110c;:0;IMUL	%EAX,%ECX;  (203) 
+0x1110f;:0;MOV	%ECX,%EBP;  (203) 
+0x11111;:0;ADD	%EDX,%EBP;  (203) 
+0x11113;:0;ADD	%EBP,%EAX;  (203) 
+0x11115;:0;CMP	%EAX,%EBP;  (203) 
+0x11117;:0;JL	111d8 <_ZN4Comm7bordersER4Atom+0x588>;  (203) 
+0x1111d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:844;CALL	2720 <.plt.sec@start+0x350>;  (203) 
+0x11122;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:854;MOV	0x14(%RSP),%EDX;  (203) 
+0x11126;:0;TEST	%EDX,%EDX;  (203) 
+0x11128;:0;JNE	1119e <_ZN4Comm7bordersER4Atom+0x54e>;  (203) 
+0x1112a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:856;MOV	0x28(%R12),%RAX;  (203) 
+0x1112f;:0;MOV	0x68(%RSP),%EDX;  (203) 
+0x11133;:0;MOV	%EDX,(%RAX,%RBX,1);  (203) 
+0x11136;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:857;MOV	0x30(%R12),%RAX;  (203) 
+0x1113b;:0;MOV	0x6c(%RSP),%EDX;  (203) 
+0x1113f;:0;MOV	%EDX,(%RAX,%RBX,1);  (203) 
+0x11142;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:858;MOV	0x58(%R15),%EAX;  (203) 
+0x11146;:0;IMUL	0x68(%RSP),%EAX;  (203) 
+0x1114b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:858;MOV	0x38(%R12),%RDX;  (203) 
+0x11150;:0;MOV	%EAX,(%RDX,%RBX,1);  (203) 
+0x11153;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:859;MOV	0x58(%R15),%EAX;  (203) 
+0x11157;:0;IMUL	0x6c(%RSP),%EAX;  (203) 
+0x1115c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:859;MOV	0x40(%R12),%RDX;  (203) 
+0x11161;:0;MOV	%EAX,(%RDX,%RBX,1);  (203) 
+0x11164;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:860;MOV	0x5c(%R15),%EAX;  (203) 
+0x11168;:0;IMUL	0x6c(%RSP),%EAX;  (203) 
+0x1116d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:860;MOV	0x48(%R12),%RDX;  (203) 
+0x11172;:0;MOV	%EAX,(%RDX,%RBX,1);  (203) 
+0x11175;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:861;MOV	0x5c(%R15),%EAX;  (203) 
+0x11179;:0;IMUL	0x68(%RSP),%EAX;  (203) 
+0x1117e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:861;MOV	0x50(%R12),%RDX;  (203) 
+0x11183;:0;MOV	%EAX,(%RDX,%RBX,1);  (203) 
+0x11186;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:862;MOV	0x78(%R12),%RDX;  (203) 
+0x1118b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:862;MOV	0x8(%R15),%EAX;  (203) 
+0x1118f;:0;ADD	0x4(%R15),%EAX;  (203) 
+0x11193;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:862;MOV	%EAX,(%RDX,%RBX,1);  (203) 
+0x11196;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:863;MOV	0x6c(%RSP),%EAX;  (203) 
+0x1119a;:0;ADD	%EAX,0x8(%R15);  (203) 
+0x1119e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:865;CALL	2720 <.plt.sec@start+0x350>;  (203) 
+0x111a3;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:742;MOV	0x28(%RSP),%RAX;  (203) 
+0x111a8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:742;ADDL	$0x1,0x18(%RSP);  (203) 
+0x111ad;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:742;MOV	0x18(%RSP),%EDI;  (203) 
+0x111b1;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:866;ADDL	$0x1,0x44(%RSP);  (203) 
+0x111b6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:742;MOV	0xd4(%R12,%RAX,4),%EAX;  (203) 
+0x111be;:0;MOV	%EAX,0x8(%RSP);  (203) 
+0x111c2;:0;ADD	%EAX,%EAX;  (203) 
+0x111c4;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:742;CMP	%EDI,%EAX;  (203) 
+0x111c6;:0;JLE	11410 <_ZN4Comm7bordersER4Atom+0x7c0>;  (203) 
+0x111cc;:0;ADD	$0x4,%RBX;  (203) 
+0x111d0;:0;JMP	10df0 <_ZN4Comm7bordersER4Atom+0x1a0>;  (203) 
+0x111d5;:0;NOPL	(%RAX);
+0x111d8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:742;MOVSXD	%EBP,%RCX;  (203) 
+0x111db;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:843;ADD	%EDI,%ESI;  (203) 
+0x111dd;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:843;MOV	%RBX,0x8(%RSP);  (203) 
+0x111e2;:0;SAL	$0x5,%RCX;  (203) 
+0x111e6;:0;ADD	%ESI,%EBP;  (203) 
+0x111e8;:0;LEA	(%RAX,%RSI,1),%R13D;  (203) 
+0x111ec;:0;MOV	%RCX,%RBX;  (203) 
+0x111ef;:0;NOP;  (203) 
+0x111f0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:848;MOV	0xa0(%R12),%RDX;    (202) 
+0x111f8;:0;MOV	%EBP,%ESI;    (202) 
+0x111fa;:0;MOV	%R15,%RDI;    (202) 
+0x111fd;:0;ADD	$0x1,%EBP;    (202) 
+0x11200;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:848;ADD	%RBX,%RDX;    (202) 
+0x11203;:0;ADD	$0x20,%RBX;    (202) 
+0x11207;:0;CALL	6b40 <_ZN4Atom13unpack_borderEiPd>;    (202) 
+0x1120c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:848;CMP	%R13D,%EBP;    (202) 
+0x1120f;:0;JNE	111f0 <_ZN4Comm7bordersER4Atom+0x5a0>;    (202) 
+0x11211;:0;MOV	0x8(%RSP),%RBX;  (203) 
+0x11216;:0;JMP	1111d <_ZN4Comm7bordersER4Atom+0x4cd>;  (203) 
+0x1121b;:0;NOPL	(%RAX,%RAX,1);
+0x11220;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:794;MOV	0xf0(%R12),%RSI;  (203) 
+0x11228;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:794;MOV	0xc(%RSI),%EDI;  (203) 
+0x1122b;:0;TEST	%EDI,%EDI;  (203) 
+0x1122d;:0;JLE	115a6 <_ZN4Comm7bordersER4Atom+0x956>;  (203) 
+0x11233;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:795;MOV	0x110(%R12),%RCX;  (203) 
+0x1123b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:792;XOR	%EDX,%EDX;  (203) 
+0x1123d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:795;XOR	%EAX,%EAX;  (203) 
+0x1123f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:795;NOP;  (203) 
+0x11240;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:795;ADD	(%RCX,%RAX,4),%EDX;    (204) 
+0x11243;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:796;MOV	%EDX,(%RCX,%RAX,4);    (204) 
+0x11246;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:794;ADD	$0x1,%RAX;    (204) 
+0x1124a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:794;CMP	%EAX,0xc(%RSI);    (204) 
+0x1124d;:0;JG	11240 <_ZN4Comm7bordersER4Atom+0x5f0>;    (204) 
+0x1124f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:801;LEA	(,%RDX,4),%EBP;  (203) 
+0x11256;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:799;MOV	0x88(%R12),%RAX;  (203) 
+0x1125e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:799;CMP	%EDX,(%RAX,%RBX,1);  (203) 
+0x11261;:0;JL	11573 <_ZN4Comm7bordersER4Atom+0x923>;  (203) 
+0x11267;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:801;CMP	%EBP,0xa8(%R12);  (203) 
+0x1126f;:0;JL	11564 <_ZN4Comm7bordersER4Atom+0x914>;  (203) 
+0x11275;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:803;CALL	2720 <.plt.sec@start+0x350>;  (203) 
+0x1127a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:805;MOV	0x68(%RSP),%ECX;  (203) 
+0x1127e;:0;TEST	%ECX,%ECX;  (203) 
+0x11280;:0;JG	10f1c <_ZN4Comm7bordersER4Atom+0x2cc>;  (203) 
+0x11286;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:810;CALL	2720 <.plt.sec@start+0x350>;  (203) 
+0x1128b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:817;JMP	10fe4 <_ZN4Comm7bordersER4Atom+0x394>;  (203) 
+0x11290;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:817;MOV	0x40(%RSP),%EDI;  (203) 
+0x11294;:0;VMOVSD	0x30(%RSP),%XMM2;  (203) 
+0x1129a;:0;MOV	%R13,0x8(%RSP);  (203) 
+0x1129f;:0;MOV	%RBX,%R13;  (203) 
+0x112a2;:0;MOV	%R15,0x30(%RSP);  (203) 
+0x112a7;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:817;MOV	%R14,%R15;  (203) 
+0x112aa;:0;MOV	%R12,%R14;  (203) 
+0x112ad;:0;ADD	%EDI,%EDX;  (203) 
+0x112af;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:817;LEA	(%RDI,%RAX,1),%ECX;  (203) 
+0x112b2;:0;MOVSXD	%EDX,%RAX;  (203) 
+0x112b5;:0;MOV	%ECX,%R12D;  (203) 
+0x112b8;:0;LEA	(%RAX,%RAX,2),%RAX;  (203) 
+0x112bc;:0;ADD	0x28(%RSP),%RAX;  (203) 
+0x112c1;:0;LEA	(%RBP,%RAX,8),%RBP;  (203) 
+0x112c6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:817;MOV	%RBP,%RBX;  (203) 
+0x112c9;:0;MOV	%EDX,%EBP;  (203) 
+0x112cb;:0;JMP	112ec <_ZN4Comm7bordersER4Atom+0x69c>;  (203) 
+0x112cd;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:817;NOPL	(%RAX,%RAX,1);
+0x112d5;:0;NOPW	%CS:(%RAX,%RAX,1);
+0x112e0;:0;ADD	$0x1,%EBP;    (205) 
+0x112e3;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:817;ADD	$0x18,%RBX;    (205) 
+0x112e7;:0;CMP	%EBP,%R12D;    (205) 
+0x112ea;:0;JLE	11339 <_ZN4Comm7bordersER4Atom+0x6e9>;    (205) 
+0x112ec;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:776;VMOVSD	(%RBX),%XMM0;    (205) 
+0x112f0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:776;VCOMISD	%XMM1,%XMM0;    (205) 
+0x112f4;:0;JB	112e0 <_ZN4Comm7bordersER4Atom+0x690>;    (205) 
+0x112f6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:776;VCOMISD	%XMM0,%XMM2;    (205) 
+0x112fa;:0;JB	112e0 <_ZN4Comm7bordersER4Atom+0x690>;    (205) 
+0x112fc;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:777;MOV	0x138(%R14),%RSI;    (205) 
+0x11303;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:777;MOVSXD	0x68(%RSP),%RAX;    (205) 
+0x11308;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:777;ADD	%R15,%RSI;    (205) 
+0x1130b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:777;CMP	%EAX,(%RSI);    (205) 
+0x1130d;:0;JLE	113b0 <_ZN4Comm7bordersER4Atom+0x760>;    (205) 
+0x11313;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:782;MOV	0x128(%R14),%RSI;    (205) 
+0x1131a;:0;MOV	0x38(%RSP),%RDI;    (205) 
+0x1131f;:0;ADD	$0x18,%RBX;    (205) 
+0x11323;:0;MOV	(%RSI,%RDI,1),%RSI;    (205) 
+0x11327;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:782;LEA	0x1(%RAX),%EDI;    (205) 
+0x1132a;:0;MOV	%EDI,0x68(%RSP);    (205) 
+0x1132e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:782;MOV	%EBP,(%RSI,%RAX,4);    (205) 
+0x11331;:0;ADD	$0x1,%EBP;    (205) 
+0x11334;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:782;CMP	%EBP,%R12D;    (205) 
+0x11337;:0;JG	112ec <_ZN4Comm7bordersER4Atom+0x69c>;    (205) 
+0x11339;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:782;MOV	%R13,%RBX;  (203) 
+0x1133c;:0;MOV	%R14,%R12;  (203) 
+0x1133f;:0;MOV	0x8(%RSP),%R13;  (203) 
+0x11344;:0;MOV	%R15,%R14;  (203) 
+0x11347;:0;MOV	0x30(%RSP),%R15;  (203) 
+0x1134c;:0;JMP	10ee3 <_ZN4Comm7bordersER4Atom+0x293>;  (203) 
+0x11351;:0;NOPL	(%RAX);
+0x11358;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:767;LEA	-0x1(%RCX),%EDX;  (203) 
+0x1135b;:0;MOV	0x110(%R12),%RCX;  (203) 
+0x11363;:0;CLTQ;  (203) 
+0x11365;:0;XOR	%ESI,%ESI;  (203) 
+0x11367;:0;LEA	0x4(,%RDX,4),%RDX;  (203) 
+0x1136f;:0;VMOVSD	%XMM1,0x8(%RSP);  (203) 
+0x11375;:0;LEA	(%RCX,%RAX,4),%RDI;  (203) 
+0x11379;:0;CALL	2480 <.plt.sec@start+0xb0>;  (203) 
+0x1137e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:767;VMOVSD	0x8(%RSP),%XMM1;  (203) 
+0x11384;:0;JMP	10e99 <_ZN4Comm7bordersER4Atom+0x249>;  (203) 
+0x11389;:0;NOPL	(%RAX);
+0x11390;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:835;MOV	0x90(%R12),%RDX;  (203) 
+0x11398;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:834;MOV	%EAX,0x6c(%RSP);  (203) 
+0x1139c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:835;MOV	%RDX,0xa0(%R12);  (203) 
+0x113a4;:0;JMP	110ce <_ZN4Comm7bordersER4Atom+0x47e>;  (203) 
+0x113a9;:0;NOPL	(%RAX);
+0x113b0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:779;MOV	0x38(%RSP),%R9;    (205) 
+0x113b5;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:778;ADD	$0x64,%EAX;    (205) 
+0x113b8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:779;ADD	0x128(%R14),%R9;    (205) 
+0x113bf;:0;VMOVSD	%XMM2,0x58(%RSP);    (205) 
+0x113c5;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:779;MOV	(%R9),%RDI;    (205) 
+0x113c8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:778;MOV	%EAX,(%RSI);    (205) 
+0x113ca;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:779;MOV	0x68(%RSP),%EAX;    (205) 
+0x113ce;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:779;MOV	%R9,0x48(%RSP);    (205) 
+0x113d3;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:779;VMOVSD	%XMM1,0x50(%RSP);    (205) 
+0x113d9;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:779;LEA	0x64(%RAX),%ESI;    (205) 
+0x113dc;:0;MOVSXD	%ESI,%RSI;    (205) 
+0x113df;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:779;SAL	$0x2,%RSI;    (205) 
+0x113e3;:0;CALL	26f0 <.plt.sec@start+0x320>;    (205) 
+0x113e8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:779;MOV	0x48(%RSP),%R9;    (205) 
+0x113ed;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:782;VMOVSD	0x58(%RSP),%XMM2;    (205) 
+0x113f3;:0;VMOVSD	0x50(%RSP),%XMM1;    (205) 
+0x113f9;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:779;MOV	%RAX,(%R9);    (205) 
+0x113fc;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:782;MOVSXD	0x68(%RSP),%RAX;    (205) 
+0x11401;:0;JMP	11313 <_ZN4Comm7bordersER4Atom+0x6c3>;    (205) 
+0x11406;:0;NOPW	%CS:(%RAX,%RAX,1);
+0x11410;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:782;MOV	%R12,%RBP;(199) 
+0x11413;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:739;ADDQ	$0x1,0x28(%RSP);(199) 
+0x11419;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:739;CMPQ	$0x3,0x28(%RSP);(199) 
+0x1141f;:0;JNE	10dac <_ZN4Comm7bordersER4Atom+0x15c>;(199) 
+0x11425;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:875;MOV	0x4(%RBP),%EDI;
+0x11428;:0;MOV	%RBP,%R13;
+0x1142b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:875;TEST	%EDI,%EDI;
+0x1142d;:0;JLE	11601 <_ZN4Comm7bordersER4Atom+0x9b1>;
+0x11433;:0;LEA	-0x1(%RDI),%EAX;
+0x11436;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:876;MOV	0x48(%RBP),%RCX;
+0x1143a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:877;MOV	0x50(%RBP),%RDX;
+0x1143e;:0;CMP	$0x2,%EAX;
+0x11441;:0;JBE	1160a <_ZN4Comm7bordersER4Atom+0x9ba>;
+0x11447;:0;MOV	%EDI,%ESI;
+0x11449;:0;VPXOR	%XMM1,%XMM1,%XMM1;
+0x1144d;:0;XOR	%EAX,%EAX;
+0x1144f;:0;SHR	$0x2,%ESI;
+0x11452;:0;VMOVDQA	%XMM1,%XMM0;
+0x11456;:0;SAL	$0x4,%RSI;
+0x1145a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:877;NOPW	(%RAX,%RAX,1);
+0x11460;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:876;VPMAXSD	(%RCX,%RAX,1),%XMM1,%XMM1;(200) 
+0x11466;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:877;VPMAXSD	(%RDX,%RAX,1),%XMM0,%XMM0;(200) 
+0x1146c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:875;ADD	$0x10,%RAX;(200) 
+0x11470;:0;CMP	%RSI,%RAX;(200) 
+0x11473;:0;JNE	11460 <_ZN4Comm7bordersER4Atom+0x810>;(200) 
+0x11475;:0;VPSRLDQ	$0x8,%XMM1,%XMM2;
+0x1147a;:0;MOV	%EDI,%EAX;
+0x1147c;:0;VPMAXSD	%XMM2,%XMM1,%XMM1;
+0x11481;:0;AND	$-0x4,%EAX;
+0x11484;:0;VPSRLDQ	$0x4,%XMM1,%XMM2;
+0x11489;:0;VPMAXSD	%XMM2,%XMM1,%XMM1;
+0x1148e;:0;VPSRLDQ	$0x8,%XMM0,%XMM2;
+0x11493;:0;VPMAXSD	%XMM2,%XMM0,%XMM0;
+0x11498;:0;VMOVD	%XMM1,%ESI;
+0x1149c;:0;VPSRLDQ	$0x4,%XMM0,%XMM2;
+0x114a1;:0;VPMAXSD	%XMM2,%XMM0,%XMM0;
+0x114a6;:0;VMOVD	%XMM0,%EBX;
+0x114aa;:0;TEST	$0x3,%DIL;
+0x114ae;:0;JE	11521 <_ZN4Comm7bordersER4Atom+0x8d1>;
+0x114b0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:876;MOVSXD	%EAX,%R8;
+0x114b3;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:875;LEA	0x1(%RAX),%R9D;
+0x114b7;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:876;VMOVD	(%RCX,%R8,4),%XMM2;
+0x114bd;:0;VPMAXSD	%XMM2,%XMM1,%XMM1;
+0x114c2;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:877;VMOVD	(%RDX,%R8,4),%XMM2;
+0x114c8;:0;VPMAXSD	%XMM2,%XMM0,%XMM0;
+0x114cd;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:876;VMOVD	%XMM1,%ESI;
+0x114d1;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:877;VMOVD	%XMM0,%EBX;
+0x114d5;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:875;CMP	%EDI,%R9D;
+0x114d8;:0;JGE	11521 <_ZN4Comm7bordersER4Atom+0x8d1>;
+0x114da;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:876;VMOVD	0x4(%RCX,%R8,4),%XMM2;
+0x114e1;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:875;ADD	$0x2,%EAX;
+0x114e4;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:876;VPMAXSD	%XMM2,%XMM1,%XMM1;
+0x114e9;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:877;VMOVD	0x4(%RDX,%R8,4),%XMM2;
+0x114f0;:0;VPMAXSD	%XMM2,%XMM0,%XMM0;
+0x114f5;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:876;VMOVD	%XMM1,%ESI;
+0x114f9;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:877;VMOVD	%XMM0,%EBX;
+0x114fd;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:875;CMP	%EAX,%EDI;
+0x114ff;:0;JLE	11521 <_ZN4Comm7bordersER4Atom+0x8d1>;
+0x11501;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:876;VMOVD	0x8(%RCX,%R8,4),%XMM2;
+0x11508;:0;VPMAXSD	%XMM2,%XMM1,%XMM1;
+0x1150d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:876;VMOVD	%XMM1,%ESI;
+0x11511;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:877;VMOVD	0x8(%RDX,%R8,4),%XMM1;
+0x11518;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:877;VPMAXSD	%XMM1,%XMM0,%XMM0;
+0x1151d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:877;VMOVD	%XMM0,%EBX;
+0x11521;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:880;CMP	%ESI,0xa8(%R13);
+0x11528;:0;JL	115f4 <_ZN4Comm7bordersER4Atom+0x9a4>;
+0x1152e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:882;CMP	%EBX,0xac(%R13);
+0x11535;:0;JL	115e5 <_ZN4Comm7bordersER4Atom+0x995>;
+0x1153b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:883;MOV	0x88(%RSP),%RAX;
+0x11543;:0;SUB	%FS:0x28,%RAX;
+0x1154c;:0;JNE	11619 <_ZN4Comm7bordersER4Atom+0x9c9>;
+0x11552;:0;ADD	$0x98,%RSP;
+0x11559;:0;POP	%RBX;
+0x1155a;:0;POP	%RBP;
+0x1155b;:0;POP	%R12;
+0x1155d;:0;POP	%R13;
+0x1155f;:0;POP	%R14;
+0x11561;:0;POP	%R15;
+0x11563;:0;RET;
+0x11564;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:801;MOV	%EBP,%ESI;  (203) 
+0x11566;:0;MOV	%R12,%RDI;  (203) 
+0x11569;:0;CALL	f760 <_ZN4Comm8growsendEi>;  (203) 
+0x1156e;:0;JMP	11275 <_ZN4Comm7bordersER4Atom+0x625>;  (203) 
+0x11573;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:799;MOV	0x44(%RSP),%ESI;  (203) 
+0x11577;:0;MOV	%R12,%RDI;  (203) 
+0x1157a;:0;CALL	10c00 <_ZN4Comm8growlistEii>;  (203) 
+0x1157f;:0;JMP	11267 <_ZN4Comm7bordersER4Atom+0x617>;  (203) 
+0x11584;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:826;MOV	%R12,%RDI;  (203) 
+0x11587;:0;CALL	f7b0 <_ZN4Comm8growrecvEi>;  (203) 
+0x1158c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:830;MOV	0x60(%R15),%EAX;  (203) 
+0x11590;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:829;MOV	0x6c(%RSP),%ESI;  (203) 
+0x11594;:0;IMUL	%EAX,%ESI;  (203) 
+0x11597;:0;JMP	1106e <_ZN4Comm7bordersER4Atom+0x41e>;  (203) 
+0x1159c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:810;CALL	2720 <.plt.sec@start+0x350>;  (203) 
+0x115a1;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:817;JMP	110d6 <_ZN4Comm7bordersER4Atom+0x486>;  (203) 
+0x115a6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:794;XOR	%EBP,%EBP;  (203) 
+0x115a8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:792;XOR	%EDX,%EDX;  (203) 
+0x115aa;:0;JMP	11256 <_ZN4Comm7bordersER4Atom+0x606>;  (203) 
+0x115af;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:720;MOV	$0x1ffffffffffffffe,%RDX;
+0x115b9;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:720;MOVSXD	%EBP,%RAX;
+0x115bc;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:720;CMP	%RAX,%RDX;
+0x115bf;:0;JB	285e <_ZN4Comm7bordersER4Atom.cold>;
+0x115c5;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:720;LEA	(,%RAX,4),%RDI;
+0x115cd;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:720;CALL	23e0 <.plt.sec@start+0x10>;
+0x115d2;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:721;MOV	%EBP,0x144(%R13);
+0x115d9;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:720;MOV	%RAX,0x130(%R13);
+0x115e0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:721;JMP	10cae <_ZN4Comm7bordersER4Atom+0x5e>;
+0x115e5;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:882;MOV	%EBX,%ESI;
+0x115e7;:0;MOV	%R13,%RDI;
+0x115ea;:0;CALL	f7b0 <_ZN4Comm8growrecvEi>;
+0x115ef;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:883;JMP	1153b <_ZN4Comm7bordersER4Atom+0x8eb>;
+0x115f4;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:880;MOV	%R13,%RDI;
+0x115f7;:0;CALL	f760 <_ZN4Comm8growsendEi>;
+0x115fc;:0;JMP	1152e <_ZN4Comm7bordersER4Atom+0x8de>;
+0x11601;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:873;XOR	%EBX,%EBX;
+0x11603;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:873;XOR	%ESI,%ESI;
+0x11605;:0;JMP	11521 <_ZN4Comm7bordersER4Atom+0x8d1>;
+0x1160a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:873;VPXOR	%XMM0,%XMM0,%XMM0;
+0x1160e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:875;XOR	%EAX,%EAX;
+0x11610;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:873;VMOVDQA	%XMM0,%XMM1;
+0x11614;:0;JMP	114b0 <_ZN4Comm7bordersER4Atom+0x860>;
+0x11619;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:883;CALL	2590 <.plt.sec@start+0x1c0>;
+0x1161e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp:883;XCHG	%AX,%AX;

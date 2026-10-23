@@ -1,0 +1,3 @@
+group_size;pattern;opcodes;offsets;addresses;stride_status;stride;memory_status;accessed_memory;accessed_memory_nooverlap;accessed_memory_overlap;span;head;unroll_factor;
+5;LLSSS;VMULPD,VMULPD,VMOVUPD,VMOVUPD,VMOVUPD,;-32,-96,-64,-32,-96,;0x15c89,0x15c8e,0x15c93,0x15c98,0x15c9d,;Success;96;Success;160;96;64;96;96;1;
+1;L;VMULPD,;32,;0x15c80,;Success;96;Success;32;32;0;32;0;1;

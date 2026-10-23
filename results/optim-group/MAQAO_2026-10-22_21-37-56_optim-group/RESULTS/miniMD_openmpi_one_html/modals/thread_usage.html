@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html translate="no" lang="en-US"><head><title>ONEVIEW</title>
+<meta charset="utf-8" />
+<meta name="google" content="notranslate" />
+<link rel="stylesheet" type="text/css" media="screen" href="../css/ui.jqgrid.css" />
+<link rel="stylesheet" type="text/css" href="../css/themes/redmond_custom/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="../css/themes/redmond_custom/jquery.jqplot.min.css" />
+<link rel="stylesheet" type="text/css" href="../css/MAQAO_theme.css" />
+<link rel="stylesheet" type="text/css" href="../css/maqao_modal.css" />
+<link rel="stylesheet" type="text/css" href="../css/global.css" />
+<script src="../js/jquery-1.9.0.min.js" ></script>
+<script src="../js/jquery-ui-1.10.3.custom.min.js" ></script>
+<script src="../js/grid.locale-en.js" ></script>
+<script src="../js/jquery.jqGrid.min.js" ></script>
+<script src="../js/d3.min.js" ></script>
+<script class="include" src="../js/chart.min.js"></script>
+<script class="include" src="../js/maqao_utils.js"></script>
+<script src="../js/flamegraph.js" ></script>
+<script>
+addLoadEvent(function(){
+  var theme = localStorage.getItem("__MAQAO_OV_theme__");
+  if (theme) {
+    loadCSS("../css/"+theme+".css");
+  }
+  else {
+    localStorage.setItem("__MAQAO_OV_theme__", "MAQAO_theme");
+    loadCSS("../css/MAQAO_theme.css");
+  }
+});
+</script>
+</head><body>
+<div id="__chartJS_tooltip" class="tt_chartJS"></div>
+<div id="anchor_file_start"></div>
+<div id="maqao_content">
+      <div style="display: none;" >
+      <div style="height: 500px; margin: 0 auto; overflow-x:auto; overflow-y:hidden; padding-left: 30px;"><canvas id="MAQAO_chart_2711"></canvas></div>
+      </div>
+      <script class="code" >
+function __draw_MAQAO_chart_2711 () {
+  let y_type = "linear";
+  const c = Chart.getChart("MAQAO_chart_2711");
+  if (c) {
+    c.update ();
+  }
+  else {
+    const data = [
+      {label: "1", _1: 69.934892654419, color: "#883355"},
+      {label: "2", _1: 99.958193302155, color: "#c2070c"},
+      {label: "3", _1: 99.958193302155, color: "#c2070c"},
+      {label: "4", _1: 99.958193302155, color: "#c2070c"},
+      {label: "5", _1: 99.958193302155, color: "#c2070c"},
+      {label: "6", _1: 99.958193302155, color: "#c2070c"},
+      {label: "7", _1: 99.958193302155, color: "#c2070c"},
+      {label: "8", _1: 99.958193302155, color: "#c2070c"},
+      {label: "9", _1: 99.958193302155, color: "#c2070c"},
+      {label: "10", _1: 99.958193302155, color: "#c2070c"},
+      {label: "11", _1: 99.958193302155, color: "#c2070c"},
+      {label: "12", _1: 99.958193302155, color: "#c2070c"},
+      {label: "13", _1: 95.602686703205, color: "#c2070c"},
+      {label: "14", _1: 99.896043539047, color: "#c2070c"},
+      {label: "15", _1: 97.493844665587, color: "#c2070c"},
+      {label: "16", _1: 99.981129169464, color: "#c2070c"},
+      {label: "17", _1: 99.981129169464, color: "#c2070c"},
+      {label: "18", _1: 99.981129169464, color: "#c2070c"},
+      {label: "19", _1: 99.981129169464, color: "#c2070c"},
+      {label: "20", _1: 99.981129169464, color: "#c2070c"},
+      {label: "21", _1: 99.981129169464, color: "#c2070c"},
+      {label: "22", _1: 99.981129169464, color: "#c2070c"},
+      {label: "23", _1: 99.981129169464, color: "#c2070c"},
+      {label: "24", _1: 99.981129169464, color: "#c2070c"},
+      {label: "25", _1: 99.981129169464, color: "#c2070c"},
+      {label: "26", _1: 99.981129169464, color: "#c2070c"},
+      {label: "27", _1: 99.981129169464, color: "#c2070c"},
+      {label: "28", _1: 99.981129169464, color: "#c2070c"},
+      {label: "29", _1: 99.981129169464, color: "#c2070c"},
+      {label: "30", _1: 99.981129169464, color: "#c2070c"},
+      {label: "31", _1: 99.981129169464, color: "#c2070c"},
+      {label: "32", _1: 99.981129169464, color: "#c2070c"},
+      {label: "33", _1: 99.981129169464, color: "#c2070c"},
+      {label: "34", _1: 99.981129169464, color: "#c2070c"},
+      {label: "35", _1: 99.981129169464, color: "#c2070c"},
+      {label: "36", _1: 98.530581593514, color: "#c2070c"},
+      {label: "37", _1: 99.770745635033, color: "#c2070c"},
+      {label: "38", _1: 99.979639053345, color: "#c2070c"},
+      {label: "39", _1: 99.979639053345, color: "#c2070c"},
+      {label: "40", _1: 99.979639053345, color: "#c2070c"},
+      {label: "41", _1: 99.979639053345, color: "#c2070c"},
+      {label: "42", _1: 99.979639053345, color: "#c2070c"},
+      {label: "43", _1: 99.979639053345, color: "#c2070c"},
+      {label: "44", _1: 99.979639053345, color: "#c2070c"},
+      {label: "45", _1: 99.979639053345, color: "#c2070c"},
+      {label: "46", _1: 99.979639053345, color: "#c2070c"},
+      {label: "47", _1: 99.979639053345, color: "#c2070c"},
+      {label: "48", _1: 99.979639053345, color: "#c2070c"},
+      {label: "49", _1: 99.979639053345, color: "#c2070c"},
+      {label: "50", _1: 99.979639053345, color: "#c2070c"},
+      {label: "51", _1: 99.979639053345, color: "#c2070c"},
+      {label: "52", _1: 99.979639053345, color: "#c2070c"},
+      {label: "53", _1: 99.979639053345, color: "#c2070c"},
+      {label: "54", _1: 99.979639053345, color: "#c2070c"},
+      {label: "55", _1: 99.979639053345, color: "#c2070c"},
+      {label: "56", _1: 99.979639053345, color: "#c2070c"},
+      {label: "57", _1: 99.979639053345, color: "#c2070c"},
+      {label: "58", _1: 99.979639053345, color: "#c2070c"},
+      {label: "59", _1: 99.979639053345, color: "#c2070c"},
+      {label: "60", _1: 99.979639053345, color: "#c2070c"},
+      {label: "61", _1: 99.979639053345, color: "#c2070c"},
+      {label: "62", _1: 99.979639053345, color: "#c2070c"},
+      {label: "63", _1: 99.979639053345, color: "#c2070c"},
+      {label: "64", _1: 99.979639053345, color: "#c2070c"},
+      {label: "65", _1: 99.979639053345, color: "#c2070c"},
+      {label: "66", _1: 99.979639053345, color: "#c2070c"},
+      {label: "67", _1: 99.979639053345, color: "#c2070c"},
+      {label: "68", _1: 99.979639053345, color: "#c2070c"},
+      {label: "69", _1: 99.979639053345, color: "#c2070c"},
+      {label: "70", _1: 99.979639053345, color: "#c2070c"},
+      {label: "71", _1: 99.979639053345, color: "#c2070c"},
+      {label: "72", _1: 99.979639053345, color: "#c2070c"},
+      {label: "73", _1: 99.979639053345, color: "#c2070c"},
+      {label: "74", _1: 99.979639053345, color: "#c2070c"},
+      {label: "75", _1: 99.979639053345, color: "#c2070c"},
+      {label: "76", _1: 99.979639053345, color: "#c2070c"},
+      {label: "77", _1: 99.979639053345, color: "#c2070c"},
+      {label: "78", _1: 99.979639053345, color: "#c2070c"},
+      {label: "79", _1: 99.979639053345, color: "#c2070c"},
+      {label: "80", _1: 99.979639053345, color: "#c2070c"},
+      {label: "81", _1: 99.979639053345, color: "#c2070c"},
+      {label: "82", _1: 99.979639053345, color: "#c2070c"},
+      {label: "83", _1: 99.979639053345, color: "#c2070c"},
+      {label: "84", _1: 99.979639053345, color: "#c2070c"},
+      {label: "85", _1: 99.979639053345, color: "#c2070c"},
+      {label: "86", _1: 99.979639053345, color: "#c2070c"},
+      {label: "87", _1: 99.979639053345, color: "#c2070c"},
+      {label: "88", _1: 99.979639053345, color: "#c2070c"},
+      {label: "89", _1: 99.979639053345, color: "#c2070c"},
+      {label: "90", _1: 99.979639053345, color: "#c2070c"},
+      {label: "91", _1: 99.979639053345, color: "#c2070c"},
+      {label: "92", _1: 99.979639053345, color: "#c2070c"},
+      {label: "93", _1: 99.979639053345, color: "#c2070c"},
+      {label: "94", _1: 99.979639053345, color: "#c2070c"},
+      {label: "95", _1: 99.979639053345, color: "#c2070c"},
+      {label: "96", _1: 99.979639053345, color: "#c2070c"},
+      {label: "97", _1: 99.979639053345, color: "#c2070c"},
+      {label: "98", _1: 99.979639053345, color: "#c2070c"},
+      {label: "99", _1: 99.979639053345, color: "#c2070c"},
+      {label: "100", _1: 86.719292402267, color: "#af1624"},
+    ];
+    const legend_labels = ["count", ];
+    new Chart(
+      document.getElementById("MAQAO_chart_2711"),
+      {
+        options: {
+          animation: false,
+          plugins: {
+            legend: {display: true, position: "bottom",
+},
+          },
+          scales: {
+            x: {title: {display: true, text: "Time Slice"},},
+            y: {type: y_type, title: {display: true, text: "Thread Usage"},},
+          },
+        },
+        data: {
+          labels: data.map(row => row.label),
+          datasets: [
+            {type: "bar", order: 2, label: legend_labels[0], data: data.map(row => row._1),backgroundColor: data.map(row => row.color), },
+          ],
+        },
+      }
+    );
+  }
+}
+(async function() {
+   __draw_MAQAO_chart_2711 ();
+})();
+      </script><script>
+function _onresize () {
+  const queryString = window.location.search;
+  const params = new URLSearchParams(queryString);
+  let thread_id = params.get("id");
+  const tid  = thread_id.match(/_[0-9]+$/g);
+  const root = thread_id.replace (/_[0-9]+_[0-9]+$/, "");
+  if (root != thread_id) {
+     thread_id = root+tid;
+  }
+  if (false) {}
+  else if (thread_id == "0_sacha-VivoBook-F515EA_14714") {
+  const d = document.getElementById ("chart_cat_2711");
+  d.parentNode.style.display = "";
+  d.style.display = "";
+  d.innerHTML = "";
+      <div style="display: none;" >
+      <div style="height: 500px; margin: 0 auto; overflow-x:auto; overflow-y:hidden; padding-left: 30px;"><canvas id="MAQAO_chart_2711"></canvas></div>
+      </div>
+      <script class="code" >
+function __draw_MAQAO_chart_2711 () {
+  let y_type = "linear";
+  const c = Chart.getChart("MAQAO_chart_2711");
+  if (c) {
+    c.update ();
+  }
+  else {
+    const data = [
+      {label: "1", _1: 69.934892654419, color: "#883355"},
+      {label: "2", _1: 99.958193302155, color: "#c2070c"},
+      {label: "3", _1: 99.958193302155, color: "#c2070c"},
+      {label: "4", _1: 99.958193302155, color: "#c2070c"},
+      {label: "5", _1: 99.958193302155, color: "#c2070c"},
+      {label: "6", _1: 99.958193302155, color: "#c2070c"},
+      {label: "7", _1: 99.958193302155, color: "#c2070c"},
+      {label: "8", _1: 99.958193302155, color: "#c2070c"},
+      {label: "9", _1: 99.958193302155, color: "#c2070c"},
+      {label: "10", _1: 99.958193302155, color: "#c2070c"},
+      {label: "11", _1: 99.958193302155, color: "#c2070c"},
+      {label: "12", _1: 99.958193302155, color: "#c2070c"},
+      {label: "13", _1: 95.602686703205, color: "#c2070c"},
+      {label: "14", _1: 99.896043539047, color: "#c2070c"},
+      {label: "15", _1: 97.493844665587, color: "#c2070c"},
+      {label: "16", _1: 99.981129169464, color: "#c2070c"},
+      {label: "17", _1: 99.981129169464, color: "#c2070c"},
+      {label: "18", _1: 99.981129169464, color: "#c2070c"},
+      {label: "19", _1: 99.981129169464, color: "#c2070c"},
+      {label: "20", _1: 99.981129169464, color: "#c2070c"},
+      {label: "21", _1: 99.981129169464, color: "#c2070c"},
+      {label: "22", _1: 99.981129169464, color: "#c2070c"},
+      {label: "23", _1: 99.981129169464, color: "#c2070c"},
+      {label: "24", _1: 99.981129169464, color: "#c2070c"},
+      {label: "25", _1: 99.981129169464, color: "#c2070c"},
+      {label: "26", _1: 99.981129169464, color: "#c2070c"},
+      {label: "27", _1: 99.981129169464, color: "#c2070c"},
+      {label: "28", _1: 99.981129169464, color: "#c2070c"},
+      {label: "29", _1: 99.981129169464, color: "#c2070c"},
+      {label: "30", _1: 99.981129169464, color: "#c2070c"},
+      {label: "31", _1: 99.981129169464, color: "#c2070c"},
+      {label: "32", _1: 99.981129169464, color: "#c2070c"},
+      {label: "33", _1: 99.981129169464, color: "#c2070c"},
+      {label: "34", _1: 99.981129169464, color: "#c2070c"},
+      {label: "35", _1: 99.981129169464, color: "#c2070c"},
+      {label: "36", _1: 98.530581593514, color: "#c2070c"},
+      {label: "37", _1: 99.770745635033, color: "#c2070c"},
+      {label: "38", _1: 99.979639053345, color: "#c2070c"},
+      {label: "39", _1: 99.979639053345, color: "#c2070c"},
+      {label: "40", _1: 99.979639053345, color: "#c2070c"},
+      {label: "41", _1: 99.979639053345, color: "#c2070c"},
+      {label: "42", _1: 99.979639053345, color: "#c2070c"},
+      {label: "43", _1: 99.979639053345, color: "#c2070c"},
+      {label: "44", _1: 99.979639053345, color: "#c2070c"},
+      {label: "45", _1: 99.979639053345, color: "#c2070c"},
+      {label: "46", _1: 99.979639053345, color: "#c2070c"},
+      {label: "47", _1: 99.979639053345, color: "#c2070c"},
+      {label: "48", _1: 99.979639053345, color: "#c2070c"},
+      {label: "49", _1: 99.979639053345, color: "#c2070c"},
+      {label: "50", _1: 99.979639053345, color: "#c2070c"},
+      {label: "51", _1: 99.979639053345, color: "#c2070c"},
+      {label: "52", _1: 99.979639053345, color: "#c2070c"},
+      {label: "53", _1: 99.979639053345, color: "#c2070c"},
+      {label: "54", _1: 99.979639053345, color: "#c2070c"},
+      {label: "55", _1: 99.979639053345, color: "#c2070c"},
+      {label: "56", _1: 99.979639053345, color: "#c2070c"},
+      {label: "57", _1: 99.979639053345, color: "#c2070c"},
+      {label: "58", _1: 99.979639053345, color: "#c2070c"},
+      {label: "59", _1: 99.979639053345, color: "#c2070c"},
+      {label: "60", _1: 99.979639053345, color: "#c2070c"},
+      {label: "61", _1: 99.979639053345, color: "#c2070c"},
+      {label: "62", _1: 99.979639053345, color: "#c2070c"},
+      {label: "63", _1: 99.979639053345, color: "#c2070c"},
+      {label: "64", _1: 99.979639053345, color: "#c2070c"},
+      {label: "65", _1: 99.979639053345, color: "#c2070c"},
+      {label: "66", _1: 99.979639053345, color: "#c2070c"},
+      {label: "67", _1: 99.979639053345, color: "#c2070c"},
+      {label: "68", _1: 99.979639053345, color: "#c2070c"},
+      {label: "69", _1: 99.979639053345, color: "#c2070c"},
+      {label: "70", _1: 99.979639053345, color: "#c2070c"},
+      {label: "71", _1: 99.979639053345, color: "#c2070c"},
+      {label: "72", _1: 99.979639053345, color: "#c2070c"},
+      {label: "73", _1: 99.979639053345, color: "#c2070c"},
+      {label: "74", _1: 99.979639053345, color: "#c2070c"},
+      {label: "75", _1: 99.979639053345, color: "#c2070c"},
+      {label: "76", _1: 99.979639053345, color: "#c2070c"},
+      {label: "77", _1: 99.979639053345, color: "#c2070c"},
+      {label: "78", _1: 99.979639053345, color: "#c2070c"},
+      {label: "79", _1: 99.979639053345, color: "#c2070c"},
+      {label: "80", _1: 99.979639053345, color: "#c2070c"},
+      {label: "81", _1: 99.979639053345, color: "#c2070c"},
+      {label: "82", _1: 99.979639053345, color: "#c2070c"},
+      {label: "83", _1: 99.979639053345, color: "#c2070c"},
+      {label: "84", _1: 99.979639053345, color: "#c2070c"},
+      {label: "85", _1: 99.979639053345, color: "#c2070c"},
+      {label: "86", _1: 99.979639053345, color: "#c2070c"},
+      {label: "87", _1: 99.979639053345, color: "#c2070c"},
+      {label: "88", _1: 99.979639053345, color: "#c2070c"},
+      {label: "89", _1: 99.979639053345, color: "#c2070c"},
+      {label: "90", _1: 99.979639053345, color: "#c2070c"},
+      {label: "91", _1: 99.979639053345, color: "#c2070c"},
+      {label: "92", _1: 99.979639053345, color: "#c2070c"},
+      {label: "93", _1: 99.979639053345, color: "#c2070c"},
+      {label: "94", _1: 99.979639053345, color: "#c2070c"},
+      {label: "95", _1: 99.979639053345, color: "#c2070c"},
+      {label: "96", _1: 99.979639053345, color: "#c2070c"},
+      {label: "97", _1: 99.979639053345, color: "#c2070c"},
+      {label: "98", _1: 99.979639053345, color: "#c2070c"},
+      {label: "99", _1: 99.979639053345, color: "#c2070c"},
+      {label: "100", _1: 86.719292402267, color: "#af1624"},
+    ];
+    const legend_labels = ["count", ];
+    new Chart(
+      document.getElementById("MAQAO_chart_2711"),
+      {
+        options: {
+          animation: false,
+          plugins: {
+            legend: {display: true, position: "bottom",
+},
+          },
+          scales: {
+            x: {title: {display: true, text: "Time Slice"},},
+            y: {type: y_type, title: {display: true, text: "Thread Usage"},},
+          },
+        },
+        data: {
+          labels: data.map(row => row.label),
+          datasets: [
+            {type: "bar", order: 2, label: legend_labels[0], data: data.map(row => row._1),backgroundColor: data.map(row => row.color), },
+          ],
+        },
+      }
+    );
+  }
+}
+(async function() {
+   __draw_MAQAO_chart_2711 ();
+})();
+      </script>  }
+}
+addLoadEvent(function(){
+   _onresize();
+});
+var resizeId;
+window.addEventListener("resize", function() {
+  clearTimeout(resizeId);
+  resizeId = setTimeout(_onresize, 250);
+});
+</script>
+
+  <div id="MaqaoModal" class="maqao_modal">
+    <div class="maqao_modal-content">
+      <div class="maqao_modal-header">
+        <span class="maqao_close">&times;</span>
+      </div>
+      <div id="maqao_modal-body" class="maqao_modal-body">
+      </div>
+    </div>
+  </div>
+</div><script>
+var tooltips_texts = [];
+var modal = document.getElementById('MaqaoModal');
+var span = document.getElementsByClassName("maqao_close")[0];
+span.onclick = function() {
+    modal.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+const comparer = (idx, asc) => (a, b) => ((v1, v2) => 
+    v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v2 - v1 : v1.toString().localeCompare(v2)
+    )(getCellValue(asc ? a : b, idx) === '' ? -1: (getCellValue(asc ? a : b, idx).replace(/\s/g,'')), 
+      getCellValue(asc ? b : a, idx) === '' ? -1: (getCellValue(asc ? b : a, idx).replace(/\s/g,'')));
+addLoadEvent(function(){
+  document.querySelectorAll('._fixed_table:not(._no_auto_sorting) th').forEach(th => th.addEventListener('click', (() => {
+    const table = th.closest('table');
+    // Remove all symbols in header
+    table.querySelectorAll('th').forEach(function (e) {
+      e.firstChild.textContent = "";
+    });
+    // Change the symbol on the clicked header
+    if (this.asc != true) {
+      th.firstChild.textContent = "\u25BC";
+    }
+    else {
+      th.firstChild.textContent = "\u25B2";
+    }
+    Array.from(table.querySelectorAll('tr:nth-child(n+2)'))
+        .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+        .forEach(tr => table.appendChild(tr) );
+  })));
+});
+addLoadEvent(function(){
+  document.querySelectorAll('._tree_table:not(._no_auto_sorting) th').forEach(th => th.addEventListener('click', (() => {
+    const table = th.closest('table');
+    // Remove all symbols in header
+    table.querySelectorAll('th').forEach(function (e) {
+      e.firstChild.textContent = "";
+    });
+    // Change the symbol on the clicked header
+    if (this.asc != true) {
+      th.firstChild.textContent = "\u25BC";
+    }
+    else {
+      th.firstChild.textContent = "\u25B2";
+    }
+    let last_id = "";
+    const t_outermost = new Array ();
+    const t_children  = new Map ();
+    for (let i = 1, row; row = table.rows[i]; i++) {
+      if (row.classList.contains ("_outer_row")) {
+        t_outermost.push (row);
+        last_id = row.id;
+        t_children [last_id] = new Array ();
+      }
+      else {
+        t_children [last_id].push (row);
+      }
+    }
+    t_outermost.sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc));
+    for (let i = 0, row; row = t_outermost[i]; i++) {
+      table.appendChild(row)
+      for (let j = 0, child; child = t_children[row.id][j]; j++) {
+        table.appendChild(child)
+      }
+    }
+  })));
+});
+// Hide unselected tabs
+addLoadEvent(function(){
+  var x = document.getElementsByClassName("_tab_header_li");
+  for (var i = 0; i < x.length; i++) {
+    if (x[i].classList.contains("selected_tab") == false) {
+      var e = document.getElementById (x[i].dataset.tab);
+      e.style.display = "none";
+    }
+  }
+});
+</script>
+</body>
+</html>

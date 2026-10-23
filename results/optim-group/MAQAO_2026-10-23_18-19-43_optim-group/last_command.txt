@@ -1,0 +1,1 @@
+../../maqao.2026.1.0/bin/maqao oneview -R1 -uarch=TIGER_LAKE "--mpi-command=mpirun -np 1" --xp=../../results/optim-group/MAQAO_2026-10-23_18-19-43_optim-group --show-program-output -- miniMD_openmpi -i ../../launcher/in.param_analyse.miniMD -s 100 

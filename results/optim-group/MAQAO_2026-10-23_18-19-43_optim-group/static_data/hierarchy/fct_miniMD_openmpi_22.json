@@ -1,0 +1,42 @@
+{
+  "__fct":
+    {
+      "loops":
+        {
+          "_10":
+            {
+              "src_regions":
+                [
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/integrate.cpp",
+                    "regions":
+                      [
+                        [
+                        50,
+                        55
+                        ]
+                      ]
+                  }
+                ],
+              "src": "integrate.cpp:50-55"
+            },
+          "_11":
+            {
+              "src_regions":
+                [
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/integrate.cpp",
+                    "regions":
+                      [
+                        [
+                        50,
+                        55
+                        ]
+                      ]
+                  }
+                ],
+              "src": "integrate.cpp:50-55"
+            }
+        }
+    }
+}

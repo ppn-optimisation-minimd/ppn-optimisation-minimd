@@ -1,0 +1,13 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/atom.cpp: 217 - 226
+--------------------------------------------------------------------------------
+
+217: {
+218:   if(i == nmax) growarray();
+219: 
+220:   int m = 0;
+221:   x[i * PAD + 0] = buf[m++];
+222:   x[i * PAD + 1] = buf[m++];
+223:   x[i * PAD + 2] = buf[m++];
+224:   type[i] = buf[m++];
+225:   return m;
+226: }

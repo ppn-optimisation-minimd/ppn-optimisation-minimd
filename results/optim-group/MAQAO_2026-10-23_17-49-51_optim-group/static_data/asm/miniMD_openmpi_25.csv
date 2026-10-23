@@ -1,0 +1,18 @@
+address;source_location;insn;indent
+0x68c0;:0;MOV	(%RCX),%EAX;
+0x68c2;:0;ADD	$0x4,%RCX;
+0x68c6;:0;ADD	$0x18,%RDX;
+0x68ca;:0;LEA	(%RAX,%RAX,2),%EAX;
+0x68cd;:0;CLTQ;
+0x68cf;:0;VMOVSD	(%RSI,%RAX,8),%XMM0;
+0x68d4;:0;VADDSD	-0x18(%RDX),%XMM0,%XMM0;
+0x68d9;:0;VMOVSD	%XMM0,(%RSI,%RAX,8);
+0x68de;:0;LEA	0x8(,%RAX,8),%RAX;
+0x68e6;:0;VMOVSD	(%RSI,%RAX,1),%XMM0;
+0x68eb;:0;VADDSD	-0x10(%RDX),%XMM0,%XMM0;
+0x68f0;:0;VMOVSD	%XMM0,(%RSI,%RAX,1);
+0x68f5;:0;VMOVSD	0x8(%RSI,%RAX,1),%XMM0;
+0x68fb;:0;VADDSD	-0x8(%RDX),%XMM0,%XMM0;
+0x6900;:0;VMOVSD	%XMM0,0x8(%RSI,%RAX,1);
+0x6906;:0;CMP	%RCX,%R8;
+0x6909;:0;JNE	68c0 <_ZN4Atom14unpack_reverseEiPiPd+0x70>;

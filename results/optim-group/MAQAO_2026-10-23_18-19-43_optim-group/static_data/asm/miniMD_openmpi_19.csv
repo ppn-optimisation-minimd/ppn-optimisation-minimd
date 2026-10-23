@@ -1,0 +1,17 @@
+address;source_location;insn;indent
+0x6170;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/atom.cpp:153;MOV	(%RSI),%EAX;
+0x6172;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/atom.cpp:153;VMULSD	0x68(%R13),%XMM3,%XMM0;
+0x6178;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/atom.cpp:153;ADD	$0x4,%RSI;
+0x617c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/atom.cpp:153;ADD	$0x18,%RDX;
+0x6180;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/atom.cpp:153;LEA	(%RAX,%RAX,2),%EAX;
+0x6183;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/atom.cpp:153;CLTQ;
+0x6185;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/atom.cpp:153;VADDSD	(%RDI,%RAX,8),%XMM0,%XMM0;
+0x618a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/atom.cpp:153;VMOVSD	%XMM0,-0x18(%RDX);
+0x618f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/atom.cpp:154;VMULSD	0x70(%R13),%XMM2,%XMM0;
+0x6195;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/atom.cpp:154;VADDSD	0x8(%RDI,%RAX,8),%XMM0,%XMM0;
+0x619b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/atom.cpp:154;VMOVSD	%XMM0,-0x10(%RDX);
+0x61a0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/atom.cpp:155;VMULSD	0x78(%R13),%XMM1,%XMM0;
+0x61a6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/atom.cpp:155;VADDSD	0x10(%RDI,%RAX,8),%XMM0,%XMM0;
+0x61ac;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/atom.cpp:155;VMOVSD	%XMM0,-0x8(%RDX);
+0x61b1;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/atom.cpp:155;CMP	%RSI,%RCX;
+0x61b4;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/atom.cpp:155;JNE	6170 <_ZN4Atom9pack_commEiPiPdS0_+0x150>;

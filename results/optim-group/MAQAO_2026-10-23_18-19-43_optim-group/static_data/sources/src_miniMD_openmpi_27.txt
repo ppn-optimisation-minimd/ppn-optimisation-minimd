@@ -1,0 +1,13 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/atom.cpp: 394 - 403
+--------------------------------------------------------------------------------
+
+394:     for(int k=0; k<count; k++) {
+395: 	  const int new_i = start+k;
+396: 	  const int old_i = bins[mybin*atoms_per_bin+k];
+397: 	  new_x[new_i*PAD+0] = old_x[old_i*PAD+0];
+398: 	  new_x[new_i*PAD+1] = old_x[old_i*PAD+1];
+399: 	  new_x[new_i*PAD+2] = old_x[old_i*PAD+2];
+400: 	  new_v[new_i*PAD+0] = old_v[old_i*PAD+0];
+401: 	  new_v[new_i*PAD+1] = old_v[old_i*PAD+1];
+402: 	  new_v[new_i*PAD+2] = old_v[old_i*PAD+2];
+403: 	  new_type[new_i] = old_type[old_i];

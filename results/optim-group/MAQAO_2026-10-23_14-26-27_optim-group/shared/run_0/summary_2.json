@@ -1,0 +1,548 @@
+{
+  "report": [
+    {
+      "id_str": "Loop 47 - miniMD_openmpi",
+      "module": "miniMD_openmpi",
+      "id": 47,
+      "analysis": "Execution Time: 37 % - Vectorization Ratio: 15.00 % - Vector Length Use: 14.38 %",
+      "coverage": 37.947303771973,
+      "issues": [
+        {
+          "id_str": "Loop Computation Issues",
+          "score": 8,
+          "issues": [
+            {
+              "code": "L2_LC_2",
+              "analysis": "[SA] Presence of expensive FP instructions - Perform hoisting, change algorithm, use SVML or proper numerical library or perform value profiling (count the number of distinct input values). There are 1 issues (= instructions) costing 4 points each.",
+              "score": 4,
+            },
+            {
+              "code": "L2_LC_4",
+              "analysis": "[SA] Less than 10% of the FP ADD/SUB/MUL arithmetic operations are performed using FMA - Reorganize arithmetic expressions to exhibit potential for FMA. This issue costs 4 points.",
+              "score": 4,
+            }
+          ]
+        },
+        {
+          "id_str": "Control Flow Issues",
+          "score": 2,
+          "issues": [
+            {
+              "code": "L2_CF_2",
+              "analysis": "[SA] Several paths (2 paths) - Simplify control structure or force the compiler to use masked instructions. There are 2 issues ( = paths) costing 1 point each.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Data Access Issues",
+          "score": 22,
+          "issues": [
+            {
+              "code": "L2_DA_2",
+              "analysis": "[SA] Presence of indirect accesses - Use array restructuring or gather instructions to lower the cost. There are 5 issues ( = indirect data accesses) costing 4 point each.",
+              "score": 20,
+            },
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (BLEND/MERGE, BROADCAST) - Simplify data access and try to get stride 1 access. There are 2 issues (= instructions) costing 1 point each.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 22,
+          "issues": [
+            {
+              "code": "L2_CF_2",
+              "analysis": "[SA] Several paths (2 paths) - Simplify control structure or force the compiler to use masked instructions. There are 2 issues ( = paths) costing 1 point each.",
+              "score": 2,
+            },
+            {
+              "code": "L2_DA_2",
+              "analysis": "[SA] Presence of indirect accesses - Use array restructuring or gather instructions to lower the cost. There are 5 issues ( = indirect data accesses) costing 4 point each.",
+              "score": 20,
+            }
+          ]
+        },
+        {
+          "id_str": "Inefficient Vectorization",
+          "score": 2,
+          "issues": [
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (BLEND/MERGE, BROADCAST) - Simplify data access and try to get stride 1 access. There are 2 issues (= instructions) costing 1 point each.",
+              "score": 2,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 141 - miniMD_openmpi",
+      "module": "miniMD_openmpi",
+      "id": 141,
+      "analysis": "Execution Time: 14 % - Vectorization Ratio: 0.00 % - Vector Length Use: 10.42 %",
+      "coverage": 14.315937042236,
+      "issues": [
+        {
+          "id_str": "Loop Computation Issues",
+          "score": 6,
+          "issues": [
+            {
+              "code": "L2_LC_4",
+              "analysis": "[SA] Less than 10% of the FP ADD/SUB/MUL arithmetic operations are performed using FMA - Reorganize arithmetic expressions to exhibit potential for FMA. This issue costs 4 points.",
+              "score": 4,
+            },
+            {
+              "code": "L2_LC_6",
+              "analysis": "[SA] Presence of a large number of scalar integer instructions - Simplify loop structure, perform loop splitting or perform unroll and jam. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Control Flow Issues",
+          "score": 11,
+          "issues": [
+            {
+              "code": "L2_CF_3",
+              "analysis": "[SA] Too many paths (7 paths) - Simplify control structure. There are 7 issues ( = paths) costing 1 point each with a malus of 4 points.",
+              "score": 11,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 11,
+          "issues": [
+            {
+              "code": "L2_CF_3",
+              "analysis": "[SA] Too many paths (7 paths) - Simplify control structure. There are 7 issues ( = paths) costing 1 point each with a malus of 4 points.",
+              "score": 11,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 83 - miniMD_openmpi",
+      "module": "miniMD_openmpi",
+      "id": 83,
+      "analysis": "Execution Time: 4 % - Vectorization Ratio: 13.11 % - Vector Length Use: 14.14 %",
+      "coverage": 4.2544527053833,
+      "issues": [
+        {
+          "id_str": "Loop Computation Issues",
+          "score": 8,
+          "issues": [
+            {
+              "code": "L2_LC_2",
+              "analysis": "[SA] Presence of expensive FP instructions - Perform hoisting, change algorithm, use SVML or proper numerical library or perform value profiling (count the number of distinct input values). There are 1 issues (= instructions) costing 4 points each.",
+              "score": 4,
+            },
+            {
+              "code": "L2_LC_4",
+              "analysis": "[SA] Less than 10% of the FP ADD/SUB/MUL arithmetic operations are performed using FMA - Reorganize arithmetic expressions to exhibit potential for FMA. This issue costs 4 points.",
+              "score": 4,
+            }
+          ]
+        },
+        {
+          "id_str": "Control Flow Issues",
+          "score": 2,
+          "issues": [
+            {
+              "code": "L2_CF_2",
+              "analysis": "[SA] Several paths (2 paths) - Simplify control structure or force the compiler to use masked instructions. There are 2 issues ( = paths) costing 1 point each.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Data Access Issues",
+          "score": 20,
+          "issues": [
+            {
+              "code": "L2_DA_1",
+              "analysis": "[SA] Presence of constant non unit stride data access - Use array restructuring, perform loop interchange or use gather instructions to lower a bit the cost. There are 1 issues ( = data accesses) costing 2 point each.",
+              "score": 2,
+            },
+            {
+              "code": "L2_DA_2",
+              "analysis": "[SA] Presence of indirect accesses - Use array restructuring or gather instructions to lower the cost. There are 4 issues ( = indirect data accesses) costing 4 point each.",
+              "score": 16,
+            },
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (BLEND/MERGE, BROADCAST) - Simplify data access and try to get stride 1 access. There are 2 issues (= instructions) costing 1 point each.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 20,
+          "issues": [
+            {
+              "code": "L2_CF_2",
+              "analysis": "[SA] Several paths (2 paths) - Simplify control structure or force the compiler to use masked instructions. There are 2 issues ( = paths) costing 1 point each.",
+              "score": 2,
+            },
+            {
+              "code": "L2_DA_1",
+              "analysis": "[SA] Presence of constant non unit stride data access - Use array restructuring, perform loop interchange or use gather instructions to lower a bit the cost. There are 1 issues ( = data accesses) costing 2 point each.",
+              "score": 2,
+            },
+            {
+              "code": "L2_DA_2",
+              "analysis": "[SA] Presence of indirect accesses - Use array restructuring or gather instructions to lower the cost. There are 4 issues ( = indirect data accesses) costing 4 point each.",
+              "score": 16,
+            }
+          ]
+        },
+        {
+          "id_str": "Inefficient Vectorization",
+          "score": 2,
+          "issues": [
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (BLEND/MERGE, BROADCAST) - Simplify data access and try to get stride 1 access. There are 2 issues (= instructions) costing 1 point each.",
+              "score": 2,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 139 - miniMD_openmpi",
+      "module": "miniMD_openmpi",
+      "id": 139,
+      "analysis": "Execution Time: 1 % - Vectorization Ratio: 0.00 % - Vector Length Use: 8.52 %",
+      "coverage": 1.4618383646011,
+      "issues": [
+        {
+          "id_str": "Control Flow Issues",
+          "score": 37,
+          "issues": [
+            {
+              "code": "L2_CF_3",
+              "analysis": "[SA] Too many paths (31 paths) - Simplify control structure. There are 31 issues ( = paths) costing 1 point each with a malus of 4 points.",
+              "score": 35,
+            },
+            {
+              "code": "L2_CF_4",
+              "analysis": "[SA] Non innermost loop (InBetween) - Collapse loop with innermost ones. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Data Access Issues",
+          "score": 2,
+          "issues": [
+            {
+              "code": "L2_DA_6",
+              "analysis": "[SA] More than 20% of the loads are accessing the stack - Perform loop splitting to decrease pressure on registers. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 37,
+          "issues": [
+            {
+              "code": "L2_CF_3",
+              "analysis": "[SA] Too many paths (31 paths) - Simplify control structure. There are 31 issues ( = paths) costing 1 point each with a malus of 4 points.",
+              "score": 35,
+            },
+            {
+              "code": "L2_CF_4",
+              "analysis": "[SA] Non innermost loop (InBetween) - Collapse loop with innermost ones. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 9 - miniMD_openmpi",
+      "module": "miniMD_openmpi",
+      "id": 9,
+      "analysis": "Execution Time: 1 % - Vectorization Ratio: 0.00 % - Vector Length Use: 12.50 %",
+      "coverage": 1.290450334549,
+      "issues": [
+        {
+          "id_str": "Loop Computation Issues",
+          "score": 4,
+          "issues": [
+            {
+              "code": "L2_LC_4",
+              "analysis": "[SA] Less than 10% of the FP ADD/SUB/MUL arithmetic operations are performed using FMA - Reorganize arithmetic expressions to exhibit potential for FMA. This issue costs 4 points.",
+              "score": 4,
+            }
+          ]
+        },
+        {
+          "id_str": "Data Access Issues",
+          "score": 4,
+          "issues": [
+            {
+              "code": "L2_DA_1",
+              "analysis": "[SA] Presence of constant non unit stride data access - Use array restructuring, perform loop interchange or use gather instructions to lower a bit the cost. There are 2 issues ( = data accesses) costing 2 point each.",
+              "score": 4,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 4,
+          "issues": [
+            {
+              "code": "L2_DA_1",
+              "analysis": "[SA] Presence of constant non unit stride data access - Use array restructuring, perform loop interchange or use gather instructions to lower a bit the cost. There are 2 issues ( = data accesses) costing 2 point each.",
+              "score": 4,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 10 - miniMD_openmpi",
+      "module": "miniMD_openmpi",
+      "id": 10,
+      "analysis": "Execution Time: 0 % - Vectorization Ratio: 0.00 % - Vector Length Use: 12.50 %",
+      "coverage": 0.73596000671387,
+      "issues": [
+        {
+          "id_str": "Loop Computation Issues",
+          "score": 4,
+          "issues": [
+            {
+              "code": "L2_LC_4",
+              "analysis": "[SA] Less than 10% of the FP ADD/SUB/MUL arithmetic operations are performed using FMA - Reorganize arithmetic expressions to exhibit potential for FMA. This issue costs 4 points.",
+              "score": 4,
+            }
+          ]
+        },
+        {
+          "id_str": "Data Access Issues",
+          "score": 4,
+          "issues": [
+            {
+              "code": "L2_DA_1",
+              "analysis": "[SA] Presence of constant non unit stride data access - Use array restructuring, perform loop interchange or use gather instructions to lower a bit the cost. There are 2 issues ( = data accesses) costing 2 point each.",
+              "score": 4,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 4,
+          "issues": [
+            {
+              "code": "L2_DA_1",
+              "analysis": "[SA] Presence of constant non unit stride data access - Use array restructuring, perform loop interchange or use gather instructions to lower a bit the cost. There are 2 issues ( = data accesses) costing 2 point each.",
+              "score": 4,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 48 - miniMD_openmpi",
+      "module": "miniMD_openmpi",
+      "id": 48,
+      "analysis": "Execution Time: 0 % - Vectorization Ratio: 50.00 % - Vector Length Use: 15.63 %",
+      "coverage": 0.57465368509293,
+      "issues": [
+        {
+          "id_str": "Data Access Issues",
+          "score": 4,
+          "issues": [
+            {
+              "code": "L2_DA_1",
+              "analysis": "[SA] Presence of constant non unit stride data access - Use array restructuring, perform loop interchange or use gather instructions to lower a bit the cost. There are 2 issues ( = data accesses) costing 2 point each.",
+              "score": 4,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 4,
+          "issues": [
+            {
+              "code": "L2_DA_1",
+              "analysis": "[SA] Presence of constant non unit stride data access - Use array restructuring, perform loop interchange or use gather instructions to lower a bit the cost. There are 2 issues ( = data accesses) costing 2 point each.",
+              "score": 4,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 140 - miniMD_openmpi",
+      "module": "miniMD_openmpi",
+      "id": 140,
+      "analysis": "Execution Time: 0 % - Vectorization Ratio: 0.00 % - Vector Length Use: 10.94 %",
+      "coverage": 0.52424544095993,
+      "issues": [
+        {
+          "id_str": "Loop Computation Issues",
+          "score": 6,
+          "issues": [
+            {
+              "code": "L2_LC_4",
+              "analysis": "[SA] Less than 10% of the FP ADD/SUB/MUL arithmetic operations are performed using FMA - Reorganize arithmetic expressions to exhibit potential for FMA. This issue costs 4 points.",
+              "score": 4,
+            },
+            {
+              "code": "L2_LC_6",
+              "analysis": "[SA] Presence of a large number of scalar integer instructions - Simplify loop structure, perform loop splitting or perform unroll and jam. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Control Flow Issues",
+          "score": 26,
+          "issues": [
+            {
+              "code": "L2_CF_3",
+              "analysis": "[SA] Too many paths (22 paths) - Simplify control structure. There are 22 issues ( = paths) costing 1 point each with a malus of 4 points.",
+              "score": 26,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 26,
+          "issues": [
+            {
+              "code": "L2_CF_3",
+              "analysis": "[SA] Too many paths (22 paths) - Simplify control structure. There are 22 issues ( = paths) costing 1 point each with a malus of 4 points.",
+              "score": 26,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 46 - miniMD_openmpi",
+      "module": "miniMD_openmpi",
+      "id": 46,
+      "analysis": "Execution Time: 0 % - Vectorization Ratio: 40.46 % - Vector Length Use: 15.58 %",
+      "coverage": 0.30244931578636,
+      "issues": [
+        {
+          "id_str": "Loop Computation Issues",
+          "score": 6,
+          "issues": [
+            {
+              "code": "L2_LC_4",
+              "analysis": "[SA] Less than 10% of the FP ADD/SUB/MUL arithmetic operations are performed using FMA - Reorganize arithmetic expressions to exhibit potential for FMA. This issue costs 4 points.",
+              "score": 4,
+            },
+            {
+              "code": "L2_LC_6",
+              "analysis": "[SA] Presence of a large number of scalar integer instructions - Simplify loop structure, perform loop splitting or perform unroll and jam. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Control Flow Issues",
+          "score": 5,
+          "issues": [
+            {
+              "code": "L2_CF_2",
+              "analysis": "[SA] Several paths (3 paths) - Simplify control structure or force the compiler to use masked instructions. There are 3 issues ( = paths) costing 1 point each.",
+              "score": 3,
+            },
+            {
+              "code": "L2_CF_4",
+              "analysis": "[SA] Non innermost loop (Outermost) - Collapse loop with innermost ones. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Data Access Issues",
+          "score": 2,
+          "issues": [
+            {
+              "code": "L2_DA_6",
+              "analysis": "[SA] More than 20% of the loads are accessing the stack - Perform loop splitting to decrease pressure on registers. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 5,
+          "issues": [
+            {
+              "code": "L2_CF_2",
+              "analysis": "[SA] Several paths (3 paths) - Simplify control structure or force the compiler to use masked instructions. There are 3 issues ( = paths) costing 1 point each.",
+              "score": 3,
+            },
+            {
+              "code": "L2_CF_4",
+              "analysis": "[SA] Non innermost loop (Outermost) - Collapse loop with innermost ones. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 136 - miniMD_openmpi",
+      "module": "miniMD_openmpi",
+      "id": 136,
+      "analysis": "Execution Time: 0 % - Vectorization Ratio: 7.69 % - Vector Length Use: 12.50 %",
+      "coverage": 0.29236766695976,
+      "issues": [
+        {
+          "id_str": "Loop Computation Issues",
+          "score": 6,
+          "issues": [
+            {
+              "code": "L2_LC_4",
+              "analysis": "[SA] Less than 10% of the FP ADD/SUB/MUL arithmetic operations are performed using FMA - Reorganize arithmetic expressions to exhibit potential for FMA. This issue costs 4 points.",
+              "score": 4,
+            },
+            {
+              "code": "L2_LC_6",
+              "analysis": "[SA] Presence of a large number of scalar integer instructions - Simplify loop structure, perform loop splitting or perform unroll and jam. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Control Flow Issues",
+          "score": 20,
+          "issues": [
+            {
+              "code": "L2_CF_3",
+              "analysis": "[SA] Too many paths (16 paths) - Simplify control structure. There are 16 issues ( = paths) costing 1 point each with a malus of 4 points.",
+              "score": 20,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 20,
+          "issues": [
+            {
+              "code": "L2_CF_3",
+              "analysis": "[SA] Too many paths (16 paths) - Simplify control structure. There are 16 issues ( = paths) costing 1 point each with a malus of 4 points.",
+              "score": 20,
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

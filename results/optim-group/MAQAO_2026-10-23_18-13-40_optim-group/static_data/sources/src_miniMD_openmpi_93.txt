@@ -1,0 +1,5 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/force_lj.cpp: 195 - 196
+--------------------------------------------------------------------------------
+
+195:   for(int i = 0; i < nall; i++) {
+196:     f[i * PAD + 0] = 0.0;

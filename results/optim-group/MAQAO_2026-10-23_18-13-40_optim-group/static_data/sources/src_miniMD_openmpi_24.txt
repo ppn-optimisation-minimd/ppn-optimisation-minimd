@@ -1,0 +1,4 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/atom.cpp: 178 - 178
+--------------------------------------------------------------------------------
+
+178:     buf[3 * i] = f[(first + i) * PAD + 0];

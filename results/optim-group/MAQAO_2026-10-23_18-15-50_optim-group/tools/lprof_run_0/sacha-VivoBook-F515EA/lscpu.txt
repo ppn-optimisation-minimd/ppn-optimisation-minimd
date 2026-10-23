@@ -1,0 +1,45 @@
+Architecture :                            x86_64
+Mode(s) opératoire(s) des processeurs :   32-bit, 64-bit
+Tailles des adresses:                     39 bits physical, 48 bits virtual
+Boutisme :                                Little Endian
+Processeur(s) :                           8
+Liste de processeur(s) en ligne :         0-7
+Identifiant constructeur :                GenuineIntel
+Nom de modèle :                           11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
+Famille de processeur :                   6
+Modèle :                                  140
+Thread(s) par cœur :                      2
+Cœur(s) par socket :                      4
+Socket(s) :                               1
+Révision :                                1
+multiplication des MHz du/des CPU(s) :    63%
+Vitesse maximale du processeur en MHz :   4200,0000
+Vitesse minimale du processeur en MHz :   400,0000
+BogoMIPS :                                4838,40
+Drapeaux :                                fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf tsc_known_freq pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb cat_l2 cdp_l2 ssbd ibrs ibpb stibp ibrs_enhanced tpr_shadow flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb intel_pt avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves split_lock_detect user_shstk dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp hwp_pkg_req vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid movdiri movdir64b fsrm avx512_vp2intersect md_clear ibt flush_l1d arch_capabilities
+Virtualisation :                          VT-x
+Cache L1d :                               192 KiB (4 instances)
+Cache L1i :                               128 KiB (4 instances)
+Cache L2 :                                5 MiB (4 instances)
+Cache L3 :                                8 MiB (1 instance)
+Nœud(s) NUMA :                            1
+Nœud NUMA 0 de processeur(s) :            0-7
+Vulnérabilité Gather data sampling :      Vulnerable
+Vulnérabilité Ghostwrite :                Not affected
+Vulnérabilité Indirect target selection : Mitigation; Aligned branch/return thunks
+Vulnérabilité Itlb multihit :             Not affected
+Vulnérabilité L1tf :                      Not affected
+Vulnérabilité Mds :                       Not affected
+Vulnérabilité Meltdown :                  Not affected
+Vulnérabilité Mmio stale data :           Not affected
+Vulnérabilité Old microcode :             Not affected
+Vulnérabilité Reg file data sampling :    Not affected
+Vulnérabilité Retbleed :                  Not affected
+Vulnérabilité Spec rstack overflow :      Not affected
+Vulnérabilité Spec store bypass :         Mitigation; Speculative Store Bypass disabled via prctl
+Vulnérabilité Spectre v1 :                Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnérabilité Spectre v2 :                Mitigation; Enhanced / Automatic IBRS; IBPB conditional; PBRSB-eIBRS SW sequence; BHI SW loop, KVM SW loop
+Vulnérabilité Srbds :                     Not affected
+Vulnérabilité Tsa :                       Not affected
+Vulnérabilité Tsx async abort :           Not affected
+Vulnérabilité Vmscape :                   Not affected

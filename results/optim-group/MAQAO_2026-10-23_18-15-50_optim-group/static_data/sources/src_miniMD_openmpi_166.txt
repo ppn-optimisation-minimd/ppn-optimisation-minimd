@@ -1,0 +1,7 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/thermo.cpp: 153 - 156
+--------------------------------------------------------------------------------
+
+153:     vx = v[i * PAD + 0];
+154:     vy = v[i * PAD + 1];
+155:     vz = v[i * PAD + 2];
+156:     t += (vx * vx + vy * vy + vz * vz) * atom.mass;

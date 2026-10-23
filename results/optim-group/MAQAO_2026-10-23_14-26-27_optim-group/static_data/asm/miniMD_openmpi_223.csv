@@ -1,0 +1,18 @@
+address;source_location;insn;indent
+0x123cf;:0;MOVSXD	%EDX,%RCX;
+0x123d2;:0;MOV	%EDX,%EDI;
+0x123d4;:0;IMUL	$-0x7cb1f4a1,%RCX,%RCX;
+0x123db;:0;SAR	$0x1f,%EDI;
+0x123de;:0;SHR	$0x20,%RCX;
+0x123e2;:0;ADD	%EDX,%ECX;
+0x123e4;:0;SAR	$0x10,%ECX;
+0x123e7;:0;SUB	%EDI,%ECX;
+0x123e9;:0;IMUL	$-0x1f31d,%ECX,%EDI;
+0x123ef;:0;IMUL	$-0xb14,%ECX,%ECX;
+0x123f5;:0;ADD	%EDI,%EDX;
+0x123f7;:0;IMUL	$0x41a7,%EDX,%EDX;
+0x123fd;:0;ADD	%ECX,%EDX;
+0x123ff;:0;LEA	0x7fffffff(%RDX),%ECX;
+0x12405;:0;CMOVS	%ECX,%EDX;
+0x12408;:0;SUB	$0x1,%ESI;
+0x1240b;:0;JNE	123cf <_Z12create_atomsR4Atomiiid+0x4bf>;

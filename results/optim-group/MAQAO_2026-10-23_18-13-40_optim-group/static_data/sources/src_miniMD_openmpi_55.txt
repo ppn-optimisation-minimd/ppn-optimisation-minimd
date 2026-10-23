@@ -1,0 +1,44 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/force_lj.cpp: 206 - 256
+--------------------------------------------------------------------------------
+
+206:   for(int i = 0; i < nlocal; i++) {
+207:     const int* const neighs = &neighbor.neighbors[i * neighbor.maxneighs];
+208:     const int numneighs = neighbor.numneigh[i];
+209:     const MMD_float xtmp = x[i * PAD + 0];
+210:     const MMD_float ytmp = x[i * PAD + 1];
+211:     const MMD_float ztmp = x[i * PAD + 2];
+212:     const int type_i = type[i];
+213: 
+214:     MMD_float fix = 0.0;
+215:     MMD_float fiy = 0.0;
+216:     MMD_float fiz = 0.0;
+217: 
+218: #ifdef USE_SIMD
+219:     #pragma simd reduction (+: fix,fiy,fiz)
+220: #endif
+221:     for(int k = 0; k < numneighs; k++) {
+222:       const int j = neighs[k];
+223:       const MMD_float delx = xtmp - x[j * PAD + 0];
+224:       const MMD_float dely = ytmp - x[j * PAD + 1];
+225:       const MMD_float delz = ztmp - x[j * PAD + 2];
+226:       const int type_j = type[j];
+227:       const MMD_float rsq = delx * delx + dely * dely + delz * delz;
+228:       const int type_ij = type_i*ntypes+type_j;
+229: 
+230:       if(rsq < cutforcesq[type_ij]) {
+231:         const MMD_float sr2 = 1.0 / rsq;
+232:         const MMD_float sr6 = sr2 * sr2 * sr2 * sigma6[type_ij];
+233:         const MMD_float force = 48.0 * sr6 * (sr6 - 0.5) * sr2 * epsilon[type_ij];
+234: 
+235:         fix += delx * force;
+236:         fiy += dely * force;
+237:         fiz += delz * force;
+238: 
+239:         if(GHOST_NEWTON || j < nlocal) {
+240:           f[j * PAD + 0] -= delx * force;
+241:           f[j * PAD + 1] -= dely * force;
+242:           f[j * PAD + 2] -= delz * force;
+[...]
+254:     f[i * PAD + 0] += fix;
+255:     f[i * PAD + 1] += fiy;
+256:     f[i * PAD + 2] += fiz;

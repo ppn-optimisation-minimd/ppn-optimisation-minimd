@@ -1,0 +1,166 @@
+{
+  "__fct":
+    {
+      "loops":
+        {
+          "_240":
+            {
+              "_244":
+                {
+                  "src_regions":
+                    [
+                      {
+                        "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/setup.cpp",
+                        "regions":
+                          [
+                            [
+                            359,
+                            378
+                            ],
+                            [
+                            392,
+                            420
+                            ],
+                            [
+                            510,
+                            515
+                            ]
+                          ]
+                      }
+                    ],
+                  "src": "setup.cpp:359-515"
+                },
+              "_245":
+                {
+                  "_242":
+                    {
+                      "src_regions":
+                        [
+                          {
+                            "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/setup.cpp",
+                            "regions":
+                              [
+                                [
+                                450,
+                                450
+                                ]
+                              ]
+                          }
+                        ],
+                      "src": "setup.cpp:450-450"
+                    },
+                  "_243":
+                    {
+                      "src_regions":
+                        [
+                          {
+                            "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/setup.cpp",
+                            "regions":
+                              [
+                                [
+                                450,
+                                450
+                                ]
+                              ]
+                          }
+                        ],
+                      "src": "setup.cpp:450-450"
+                    },
+                  "src_regions":
+                    [
+                      {
+                        "path": "/usr/include/x86_64-linux-gnu/bits/stdio2.h",
+                        "regions":
+                          [
+                            [
+                            118,
+                            118
+                            ]
+                          ]
+                      },
+                      {
+                        "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/setup.cpp",
+                        "regions":
+                          [
+                            [
+                            427,
+                            435
+                            ],
+                            [
+                            441,
+                            444
+                            ],
+                            [
+                            450,
+                            450
+                            ]
+                          ]
+                      }
+                    ],
+                  "src": "stdio2.h:118-118"
+                },
+              "src_regions":
+                [
+                  {
+                    "path": "/usr/include/x86_64-linux-gnu/bits/stdio2.h",
+                    "regions":
+                      [
+                        [
+                        118,
+                        118
+                        ]
+                      ]
+                  },
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/setup.cpp",
+                    "regions":
+                      [
+                        [
+                        359,
+                        378
+                        ],
+                        [
+                        392,
+                        420
+                        ],
+                        [
+                        427,
+                        435
+                        ],
+                        [
+                        441,
+                        444
+                        ],
+                        [
+                        450,
+                        450
+                        ],
+                        [
+                        510,
+                        515
+                        ]
+                      ]
+                  }
+                ],
+              "src": "setup.cpp:359-515"
+            },
+          "_241":
+            {
+              "src_regions":
+                [
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/setup.cpp",
+                    "regions":
+                      [
+                        [
+                        364,
+                        364
+                        ]
+                      ]
+                  }
+                ],
+              "src": "setup.cpp:364-364"
+            }
+        }
+    }
+}

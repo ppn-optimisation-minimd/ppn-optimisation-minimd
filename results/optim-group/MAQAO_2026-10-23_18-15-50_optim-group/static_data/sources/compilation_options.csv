@@ -1,0 +1,15 @@
+module;src_file;score;issue;opts;
+miniMD_openmpi;integrate.cpp;0.5;"-march=x86-64 is used but it should be replaced by a more architecture specific option or -march=native.";"GNU C++17 15.2.0 -D_FORTIFY_SOURCE=3 -mavx -mtune=generic -march=x86-64 -g -Ofast -fno-inline-functions -fopenmp -fasynchronous-unwind-tables -fstack-protector-strong -fstack-clash-protection -fcf-protection -fzero-init-padding-bits=all";
+miniMD_openmpi;integrate.cpp;;"-funroll-loops is missing. ";"";
+miniMD_openmpi;setup.cpp;0.5;"-march=x86-64 is used but it should be replaced by a more architecture specific option or -march=native.";"GNU C++17 15.2.0 -D_FORTIFY_SOURCE=3 -mavx -mtune=generic -march=x86-64 -g -Ofast -fno-inline-functions -fopenmp -fasynchronous-unwind-tables -fstack-protector-strong -fstack-clash-protection -fcf-protection -fzero-init-padding-bits=all";
+miniMD_openmpi;setup.cpp;;"-funroll-loops is missing. ";"";
+miniMD_openmpi;force_lj.cpp;0.5;"-march=x86-64 is used but it should be replaced by a more architecture specific option or -march=native.";"GNU C++17 15.2.0 -D_FORTIFY_SOURCE=3 -mavx -mtune=generic -march=x86-64 -g -Ofast -fno-inline-functions -fopenmp -fasynchronous-unwind-tables -fstack-protector-strong -fstack-clash-protection -fcf-protection -fzero-init-padding-bits=all";
+miniMD_openmpi;force_lj.cpp;;"-funroll-loops is missing. ";"";
+miniMD_openmpi;comm.cpp;0.5;"-march=x86-64 is used but it should be replaced by a more architecture specific option or -march=native.";"GNU C++17 15.2.0 -D_FORTIFY_SOURCE=3 -mavx -mtune=generic -march=x86-64 -g -Ofast -fno-inline-functions -fopenmp -fasynchronous-unwind-tables -fstack-protector-strong -fstack-clash-protection -fcf-protection -fzero-init-padding-bits=all";
+miniMD_openmpi;comm.cpp;;"-funroll-loops is missing. ";"";
+miniMD_openmpi;neighbor.cpp;0.5;"-march=x86-64 is used but it should be replaced by a more architecture specific option or -march=native.";"GNU C++17 15.2.0 -D_FORTIFY_SOURCE=3 -mavx -mtune=generic -march=x86-64 -g -Ofast -fno-inline-functions -fopenmp -fasynchronous-unwind-tables -fstack-protector-strong -fstack-clash-protection -fcf-protection -fzero-init-padding-bits=all";
+miniMD_openmpi;neighbor.cpp;;"-funroll-loops is missing. ";"";
+miniMD_openmpi;thermo.cpp;0.5;"-march=x86-64 is used but it should be replaced by a more architecture specific option or -march=native.";"GNU C++17 15.2.0 -D_FORTIFY_SOURCE=3 -mavx -mtune=generic -march=x86-64 -g -Ofast -fno-inline-functions -fopenmp -fasynchronous-unwind-tables -fstack-protector-strong -fstack-clash-protection -fcf-protection -fzero-init-padding-bits=all";
+miniMD_openmpi;thermo.cpp;;"-funroll-loops is missing. ";"";
+miniMD_openmpi;atom.cpp;0.5;"-march=x86-64 is used but it should be replaced by a more architecture specific option or -march=native.";"GNU C++17 15.2.0 -D_FORTIFY_SOURCE=3 -mavx -mtune=generic -march=x86-64 -g -Ofast -fno-inline-functions -fopenmp -fasynchronous-unwind-tables -fstack-protector-strong -fstack-clash-protection -fcf-protection -fzero-init-padding-bits=all";
+miniMD_openmpi;atom.cpp;;"-funroll-loops is missing. ";"";

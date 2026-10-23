@@ -1,0 +1,11 @@
+address;source_location;insn;indent
+0x5380;:0;VMOVSD	(%RDX),%XMM0;
+0x5384;:0;ADD	$0x18,%RDX;
+0x5388;:0;ADD	$0x18,%RCX;
+0x538c;:0;VMOVSD	%XMM0,-0x18(%RCX);
+0x5391;:0;VMOVSD	-0x10(%RDX),%XMM0;
+0x5396;:0;VMOVSD	%XMM0,-0x10(%RCX);
+0x539b;:0;VMOVSD	-0x8(%RDX),%XMM0;
+0x53a0;:0;VMOVSD	%XMM0,-0x8(%RCX);
+0x53a5;:0;CMP	%RDX,%RAX;
+0x53a8;:0;JNE	5380 <_ZN4Atom11unpack_commEiiPd+0x80>;

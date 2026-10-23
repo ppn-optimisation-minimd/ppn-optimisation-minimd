@@ -12,4 +12,4 @@ MAQAO_PATH="../../maqao.2026.1.0/bin/maqao"
 MINIMD_PATH="../${REPO}/${VERSION}"
 
 cd ${MINIMD_PATH}
-${MAQAO_PATH} oneview -R1 -uarch=ICELAKE --mpi-command="mpirun -np ${THREADS}" --xp=${RESULTS_PATH}/MAQAO_${MOMENT}_${REPO} --show-program-output -- miniMD_openmpi -i ${FILE_PATH} -s 100
+${MAQAO_PATH} oneview -R1 -uarch=TIGER_LAKE --mpi-command="mpirun -np ${THREADS}" --xp=${RESULTS_PATH}/MAQAO_${MOMENT}_${REPO} --show-program-output -- miniMD_openmpi -i ${FILE_PATH} -s 100

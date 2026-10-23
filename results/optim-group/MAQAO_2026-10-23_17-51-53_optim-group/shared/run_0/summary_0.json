@@ -1,0 +1,68 @@
+{
+  "report": [
+    {
+      "name": "lvl0_profiled_time",
+      "status": "good",
+      "score": 4,
+      "max_score": 4,
+      "text": "Application profile is long enough (58.54 s)",
+      "desc": "To have good quality measurements, it is advised that the application profiling time is greater than 10 seconds."
+    },
+    {
+      "name": "lvl0_source_debug",
+      "status": "bad",
+      "score": 0,
+      "max_score": 3,
+      "text": "Most of time spent in analyzed modules comes from functions without source/debug info",
+      "desc": "Functions without source/debug info (typically not compiled with -g) cumulate 64.72% of the time spent in analyzed modules. Check that -g is present. Remark: if -g is indeed used, this can also be due to some compiler built-in functions (typically math) or statically linked libraries. This warning can be ignored in that case."
+    },
+    {
+      "name": "lvl0_architecture_options",
+      "status": "bad",
+      "score": 0,
+      "max_score": 3,
+      "text": "Architecture specific options are unknown for some functions (compilation options info are not available)",
+      "desc": "Architecture specific options are needed to produce efficient code for a specific processor ( -march=(target) )."
+    },
+    {
+      "name": "lvl0_utilitary_options",
+      "status": "bad",
+      "score": 0,
+      "max_score": 3,
+      "text": "Most of time spent in analyzed modules comes from functions without compilation options informations",
+      "desc": "Functions without compilation options information cumulate 64.72% of the time spent in analyzed modules. Check that -g is present."
+    },
+    {
+      "name": "lvl0_optimization_level",
+      "status": "bad",
+      "score": 0,
+      "max_score": 3,
+      "text": "Optimization level is unknown for some functions (compilation options info are not available)",
+      "desc": "To have better performances, it is advised to help the compiler by using a proper optimization level (-O2 of higher). Warning, depending on compilers, faster optimization levels can decrease numeric accuracy."
+    },
+    {
+      "name": "lvl0_is_perf_event_paranoid",
+      "status": "good",
+      "score": 3,
+      "max_score": 3,
+      "text": "Host configuration allows retrieval of all necessary metrics.",
+      "desc": ""
+    },
+    {
+      "name": "lvl0_profiled_modules",
+      "status": "good",
+      "score": 2,
+      "max_score": 2,
+      "text": "Application is correctly profiled (\"Others\" category represents 0.09 % of the execution time)",
+      "desc": "To have a representative profiling, it is advised that the category \"Others\" represents less than 20% of the execution time in order to analyze as much as possible of the user code"
+    },
+    {
+      "name": "lvl0_is_lstopo",
+      "status": "good",
+      "score": 1,
+      "max_score": 1,
+      "text": "Lstopo present. The Topology lstopo report will be generated.",
+      "desc": ""
+    }
+  ]
+}

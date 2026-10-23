@@ -1,0 +1,25 @@
+ID;Module;Source Location;Source Function;Level;Max Time Over Threads (s);Time w.r.t. Wall Time (s);Coverage (% app. time);Speedup if no scalar integer;Speedup if FP arith vectorized;Speedup if fully vectorized;Speedup if FP only;Number of paths;Vectorization Ratio (%);Vectorization Efficiency (%);CQA cycles;CQA cycles if no scalar integer;CQA cycles if FP arith vectorized;CQA cycles if fully vectorized;CQA cycles if FP only
+Loop 56;miniMD_openmpi;;ForceLJ::compute(Atom&, Neighbor&, Comm&, int);Innermost;23.024993896484;23.024993896484;39.335338592529;1.03;2.96;6.17;1.06;2;15.00;14.38;7.95;7.75;2.69;1.29;7.50
+Loop 167;miniMD_openmpi;;Neighbor::build(Atom&);Innermost;8.3400001525879;8.3400001525879;14.247852325439;1.44;2.91;12.13;1.44;7;0.00;10.42;7.20;5.00;2.48;0.59;5.00
+Loop 92;miniMD_openmpi;;ForceLJ::compute(Atom&, Neighbor&, Comm&, int);Innermost;2.5799999237061;2.5799999237061;4.4076089859009;1.03;3.07;7.19;1.06;2;13.11;14.14;9.80;9.50;3.19;1.36;9.25
+Loop 11;miniMD_openmpi;;Integrate::initialIntegrate();Single;0.83999997377396;0.83999997377396;1.4350354671478;1.00;1.00;3.23;9.83;1;100.00;39.18;59.00;59.00;59.00;18.25;6.00
+Loop 165;miniMD_openmpi;;Neighbor::build(Atom&);InBetween;0.72000002861023;0.71999996900558;1.2300304174423;1.00;1.00;15.18;3.70;31;0.00;7.59;7.40;7.40;7.40;0.49;2.00
+Loop 13;miniMD_openmpi;;Integrate::finalIntegrate();Single;0.49500000476837;0.49500000476837;0.84564590454102;1.00;1.00;3.22;12.33;1;100.00;38.71;37.00;37.00;37.00;11.50;3.00
+Loop 57;miniMD_openmpi;;ForceLJ::compute(Atom&, Neighbor&, Comm&, int);Single;0.39000001549721;0.38999998569489;0.66626644134521;1.00;1.00;1.00;1.50;1;100.00;50.00;1.50;1.50;1.50;1.50;1.00
+Loop 257;miniMD_openmpi;;create_atoms(Atom&, int, int, int, double);Innermost;0.32499998807907;0.32500001788139;0.55522209405899;1.72;6.48;16.00;1.84;1;4.44;9.72;115.50;67.25;17.81;7.22;62.75
+Loop 166;miniMD_openmpi;;Neighbor::build(Atom&);Innermost;0.22499999403954;0.22499999403954;0.38438451290131;1.24;1.98;11.83;1.43;22;0.00;10.80;13.60;11.00;6.88;1.15;9.50
+Loop 55;miniMD_openmpi;;ForceLJ::compute(Atom&, Neighbor&, Comm&, int);Outermost;0.1950000077486;0.19499999284744;0.33313322067261;1.81;1.47;9.24;3.47;3;40.46;15.58;5.20;2.87;3.54;0.56;1.50
+Loop 162;miniMD_openmpi;;Neighbor::binatoms(Atom&, int);Innermost;0.18000000715256;0.1799999922514;0.30750760436058;1.11;1.43;9.49;1.64;16;7.69;12.50;17.20;15.50;12.00;1.81;10.50
+Loop 214;miniMD_openmpi;;Comm::borders(Atom&);Innermost;0.10000000149012;0.10000000149012;0.17083756625652;1.44;1.00;10.59;2.43;4;0.00;11.09;3.95;2.75;3.95;0.37;1.63
+Loop 19;miniMD_openmpi;;Atom::pack_comm(int, int*, double*, int*);Single;0.070000000298023;0.070000000298023;0.11958628892899;1.20;1.18;8.00;1.20;1;0.00;12.50;3.60;3.00;3.06;0.45;3.00
+Loop 27;miniMD_openmpi;;Atom::sort(Neighbor&);Innermost;0.064999997615814;0.064999997615814;0.11104440689087;1.26;1.00;5.42;4.40;1;0.00;12.02;4.40;3.50;4.40;0.81;1.00
+Loop 25;miniMD_openmpi;;Atom::unpack_reverse(int, int*, double*);Single;0.064999997615814;0.064999997615814;0.11104440689087;1.17;1.14;8.00;2.33;1;0.00;12.50;3.50;3.00;3.06;0.44;1.50
+Loop 163;miniMD_openmpi;;Neighbor::build(Atom&);InBetween;0.054999999701977;0.055000003427267;0.093960665166378;1.40;1.51;10.12;2.61;512;6.00;11.13;19.60;14.00;13.00;1.94;7.50
+Loop 24;miniMD_openmpi;;Atom::pack_reverse(int, int, double*);Single;0.050000000745058;0.050000000745058;0.085418783128262;1.13;1.00;1.20;1.80;1;100.00;50.00;1.80;1.60;1.80;1.50;1.00
+Loop 93;miniMD_openmpi;;ForceLJ::compute(Atom&, Neighbor&, Comm&, int);Single;0.035000000149012;0.035000000149012;0.059793144464493;1.00;1.00;1.00;1.50;1;100.00;50.00;1.50;1.50;1.50;1.50;1.00
+Loop 179;miniMD_openmpi;;Thermo::temperature(Atom&);Single;0.030000001192093;0.029999997466803;0.051251266151667;1.00;1.00;3.43;1.13;1;81.82;34.09;18.00;18.00;18.00;5.25;16.00
+Loop 22;miniMD_openmpi;;Atom::unpack_comm(int, int, double*);Single;0.025000000372529;0.025000000372529;0.042709391564131;1.13;1.00;1.20;1.80;1;100.00;50.00;1.80;1.60;1.80;1.50;1.00
+Loop 18;miniMD_openmpi;;Atom::pbc();Single;0.025000000372529;0.025000000372529;0.042709391564131;1.00;1.08;8.00;1.44;64;0.00;12.50;6.50;6.50;6.00;0.81;4.50
+Loop 261;miniMD_openmpi;;create_velocity(double, Atom&, Thermo&);Single;0.019999999552965;0.019999999552965;0.034167513251305;1.00;1.00;3.26;14.67;1;100.00;39.10;22.00;22.00;22.00;6.75;1.50
+Loop 259;miniMD_openmpi;;create_velocity(double, Atom&, Thermo&);Single;0.015000000596046;0.014999998733401;0.025625633075833;1.00;1.07;1.07;1.07;1;100.00;50.00;1.60;1.60;1.50;1.50;1.50
+Loop 91;miniMD_openmpi;;ForceLJ::compute(Atom&, Neighbor&, Comm&, int);Outermost;0.0099999997764826;0.0099999997764826;0.017083756625652;1.42;1.46;9.71;1.42;3;35.65;14.70;5.67;4.00;3.88;0.58;4.00

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html translate="no" lang="en-US"><head><title>ONEVIEW</title>
+<meta charset="utf-8" />
+<meta name="google" content="notranslate" />
+<link rel="stylesheet" type="text/css" media="screen" href="../css/ui.jqgrid.css" />
+<link rel="stylesheet" type="text/css" href="../css/themes/redmond_custom/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="../css/themes/redmond_custom/jquery.jqplot.min.css" />
+<link rel="stylesheet" type="text/css" href="../css/MAQAO_theme.css" />
+<link rel="stylesheet" type="text/css" href="../css/maqao_modal.css" />
+<link rel="stylesheet" type="text/css" href="../css/global.css" />
+<script src="../js/jquery-1.9.0.min.js" ></script>
+<script src="../js/jquery-ui-1.10.3.custom.min.js" ></script>
+<script src="../js/grid.locale-en.js" ></script>
+<script src="../js/jquery.jqGrid.min.js" ></script>
+<script src="../js/d3.min.js" ></script>
+<script class="include" src="../js/chart.min.js"></script>
+<script class="include" src="../js/maqao_utils.js"></script>
+<script src="../js/flamegraph.js" ></script>
+<script>
+addLoadEvent(function(){
+  var theme = localStorage.getItem("__MAQAO_OV_theme__");
+  if (theme) {
+    loadCSS("../css/"+theme+".css");
+  }
+  else {
+    localStorage.setItem("__MAQAO_OV_theme__", "MAQAO_theme");
+    loadCSS("../css/MAQAO_theme.css");
+  }
+});
+</script>
+</head><body>
+<div id="__chartJS_tooltip" class="tt_chartJS"></div>
+<div id="anchor_file_start"></div>
+<div id="maqao_content">
+      <div style="display: none;" >
+      <div style="height: 500px; margin: 0 auto; overflow-x:auto; overflow-y:hidden; padding-left: 30px;"><canvas id="MAQAO_chart_2453"></canvas></div>
+      </div>
+      <script class="code" >
+function __draw_MAQAO_chart_2453 () {
+  let y_type = "linear";
+  const c = Chart.getChart("MAQAO_chart_2453");
+  if (c) {
+    c.update ();
+  }
+  else {
+    const data = [
+      {label: "1", _1: 72.776108980179, color: "#922c49"},
+      {label: "2", _1: 99.592930078506, color: "#c2070c"},
+      {label: "3", _1: 99.592930078506, color: "#c2070c"},
+      {label: "4", _1: 30.745929479599, color: "#4466aa"},
+      {label: "5", _1: 0, color: "#0a92f3"},
+      {label: "6", _1: 0, color: "#0a92f3"},
+      {label: "7", _1: 0, color: "#0a92f3"},
+      {label: "8", _1: 0, color: "#0a92f3"},
+      {label: "9", _1: 0, color: "#0a92f3"},
+      {label: "10", _1: 0, color: "#0a92f3"},
+      {label: "11", _1: 0, color: "#0a92f3"},
+      {label: "12", _1: 0, color: "#0a92f3"},
+      {label: "13", _1: 0, color: "#0a92f3"},
+      {label: "14", _1: 15.041041374207, color: "#277cce"},
+      {label: "15", _1: 99.930053949356, color: "#c2070c"},
+      {label: "16", _1: 99.930053949356, color: "#c2070c"},
+      {label: "17", _1: 99.930053949356, color: "#c2070c"},
+      {label: "18", _1: 99.930053949356, color: "#c2070c"},
+      {label: "19", _1: 99.930053949356, color: "#c2070c"},
+      {label: "20", _1: 99.930053949356, color: "#c2070c"},
+      {label: "21", _1: 99.930053949356, color: "#c2070c"},
+      {label: "22", _1: 99.930053949356, color: "#c2070c"},
+      {label: "23", _1: 99.930053949356, color: "#c2070c"},
+      {label: "24", _1: 99.930053949356, color: "#c2070c"},
+      {label: "25", _1: 44.483777880669, color: "#575792"},
+      {label: "26", _1: 58.442801237106, color: "#75426d"},
+      {label: "27", _1: 99.855935573578, color: "#c2070c"},
+      {label: "28", _1: 99.855935573578, color: "#c2070c"},
+      {label: "29", _1: 99.855935573578, color: "#c2070c"},
+      {label: "30", _1: 99.855935573578, color: "#c2070c"},
+      {label: "31", _1: 99.855935573578, color: "#c2070c"},
+      {label: "32", _1: 99.855935573578, color: "#c2070c"},
+      {label: "33", _1: 99.855935573578, color: "#c2070c"},
+      {label: "34", _1: 99.855935573578, color: "#c2070c"},
+      {label: "35", _1: 64.971280097961, color: "#7e3a61"},
+      {label: "36", _1: 71.783649921417, color: "#922c49"},
+      {label: "37", _1: 99.974048137665, color: "#c2070c"},
+      {label: "38", _1: 99.974048137665, color: "#c2070c"},
+      {label: "39", _1: 99.974048137665, color: "#c2070c"},
+      {label: "40", _1: 99.974048137665, color: "#c2070c"},
+      {label: "41", _1: 99.974048137665, color: "#c2070c"},
+      {label: "42", _1: 99.974048137665, color: "#c2070c"},
+      {label: "43", _1: 99.974048137665, color: "#c2070c"},
+      {label: "44", _1: 99.974048137665, color: "#c2070c"},
+      {label: "45", _1: 99.974048137665, color: "#c2070c"},
+      {label: "46", _1: 99.974048137665, color: "#c2070c"},
+      {label: "47", _1: 99.974048137665, color: "#c2070c"},
+      {label: "48", _1: 99.974048137665, color: "#c2070c"},
+      {label: "49", _1: 99.974048137665, color: "#c2070c"},
+      {label: "50", _1: 99.974048137665, color: "#c2070c"},
+      {label: "51", _1: 99.974048137665, color: "#c2070c"},
+      {label: "52", _1: 99.974048137665, color: "#c2070c"},
+      {label: "53", _1: 99.974048137665, color: "#c2070c"},
+      {label: "54", _1: 99.974048137665, color: "#c2070c"},
+      {label: "55", _1: 99.974048137665, color: "#c2070c"},
+      {label: "56", _1: 99.974048137665, color: "#c2070c"},
+      {label: "57", _1: 99.974048137665, color: "#c2070c"},
+      {label: "58", _1: 99.974048137665, color: "#c2070c"},
+      {label: "59", _1: 99.974048137665, color: "#c2070c"},
+      {label: "60", _1: 99.974048137665, color: "#c2070c"},
+      {label: "61", _1: 99.974048137665, color: "#c2070c"},
+      {label: "62", _1: 99.974048137665, color: "#c2070c"},
+      {label: "63", _1: 99.974048137665, color: "#c2070c"},
+      {label: "64", _1: 99.974048137665, color: "#c2070c"},
+      {label: "65", _1: 99.974048137665, color: "#c2070c"},
+      {label: "66", _1: 99.974048137665, color: "#c2070c"},
+      {label: "67", _1: 99.974048137665, color: "#c2070c"},
+      {label: "68", _1: 99.974048137665, color: "#c2070c"},
+      {label: "69", _1: 99.974048137665, color: "#c2070c"},
+      {label: "70", _1: 99.974048137665, color: "#c2070c"},
+      {label: "71", _1: 99.974048137665, color: "#c2070c"},
+      {label: "72", _1: 67.452728748322, color: "#883355"},
+      {label: "73", _1: 99.975091218948, color: "#c2070c"},
+      {label: "74", _1: 99.975091218948, color: "#c2070c"},
+      {label: "75", _1: 99.975091218948, color: "#c2070c"},
+      {label: "76", _1: 99.975091218948, color: "#c2070c"},
+      {label: "77", _1: 99.975091218948, color: "#c2070c"},
+      {label: "78", _1: 99.975091218948, color: "#c2070c"},
+      {label: "79", _1: 99.975091218948, color: "#c2070c"},
+      {label: "80", _1: 99.975091218948, color: "#c2070c"},
+      {label: "81", _1: 99.975091218948, color: "#c2070c"},
+      {label: "82", _1: 99.975091218948, color: "#c2070c"},
+      {label: "83", _1: 99.975091218948, color: "#c2070c"},
+      {label: "84", _1: 99.975091218948, color: "#c2070c"},
+      {label: "85", _1: 99.975091218948, color: "#c2070c"},
+      {label: "86", _1: 99.975091218948, color: "#c2070c"},
+      {label: "87", _1: 99.975091218948, color: "#c2070c"},
+      {label: "88", _1: 99.975091218948, color: "#c2070c"},
+      {label: "89", _1: 99.975091218948, color: "#c2070c"},
+      {label: "90", _1: 99.975091218948, color: "#c2070c"},
+      {label: "91", _1: 99.975091218948, color: "#c2070c"},
+      {label: "92", _1: 99.975091218948, color: "#c2070c"},
+      {label: "93", _1: 99.975091218948, color: "#c2070c"},
+      {label: "94", _1: 99.975091218948, color: "#c2070c"},
+      {label: "95", _1: 99.975091218948, color: "#c2070c"},
+      {label: "96", _1: 99.975091218948, color: "#c2070c"},
+      {label: "97", _1: 99.975091218948, color: "#c2070c"},
+      {label: "98", _1: 99.975091218948, color: "#c2070c"},
+      {label: "99", _1: 99.975091218948, color: "#c2070c"},
+      {label: "100", _1: 88.549619913101, color: "#af1624"},
+    ];
+    const legend_labels = ["count", ];
+    new Chart(
+      document.getElementById("MAQAO_chart_2453"),
+      {
+        options: {
+          animation: false,
+          plugins: {
+            legend: {display: false,
+},
+          },
+          scales: {
+            x: {title: {display: true, text: "Time Slice"},},
+            y: {type: y_type, title: {display: true, text: "CPU Usage"},},
+          },
+        },
+        data: {
+          labels: data.map(row => row.label),
+          datasets: [
+            {type: "bar", order: 2, label: legend_labels[0], data: data.map(row => row._1),backgroundColor: data.map(row => row.color), borderSkipped: true, categoryPercentage: 1, barPercentage: 1, },
+          ],
+        },
+      }
+    );
+  }
+}
+(async function() {
+   __draw_MAQAO_chart_2453 ();
+})();
+      </script>      <div style="display: none;" >
+      <div style="height: 500px; margin: 0 auto; overflow-x:auto; overflow-y:hidden; padding-left: 30px;"><canvas id="MAQAO_chart_2454"></canvas></div>
+      </div>
+      <script class="code" >
+function __draw_MAQAO_chart_2454 () {
+  let y_type = "linear";
+  const c = Chart.getChart("MAQAO_chart_2454");
+  if (c) {
+    c.update ();
+  }
+  else {
+    const data = [
+      {label: "1", _1: 5.6358803063631, color: "#138ae7"},
+      {label: "2", _1: 0, color: "#0a92f3"},
+      {label: "3", _1: 0, color: "#0a92f3"},
+      {label: "4", _1: 68.251746892929, color: "#883355"},
+      {label: "5", _1: 99.331802129745, color: "#c2070c"},
+      {label: "6", _1: 99.331802129745, color: "#c2070c"},
+      {label: "7", _1: 99.331802129745, color: "#c2070c"},
+      {label: "8", _1: 99.331802129745, color: "#c2070c"},
+      {label: "9", _1: 99.331802129745, color: "#c2070c"},
+      {label: "10", _1: 99.331802129745, color: "#c2070c"},
+      {label: "11", _1: 99.331802129745, color: "#c2070c"},
+      {label: "12", _1: 99.331802129745, color: "#c2070c"},
+      {label: "13", _1: 99.331802129745, color: "#c2070c"},
+      {label: "14", _1: 83.591079711914, color: "#a51d31"},
+      {label: "15", _1: 0, color: "#0a92f3"},
+      {label: "16", _1: 0, color: "#0a92f3"},
+      {label: "17", _1: 0, color: "#0a92f3"},
+      {label: "18", _1: 0, color: "#0a92f3"},
+      {label: "19", _1: 0, color: "#0a92f3"},
+      {label: "20", _1: 0, color: "#0a92f3"},
+      {label: "21", _1: 0, color: "#0a92f3"},
+      {label: "22", _1: 0, color: "#0a92f3"},
+      {label: "23", _1: 0, color: "#0a92f3"},
+      {label: "24", _1: 0, color: "#0a92f3"},
+      {label: "25", _1: 53.507387638092, color: "#6b4979"},
+      {label: "26", _1: 39.082080125809, color: "#4e5f9e"},
+      {label: "27", _1: 0, color: "#0a92f3"},
+      {label: "28", _1: 0, color: "#0a92f3"},
+      {label: "29", _1: 0, color: "#0a92f3"},
+      {label: "30", _1: 0, color: "#0a92f3"},
+      {label: "31", _1: 0, color: "#0a92f3"},
+      {label: "32", _1: 0, color: "#0a92f3"},
+      {label: "33", _1: 0, color: "#0a92f3"},
+      {label: "34", _1: 0, color: "#0a92f3"},
+      {label: "35", _1: 34.518602490425, color: "#4466aa"},
+      {label: "36", _1: 26.670953631401, color: "#3a6db6"},
+      {label: "37", _1: 0, color: "#0a92f3"},
+      {label: "38", _1: 0, color: "#0a92f3"},
+      {label: "39", _1: 0, color: "#0a92f3"},
+      {label: "40", _1: 0, color: "#0a92f3"},
+      {label: "41", _1: 0, color: "#0a92f3"},
+      {label: "42", _1: 0, color: "#0a92f3"},
+      {label: "43", _1: 0, color: "#0a92f3"},
+      {label: "44", _1: 0, color: "#0a92f3"},
+      {label: "45", _1: 0, color: "#0a92f3"},
+      {label: "46", _1: 0, color: "#0a92f3"},
+      {label: "47", _1: 0, color: "#0a92f3"},
+      {label: "48", _1: 0, color: "#0a92f3"},
+      {label: "49", _1: 0, color: "#0a92f3"},
+      {label: "50", _1: 0, color: "#0a92f3"},
+      {label: "51", _1: 0, color: "#0a92f3"},
+      {label: "52", _1: 0, color: "#0a92f3"},
+      {label: "53", _1: 0, color: "#0a92f3"},
+      {label: "54", _1: 0, color: "#0a92f3"},
+      {label: "55", _1: 0, color: "#0a92f3"},
+      {label: "56", _1: 0, color: "#0a92f3"},
+      {label: "57", _1: 0, color: "#0a92f3"},
+      {label: "58", _1: 0, color: "#0a92f3"},
+      {label: "59", _1: 0, color: "#0a92f3"},
+      {label: "60", _1: 0, color: "#0a92f3"},
+      {label: "61", _1: 0, color: "#0a92f3"},
+      {label: "62", _1: 0, color: "#0a92f3"},
+      {label: "63", _1: 0, color: "#0a92f3"},
+      {label: "64", _1: 0, color: "#0a92f3"},
+      {label: "65", _1: 0, color: "#0a92f3"},
+      {label: "66", _1: 0, color: "#0a92f3"},
+      {label: "67", _1: 0, color: "#0a92f3"},
+      {label: "68", _1: 0, color: "#0a92f3"},
+      {label: "69", _1: 0, color: "#0a92f3"},
+      {label: "70", _1: 0, color: "#0a92f3"},
+      {label: "71", _1: 0, color: "#0a92f3"},
+      {label: "72", _1: 30.594778060913, color: "#4466aa"},
+      {label: "73", _1: 0, color: "#0a92f3"},
+      {label: "74", _1: 0, color: "#0a92f3"},
+      {label: "75", _1: 0, color: "#0a92f3"},
+      {label: "76", _1: 0, color: "#0a92f3"},
+      {label: "77", _1: 0, color: "#0a92f3"},
+      {label: "78", _1: 0, color: "#0a92f3"},
+      {label: "79", _1: 0, color: "#0a92f3"},
+      {label: "80", _1: 0, color: "#0a92f3"},
+      {label: "81", _1: 0, color: "#0a92f3"},
+      {label: "82", _1: 0, color: "#0a92f3"},
+      {label: "83", _1: 0, color: "#0a92f3"},
+      {label: "84", _1: 0, color: "#0a92f3"},
+      {label: "85", _1: 0, color: "#0a92f3"},
+      {label: "86", _1: 0, color: "#0a92f3"},
+      {label: "87", _1: 0, color: "#0a92f3"},
+      {label: "88", _1: 0, color: "#0a92f3"},
+      {label: "89", _1: 0, color: "#0a92f3"},
+      {label: "90", _1: 0, color: "#0a92f3"},
+      {label: "91", _1: 0, color: "#0a92f3"},
+      {label: "92", _1: 0, color: "#0a92f3"},
+      {label: "93", _1: 0, color: "#0a92f3"},
+      {label: "94", _1: 0, color: "#0a92f3"},
+      {label: "95", _1: 0, color: "#0a92f3"},
+      {label: "96", _1: 0, color: "#0a92f3"},
+      {label: "97", _1: 0, color: "#0a92f3"},
+      {label: "98", _1: 0, color: "#0a92f3"},
+      {label: "99", _1: 0, color: "#0a92f3"},
+      {label: "100", _1: 0, color: "#0a92f3"},
+    ];
+    const legend_labels = ["count", ];
+    new Chart(
+      document.getElementById("MAQAO_chart_2454"),
+      {
+        options: {
+          animation: false,
+          plugins: {
+            legend: {display: false,
+},
+          },
+          scales: {
+            x: {title: {display: true, text: "Time Slice"},},
+            y: {type: y_type, title: {display: true, text: "CPU Usage"},},
+          },
+        },
+        data: {
+          labels: data.map(row => row.label),
+          datasets: [
+            {type: "bar", order: 2, label: legend_labels[0], data: data.map(row => row._1),backgroundColor: data.map(row => row.color), borderSkipped: true, categoryPercentage: 1, barPercentage: 1, },
+          ],
+        },
+      }
+    );
+  }
+}
+(async function() {
+   __draw_MAQAO_chart_2454 ();
+})();
+      </script><script>
+function _onresize () {
+  const queryString = window.location.search;
+  const params      = new URLSearchParams(queryString);
+  let cpu_id        = params.get("id");
+  const tid  = cpu_id.match(/_[0-9]+$/g);
+  const root = cpu_id.replace (/_[0-9]+_[0-9]+$/, "");
+  if (root != cpu_id) {
+     cpu_id = root+tid;
+  }
+  if (false) {}
+  else if (cpu_id == "0_sacha-VivoBook-F515EA_4") {
+  const d = document.getElementById ("MAQAO_chart_2454");
+  d.parentNode.parentNode.style.display = "";
+  d.style.display = "";
+  }
+  else if (cpu_id == "0_sacha-VivoBook-F515EA_0") {
+  const d = document.getElementById ("MAQAO_chart_2453");
+  d.parentNode.parentNode.style.display = "";
+  d.style.display = "";
+  }
+}
+addLoadEvent(function(){
+   _onresize();
+});
+var resizeId;
+window.addEventListener("resize", function() {
+  clearTimeout(resizeId);
+  resizeId = setTimeout(_onresize, 250);
+});
+</script>
+
+  <div id="MaqaoModal" class="maqao_modal">
+    <div class="maqao_modal-content">
+      <div class="maqao_modal-header">
+        <span class="maqao_close">&times;</span>
+      </div>
+      <div id="maqao_modal-body" class="maqao_modal-body">
+      </div>
+    </div>
+  </div>
+</div><script>
+var tooltips_texts = [];
+var modal = document.getElementById('MaqaoModal');
+var span = document.getElementsByClassName("maqao_close")[0];
+span.onclick = function() {
+    modal.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+const comparer = (idx, asc) => (a, b) => ((v1, v2) => 
+    v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v2 - v1 : v1.toString().localeCompare(v2)
+    )(getCellValue(asc ? a : b, idx) === '' ? -1: (getCellValue(asc ? a : b, idx).replace(/\s/g,'')), 
+      getCellValue(asc ? b : a, idx) === '' ? -1: (getCellValue(asc ? b : a, idx).replace(/\s/g,'')));
+addLoadEvent(function(){
+  document.querySelectorAll('._fixed_table:not(._no_auto_sorting) th').forEach(th => th.addEventListener('click', (() => {
+    const table = th.closest('table');
+    // Remove all symbols in header
+    table.querySelectorAll('th').forEach(function (e) {
+      e.firstChild.textContent = "";
+    });
+    // Change the symbol on the clicked header
+    if (this.asc != true) {
+      th.firstChild.textContent = "\u25BC";
+    }
+    else {
+      th.firstChild.textContent = "\u25B2";
+    }
+    Array.from(table.querySelectorAll('tr:nth-child(n+2)'))
+        .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+        .forEach(tr => table.appendChild(tr) );
+  })));
+});
+addLoadEvent(function(){
+  document.querySelectorAll('._tree_table:not(._no_auto_sorting) th').forEach(th => th.addEventListener('click', (() => {
+    const table = th.closest('table');
+    // Remove all symbols in header
+    table.querySelectorAll('th').forEach(function (e) {
+      e.firstChild.textContent = "";
+    });
+    // Change the symbol on the clicked header
+    if (this.asc != true) {
+      th.firstChild.textContent = "\u25BC";
+    }
+    else {
+      th.firstChild.textContent = "\u25B2";
+    }
+    let last_id = "";
+    const t_outermost = new Array ();
+    const t_children  = new Map ();
+    for (let i = 1, row; row = table.rows[i]; i++) {
+      if (row.classList.contains ("_outer_row")) {
+        t_outermost.push (row);
+        last_id = row.id;
+        t_children [last_id] = new Array ();
+      }
+      else {
+        t_children [last_id].push (row);
+      }
+    }
+    t_outermost.sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc));
+    for (let i = 0, row; row = t_outermost[i]; i++) {
+      table.appendChild(row)
+      for (let j = 0, child; child = t_children[row.id][j]; j++) {
+        table.appendChild(child)
+      }
+    }
+  })));
+});
+// Hide unselected tabs
+addLoadEvent(function(){
+  var x = document.getElementsByClassName("_tab_header_li");
+  for (var i = 0; i < x.length; i++) {
+    if (x[i].classList.contains("selected_tab") == false) {
+      var e = document.getElementById (x[i].dataset.tab);
+      e.style.display = "none";
+    }
+  }
+});
+</script>
+</body>
+</html>

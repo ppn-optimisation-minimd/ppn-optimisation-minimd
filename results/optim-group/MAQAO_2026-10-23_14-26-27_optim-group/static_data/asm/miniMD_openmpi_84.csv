@@ -1,0 +1,6 @@
+address;source_location;insn;indent
+0x7800;:0;MOVQ	$0,0x10(%RDX);
+0x7808;:0;ADD	$0x18,%RDX;
+0x780c;:0;VMOVUPD	%XMM0,-0x18(%RDX);
+0x7811;:0;CMP	%RDX,%RAX;
+0x7814;:0;JNE	7800 <_ZN7ForceLJ7computeER4AtomR8NeighborR4Commi+0x19f0>;

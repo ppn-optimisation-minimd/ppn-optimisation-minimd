@@ -1,0 +1,2 @@
+node;proc_name;architecture_code;uarchitecture_code;architecture;uarchitecture;cpui_model_name;cpui_cache_size;cpui_cpu_cores;max_frequency;cur_frequency;driver_frequency;scaling_governor;huge_pages;os_version;pids;
+sacha-VivoBook-F515EA;Tiger_lake_8c;2;18;x86_64;TIGER_LAKE;11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz;8192 KB;4;4200000;3200000;intel_pstate;powersave;madvise;Linux 7.0.0-38-generic #38-Ubuntu SMP PREEMPT_DYNAMIC Fri Sep  4 09:10:14 UTC 2026;;

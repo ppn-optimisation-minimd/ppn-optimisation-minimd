@@ -1,0 +1,115 @@
+/usr/include/x86_64-linux-gnu/bits/stdio2.h: 118 - 118
+--------------------------------------------------------------------------------
+
+118:   return __printf_chk (__USE_FORTIFY_LEVEL - 1, __fmt, __va_arg_pack ());
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/setup.cpp: 316 - 515
+--------------------------------------------------------------------------------
+
+316: {
+317:   /* total # of atoms */
+318: 
+319:   atom.natoms = 4 * nx * ny * nz;
+320:   atom.nlocal = 0;
+321: 
+322:   /* determine loop bounds of lattice subsection that overlaps my sub-box
+323:      insure loop bounds do not exceed nx,ny,nz */
+324: 
+325:   double alat = pow((4.0 / rho), (1.0 / 3.0));
+326:   int ilo = static_cast<int>(atom.box.xlo / (0.5 * alat) - 1);
+327:   int ihi = static_cast<int>(atom.box.xhi / (0.5 * alat) + 1);
+328:   int jlo = static_cast<int>(atom.box.ylo / (0.5 * alat) - 1);
+329:   int jhi = static_cast<int>(atom.box.yhi / (0.5 * alat) + 1);
+330:   int klo = static_cast<int>(atom.box.zlo / (0.5 * alat) - 1);
+331:   int khi = static_cast<int>(atom.box.zhi / (0.5 * alat) + 1);
+332: 
+333:   ilo = MAX(ilo, 0);
+334:   ihi = MIN(ihi, 2 * nx - 1);
+335:   jlo = MAX(jlo, 0);
+336:   jhi = MIN(jhi, 2 * ny - 1);
+337:   klo = MAX(klo, 0);
+338:   khi = MIN(khi, 2 * nz - 1);
+[...]
+349:   int sx = 0;
+350:   int sy = 0;
+351:   int sz = 0;
+352:   int ox = 0;
+353:   int oy = 0;
+354:   int oz = 0;
+355:   int subboxdim = 8;
+356: 
+357:   int iflag = 0;
+358: 
+359:   while(oz * subboxdim <= khi) {
+360:     k = oz * subboxdim + sz;
+361:     j = oy * subboxdim + sy;
+362:     i = ox * subboxdim + sx;
+363: 
+364:     if(iflag) continue;
+365: 
+366:     if(((i + j + k) % 2 == 0) &&
+367:         (i >= ilo) && (i <= ihi) &&
+368:         (j >= jlo) && (j <= jhi) &&
+369:         (k >= klo) && (k <= khi)) {
+370: 
+371:       xtmp = 0.5 * alat * i;
+372:       ytmp = 0.5 * alat * j;
+373:       ztmp = 0.5 * alat * k;
+374: 
+375:       if(xtmp >= atom.box.xlo && xtmp < atom.box.xhi &&
+376:           ytmp >= atom.box.ylo && ytmp < atom.box.yhi &&
+377:           ztmp >= atom.box.zlo && ztmp < atom.box.zhi) {
+378:         n = k * (2 * ny) * (2 * nx) + j * (2 * nx) + i + 1;
+[...]
+392:         atom.addatom(xtmp, ytmp, ztmp, vx, vy, vz);
+393:       }
+394:     }
+395: 
+396:     sx++;
+397: 
+398:     if(sx == subboxdim) {
+399:       sx = 0;
+400:       sy++;
+401:     }
+402: 
+403:     if(sy == subboxdim) {
+404:       sy = 0;
+405:       sz++;
+406:     }
+407: 
+408:     if(sz == subboxdim) {
+409:       sz = 0;
+410:       ox++;
+411:     }
+412: 
+413:     if(ox * subboxdim > ihi) {
+414:       ox = 0;
+415:       oy++;
+416:     }
+417: 
+418:     if(oy * subboxdim > jhi) {
+419:       oy = 0;
+420:       oz++;
+[...]
+427:   MPI_Comm_rank(MPI_COMM_WORLD, &me);
+428: 
+429:   int iflagall;
+430:   MPI_Allreduce(&iflag, &iflagall, 1, MPI_INT, MPI_MAX, MPI_COMM_WORLD);
+431: 
+432:   if(iflagall) {
+433:     if(me == 0) printf("No memory for atoms\n");
+434: 
+435:     return 1;
+[...]
+441:   MPI_Allreduce(&atom.nlocal, &natoms, 1, MPI_INT, MPI_SUM, MPI_COMM_WORLD);
+442: 
+443:   if(natoms != atom.natoms) {
+444:     if(me == 0) printf("Created incorrect # of atoms\n");
+[...]
+450: }
+[...]
+510:   k = (*idum) / IQ;
+511:   *idum = IA * (*idum - k * IQ) - IR * k;
+512: 
+513:   if(*idum < 0) *idum += IM;
+514: 
+515:   ans = AM * (*idum);

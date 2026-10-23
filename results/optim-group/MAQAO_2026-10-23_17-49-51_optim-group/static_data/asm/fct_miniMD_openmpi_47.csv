@@ -1,0 +1,241 @@
+address;source_location;insn;indent
+0x6d10;:0;ENDBR64;
+0x6d14;:0;PUSH	%R15;
+0x6d16;:0;PUSH	%R14;
+0x6d18;:0;PUSH	%R13;
+0x6d1a;:0;PUSH	%R12;
+0x6d1c;:0;MOV	%RSI,%R12;
+0x6d1f;:0;MOV	%RDI,%RSI;
+0x6d22;:0;PUSH	%RBP;
+0x6d23;:0;MOV	%RDI,%RBP;
+0x6d26;:0;PUSH	%RBX;
+0x6d27;:0;SUB	$0x48,%RSP;
+0x6d2b;:0;MOV	0x4(%RDI),%EDX;
+0x6d2e;:0;MOV	%R12,%RDI;
+0x6d31;:0;CALL	d5f0 <_ZN8Neighbor8binatomsER4Atomi>;
+0x6d36;:0;CALL	2740 <.plt.sec@start+0x360>;
+0x6d3b;:0;MOV	0x6c(%R12),%EAX;
+0x6d40;:0;MOV	0x68(%R12),%EBX;
+0x6d45;:0;VMOVDQU	0x58(%R12),%XMM0;
+0x6d4c;:0;MOV	%EAX,0x14(%RSP);
+0x6d50;:0;VMOVDQU	%XMM0,0xb0(%RBP);
+0x6d58;:0;VMOVDQA	%XMM0,(%RSP);
+0x6d5d;:0;CALL	26e0 <.plt.sec@start+0x300>;
+0x6d62;:0;MOV	%EAX,%R12D;
+0x6d65;:0;TEST	%EAX,%EAX;
+0x6d67;:0;JNE	6d9d <_ZN4Atom4sortER8Neighbor+0x8d>;
+0x6d69;:0;CMP	$0x1,%EBX;
+0x6d6c;:0;JLE	6d8e <_ZN4Atom4sortER8Neighbor+0x7e>;
+0x6d6e;:0;MOV	(%RSP),%RAX;
+0x6d72;:0;LEA	-0x2(%RBX),%ESI;
+0x6d75;:0;MOV	(%RAX),%ECX;
+0x6d77;:0;LEA	0x4(%RAX),%RDX;
+0x6d7b;:0;LEA	0x8(%RAX,%RSI,4),%RAX;
+0x6d80;:0;ADD	(%RDX),%ECX;(30) 
+0x6d82;:0;ADD	$0x4,%RDX;(30) 
+0x6d86;:0;MOV	%ECX,-0x4(%RDX);(30) 
+0x6d89;:0;CMP	%RAX,%RDX;(30) 
+0x6d8c;:0;JNE	6d80 <_ZN4Atom4sortER8Neighbor+0x70>;(30) 
+0x6d8e;:0;MOV	0xc(%RBP),%EAX;
+0x6d91;:0;CMP	%EAX,0xd8(%RBP);
+0x6d97;:0;JL	7056 <_ZN4Atom4sortER8Neighbor+0x346>;
+0x6d9d;:0;CALL	2740 <.plt.sec@start+0x360>;
+0x6da2;:0;CALL	2750 <.plt.sec@start+0x370>;
+0x6da7;:0;MOV	%EAX,%ECX;
+0x6da9;:0;MOV	%EBX,%EAX;
+0x6dab;:0;CLTD;
+0x6dac;:0;IDIV	%ECX;
+0x6dae;:0;CMP	%EDX,%R12D;
+0x6db1;:0;LEA	0x1(%RAX),%ECX;
+0x6db4;:0;CMOVL	%ECX,%EAX;
+0x6db7;:0;MOV	$0,%ECX;
+0x6dbc;:0;CMOVL	%ECX,%EDX;
+0x6dbf;:0;MOV	%EAX,%ECX;
+0x6dc1;:0;IMUL	%R12D,%ECX;
+0x6dc5;:0;LEA	(%RCX,%RDX,1),%ESI;
+0x6dc8;:0;ADD	%ESI,%EAX;
+0x6dca;:0;MOV	%EAX,0x24(%RSP);
+0x6dce;:0;CMP	%EAX,%ESI;
+0x6dd0;:0;JGE	7009 <_ZN4Atom4sortER8Neighbor+0x2f9>;
+0x6dd6;:0;MOV	0xc0(%RBP),%RAX;
+0x6ddd;:0;MOV	0xd0(%RBP),%R13;
+0x6de4;:0;MOV	0x10(%RBP),%R8;
+0x6de8;:0;MOV	0x18(%RBP),%R9;
+0x6dec;:0;MOV	0x30(%RBP),%R11;
+0x6df0;:0;MOV	0xb0(%RBP),%R15;
+0x6df7;:0;MOV	%RAX,(%RSP);
+0x6dfb;:0;MOV	0xc8(%RBP),%RAX;
+0x6e02;:0;MOV	%RAX,0x18(%RSP);
+0x6e07;:0;TEST	%ESI,%ESI;
+0x6e09;:0;JG	6f1d <_ZN4Atom4sortER8Neighbor+0x20d>;
+0x6e0f;:0;MOV	0x24(%RSP),%EAX;
+0x6e13;:0;MOV	0x14(%RSP),%EDX;
+0x6e17;:0;MOV	%R15,0x28(%RSP);
+0x6e1c;:0;MOVSXD	%ESI,%R10;
+0x6e1f;:0;MOV	%ESI,0x38(%RSP);
+0x6e23;:0;LEA	-0x1(%RAX),%R14D;
+0x6e27;:0;XOR	%EAX,%EAX;
+0x6e29;:0;MOV	%R12D,0x3c(%RSP);
+0x6e2e;:0;TEST	%R14D,%R14D;
+0x6e31;:0;CMOVG	%EAX,%R14D;
+0x6e35;:0;IMUL	%ESI,%EDX;
+0x6e38;:0;MOV	%R14D,0x30(%RSP);
+0x6e3d;:0;NOPL	(%RAX);
+0x6e40;:0;MOV	0x28(%RSP),%RAX;(28) 
+0x6e45;:0;MOVSXD	(%RAX,%R10,4),%R14;(28) 
+0x6e49;:0;TEST	%R14D,%R14D;(28) 
+0x6e4c;:0;JLE	6edc <_ZN4Atom4sortER8Neighbor+0x1cc>;(28) 
+0x6e52;:0;MOVSXD	%EDX,%RAX;(28) 
+0x6e55;:0;MOV	(%RSP),%RBX;(28) 
+0x6e59;:0;MOV	0x18(%RSP),%RDI;(28) 
+0x6e5e;:0;SAL	$0x2,%R14;(28) 
+0x6e62;:0;MOV	0xb8(%RBP),%RSI;(28) 
+0x6e69;:0;LEA	(%RSI,%RAX,4),%R15;(28) 
+0x6e6d;:0;XOR	%ESI,%ESI;(28) 
+0x6e6f;:0;NOP;(28) 
+0x6e70;:0;MOVSXD	(%R15,%RSI,1),%RAX;  (29) 
+0x6e74;:0;ADD	$0x18,%RBX;  (29) 
+0x6e78;:0;ADD	$0x18,%RDI;  (29) 
+0x6e7c;:0;LEA	(%RAX,%RAX,2),%ECX;  (29) 
+0x6e7f;:0;MOV	(%R11,%RAX,4),%EAX;  (29) 
+0x6e83;:0;MOVSXD	%ECX,%RCX;  (29) 
+0x6e86;:0;VMOVSD	(%R8,%RCX,8),%XMM0;  (29) 
+0x6e8c;:0;LEA	0x1(%RCX),%R12;  (29) 
+0x6e90;:0;VMOVSD	%XMM0,-0x18(%RBX);  (29) 
+0x6e95;:0;VMOVSD	(%R8,%R12,8),%XMM0;  (29) 
+0x6e9b;:0;VMOVSD	%XMM0,-0x10(%RBX);  (29) 
+0x6ea0;:0;VMOVSD	0x8(%R8,%R12,8),%XMM0;  (29) 
+0x6ea7;:0;VMOVSD	%XMM0,-0x8(%RBX);  (29) 
+0x6eac;:0;VMOVSD	(%R9,%RCX,8),%XMM0;  (29) 
+0x6eb2;:0;VMOVSD	%XMM0,-0x18(%RDI);  (29) 
+0x6eb7;:0;VMOVSD	(%R9,%R12,8),%XMM0;  (29) 
+0x6ebd;:0;VMOVSD	%XMM0,-0x10(%RDI);  (29) 
+0x6ec2;:0;VMOVSD	0x8(%R9,%R12,8),%XMM0;  (29) 
+0x6ec9;:0;VMOVSD	%XMM0,-0x8(%RDI);  (29) 
+0x6ece;:0;MOV	%EAX,(%R13,%RSI,1);  (29) 
+0x6ed3;:0;ADD	$0x4,%RSI;  (29) 
+0x6ed7;:0;CMP	%RSI,%R14;  (29) 
+0x6eda;:0;JNE	6e70 <_ZN4Atom4sortER8Neighbor+0x160>;  (29) 
+0x6edc;:0;ADD	$0x1,%R10;(28) 
+0x6ee0;:0;ADD	0x14(%RSP),%EDX;(28) 
+0x6ee4;:0;CMP	%R10D,0x30(%RSP);(28) 
+0x6ee9;:0;JGE	6e40 <_ZN4Atom4sortER8Neighbor+0x130>;(28) 
+0x6eef;:0;MOV	0x30(%RSP),%R14D;
+0x6ef4;:0;MOV	0x38(%RSP),%ESI;
+0x6ef8;:0;XOR	%EDX,%EDX;
+0x6efa;:0;MOV	0x28(%RSP),%R15;
+0x6eff;:0;MOV	0x3c(%RSP),%R12D;
+0x6f04;:0;MOV	%R14D,%EAX;
+0x6f07;:0;SUB	%ESI,%EAX;
+0x6f09;:0;CMP	%R14D,%ESI;
+0x6f0c;:0;CMOVG	%EDX,%EAX;
+0x6f0f;:0;LEA	0x1(%RSI,%RAX,1),%ESI;
+0x6f13;:0;CMP	%ESI,0x24(%RSP);
+0x6f17;:0;JLE	7009 <_ZN4Atom4sortER8Neighbor+0x2f9>;
+0x6f1d;:0;MOV	0x14(%RSP),%EDX;
+0x6f21;:0;MOV	%R13,0x30(%RSP);
+0x6f26;:0;MOVSXD	%ESI,%R10;
+0x6f29;:0;MOV	%R12D,0x38(%RSP);
+0x6f2e;:0;IMUL	%ESI,%EDX;
+0x6f31;:0;MOVSXD	-0x4(%R15,%R10,4),%RAX;(26) 
+0x6f36;:0;MOV	(%R15,%R10,4),%R12D;(26) 
+0x6f3a;:0;SUB	%EAX,%R12D;(26) 
+0x6f3d;:0;TEST	%R12D,%R12D;(26) 
+0x6f40;:0;JLE	6ff1 <_ZN4Atom4sortER8Neighbor+0x2e1>;(26) 
+0x6f46;:0;MOVSXD	%EDX,%RDI;(26) 
+0x6f49;:0;MOV	(%RSP),%RBX;(26) 
+0x6f4d;:0;LEA	(%RAX,%RAX,2),%RSI;(26) 
+0x6f51;:0;MOV	%R15,0x28(%RSP);(26) 
+0x6f56;:0;MOV	0xb8(%RBP),%R13;(26) 
+0x6f5d;:0;SAL	$0x3,%RSI;(26) 
+0x6f61;:0;MOVSXD	%R12D,%R12;(26) 
+0x6f64;:0;ADD	%RSI,%RBX;(26) 
+0x6f67;:0;SAL	$0x2,%R12;(26) 
+0x6f6b;:0;ADD	0x18(%RSP),%RSI;(26) 
+0x6f70;:0;LEA	(%R13,%RDI,4),%R14;(26) 
+0x6f75;:0;MOV	0x30(%RSP),%RDI;(26) 
+0x6f7a;:0;LEA	(%RDI,%RAX,4),%R13;(26) 
+0x6f7e;:0;XOR	%EDI,%EDI;(26) 
+0x6f80;:0;MOVSXD	(%R14,%RDI,1),%RAX;  (27) 
+0x6f84;:0;ADD	$0x18,%RBX;  (27) 
+0x6f88;:0;ADD	$0x18,%RSI;  (27) 
+0x6f8c;:0;LEA	(%RAX,%RAX,2),%ECX;  (27) 
+0x6f8f;:0;MOV	(%R11,%RAX,4),%EAX;  (27) 
+0x6f93;:0;MOVSXD	%ECX,%RCX;  (27) 
+0x6f96;:0;VMOVSD	(%R8,%RCX,8),%XMM0;  (27) 
+0x6f9c;:0;LEA	0x1(%RCX),%R15;  (27) 
+0x6fa0;:0;VMOVSD	%XMM0,-0x18(%RBX);  (27) 
+0x6fa5;:0;VMOVSD	(%R8,%R15,8),%XMM0;  (27) 
+0x6fab;:0;VMOVSD	%XMM0,-0x10(%RBX);  (27) 
+0x6fb0;:0;VMOVSD	0x8(%R8,%R15,8),%XMM0;  (27) 
+0x6fb7;:0;VMOVSD	%XMM0,-0x8(%RBX);  (27) 
+0x6fbc;:0;VMOVSD	(%R9,%RCX,8),%XMM0;  (27) 
+0x6fc2;:0;VMOVSD	%XMM0,-0x18(%RSI);  (27) 
+0x6fc7;:0;VMOVSD	(%R9,%R15,8),%XMM0;  (27) 
+0x6fcd;:0;VMOVSD	%XMM0,-0x10(%RSI);  (27) 
+0x6fd2;:0;VMOVSD	0x8(%R9,%R15,8),%XMM0;  (27) 
+0x6fd9;:0;VMOVSD	%XMM0,-0x8(%RSI);  (27) 
+0x6fde;:0;MOV	%EAX,(%R13,%RDI,1);  (27) 
+0x6fe3;:0;ADD	$0x4,%RDI;  (27) 
+0x6fe7;:0;CMP	%RDI,%R12;  (27) 
+0x6fea;:0;JNE	6f80 <_ZN4Atom4sortER8Neighbor+0x270>;  (27) 
+0x6fec;:0;MOV	0x28(%RSP),%R15;(26) 
+0x6ff1;:0;ADD	$0x1,%R10;(26) 
+0x6ff5;:0;ADD	0x14(%RSP),%EDX;(26) 
+0x6ff9;:0;CMP	%R10D,0x24(%RSP);(26) 
+0x6ffe;:0;JG	6f31 <_ZN4Atom4sortER8Neighbor+0x221>;(26) 
+0x7004;:0;MOV	0x38(%RSP),%R12D;
+0x7009;:0;CALL	2740 <.plt.sec@start+0x360>;
+0x700e;:0;TEST	%R12D,%R12D;
+0x7011;:0;JNE	7043 <_ZN4Atom4sortER8Neighbor+0x333>;
+0x7013;:0;MOV	0x30(%RBP),%RAX;
+0x7017;:0;MOV	0xd0(%RBP),%RDX;
+0x701e;:0;VMOVDQU	0x10(%RBP),%XMM0;
+0x7023;:0;VMOVDQU	0xc0(%RBP),%XMM1;
+0x702b;:0;MOV	%RDX,0x30(%RBP);
+0x702f;:0;MOV	%RAX,0xd0(%RBP);
+0x7036;:0;VMOVDQU	%XMM1,0x10(%RBP);
+0x703b;:0;VMOVDQU	%XMM0,0xc0(%RBP);
+0x7043;:0;ADD	$0x48,%RSP;
+0x7047;:0;POP	%RBX;
+0x7048;:0;POP	%RBP;
+0x7049;:0;POP	%R12;
+0x704b;:0;POP	%R13;
+0x704d;:0;POP	%R14;
+0x704f;:0;POP	%R15;
+0x7051;:0;JMP	2740 <.plt.sec@start+0x360>;
+0x7056;:0;MOV	0xc0(%RBP),%RDI;
+0x705d;:0;TEST	%RDI,%RDI;
+0x7060;:0;JE	7067 <_ZN4Atom4sortER8Neighbor+0x357>;
+0x7062;:0;CALL	25e0 <.plt.sec@start+0x200>;
+0x7067;:0;MOV	0xc8(%RBP),%RDI;
+0x706e;:0;TEST	%RDI,%RDI;
+0x7071;:0;JE	7078 <_ZN4Atom4sortER8Neighbor+0x368>;
+0x7073;:0;CALL	25e0 <.plt.sec@start+0x200>;
+0x7078;:0;MOV	0xd0(%RBP),%RDI;
+0x707f;:0;TEST	%RDI,%RDI;
+0x7082;:0;JE	7089 <_ZN4Atom4sortER8Neighbor+0x379>;
+0x7084;:0;CALL	25e0 <.plt.sec@start+0x200>;
+0x7089;:0;MOV	0xc(%RBP),%R13D;
+0x708d;:0;TEST	%R13D,%R13D;
+0x7090;:0;JE	70e4 <_ZN4Atom4sortER8Neighbor+0x3d4>;
+0x7092;:0;LEA	0x401(%R13,%R13,2),%R14D;
+0x709a;:0;MOVSXD	%R14D,%R14;
+0x709d;:0;LEA	(,%R14,8),%RDI;
+0x70a5;:0;CALL	2640 <.plt.sec@start+0x260>;
+0x70aa;:0;LEA	(,%R14,8),%RDI;
+0x70b2;:0;MOV	%RAX,0xc0(%RBP);
+0x70b9;:0;CALL	2640 <.plt.sec@start+0x260>;
+0x70be;:0;MOVSXD	%R13D,%RDI;
+0x70c1;:0;MOV	%RAX,0xc8(%RBP);
+0x70c8;:0;SAL	$0x2,%RDI;
+0x70cc;:0;CALL	2640 <.plt.sec@start+0x260>;
+0x70d1;:0;MOV	%RAX,0xd0(%RBP);
+0x70d8;:0;MOV	%R13D,0xd8(%RBP);
+0x70df;:0;JMP	6d9d <_ZN4Atom4sortER8Neighbor+0x8d>;
+0x70e4;:0;VPXOR	%XMM0,%XMM0,%XMM0;
+0x70e8;:0;XOR	%EAX,%EAX;
+0x70ea;:0;VMOVDQU	%XMM0,0xc0(%RBP);
+0x70f2;:0;JMP	70d1 <_ZN4Atom4sortER8Neighbor+0x3c1>;
+0x70f4;:0;NOPW	%CS:(%RAX,%RAX,1);
+0x70fe;:0;XCHG	%AX,%AX;

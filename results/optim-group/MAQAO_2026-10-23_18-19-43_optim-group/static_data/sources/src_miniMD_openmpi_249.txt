@@ -1,0 +1,7 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/setup.cpp: 464 - 467
+--------------------------------------------------------------------------------
+
+464:   for(i = 0; i < atom.nlocal; i++) {
+465:     vxtot += atom.v[i * PAD + 0];
+466:     vytot += atom.v[i * PAD + 1];
+467:     vztot += atom.v[i * PAD + 2];

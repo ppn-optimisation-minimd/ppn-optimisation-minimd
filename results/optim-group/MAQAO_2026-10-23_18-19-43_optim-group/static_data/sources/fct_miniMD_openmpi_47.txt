@@ -1,0 +1,95 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/atom.cpp: 284 - 421
+--------------------------------------------------------------------------------
+
+284:   if(n1 * n2 == 0) return NULL;
+285: 
+286:   #ifdef ALIGNMALLOC
+287:     array = (MMD_float*) _mm_malloc((n1 * n2 + 1024 + 1) * sizeof(MMD_float), ALIGNMALLOC);
+288:   #else
+289:     array = (MMD_float*) malloc((n1 * n2 + 1024 + 1) * sizeof(MMD_float));
+[...]
+299:   if(array != NULL) {
+300:   #ifdef ALIGNMALLOC
+301: 	_mm_free(array);
+302:   #else
+303:       free(array);
+[...]
+331:   if(n1 == 0) return NULL;
+332: 
+333:   #ifdef ALIGNMALLOC
+334:     data = (int*) _mm_malloc((n1 + 1024 + 1) * sizeof(int), ALIGNMALLOC);
+335:   #else
+336:     data = (int*) malloc((n1) * sizeof(int));
+[...]
+346:   if(array != NULL) {
+347:   #ifdef ALIGNMALLOC
+348:     _mm_free(array);
+349:   #else
+350:     free(array);
+[...]
+356: {
+357: 
+358:   neighbor.binatoms(*this,nlocal);
+359:   #pragma omp barrier
+360: 
+361:   binpos = neighbor.bincount;
+362:   bins = neighbor.bins;
+363: 
+364:   const int mbins = neighbor.mbins;
+365:   const int atoms_per_bin = neighbor.atoms_per_bin;
+366: 
+367:   #pragma omp master
+368:   {
+369:     for(int i=1; i<mbins; i++)
+370: 	  binpos[i] += binpos[i-1];
+371:     if(copy_size<nmax) {
+372: 	    destroy_2d_MMD_float_array(x_copy);
+373: 	    destroy_2d_MMD_float_array(v_copy);
+374: 	    destroy_1d_int_array(type_copy);
+375:       x_copy = (MMD_float*) create_2d_MMD_float_array(nmax, PAD);
+376:       v_copy = (MMD_float*) create_2d_MMD_float_array(nmax, PAD);
+377:       type_copy = create_1d_int_array(nmax);
+378:       copy_size = nmax;
+379:     }
+380:   }
+381: 
+382:   #pragma omp barrier
+383:   MMD_float* new_x = x_copy;
+384:   MMD_float* new_v = v_copy;
+385:   int* new_type = type_copy;
+386:   MMD_float* old_x = x;
+387:   MMD_float* old_v = v;
+388:   int* old_type = type;
+389: 
+390:   #pragma omp for
+391:   for(int mybin = 0; mybin<mbins; mybin++) {
+392:     const int start = mybin>0?binpos[mybin-1]:0;
+393:     const int count = binpos[mybin] - start;
+394:     for(int k=0; k<count; k++) {
+395: 	  const int new_i = start+k;
+396: 	  const int old_i = bins[mybin*atoms_per_bin+k];
+397: 	  new_x[new_i*PAD+0] = old_x[old_i*PAD+0];
+398: 	  new_x[new_i*PAD+1] = old_x[old_i*PAD+1];
+399: 	  new_x[new_i*PAD+2] = old_x[old_i*PAD+2];
+400: 	  new_v[new_i*PAD+0] = old_v[old_i*PAD+0];
+401: 	  new_v[new_i*PAD+1] = old_v[old_i*PAD+1];
+402: 	  new_v[new_i*PAD+2] = old_v[old_i*PAD+2];
+403: 	  new_type[new_i] = old_type[old_i];
+404:     }
+405:   }
+406: 
+407:   #pragma omp master
+408:   {
+409:     MMD_float* x_tmp = x;
+410:     MMD_float* v_tmp = v;
+411:     int* type_tmp = type;
+412: 
+413:     x = x_copy;
+414:     v = v_copy;
+415:     type = type_copy;
+416:     x_copy = x_tmp;
+417:     v_copy = v_tmp;
+418:     type_copy = type_tmp;
+419:   }
+420:   #pragma omp barrier
+421: }

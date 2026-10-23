@@ -1,0 +1,143 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/neighbor.cpp: 80 - 299
+--------------------------------------------------------------------------------
+
+80: {
+81:   ncalls++;
+82:   const int nlocal = atom.nlocal;
+83:   const int nall = atom.nlocal + atom.nghost;
+84:   /* extend atom arrays if necessary */
+85: 
+86:   #pragma omp master
+87: 
+88:   if(nall > nmax) {
+89:     nmax = nall;
+[...]
+97:     if(numneigh) free(numneigh);
+98: 
+99:     if(neighbors) free(neighbors);
+100: 
+101:     numneigh = (int*) malloc(nmax * sizeof(int));
+102:     neighbors = (int*) malloc(nmax * maxneighs * sizeof(int));
+103: #endif
+104:   }
+105: 
+106:   #pragma omp barrier
+107:   /* bin local & ghost atoms */
+108: 
+109:   binatoms(atom);
+110:   count = 0;
+111:   /* loop over each atom, storing neighbors */
+112: 
+113:   const MMD_float* const x = atom.x;
+114:   const int* const type = atom.type;
+115:   int ntypes = atom.ntypes;
+116: 
+117:   resize = 1;
+118:   #pragma omp barrier
+119: 
+120:   while(resize) {
+121:     #pragma omp barrier
+122:     int new_maxneighs = maxneighs;
+123:     resize = 0;
+124:     #pragma omp barrier
+125: 
+126:     OMPFORSCHEDULE
+127:     for(int i = 0; i < nlocal; i++) {
+128:       int* neighptr = &neighbors[i * maxneighs];
+129:       /* if necessary, goto next page and add pages */
+130: 
+131:       int n = 0;
+132: 
+133:       const MMD_float xtmp = x[i * PAD + 0];
+134:       const MMD_float ytmp = x[i * PAD + 1];
+135:       const MMD_float ztmp = x[i * PAD + 2];
+[...]
+144:       for(int k = 0; k < nstencil; k++) {
+145:         const int jbin = ibin + stencil[k];
+146: 
+147:         int* loc_bin = &bins[jbin * atoms_per_bin];
+148: 
+149:         if(ibin == jbin)
+150:           for(int m = 0; m < bincount[jbin]; m++) {
+151:             const int j = loc_bin[m];
+152: 
+153:             //for same bin as atom i skip j if i==j and skip atoms "below and to the left" if using halfneighborlists
+154:             if(((j == i) || (halfneigh && !ghost_newton && (j < i)) ||
+155:                 (halfneigh && ghost_newton && ((j < i) || ((j >= nlocal) &&
+156:                                                ((x[j * PAD + 2] < ztmp) || (x[j * PAD + 2] == ztmp && x[j * PAD + 1] < ytmp) ||
+157:                                                 (x[j * PAD + 2] == ztmp && x[j * PAD + 1]  == ytmp && x[j * PAD + 0] < xtmp))))))) continue;
+158: 
+159:             const MMD_float delx = xtmp - x[j * PAD + 0];
+160:             const MMD_float dely = ytmp - x[j * PAD + 1];
+161:             const MMD_float delz = ztmp - x[j * PAD + 2];
+162:             const int type_j = type[j];
+163:             const MMD_float rsq = delx * delx + dely * dely + delz * delz;
+164: 
+165:             if((rsq <= cutneighsq[type_i*ntypes+type_j])) neighptr[n++] = j;
+166:           }
+167:         else {
+168:           for(int m = 0; m < bincount[jbin]; m++) {
+169:             const int j = loc_bin[m];
+170: 
+171:             if(halfneigh && !ghost_newton && (j < i)) continue;
+172: 
+173:             const MMD_float delx = xtmp - x[j * PAD + 0];
+174:             const MMD_float dely = ytmp - x[j * PAD + 1];
+175:             const MMD_float delz = ztmp - x[j * PAD + 2];
+176:             const int type_j = type[j];
+177:             const MMD_float rsq = delx * delx + dely * dely + delz * delz;
+178: 
+179:             if((rsq <= cutneighsq[type_i*ntypes+type_j])) neighptr[n++] = j;
+180:           }
+181:         }
+182:       }
+183: 
+184:       numneigh[i] = n;
+185: 
+186:       if(n >= maxneighs) {
+187:         resize = 1;
+188: 
+189:         if(n >= new_maxneighs) new_maxneighs = n;
+[...]
+195:     if(resize) {
+196:       #pragma omp master
+197:       {
+198:         maxneighs = new_maxneighs * 1.2;
+199: #ifdef ALIGNMALLOC
+200:   		_mm_free(neighbors);
+201:   		neighbors = (int*) _mm_malloc(nmax* maxneighs * sizeof(int) + ALIGNMALLOC, ALIGNMALLOC);
+202: #else
+203:   		free(neighbors);
+204:         neighbors = (int*) malloc(nmax* maxneighs * sizeof(int));
+205: #endif
+206:       }
+207:       #pragma omp barrier
+208:     }
+209:   }
+210: 
+211:   #pragma omp barrier
+212: 
+213: }
+[...]
+278:   if(x >= xprd)
+279:     ix = (int)((x - xprd) * bininvx) + nbinx - mbinxlo;
+280:   else if(x >= 0.0)
+281:     ix = (int)(x * bininvx) - mbinxlo;
+282:   else
+283:     ix = (int)(x * bininvx) - mbinxlo - 1;
+284: 
+285:   if(y >= yprd)
+286:     iy = (int)((y - yprd) * bininvy) + nbiny - mbinylo;
+287:   else if(y >= 0.0)
+288:     iy = (int)(y * bininvy) - mbinylo;
+289:   else
+290:     iy = (int)(y * bininvy) - mbinylo - 1;
+291: 
+292:   if(z >= zprd)
+293:     iz = (int)((z - zprd) * bininvz) + nbinz - mbinzlo;
+294:   else if(z >= 0.0)
+295:     iz = (int)(z * bininvz) - mbinzlo;
+296:   else
+297:     iz = (int)(z * bininvz) - mbinzlo - 1;
+298: 
+299:   return (iz * mbiny * mbinx + iy * mbinx + ix + 1);

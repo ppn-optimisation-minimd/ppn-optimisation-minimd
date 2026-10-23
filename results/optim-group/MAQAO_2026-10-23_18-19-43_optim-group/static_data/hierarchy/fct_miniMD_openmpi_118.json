@@ -1,0 +1,76 @@
+{
+  "__fct":
+    {
+      "loops":
+        {
+          "_248":
+            {
+              "src_regions":
+                [
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/setup.cpp",
+                    "regions":
+                      [
+                        [
+                        478,
+                        481
+                        ]
+                      ]
+                  }
+                ],
+              "src": "setup.cpp:478-481"
+            },
+          "_247":
+            {
+              "src_regions":
+                [
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/setup.cpp",
+                    "regions":
+                      [
+                        [
+                        478,
+                        481
+                        ]
+                      ]
+                  }
+                ],
+              "src": "setup.cpp:478-481"
+            },
+          "_249":
+            {
+              "src_regions":
+                [
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/setup.cpp",
+                    "regions":
+                      [
+                        [
+                        464,
+                        467
+                        ]
+                      ]
+                  }
+                ],
+              "src": "setup.cpp:464-467"
+            },
+          "_246":
+            {
+              "src_regions":
+                [
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/setup.cpp",
+                    "regions":
+                      [
+                        [
+                        490,
+                        490
+                        ]
+                      ]
+                  }
+                ],
+              "src": "setup.cpp:490-490"
+            }
+        }
+    }
+}

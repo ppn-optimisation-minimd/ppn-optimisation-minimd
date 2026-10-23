@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html translate="no" lang="en-US"><head><title>OV - Expert Summary</title>
+<meta charset="utf-8" />
+<meta name="google" content="notranslate" />
+<link rel="stylesheet" type="text/css" media="screen" href="css/ui.jqgrid.css" />
+<link rel="stylesheet" type="text/css" href="css/themes/redmond_custom/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="css/themes/redmond_custom/jquery.jqplot.min.css" />
+<link rel="stylesheet" type="text/css" href="css/MAQAO_theme.css" />
+<link rel="stylesheet" type="text/css" href="css/maqao_modal.css" />
+<link rel="stylesheet" type="text/css" href="css/global.css" />
+<link rel="stylesheet" type="text/css" href="css/maqao_menu.css" />
+<script src="js/jquery-1.9.0.min.js" ></script>
+<script src="js/jquery-ui-1.10.3.custom.min.js" ></script>
+<script src="js/grid.locale-en.js" ></script>
+<script src="js/jquery.jqGrid.min.js" ></script>
+<script src="js/d3.min.js" ></script>
+<script class="include" src="js/chart.min.js"></script>
+<script class="include" src="js/maqao_utils.js"></script>
+<script src="js/flamegraph.js" ></script>
+<script class="include" src="js/maqao_menu.js"></script>
+<script>
+addLoadEvent(function(){
+  var theme = localStorage.getItem("__MAQAO_OV_theme__");
+  if (theme) {
+    loadCSS("css/"+theme+".css");
+  }
+  else {
+    localStorage.setItem("__MAQAO_OV_theme__", "MAQAO_theme");
+    loadCSS("css/MAQAO_theme.css");
+  }
+});
+</script>
+</head><body>
+<div id="__chartJS_tooltip" class="tt_chartJS"></div>
+<div id="page_title"><img alt="MAQAO" id="maqao_logo" src="images/MAQAO_small_logo.png"/><ul id="maqao_menu"><li ><a  href="index.html">Global</a><ul><li ><a  href="config.html">Configurations</a></li><li ><a  href="env.html">Environment Variables</a></li><li ><a  href="outputs.html">Outputs</a></li><li ><a  href="log.html">Logs</a></li><li ><a  href="tools_status.html">Tools Status</a></li></ul></li><li ><a  href="summary.html">Summary</a></li><li ><a  href="application.html">Application</a></li><li ><a  href="fcts_and_loops.html">Functions</a></li><li ><a  href="loops_index.html">Loops</a></li><li ><a  href="topology.html">Topology</a><ul><li ><a  href="lstopo.html">lstopo</a></li><li ><a  href="lstopo_PU.html">lstopo_PU</a></li><li ><a  href="lstopo_threads.html">lstopo_threads</a></li></ul></li></ul>
+<span><img alt="options" id="menu_options_icon" src="images/gear_20.png" onclick="__open_options ()"/></span>
+</div>
+<script>
+function __change_theme () {
+  var new_theme = document.getElementById("select_theme").value;
+  localStorage.setItem("__MAQAO_OV_theme__", new_theme);
+    loadCSS("css/"+new_theme+".css");
+}
+function __open_options () {
+  var elem = document.getElementById ("options_configuration");
+  if (elem.dataset.open == "false") {
+    elem.dataset.open = "true";
+    elem.style.display = "block";
+  }
+  else {
+    elem.dataset.open = "false";
+    elem.style.display = "none";
+  }
+}
+</script>
+<div id="anchor_file_start"></div>
+<div id="maqao_content">
+<div>
+  <div id="spacer_page_title" ></div>
+  <div id="options_configuration" data-open="false" style="display:none;">
+    <h3 id="options_configuration_header">Report Configuration</h3>
+    <span style="margin-left:10px;"><label for="select_theme">Theme: </label>    <select name="theme" id="select_theme" onchange="__change_theme ()">  <option value="MAQAO_theme">MAQAO_theme</option>  <option value="darkgrey">darkgrey</option>  <option value="cyan">cyan</option></select></span>    <span style="margin-left:10px;"><label for="select_chart_theme">Chart Theme: </label>    <select name="theme" id="select_chart_theme" onchange="__change_chart_theme ()">  <option value="Default_Chart_Theme">Default_Chart_Theme</option>  <option value="grey">grey</option></select></span></div>
+</div>
+<script>
+  let theme = localStorage.getItem("__MAQAO_OV_theme__");
+  if (theme) {
+    document.getElementById("select_theme").value = theme;
+  }
+  theme = localStorage.getItem("__MAQAO_OV_chart_theme__");
+  if (theme) {
+    document.getElementById("select_chart_theme").value = theme;
+  }
+document.getElementById("spacer_page_title").style.height = (document.getElementById("page_title").clientHeight + 25)+"px";
+var obj = document.getElementById("page_title");
+if (obj) {
+  var elems = document.getElementsByClassName ("_first_menu_level")
+  if (obj.clientHeight < 90) {
+    for (var i = 0; i < elems.length; i++) {
+      elems.item(i).style.borderBottomLeftRadius = "";
+      elems.item(i).style.borderBottomRightRadius = "";
+    }
+  }
+  else {
+    for (var i = 0; i < elems.length; i++) {
+      elems.item(i).style.borderBottomLeftRadius = "10px";
+      elems.item(i).style.borderBottomRightRadius = "10px";
+    }
+  }
+}
+</script>
+<button id="button_toggle_loop_index" onclick="toggle_loop_index();" type="button" style="margin-bottom: 10px;margin-right: 10px;cursor:pointer;">Show Innermost Profile</button><div class="_fixed_box" ><h3 class="_header">Expert Summary</h3>
+<div class="_content"><div class="_div_table" ><div class="_accordion_box" ><h3 id="_accordion_header_1" class="_header" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25BC;</span>Columns Filter<span class="tooltip-maqao-button help-maqao" title="" tooltip_id="0" ></span></h3><div id="_accordion_content_1" class="_content"><div style="max-height:165px;"><form>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table344_opt3" onclick="click_table_menu('_table344_opt3', '_table344_opt_all', 'list_opts_table344')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="1" >Source Location</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table344_opt4" onclick="click_table_menu('_table344_opt4', '_table344_opt_all', 'list_opts_table344')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="2" >Source Function</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table344_opt5" onclick="click_table_menu('_table344_opt5', '_table344_opt_all', 'list_opts_table344')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="3" >Level</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table344_opt6" onclick="click_table_menu('_table344_opt6', '_table344_opt_all', 'list_opts_table344')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="4" >Max Time Over Threads (s)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table344_opt7" onclick="click_table_menu('_table344_opt7', '_table344_opt_all', 'list_opts_table344')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="5" >Time w.r.t. Wall Time (s)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table344_opt8" onclick="click_table_menu('_table344_opt8', '_table344_opt_all', 'list_opts_table344')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="6" >Coverage (% app. time)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table344_opt9" onclick="click_table_menu('_table344_opt9', '_table344_opt_all', 'list_opts_table344')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="7" >Speedup if no scalar integer</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table344_opt10" onclick="click_table_menu('_table344_opt10', '_table344_opt_all', 'list_opts_table344')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="8" >Speedup if FP arith vectorized</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table344_opt11" onclick="click_table_menu('_table344_opt11', '_table344_opt_all', 'list_opts_table344')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="9" >Speedup if fully vectorized</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table344_opt12" onclick="click_table_menu('_table344_opt12', '_table344_opt_all', 'list_opts_table344')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="10" >Speedup if FP only</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table344_opt13" onclick="click_table_menu('_table344_opt13', '_table344_opt_all', 'list_opts_table344')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="11" >Number of paths</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table344_opt14" onclick="click_table_menu('_table344_opt14', '_table344_opt_all', 'list_opts_table344')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="12" >Vectorization Ratio (%)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table344_opt15" onclick="click_table_menu('_table344_opt15', '_table344_opt_all', 'list_opts_table344')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="13" >Vector Length Use (%)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table344_opt16" onclick="click_table_menu('_table344_opt16', '_table344_opt_all', 'list_opts_table344')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="14" >CQA cycles</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table344_opt17" onclick="click_table_menu('_table344_opt17', '_table344_opt_all', 'list_opts_table344')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="15" >CQA cycles if no scalar integer</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table344_opt18" onclick="click_table_menu('_table344_opt18', '_table344_opt_all', 'list_opts_table344')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="16" >CQA cycles if FP arith vectorized</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table344_opt19" onclick="click_table_menu('_table344_opt19', '_table344_opt_all', 'list_opts_table344')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="17" >CQA cycles if fully vectorized</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table344_opt20" onclick="click_table_menu('_table344_opt20', '_table344_opt_all', 'list_opts_table344')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="18" >CQA cycles if FP only</span></span>
+<span style='white-space:nowrap;'><input class="input_check_table_menu" type="button" id="_table344_opt_all" onclick="set_all_table_menu(this, 'list_opts_table344')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" value="Select all"></span>
+</form></div>
+</div></div><div style="overflow:auto;">
+<input class='downloadCSVButton' id='save_button_344' type='button' value='Download table as CSV' onclick='downloadFileAsCSV(_tree_table_344)' />
+<table id="_tree_table_344" class="_tree_table"><tr><th class="_freezed_row  _left  tooltip-maqao" title="" tooltip_id="19"><span></span>ID</th><th class="_freezed_row  tooltip-maqao" title="" tooltip_id="20"><span></span>Module</th><th class="_freezed_row  _table344_opt3 tooltip-maqao" title="" tooltip_id="21"><span></span>Source Location</th><th class="_freezed_row  _table344_opt4 tooltip-maqao" title="" tooltip_id="22"><span></span>Source Function</th><th class="_freezed_row  _table344_opt5 tooltip-maqao" title="" tooltip_id="23"><span></span>Level</th><th class="_freezed_row  _table344_opt6 tooltip-maqao" title="" tooltip_id="24"><span></span>Max Time Over Threads (s)</th><th class="_freezed_row  _table344_opt7 tooltip-maqao" title="" tooltip_id="25"><span></span>Time w.r.t. Wall Time (s)</th><th class="_freezed_row  _table344_opt8 tooltip-maqao" title="" tooltip_id="26"><span></span>Coverage (% app. time)</th><th class="_freezed_row  _table344_opt9 tooltip-maqao" title="" tooltip_id="27"><span></span>Speedup if no scalar integer</th><th class="_freezed_row  _table344_opt10 tooltip-maqao" title="" tooltip_id="28"><span></span>Speedup if FP arith vectorized</th><th class="_freezed_row  _table344_opt11 tooltip-maqao" title="" tooltip_id="29"><span></span>Speedup if fully vectorized</th><th class="_freezed_row  _table344_opt12 tooltip-maqao" title="" tooltip_id="30"><span></span>Speedup if FP only</th><th class="_freezed_row  _table344_opt13 tooltip-maqao" title="" tooltip_id="31"><span></span>Number of paths</th><th class="_freezed_row  _table344_opt14 tooltip-maqao" title="" tooltip_id="32"><span></span>Vectorization Ratio (%)</th><th class="_freezed_row  _table344_opt15 tooltip-maqao" title="" tooltip_id="33"><span></span>Vector Length Use (%)</th><th class="_freezed_row  _table344_opt16 tooltip-maqao" title="" tooltip_id="34"><span></span>CQA cycles</th><th class="_freezed_row  _table344_opt17 tooltip-maqao" title="" tooltip_id="35"><span></span>CQA cycles if no scalar integer</th><th class="_freezed_row  _table344_opt18 tooltip-maqao" title="" tooltip_id="36"><span></span>CQA cycles if FP arith vectorized</th><th class="_freezed_row  _table344_opt19 tooltip-maqao" title="" tooltip_id="37"><span></span>CQA cycles if fully vectorized</th><th class="_freezed_row  _table344_opt20 tooltip-maqao" title="" tooltip_id="38"><span></span>CQA cycles if FP only</th></tr>
+<tr class=" _outer_row"  id="_tr_344_1"  ondblclick="_action_266(this,1,-1, 'loops/miniMD_openmpi_56.html');"  style="cursor:pointer;"><td id="_tr_344_1-1"  data-_i="1" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 56</td><td id="_tr_344_1-2"  data-_i="1" data-_j="2"  class=" _centered" >miniMD_openmpi</td><td id="_tr_344_1-3"  data-_i="1" data-_j="3"  class=" _table344_opt3"  style="word-break:break-all;" >force_lj.cpp:221-242</td><td id="_tr_344_1-4"  data-_i="1" data-_j="4"  class=" _table344_opt4"  style="word-break:break-all;" >ForceLJ::compute(Atom&, Neighbor&, Comm&, int)</td><td id="_tr_344_1-5"  data-_i="1" data-_j="5"  class=" _centered _table344_opt5" >Innermost</td><td id="_tr_344_1-6"  data-_i="1" data-_j="6"  class=" _centered _table344_opt6" >24.27</td><td id="_tr_344_1-7"  data-_i="1" data-_j="7"  class=" _centered _table344_opt7" >24.27</td><td id="_tr_344_1-8"  data-_i="1" data-_j="8"  class=" _centered _table344_opt8" >39.25</td><td id="_tr_344_1-9"  data-_i="1" data-_j="9"  class=" _centered _table344_opt9" >1.05</td><td id="_tr_344_1-10"  data-_i="1" data-_j="10"  class=" _centered _table344_opt10"  style="background:var(--score_color_medium);" >2.18</td><td id="_tr_344_1-11"  data-_i="1" data-_j="11"  class=" _centered _table344_opt11"  style="background:var(--score_color_medium);" >5.81</td><td id="_tr_344_1-12"  data-_i="1" data-_j="12"  class=" _centered _table344_opt12" >1.09</td><td id="_tr_344_1-13"  data-_i="1" data-_j="13"  class=" _centered _table344_opt13" >2</td><td id="_tr_344_1-14"  data-_i="1" data-_j="14"  class=" _centered _table344_opt14"  style="background:var(--score_color_bad);" >30.30</td><td id="_tr_344_1-15"  data-_i="1" data-_j="15"  class=" _centered _table344_opt15"  style="background:var(--score_color_bad);" >16.29</td><td id="_tr_344_1-16"  data-_i="1" data-_j="16"  class=" _centered _table344_opt16" >7.90</td><td id="_tr_344_1-17"  data-_i="1" data-_j="17"  class=" _centered _table344_opt17" >7.50</td><td id="_tr_344_1-18"  data-_i="1" data-_j="18"  class=" _centered _table344_opt18" >3.63</td><td id="_tr_344_1-19"  data-_i="1" data-_j="19"  class=" _centered _table344_opt19" >1.36</td><td id="_tr_344_1-20"  data-_i="1" data-_j="20"  class=" _centered _table344_opt20" >7.25</td></tr>
+<tr class=" _outer_row"  id="_tr_344_2"  ondblclick="_action_266(this,2,-1, 'loops/miniMD_openmpi_155.html');"  style="cursor:pointer;"><td id="_tr_344_2-1"  data-_i="2" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 155</td><td id="_tr_344_2-2"  data-_i="2" data-_j="2"  class=" _centered" >miniMD_openmpi</td><td id="_tr_344_2-3"  data-_i="2" data-_j="3"  class=" _table344_opt3"  style="word-break:break-all;" >neighbor.cpp:168-179</td><td id="_tr_344_2-4"  data-_i="2" data-_j="4"  class=" _table344_opt4"  style="word-break:break-all;" >Neighbor::build(Atom&)</td><td id="_tr_344_2-5"  data-_i="2" data-_j="5"  class=" _centered _table344_opt5" >Innermost</td><td id="_tr_344_2-6"  data-_i="2" data-_j="6"  class=" _centered _table344_opt6" >9.10</td><td id="_tr_344_2-7"  data-_i="2" data-_j="7"  class=" _centered _table344_opt7" >9.10</td><td id="_tr_344_2-8"  data-_i="2" data-_j="8"  class=" _centered _table344_opt8" >14.72</td><td id="_tr_344_2-9"  data-_i="2" data-_j="9"  class=" _centered _table344_opt9"  style="background:var(--score_color_acceptable);" >1.61</td><td id="_tr_344_2-10"  data-_i="2" data-_j="10"  class=" _centered _table344_opt10"  style="background:var(--score_color_medium);" >2.68</td><td id="_tr_344_2-11"  data-_i="2" data-_j="11"  class=" _centered _table344_opt11"  style="background:var(--score_color_medium);" >10.98</td><td id="_tr_344_2-12"  data-_i="2" data-_j="12"  class=" _centered _table344_opt12"  style="background:var(--score_color_acceptable);" >1.85</td><td id="_tr_344_2-13"  data-_i="2" data-_j="13"  class=" _centered _table344_opt13" >7</td><td id="_tr_344_2-14"  data-_i="2" data-_j="14"  class=" _centered _table344_opt14"  style="background:var(--score_color_bad);" >20.00</td><td id="_tr_344_2-15"  data-_i="2" data-_j="15"  class=" _centered _table344_opt15"  style="background:var(--score_color_bad);" >12.92</td><td id="_tr_344_2-16"  data-_i="2" data-_j="16"  class=" _centered _table344_opt16" >7.40</td><td id="_tr_344_2-17"  data-_i="2" data-_j="17"  class=" _centered _table344_opt17" >4.60</td><td id="_tr_344_2-18"  data-_i="2" data-_j="18"  class=" _centered _table344_opt18" >2.76</td><td id="_tr_344_2-19"  data-_i="2" data-_j="19"  class=" _centered _table344_opt19" >0.67</td><td id="_tr_344_2-20"  data-_i="2" data-_j="20"  class=" _centered _table344_opt20" >4.00</td></tr>
+<tr class=" _outer_row"  id="_tr_344_3"  ondblclick="_action_266(this,3,-1, 'loops/miniMD_openmpi_92.html');"  style="cursor:pointer;"><td id="_tr_344_3-1"  data-_i="3" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 92</td><td id="_tr_344_3-2"  data-_i="3" data-_j="2"  class=" _centered" >miniMD_openmpi</td><td id="_tr_344_3-3"  data-_i="3" data-_j="3"  class=" _table344_opt3"  style="word-break:break-all;" >force_lj.cpp:221-248</td><td id="_tr_344_3-4"  data-_i="3" data-_j="4"  class=" _table344_opt4"  style="word-break:break-all;" >ForceLJ::compute(Atom&, Neighbor&, Comm&, int)</td><td id="_tr_344_3-5"  data-_i="3" data-_j="5"  class=" _centered _table344_opt5" >Innermost</td><td id="_tr_344_3-6"  data-_i="3" data-_j="6"  class=" _centered _table344_opt6" >2.82</td><td id="_tr_344_3-7"  data-_i="3" data-_j="7"  class=" _centered _table344_opt7" >2.82</td><td id="_tr_344_3-8"  data-_i="3" data-_j="8"  class=" _centered _table344_opt8" >4.56</td><td id="_tr_344_3-9"  data-_i="3" data-_j="9"  class=" _centered _table344_opt9" >1.05</td><td id="_tr_344_3-10"  data-_i="3" data-_j="10"  class=" _centered _table344_opt10"  style="background:var(--score_color_medium);" >2.36</td><td id="_tr_344_3-11"  data-_i="3" data-_j="11"  class=" _centered _table344_opt11"  style="background:var(--score_color_medium);" >6.50</td><td id="_tr_344_3-12"  data-_i="3" data-_j="12"  class=" _centered _table344_opt12" >1.08</td><td id="_tr_344_3-13"  data-_i="3" data-_j="13"  class=" _centered _table344_opt13" >2</td><td id="_tr_344_3-14"  data-_i="3" data-_j="14"  class=" _centered _table344_opt14"  style="background:var(--score_color_bad);" >27.92</td><td id="_tr_344_3-15"  data-_i="3" data-_j="15"  class=" _centered _table344_opt15"  style="background:var(--score_color_bad);" >15.99</td><td id="_tr_344_3-16"  data-_i="3" data-_j="16"  class=" _centered _table344_opt16" >9.75</td><td id="_tr_344_3-17"  data-_i="3" data-_j="17"  class=" _centered _table344_opt17" >9.25</td><td id="_tr_344_3-18"  data-_i="3" data-_j="18"  class=" _centered _table344_opt18" >4.13</td><td id="_tr_344_3-19"  data-_i="3" data-_j="19"  class=" _centered _table344_opt19" >1.50</td><td id="_tr_344_3-20"  data-_i="3" data-_j="20"  class=" _centered _table344_opt20" >9.00</td></tr>
+<tr class=" _outer_row"  id="_tr_344_4"  ondblclick="_action_266(this,4,-1, 'loops/miniMD_openmpi_153.html');"  style="cursor:pointer;"><td id="_tr_344_4-1"  data-_i="4" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 153</td><td id="_tr_344_4-2"  data-_i="4" data-_j="2"  class=" _centered" >miniMD_openmpi</td><td id="_tr_344_4-3"  data-_i="4" data-_j="3"  class=" _table344_opt3"  style="word-break:break-all;" >neighbor.cpp:144-150,neighbor.cpp:168-168</td><td id="_tr_344_4-4"  data-_i="4" data-_j="4"  class=" _table344_opt4"  style="word-break:break-all;" >Neighbor::build(Atom&)</td><td id="_tr_344_4-5"  data-_i="4" data-_j="5"  class=" _centered _table344_opt5" >InBetween</td><td id="_tr_344_4-6"  data-_i="4" data-_j="6"  class=" _centered _table344_opt6" >0.86</td><td id="_tr_344_4-7"  data-_i="4" data-_j="7"  class=" _centered _table344_opt7" >0.87</td><td id="_tr_344_4-8"  data-_i="4" data-_j="8"  class=" _centered _table344_opt8" >1.40</td><td id="_tr_344_4-9"  data-_i="4" data-_j="9"  class=" _centered _table344_opt9" >1.00</td><td id="_tr_344_4-10"  data-_i="4" data-_j="10"  class=" _centered _table344_opt10" >1.00</td><td id="_tr_344_4-11"  data-_i="4" data-_j="11"  class=" _centered _table344_opt11"  style="background:var(--score_color_medium);" >14.74</td><td id="_tr_344_4-12"  data-_i="4" data-_j="12"  class=" _centered _table344_opt12"  style="background:var(--score_color_medium);" >3.50</td><td id="_tr_344_4-13"  data-_i="4" data-_j="13"  class=" _centered _table344_opt13" >27</td><td id="_tr_344_4-14"  data-_i="4" data-_j="14"  class=" _centered _table344_opt14"  style="background:var(--score_color_bad);" >0.00</td><td id="_tr_344_4-15"  data-_i="4" data-_j="15"  class=" _centered _table344_opt15"  style="background:var(--score_color_bad);" >7.59</td><td id="_tr_344_4-16"  data-_i="4" data-_j="16"  class=" _centered _table344_opt16" >7.00</td><td id="_tr_344_4-17"  data-_i="4" data-_j="17"  class=" _centered _table344_opt17" >7.00</td><td id="_tr_344_4-18"  data-_i="4" data-_j="18"  class=" _centered _table344_opt18" >7.00</td><td id="_tr_344_4-19"  data-_i="4" data-_j="19"  class=" _centered _table344_opt19" >0.47</td><td id="_tr_344_4-20"  data-_i="4" data-_j="20"  class=" _centered _table344_opt20" >2.00</td></tr>
+<tr class=" _outer_row"  id="_tr_344_5"  ondblclick="_action_266(this,5,-1, 'loops/miniMD_openmpi_11.html');"  style="cursor:pointer;"><td id="_tr_344_5-1"  data-_i="5" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 11</td><td id="_tr_344_5-2"  data-_i="5" data-_j="2"  class=" _centered" >miniMD_openmpi</td><td id="_tr_344_5-3"  data-_i="5" data-_j="3"  class=" _table344_opt3"  style="word-break:break-all;" >integrate.cpp:50-55</td><td id="_tr_344_5-4"  data-_i="5" data-_j="4"  class=" _table344_opt4"  style="word-break:break-all;" >Integrate::initialIntegrate()</td><td id="_tr_344_5-5"  data-_i="5" data-_j="5"  class=" _centered _table344_opt5" >Single</td><td id="_tr_344_5-6"  data-_i="5" data-_j="6"  class=" _centered _table344_opt6" >0.81</td><td id="_tr_344_5-7"  data-_i="5" data-_j="7"  class=" _centered _table344_opt7" >0.81</td><td id="_tr_344_5-8"  data-_i="5" data-_j="8"  class=" _centered _table344_opt8" >1.32</td><td id="_tr_344_5-9"  data-_i="5" data-_j="9"  class=" _centered _table344_opt9" >1.00</td><td id="_tr_344_5-10"  data-_i="5" data-_j="10"  class=" _centered _table344_opt10" >1.00</td><td id="_tr_344_5-11"  data-_i="5" data-_j="11"  class=" _centered _table344_opt11"  style="background:var(--score_color_medium);" >3.23</td><td id="_tr_344_5-12"  data-_i="5" data-_j="12"  class=" _centered _table344_opt12"  style="background:var(--score_color_medium);" >9.83</td><td id="_tr_344_5-13"  data-_i="5" data-_j="13"  class=" _centered _table344_opt13" >1</td><td id="_tr_344_5-14"  data-_i="5" data-_j="14"  class=" _centered _table344_opt14"  style="background:var(--score_color_good);" >100.00</td><td id="_tr_344_5-15"  data-_i="5" data-_j="15"  class=" _centered _table344_opt15"  style="background:var(--score_color_bad);" >39.18</td><td id="_tr_344_5-16"  data-_i="5" data-_j="16"  class=" _centered _table344_opt16" >59.00</td><td id="_tr_344_5-17"  data-_i="5" data-_j="17"  class=" _centered _table344_opt17" >59.00</td><td id="_tr_344_5-18"  data-_i="5" data-_j="18"  class=" _centered _table344_opt18" >59.00</td><td id="_tr_344_5-19"  data-_i="5" data-_j="19"  class=" _centered _table344_opt19" >18.25</td><td id="_tr_344_5-20"  data-_i="5" data-_j="20"  class=" _centered _table344_opt20" >6.00</td></tr>
+<tr class=" _outer_row"  id="_tr_344_6"  ondblclick="_action_266(this,6,-1, 'loops/miniMD_openmpi_13.html');"  style="cursor:pointer;"><td id="_tr_344_6-1"  data-_i="6" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 13</td><td id="_tr_344_6-2"  data-_i="6" data-_j="2"  class=" _centered" >miniMD_openmpi</td><td id="_tr_344_6-3"  data-_i="6" data-_j="3"  class=" _table344_opt3"  style="word-break:break-all;" >integrate.cpp:63-65</td><td id="_tr_344_6-4"  data-_i="6" data-_j="4"  class=" _table344_opt4"  style="word-break:break-all;" >Integrate::finalIntegrate()</td><td id="_tr_344_6-5"  data-_i="6" data-_j="5"  class=" _centered _table344_opt5" >Single</td><td id="_tr_344_6-6"  data-_i="6" data-_j="6"  class=" _centered _table344_opt6" >0.47</td><td id="_tr_344_6-7"  data-_i="6" data-_j="7"  class=" _centered _table344_opt7" >0.47</td><td id="_tr_344_6-8"  data-_i="6" data-_j="8"  class=" _centered _table344_opt8" >0.75</td><td id="_tr_344_6-9"  data-_i="6" data-_j="9"  class=" _centered _table344_opt9" >1.00</td><td id="_tr_344_6-10"  data-_i="6" data-_j="10"  class=" _centered _table344_opt10" >1.00</td><td id="_tr_344_6-11"  data-_i="6" data-_j="11"  class=" _centered _table344_opt11"  style="background:var(--score_color_medium);" >3.22</td><td id="_tr_344_6-12"  data-_i="6" data-_j="12"  class=" _centered _table344_opt12"  style="background:var(--score_color_medium);" >12.33</td><td id="_tr_344_6-13"  data-_i="6" data-_j="13"  class=" _centered _table344_opt13" >1</td><td id="_tr_344_6-14"  data-_i="6" data-_j="14"  class=" _centered _table344_opt14"  style="background:var(--score_color_good);" >100.00</td><td id="_tr_344_6-15"  data-_i="6" data-_j="15"  class=" _centered _table344_opt15"  style="background:var(--score_color_bad);" >38.71</td><td id="_tr_344_6-16"  data-_i="6" data-_j="16"  class=" _centered _table344_opt16" >37.00</td><td id="_tr_344_6-17"  data-_i="6" data-_j="17"  class=" _centered _table344_opt17" >37.00</td><td id="_tr_344_6-18"  data-_i="6" data-_j="18"  class=" _centered _table344_opt18" >37.00</td><td id="_tr_344_6-19"  data-_i="6" data-_j="19"  class=" _centered _table344_opt19" >11.50</td><td id="_tr_344_6-20"  data-_i="6" data-_j="20"  class=" _centered _table344_opt20" >3.00</td></tr>
+<tr class=" _outer_row"  id="_tr_344_7"  ondblclick="_action_266(this,7,-1, 'loops/miniMD_openmpi_57.html');"  style="cursor:pointer;"><td id="_tr_344_7-1"  data-_i="7" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 57</td><td id="_tr_344_7-2"  data-_i="7" data-_j="2"  class=" _centered" >miniMD_openmpi</td><td id="_tr_344_7-3"  data-_i="7" data-_j="3"  class=" _table344_opt3"  style="word-break:break-all;" >force_lj.cpp:195-196</td><td id="_tr_344_7-4"  data-_i="7" data-_j="4"  class=" _table344_opt4"  style="word-break:break-all;" >ForceLJ::compute(Atom&, Neighbor&, Comm&, int)</td><td id="_tr_344_7-5"  data-_i="7" data-_j="5"  class=" _centered _table344_opt5" >Single</td><td id="_tr_344_7-6"  data-_i="7" data-_j="6"  class=" _centered _table344_opt6" >0.38</td><td id="_tr_344_7-7"  data-_i="7" data-_j="7"  class=" _centered _table344_opt7" >0.38</td><td id="_tr_344_7-8"  data-_i="7" data-_j="8"  class=" _centered _table344_opt8" >0.61</td><td id="_tr_344_7-9"  data-_i="7" data-_j="9"  class=" _centered _table344_opt9" >1.00</td><td id="_tr_344_7-10"  data-_i="7" data-_j="10"  class=" _centered _table344_opt10" >1.00</td><td id="_tr_344_7-11"  data-_i="7" data-_j="11"  class=" _centered _table344_opt11" >1.00</td><td id="_tr_344_7-12"  data-_i="7" data-_j="12"  class=" _centered _table344_opt12"  style="background:var(--score_color_acceptable);" >1.50</td><td id="_tr_344_7-13"  data-_i="7" data-_j="13"  class=" _centered _table344_opt13" >1</td><td id="_tr_344_7-14"  data-_i="7" data-_j="14"  class=" _centered _table344_opt14"  style="background:var(--score_color_good);" >100.00</td><td id="_tr_344_7-15"  data-_i="7" data-_j="15"  class=" _centered _table344_opt15"  style="background:var(--score_color_bad);" >50.00</td><td id="_tr_344_7-16"  data-_i="7" data-_j="16"  class=" _centered _table344_opt16" >1.50</td><td id="_tr_344_7-17"  data-_i="7" data-_j="17"  class=" _centered _table344_opt17" >1.50</td><td id="_tr_344_7-18"  data-_i="7" data-_j="18"  class=" _centered _table344_opt18" >1.50</td><td id="_tr_344_7-19"  data-_i="7" data-_j="19"  class=" _centered _table344_opt19" >1.50</td><td id="_tr_344_7-20"  data-_i="7" data-_j="20"  class=" _centered _table344_opt20" >1.00</td></tr>
+<tr class=" _outer_row"  id="_tr_344_8"  ondblclick="_action_266(this,8,-1, 'loops/miniMD_openmpi_55.html');"  style="cursor:pointer;"><td id="_tr_344_8-1"  data-_i="8" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 55</td><td id="_tr_344_8-2"  data-_i="8" data-_j="2"  class=" _centered" >miniMD_openmpi</td><td id="_tr_344_8-3"  data-_i="8" data-_j="3"  class=" _table344_opt3"  style="word-break:break-all;" >force_lj.cpp:206-209,force_lj.cpp:216-216,force_lj.cpp:221-221,force_lj.cpp:228-230,force_lj.cpp:254-256</td><td id="_tr_344_8-4"  data-_i="8" data-_j="4"  class=" _table344_opt4"  style="word-break:break-all;" >ForceLJ::compute(Atom&, Neighbor&, Comm&, int)</td><td id="_tr_344_8-5"  data-_i="8" data-_j="5"  class=" _centered _table344_opt5" >Outermost</td><td id="_tr_344_8-6"  data-_i="8" data-_j="6"  class=" _centered _table344_opt6" >0.33</td><td id="_tr_344_8-7"  data-_i="8" data-_j="7"  class=" _centered _table344_opt7" >0.33</td><td id="_tr_344_8-8"  data-_i="8" data-_j="8"  class=" _centered _table344_opt8" >0.53</td><td id="_tr_344_8-9"  data-_i="8" data-_j="9"  class=" _centered _table344_opt9"  style="background:var(--score_color_acceptable);" >1.71</td><td id="_tr_344_8-10"  data-_i="8" data-_j="10"  class=" _centered _table344_opt10"  style="background:var(--score_color_acceptable);" >1.51</td><td id="_tr_344_8-11"  data-_i="8" data-_j="11"  class=" _centered _table344_opt11"  style="background:var(--score_color_medium);" >9.27</td><td id="_tr_344_8-12"  data-_i="8" data-_j="12"  class=" _centered _table344_opt12"  style="background:var(--score_color_medium);" >3.73</td><td id="_tr_344_8-13"  data-_i="8" data-_j="13"  class=" _centered _table344_opt13" >3</td><td id="_tr_344_8-14"  data-_i="8" data-_j="14"  class=" _centered _table344_opt14"  style="background:var(--score_color_bad);" >37.50</td><td id="_tr_344_8-15"  data-_i="8" data-_j="15"  class=" _centered _table344_opt15"  style="background:var(--score_color_bad);" >15.63</td><td id="_tr_344_8-16"  data-_i="8" data-_j="16"  class=" _centered _table344_opt16" >5.60</td><td id="_tr_344_8-17"  data-_i="8" data-_j="17"  class=" _centered _table344_opt17" >3.27</td><td id="_tr_344_8-18"  data-_i="8" data-_j="18"  class=" _centered _table344_opt18" >3.71</td><td id="_tr_344_8-19"  data-_i="8" data-_j="19"  class=" _centered _table344_opt19" >0.60</td><td id="_tr_344_8-20"  data-_i="8" data-_j="20"  class=" _centered _table344_opt20" >1.50</td></tr>
+<tr class=" _outer_row"  id="_tr_344_9"  ondblclick="_action_266(this,9,-1, 'loops/miniMD_openmpi_244.html');"  style="cursor:pointer;"><td id="_tr_344_9-1"  data-_i="9" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 244</td><td id="_tr_344_9-2"  data-_i="9" data-_j="2"  class=" _centered" >miniMD_openmpi</td><td id="_tr_344_9-3"  data-_i="9" data-_j="3"  class=" _table344_opt3"  style="word-break:break-all;" >setup.cpp:359-378,setup.cpp:392-420,setup.cpp:510-515</td><td id="_tr_344_9-4"  data-_i="9" data-_j="4"  class=" _table344_opt4"  style="word-break:break-all;" >create_atoms(Atom&, int, int, int, double)</td><td id="_tr_344_9-5"  data-_i="9" data-_j="5"  class=" _centered _table344_opt5" >Innermost</td><td id="_tr_344_9-6"  data-_i="9" data-_j="6"  class=" _centered _table344_opt6" >0.25</td><td id="_tr_344_9-7"  data-_i="9" data-_j="7"  class=" _centered _table344_opt7" >0.25</td><td id="_tr_344_9-8"  data-_i="9" data-_j="8"  class=" _centered _table344_opt8" >0.41</td><td id="_tr_344_9-9"  data-_i="9" data-_j="9"  class=" _centered _table344_opt9"  style="background:var(--score_color_acceptable);" >1.72</td><td id="_tr_344_9-10"  data-_i="9" data-_j="10"  class=" _centered _table344_opt10"  style="background:var(--score_color_medium);" >6.47</td><td id="_tr_344_9-11"  data-_i="9" data-_j="11"  class=" _centered _table344_opt11"  style="background:var(--score_color_medium);" >16.00</td><td id="_tr_344_9-12"  data-_i="9" data-_j="12"  class=" _centered _table344_opt12"  style="background:var(--score_color_acceptable);" >1.84</td><td id="_tr_344_9-13"  data-_i="9" data-_j="13"  class=" _centered _table344_opt13" >1</td><td id="_tr_344_9-14"  data-_i="9" data-_j="14"  class=" _centered _table344_opt14"  style="background:var(--score_color_bad);" >4.65</td><td id="_tr_344_9-15"  data-_i="9" data-_j="15"  class=" _centered _table344_opt15"  style="background:var(--score_color_bad);" >9.59</td><td id="_tr_344_9-16"  data-_i="9" data-_j="16"  class=" _centered _table344_opt16" >115.50</td><td id="_tr_344_9-17"  data-_i="9" data-_j="17"  class=" _centered _table344_opt17" >67.25</td><td id="_tr_344_9-18"  data-_i="9" data-_j="18"  class=" _centered _table344_opt18" >17.84</td><td id="_tr_344_9-19"  data-_i="9" data-_j="19"  class=" _centered _table344_opt19" >7.22</td><td id="_tr_344_9-20"  data-_i="9" data-_j="20"  class=" _centered _table344_opt20" >62.75</td></tr>
+<tr class=" _outer_row"  id="_tr_344_10"  ondblclick="_action_266(this,10,-1, 'loops/miniMD_openmpi_154.html');"  style="cursor:pointer;"><td id="_tr_344_10-1"  data-_i="10" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 154</td><td id="_tr_344_10-2"  data-_i="10" data-_j="2"  class=" _centered" >miniMD_openmpi</td><td id="_tr_344_10-3"  data-_i="10" data-_j="3"  class=" _table344_opt3"  style="word-break:break-all;" >neighbor.cpp:150-165</td><td id="_tr_344_10-4"  data-_i="10" data-_j="4"  class=" _table344_opt4"  style="word-break:break-all;" >Neighbor::build(Atom&)</td><td id="_tr_344_10-5"  data-_i="10" data-_j="5"  class=" _centered _table344_opt5" >Innermost</td><td id="_tr_344_10-6"  data-_i="10" data-_j="6"  class=" _centered _table344_opt6" >0.25</td><td id="_tr_344_10-7"  data-_i="10" data-_j="7"  class=" _centered _table344_opt7" >0.25</td><td id="_tr_344_10-8"  data-_i="10" data-_j="8"  class=" _centered _table344_opt8" >0.41</td><td id="_tr_344_10-9"  data-_i="10" data-_j="9"  class=" _centered _table344_opt9"  style="background:var(--score_color_acceptable);" >1.37</td><td id="_tr_344_10-10"  data-_i="10" data-_j="10"  class=" _centered _table344_opt10"  style="background:var(--score_color_medium);" >2.02</td><td id="_tr_344_10-11"  data-_i="10" data-_j="11"  class=" _centered _table344_opt11"  style="background:var(--score_color_medium);" >11.38</td><td id="_tr_344_10-12"  data-_i="10" data-_j="12"  class=" _centered _table344_opt12"  style="background:var(--score_color_acceptable);" >1.53</td><td id="_tr_344_10-13"  data-_i="10" data-_j="13"  class=" _centered _table344_opt13" >18</td><td id="_tr_344_10-14"  data-_i="10" data-_j="14"  class=" _centered _table344_opt14"  style="background:var(--score_color_bad);" >10.34</td><td id="_tr_344_10-15"  data-_i="10" data-_j="15"  class=" _centered _table344_opt15"  style="background:var(--score_color_bad);" >11.85</td><td id="_tr_344_10-16"  data-_i="10" data-_j="16"  class=" _centered _table344_opt16" >13.00</td><td id="_tr_344_10-17"  data-_i="10" data-_j="17"  class=" _centered _table344_opt17" >9.50</td><td id="_tr_344_10-18"  data-_i="10" data-_j="18"  class=" _centered _table344_opt18" >6.44</td><td id="_tr_344_10-19"  data-_i="10" data-_j="19"  class=" _centered _table344_opt19" >1.14</td><td id="_tr_344_10-20"  data-_i="10" data-_j="20"  class=" _centered _table344_opt20" >8.50</td></tr>
+<tr class=" _outer_row"  id="_tr_344_11"  ondblclick="_action_266(this,11,-1, 'loops/miniMD_openmpi_150.html');"  style="cursor:pointer;"><td id="_tr_344_11-1"  data-_i="11" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 150</td><td id="_tr_344_11-2"  data-_i="11" data-_j="2"  class=" _centered" >miniMD_openmpi</td><td id="_tr_344_11-3"  data-_i="11" data-_j="3"  class=" _table344_opt3"  style="word-break:break-all;" >neighbor.cpp:239-241,neighbor.cpp:247-250,neighbor.cpp:278-299</td><td id="_tr_344_11-4"  data-_i="11" data-_j="4"  class=" _table344_opt4"  style="word-break:break-all;" >Neighbor::binatoms(Atom&, int)</td><td id="_tr_344_11-5"  data-_i="11" data-_j="5"  class=" _centered _table344_opt5" >Innermost</td><td id="_tr_344_11-6"  data-_i="11" data-_j="6"  class=" _centered _table344_opt6" >0.17</td><td id="_tr_344_11-7"  data-_i="11" data-_j="7"  class=" _centered _table344_opt7" >0.17</td><td id="_tr_344_11-8"  data-_i="11" data-_j="8"  class=" _centered _table344_opt8" >0.27</td><td id="_tr_344_11-9"  data-_i="11" data-_j="9"  class=" _centered _table344_opt9"  style="background:var(--score_color_acceptable);" >1.11</td><td id="_tr_344_11-10"  data-_i="11" data-_j="10"  class=" _centered _table344_opt10"  style="background:var(--score_color_acceptable);" >1.43</td><td id="_tr_344_11-11"  data-_i="11" data-_j="11"  class=" _centered _table344_opt11"  style="background:var(--score_color_medium);" >9.49</td><td id="_tr_344_11-12"  data-_i="11" data-_j="12"  class=" _centered _table344_opt12"  style="background:var(--score_color_acceptable);" >1.64</td><td id="_tr_344_11-13"  data-_i="11" data-_j="13"  class=" _centered _table344_opt13" >16</td><td id="_tr_344_11-14"  data-_i="11" data-_j="14"  class=" _centered _table344_opt14"  style="background:var(--score_color_bad);" >7.50</td><td id="_tr_344_11-15"  data-_i="11" data-_j="15"  class=" _centered _table344_opt15"  style="background:var(--score_color_bad);" >12.34</td><td id="_tr_344_11-16"  data-_i="11" data-_j="16"  class=" _centered _table344_opt16" >17.20</td><td id="_tr_344_11-17"  data-_i="11" data-_j="17"  class=" _centered _table344_opt17" >15.50</td><td id="_tr_344_11-18"  data-_i="11" data-_j="18"  class=" _centered _table344_opt18" >12.00</td><td id="_tr_344_11-19"  data-_i="11" data-_j="19"  class=" _centered _table344_opt19" >1.81</td><td id="_tr_344_11-20"  data-_i="11" data-_j="20"  class=" _centered _table344_opt20" >10.50</td></tr>
+<tr class=" _outer_row"  id="_tr_344_12"  ondblclick="_action_266(this,12,-1, 'loops/miniMD_openmpi_205.html');"  style="cursor:pointer;"><td id="_tr_344_12-1"  data-_i="12" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 205</td><td id="_tr_344_12-2"  data-_i="12" data-_j="2"  class=" _centered" >miniMD_openmpi</td><td id="_tr_344_12-3"  data-_i="12" data-_j="3"  class=" _table344_opt3"  style="word-break:break-all;" >comm.cpp:767-767,comm.cpp:776-782</td><td id="_tr_344_12-4"  data-_i="12" data-_j="4"  class=" _table344_opt4"  style="word-break:break-all;" >Comm::borders(Atom&)</td><td id="_tr_344_12-5"  data-_i="12" data-_j="5"  class=" _centered _table344_opt5" >Innermost</td><td id="_tr_344_12-6"  data-_i="12" data-_j="6"  class=" _centered _table344_opt6" >0.11</td><td id="_tr_344_12-7"  data-_i="12" data-_j="7"  class=" _centered _table344_opt7" >0.10</td><td id="_tr_344_12-8"  data-_i="12" data-_j="8"  class=" _centered _table344_opt8" >0.17</td><td id="_tr_344_12-9"  data-_i="12" data-_j="9"  class=" _centered _table344_opt9"  style="background:var(--score_color_acceptable);" >1.44</td><td id="_tr_344_12-10"  data-_i="12" data-_j="10"  class=" _centered _table344_opt10" >1.00</td><td id="_tr_344_12-11"  data-_i="12" data-_j="11"  class=" _centered _table344_opt11"  style="background:var(--score_color_medium);" >10.59</td><td id="_tr_344_12-12"  data-_i="12" data-_j="12"  class=" _centered _table344_opt12"  style="background:var(--score_color_medium);" >2.43</td><td id="_tr_344_12-13"  data-_i="12" data-_j="13"  class=" _centered _table344_opt13" >4</td><td id="_tr_344_12-14"  data-_i="12" data-_j="14"  class=" _centered _table344_opt14"  style="background:var(--score_color_bad);" >0.00</td><td id="_tr_344_12-15"  data-_i="12" data-_j="15"  class=" _centered _table344_opt15"  style="background:var(--score_color_bad);" >11.09</td><td id="_tr_344_12-16"  data-_i="12" data-_j="16"  class=" _centered _table344_opt16" >3.95</td><td id="_tr_344_12-17"  data-_i="12" data-_j="17"  class=" _centered _table344_opt17" >2.75</td><td id="_tr_344_12-18"  data-_i="12" data-_j="18"  class=" _centered _table344_opt18" >3.95</td><td id="_tr_344_12-19"  data-_i="12" data-_j="19"  class=" _centered _table344_opt19" >0.37</td><td id="_tr_344_12-20"  data-_i="12" data-_j="20"  class=" _centered _table344_opt20" >1.63</td></tr>
+<tr class=" _outer_row"  id="_tr_344_13"  ondblclick="_action_266(this,13,-1, 'loops/miniMD_openmpi_25.html');"  style="cursor:pointer;"><td id="_tr_344_13-1"  data-_i="13" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 25</td><td id="_tr_344_13-2"  data-_i="13" data-_j="2"  class=" _centered" >miniMD_openmpi</td><td id="_tr_344_13-3"  data-_i="13" data-_j="3"  class=" _table344_opt3"  style="word-break:break-all;" >atom.cpp:191-193</td><td id="_tr_344_13-4"  data-_i="13" data-_j="4"  class=" _table344_opt4"  style="word-break:break-all;" >Atom::unpack_reverse(int, int*, double*)</td><td id="_tr_344_13-5"  data-_i="13" data-_j="5"  class=" _centered _table344_opt5" >Single</td><td id="_tr_344_13-6"  data-_i="13" data-_j="6"  class=" _centered _table344_opt6" >0.08</td><td id="_tr_344_13-7"  data-_i="13" data-_j="7"  class=" _centered _table344_opt7" >0.07</td><td id="_tr_344_13-8"  data-_i="13" data-_j="8"  class=" _centered _table344_opt8" >0.12</td><td id="_tr_344_13-9"  data-_i="13" data-_j="9"  class=" _centered _table344_opt9"  style="background:var(--score_color_acceptable);" >1.17</td><td id="_tr_344_13-10"  data-_i="13" data-_j="10"  class=" _centered _table344_opt10"  style="background:var(--score_color_acceptable);" >1.14</td><td id="_tr_344_13-11"  data-_i="13" data-_j="11"  class=" _centered _table344_opt11"  style="background:var(--score_color_medium);" >8.00</td><td id="_tr_344_13-12"  data-_i="13" data-_j="12"  class=" _centered _table344_opt12"  style="background:var(--score_color_medium);" >2.33</td><td id="_tr_344_13-13"  data-_i="13" data-_j="13"  class=" _centered _table344_opt13" >1</td><td id="_tr_344_13-14"  data-_i="13" data-_j="14"  class=" _centered _table344_opt14"  style="background:var(--score_color_bad);" >0.00</td><td id="_tr_344_13-15"  data-_i="13" data-_j="15"  class=" _centered _table344_opt15"  style="background:var(--score_color_bad);" >12.50</td><td id="_tr_344_13-16"  data-_i="13" data-_j="16"  class=" _centered _table344_opt16" >3.50</td><td id="_tr_344_13-17"  data-_i="13" data-_j="17"  class=" _centered _table344_opt17" >3.00</td><td id="_tr_344_13-18"  data-_i="13" data-_j="18"  class=" _centered _table344_opt18" >3.06</td><td id="_tr_344_13-19"  data-_i="13" data-_j="19"  class=" _centered _table344_opt19" >0.44</td><td id="_tr_344_13-20"  data-_i="13" data-_j="20"  class=" _centered _table344_opt20" >1.50</td></tr>
+<tr class=" _outer_row"  id="_tr_344_14"  ondblclick="_action_266(this,14,-1, 'loops/miniMD_openmpi_19.html');"  style="cursor:pointer;"><td id="_tr_344_14-1"  data-_i="14" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 19</td><td id="_tr_344_14-2"  data-_i="14" data-_j="2"  class=" _centered" >miniMD_openmpi</td><td id="_tr_344_14-3"  data-_i="14" data-_j="3"  class=" _table344_opt3"  style="word-break:break-all;" >atom.cpp:153-155</td><td id="_tr_344_14-4"  data-_i="14" data-_j="4"  class=" _table344_opt4"  style="word-break:break-all;" >Atom::pack_comm(int, int*, double*, int*)</td><td id="_tr_344_14-5"  data-_i="14" data-_j="5"  class=" _centered _table344_opt5" >Single</td><td id="_tr_344_14-6"  data-_i="14" data-_j="6"  class=" _centered _table344_opt6" >0.08</td><td id="_tr_344_14-7"  data-_i="14" data-_j="7"  class=" _centered _table344_opt7" >0.07</td><td id="_tr_344_14-8"  data-_i="14" data-_j="8"  class=" _centered _table344_opt8" >0.12</td><td id="_tr_344_14-9"  data-_i="14" data-_j="9"  class=" _centered _table344_opt9"  style="background:var(--score_color_acceptable);" >1.20</td><td id="_tr_344_14-10"  data-_i="14" data-_j="10"  class=" _centered _table344_opt10"  style="background:var(--score_color_acceptable);" >1.18</td><td id="_tr_344_14-11"  data-_i="14" data-_j="11"  class=" _centered _table344_opt11"  style="background:var(--score_color_medium);" >8.00</td><td id="_tr_344_14-12"  data-_i="14" data-_j="12"  class=" _centered _table344_opt12"  style="background:var(--score_color_acceptable);" >1.20</td><td id="_tr_344_14-13"  data-_i="14" data-_j="13"  class=" _centered _table344_opt13" >1</td><td id="_tr_344_14-14"  data-_i="14" data-_j="14"  class=" _centered _table344_opt14"  style="background:var(--score_color_bad);" >0.00</td><td id="_tr_344_14-15"  data-_i="14" data-_j="15"  class=" _centered _table344_opt15"  style="background:var(--score_color_bad);" >12.50</td><td id="_tr_344_14-16"  data-_i="14" data-_j="16"  class=" _centered _table344_opt16" >3.60</td><td id="_tr_344_14-17"  data-_i="14" data-_j="17"  class=" _centered _table344_opt17" >3.00</td><td id="_tr_344_14-18"  data-_i="14" data-_j="18"  class=" _centered _table344_opt18" >3.06</td><td id="_tr_344_14-19"  data-_i="14" data-_j="19"  class=" _centered _table344_opt19" >0.45</td><td id="_tr_344_14-20"  data-_i="14" data-_j="20"  class=" _centered _table344_opt20" >3.00</td></tr>
+<tr class=" _outer_row"  id="_tr_344_15"  ondblclick="_action_266(this,15,-1, 'loops/miniMD_openmpi_151.html');"  style="cursor:pointer;"><td id="_tr_344_15-1"  data-_i="15" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 151</td><td id="_tr_344_15-2"  data-_i="15" data-_j="2"  class=" _centered" >miniMD_openmpi</td><td id="_tr_344_15-3"  data-_i="15" data-_j="3"  class=" _table344_opt3"  style="word-break:break-all;" >neighbor.cpp:128-128,neighbor.cpp:131-135,neighbor.cpp:144-147,neighbor.cpp:168-168,neighbor.cpp:179-179,neighbor.cpp:184-189,neighbor.cpp:278-299</td><td id="_tr_344_15-4"  data-_i="15" data-_j="4"  class=" _table344_opt4"  style="word-break:break-all;" >Neighbor::build(Atom&)</td><td id="_tr_344_15-5"  data-_i="15" data-_j="5"  class=" _centered _table344_opt5" >InBetween</td><td id="_tr_344_15-6"  data-_i="15" data-_j="6"  class=" _centered _table344_opt6" >0.07</td><td id="_tr_344_15-7"  data-_i="15" data-_j="7"  class=" _centered _table344_opt7" >0.07</td><td id="_tr_344_15-8"  data-_i="15" data-_j="8"  class=" _centered _table344_opt8" >0.11</td><td id="_tr_344_15-9"  data-_i="15" data-_j="9"  class=" _centered _table344_opt9"  style="background:var(--score_color_acceptable);" >1.44</td><td id="_tr_344_15-10"  data-_i="15" data-_j="10"  class=" _centered _table344_opt10"  style="background:var(--score_color_acceptable);" >1.55</td><td id="_tr_344_15-11"  data-_i="15" data-_j="11"  class=" _centered _table344_opt11"  style="background:var(--score_color_medium);" >10.43</td><td id="_tr_344_15-12"  data-_i="15" data-_j="12"  class=" _centered _table344_opt12"  style="background:var(--score_color_medium);" >2.52</td><td id="_tr_344_15-13"  data-_i="15" data-_j="13"  class=" _centered _table344_opt13" >448</td><td id="_tr_344_15-14"  data-_i="15" data-_j="14"  class=" _centered _table344_opt14"  style="background:var(--score_color_bad);" >6.00</td><td id="_tr_344_15-15"  data-_i="15" data-_j="15"  class=" _centered _table344_opt15"  style="background:var(--score_color_bad);" >11.25</td><td id="_tr_344_15-16"  data-_i="15" data-_j="16"  class=" _centered _table344_opt16" >20.20</td><td id="_tr_344_15-17"  data-_i="15" data-_j="17"  class=" _centered _table344_opt17" >14.00</td><td id="_tr_344_15-18"  data-_i="15" data-_j="18"  class=" _centered _table344_opt18" >13.00</td><td id="_tr_344_15-19"  data-_i="15" data-_j="19"  class=" _centered _table344_opt19" >1.94</td><td id="_tr_344_15-20"  data-_i="15" data-_j="20"  class=" _centered _table344_opt20" >8.00</td></tr>
+<tr class=" _outer_row"  id="_tr_344_16"  ondblclick="_action_266(this,16,-1, 'loops/miniMD_openmpi_27.html');"  style="cursor:pointer;"><td id="_tr_344_16-1"  data-_i="16" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 27</td><td id="_tr_344_16-2"  data-_i="16" data-_j="2"  class=" _centered" >miniMD_openmpi</td><td id="_tr_344_16-3"  data-_i="16" data-_j="3"  class=" _table344_opt3"  style="word-break:break-all;" >atom.cpp:394-403</td><td id="_tr_344_16-4"  data-_i="16" data-_j="4"  class=" _table344_opt4"  style="word-break:break-all;" >Atom::sort(Neighbor&)</td><td id="_tr_344_16-5"  data-_i="16" data-_j="5"  class=" _centered _table344_opt5" >Innermost</td><td id="_tr_344_16-6"  data-_i="16" data-_j="6"  class=" _centered _table344_opt6" >0.07</td><td id="_tr_344_16-7"  data-_i="16" data-_j="7"  class=" _centered _table344_opt7" >0.07</td><td id="_tr_344_16-8"  data-_i="16" data-_j="8"  class=" _centered _table344_opt8" >0.11</td><td id="_tr_344_16-9"  data-_i="16" data-_j="9"  class=" _centered _table344_opt9"  style="background:var(--score_color_acceptable);" >1.26</td><td id="_tr_344_16-10"  data-_i="16" data-_j="10"  class=" _centered _table344_opt10" >1.00</td><td id="_tr_344_16-11"  data-_i="16" data-_j="11"  class=" _centered _table344_opt11"  style="background:var(--score_color_medium);" >5.42</td><td id="_tr_344_16-12"  data-_i="16" data-_j="12"  class=" _centered _table344_opt12"  style="background:var(--score_color_medium);" >4.40</td><td id="_tr_344_16-13"  data-_i="16" data-_j="13"  class=" _centered _table344_opt13" >1</td><td id="_tr_344_16-14"  data-_i="16" data-_j="14"  class=" _centered _table344_opt14"  style="background:var(--score_color_bad);" >0.00</td><td id="_tr_344_16-15"  data-_i="16" data-_j="15"  class=" _centered _table344_opt15"  style="background:var(--score_color_bad);" >12.02</td><td id="_tr_344_16-16"  data-_i="16" data-_j="16"  class=" _centered _table344_opt16" >4.40</td><td id="_tr_344_16-17"  data-_i="16" data-_j="17"  class=" _centered _table344_opt17" >3.50</td><td id="_tr_344_16-18"  data-_i="16" data-_j="18"  class=" _centered _table344_opt18" >4.40</td><td id="_tr_344_16-19"  data-_i="16" data-_j="19"  class=" _centered _table344_opt19" >0.81</td><td id="_tr_344_16-20"  data-_i="16" data-_j="20"  class=" _centered _table344_opt20" >1.00</td></tr>
+<tr class=" _outer_row"  id="_tr_344_17"  ondblclick="_action_266(this,17,-1, 'loops/miniMD_openmpi_91.html');"  style="cursor:pointer;"><td id="_tr_344_17-1"  data-_i="17" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 91</td><td id="_tr_344_17-2"  data-_i="17" data-_j="2"  class=" _centered" >miniMD_openmpi</td><td id="_tr_344_17-3"  data-_i="17" data-_j="3"  class=" _table344_opt3"  style="word-break:break-all;" >force_lj.cpp:206-209,force_lj.cpp:216-216,force_lj.cpp:221-221,force_lj.cpp:228-230,force_lj.cpp:254-256</td><td id="_tr_344_17-4"  data-_i="17" data-_j="4"  class=" _table344_opt4"  style="word-break:break-all;" >ForceLJ::compute(Atom&, Neighbor&, Comm&, int)</td><td id="_tr_344_17-5"  data-_i="17" data-_j="5"  class=" _centered _table344_opt5" >Outermost</td><td id="_tr_344_17-6"  data-_i="17" data-_j="6"  class=" _centered _table344_opt6" >0.05</td><td id="_tr_344_17-7"  data-_i="17" data-_j="7"  class=" _centered _table344_opt7" >0.06</td><td id="_tr_344_17-8"  data-_i="17" data-_j="8"  class=" _centered _table344_opt8" >0.09</td><td id="_tr_344_17-9"  data-_i="17" data-_j="9"  class=" _centered _table344_opt9"  style="background:var(--score_color_acceptable);" >1.50</td><td id="_tr_344_17-10"  data-_i="17" data-_j="10"  class=" _centered _table344_opt10"  style="background:var(--score_color_acceptable);" >1.48</td><td id="_tr_344_17-11"  data-_i="17" data-_j="11"  class=" _centered _table344_opt11"  style="background:var(--score_color_medium);" >9.60</td><td id="_tr_344_17-12"  data-_i="17" data-_j="12"  class=" _centered _table344_opt12"  style="background:var(--score_color_acceptable);" >1.50</td><td id="_tr_344_17-13"  data-_i="17" data-_j="13"  class=" _centered _table344_opt13" >3</td><td id="_tr_344_17-14"  data-_i="17" data-_j="14"  class=" _centered _table344_opt14"  style="background:var(--score_color_bad);" >35.19</td><td id="_tr_344_17-15"  data-_i="17" data-_j="15"  class=" _centered _table344_opt15"  style="background:var(--score_color_bad);" >14.99</td><td id="_tr_344_17-16"  data-_i="17" data-_j="16"  class=" _centered _table344_opt16" >6.00</td><td id="_tr_344_17-17"  data-_i="17" data-_j="17"  class=" _centered _table344_opt17" >4.00</td><td id="_tr_344_17-18"  data-_i="17" data-_j="18"  class=" _centered _table344_opt18" >4.06</td><td id="_tr_344_17-19"  data-_i="17" data-_j="19"  class=" _centered _table344_opt19" >0.63</td><td id="_tr_344_17-20"  data-_i="17" data-_j="20"  class=" _centered _table344_opt20" >4.00</td></tr>
+<tr class=" _outer_row"  id="_tr_344_18"  ondblclick="_action_266(this,18,-1, 'loops/miniMD_openmpi_93.html');"  style="cursor:pointer;"><td id="_tr_344_18-1"  data-_i="18" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 93</td><td id="_tr_344_18-2"  data-_i="18" data-_j="2"  class=" _centered" >miniMD_openmpi</td><td id="_tr_344_18-3"  data-_i="18" data-_j="3"  class=" _table344_opt3"  style="word-break:break-all;" >force_lj.cpp:195-196</td><td id="_tr_344_18-4"  data-_i="18" data-_j="4"  class=" _table344_opt4"  style="word-break:break-all;" >ForceLJ::compute(Atom&, Neighbor&, Comm&, int)</td><td id="_tr_344_18-5"  data-_i="18" data-_j="5"  class=" _centered _table344_opt5" >Single</td><td id="_tr_344_18-6"  data-_i="18" data-_j="6"  class=" _centered _table344_opt6" >0.04</td><td id="_tr_344_18-7"  data-_i="18" data-_j="7"  class=" _centered _table344_opt7" >0.04</td><td id="_tr_344_18-8"  data-_i="18" data-_j="8"  class=" _centered _table344_opt8" >0.06</td><td id="_tr_344_18-9"  data-_i="18" data-_j="9"  class=" _centered _table344_opt9" >1.00</td><td id="_tr_344_18-10"  data-_i="18" data-_j="10"  class=" _centered _table344_opt10" >1.00</td><td id="_tr_344_18-11"  data-_i="18" data-_j="11"  class=" _centered _table344_opt11" >1.00</td><td id="_tr_344_18-12"  data-_i="18" data-_j="12"  class=" _centered _table344_opt12"  style="background:var(--score_color_acceptable);" >1.50</td><td id="_tr_344_18-13"  data-_i="18" data-_j="13"  class=" _centered _table344_opt13" >1</td><td id="_tr_344_18-14"  data-_i="18" data-_j="14"  class=" _centered _table344_opt14"  style="background:var(--score_color_good);" >100.00</td><td id="_tr_344_18-15"  data-_i="18" data-_j="15"  class=" _centered _table344_opt15"  style="background:var(--score_color_bad);" >50.00</td><td id="_tr_344_18-16"  data-_i="18" data-_j="16"  class=" _centered _table344_opt16" >1.50</td><td id="_tr_344_18-17"  data-_i="18" data-_j="17"  class=" _centered _table344_opt17" >1.50</td><td id="_tr_344_18-18"  data-_i="18" data-_j="18"  class=" _centered _table344_opt18" >1.50</td><td id="_tr_344_18-19"  data-_i="18" data-_j="19"  class=" _centered _table344_opt19" >1.50</td><td id="_tr_344_18-20"  data-_i="18" data-_j="20"  class=" _centered _table344_opt20" >1.00</td></tr>
+<tr class=" _outer_row"  id="_tr_344_19"  ondblclick="_action_266(this,19,-1, 'loops/miniMD_openmpi_166.html');"  style="cursor:pointer;"><td id="_tr_344_19-1"  data-_i="19" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 166</td><td id="_tr_344_19-2"  data-_i="19" data-_j="2"  class=" _centered" >miniMD_openmpi</td><td id="_tr_344_19-3"  data-_i="19" data-_j="3"  class=" _table344_opt3"  style="word-break:break-all;" >thermo.cpp:153-156</td><td id="_tr_344_19-4"  data-_i="19" data-_j="4"  class=" _table344_opt4"  style="word-break:break-all;" >Thermo::temperature(Atom&)</td><td id="_tr_344_19-5"  data-_i="19" data-_j="5"  class=" _centered _table344_opt5" >Single</td><td id="_tr_344_19-6"  data-_i="19" data-_j="6"  class=" _centered _table344_opt6" >0.02</td><td id="_tr_344_19-7"  data-_i="19" data-_j="7"  class=" _centered _table344_opt7" >0.02</td><td id="_tr_344_19-8"  data-_i="19" data-_j="8"  class=" _centered _table344_opt8" >0.03</td><td id="_tr_344_19-9"  data-_i="19" data-_j="9"  class=" _centered _table344_opt9" >1.00</td><td id="_tr_344_19-10"  data-_i="19" data-_j="10"  class=" _centered _table344_opt10" >1.00</td><td id="_tr_344_19-11"  data-_i="19" data-_j="11"  class=" _centered _table344_opt11"  style="background:var(--score_color_medium);" >3.16</td><td id="_tr_344_19-12"  data-_i="19" data-_j="12"  class=" _centered _table344_opt12"  style="background:var(--score_color_medium);" >3.75</td><td id="_tr_344_19-13"  data-_i="19" data-_j="13"  class=" _centered _table344_opt13" >1</td><td id="_tr_344_19-14"  data-_i="19" data-_j="14"  class=" _centered _table344_opt14"  style="background:var(--score_color_good);" >100.00</td><td id="_tr_344_19-15"  data-_i="19" data-_j="15"  class=" _centered _table344_opt15"  style="background:var(--score_color_bad);" >39.81</td><td id="_tr_344_19-16"  data-_i="19" data-_j="16"  class=" _centered _table344_opt16" >15.00</td><td id="_tr_344_19-17"  data-_i="19" data-_j="17"  class=" _centered _table344_opt17" >15.00</td><td id="_tr_344_19-18"  data-_i="19" data-_j="18"  class=" _centered _table344_opt18" >15.00</td><td id="_tr_344_19-19"  data-_i="19" data-_j="19"  class=" _centered _table344_opt19" >4.75</td><td id="_tr_344_19-20"  data-_i="19" data-_j="20"  class=" _centered _table344_opt20" >4.00</td></tr>
+<tr class=" _outer_row"  id="_tr_344_20"  ondblclick="_action_266(this,20,-1, 'loops/miniMD_openmpi_24.html');"  style="cursor:pointer;"><td id="_tr_344_20-1"  data-_i="20" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 24</td><td id="_tr_344_20-2"  data-_i="20" data-_j="2"  class=" _centered" >miniMD_openmpi</td><td id="_tr_344_20-3"  data-_i="20" data-_j="3"  class=" _table344_opt3"  style="word-break:break-all;" >atom.cpp:178-178</td><td id="_tr_344_20-4"  data-_i="20" data-_j="4"  class=" _table344_opt4"  style="word-break:break-all;" >Atom::pack_reverse(int, int, double*)</td><td id="_tr_344_20-5"  data-_i="20" data-_j="5"  class=" _centered _table344_opt5" >Single</td><td id="_tr_344_20-6"  data-_i="20" data-_j="6"  class=" _centered _table344_opt6" >0.02</td><td id="_tr_344_20-7"  data-_i="20" data-_j="7"  class=" _centered _table344_opt7" >0.02</td><td id="_tr_344_20-8"  data-_i="20" data-_j="8"  class=" _centered _table344_opt8" >0.03</td><td id="_tr_344_20-9"  data-_i="20" data-_j="9"  class=" _centered _table344_opt9"  style="background:var(--score_color_acceptable);" >1.13</td><td id="_tr_344_20-10"  data-_i="20" data-_j="10"  class=" _centered _table344_opt10" >1.00</td><td id="_tr_344_20-11"  data-_i="20" data-_j="11"  class=" _centered _table344_opt11"  style="background:var(--score_color_acceptable);" >1.20</td><td id="_tr_344_20-12"  data-_i="20" data-_j="12"  class=" _centered _table344_opt12"  style="background:var(--score_color_acceptable);" >1.80</td><td id="_tr_344_20-13"  data-_i="20" data-_j="13"  class=" _centered _table344_opt13" >1</td><td id="_tr_344_20-14"  data-_i="20" data-_j="14"  class=" _centered _table344_opt14"  style="background:var(--score_color_good);" >100.00</td><td id="_tr_344_20-15"  data-_i="20" data-_j="15"  class=" _centered _table344_opt15"  style="background:var(--score_color_bad);" >50.00</td><td id="_tr_344_20-16"  data-_i="20" data-_j="16"  class=" _centered _table344_opt16" >1.80</td><td id="_tr_344_20-17"  data-_i="20" data-_j="17"  class=" _centered _table344_opt17" >1.60</td><td id="_tr_344_20-18"  data-_i="20" data-_j="18"  class=" _centered _table344_opt18" >1.80</td><td id="_tr_344_20-19"  data-_i="20" data-_j="19"  class=" _centered _table344_opt19" >1.50</td><td id="_tr_344_20-20"  data-_i="20" data-_j="20"  class=" _centered _table344_opt20" >1.00</td></tr>
+<tr class=" _outer_row"  id="_tr_344_21"  ondblclick="_action_266(this,21,-1, 'loops/miniMD_openmpi_246.html');"  style="cursor:pointer;"><td id="_tr_344_21-1"  data-_i="21" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 246</td><td id="_tr_344_21-2"  data-_i="21" data-_j="2"  class=" _centered" >miniMD_openmpi</td><td id="_tr_344_21-3"  data-_i="21" data-_j="3"  class=" _table344_opt3"  style="word-break:break-all;" >setup.cpp:490-490</td><td id="_tr_344_21-4"  data-_i="21" data-_j="4"  class=" _table344_opt4"  style="word-break:break-all;" >create_velocity(double, Atom&, Thermo&)</td><td id="_tr_344_21-5"  data-_i="21" data-_j="5"  class=" _centered _table344_opt5" >Single</td><td id="_tr_344_21-6"  data-_i="21" data-_j="6"  class=" _centered _table344_opt6" >0.02</td><td id="_tr_344_21-7"  data-_i="21" data-_j="7"  class=" _centered _table344_opt7" >0.02</td><td id="_tr_344_21-8"  data-_i="21" data-_j="8"  class=" _centered _table344_opt8" >0.03</td><td id="_tr_344_21-9"  data-_i="21" data-_j="9"  class=" _centered _table344_opt9" >1.00</td><td id="_tr_344_21-10"  data-_i="21" data-_j="10"  class=" _centered _table344_opt10" >1.07</td><td id="_tr_344_21-11"  data-_i="21" data-_j="11"  class=" _centered _table344_opt11" >1.07</td><td id="_tr_344_21-12"  data-_i="21" data-_j="12"  class=" _centered _table344_opt12" >1.07</td><td id="_tr_344_21-13"  data-_i="21" data-_j="13"  class=" _centered _table344_opt13" >1</td><td id="_tr_344_21-14"  data-_i="21" data-_j="14"  class=" _centered _table344_opt14"  style="background:var(--score_color_good);" >100.00</td><td id="_tr_344_21-15"  data-_i="21" data-_j="15"  class=" _centered _table344_opt15"  style="background:var(--score_color_bad);" >50.00</td><td id="_tr_344_21-16"  data-_i="21" data-_j="16"  class=" _centered _table344_opt16" >1.60</td><td id="_tr_344_21-17"  data-_i="21" data-_j="17"  class=" _centered _table344_opt17" >1.60</td><td id="_tr_344_21-18"  data-_i="21" data-_j="18"  class=" _centered _table344_opt18" >1.50</td><td id="_tr_344_21-19"  data-_i="21" data-_j="19"  class=" _centered _table344_opt19" >1.50</td><td id="_tr_344_21-20"  data-_i="21" data-_j="20"  class=" _centered _table344_opt20" >1.50</td></tr>
+<tr class=" _outer_row"  id="_tr_344_22"  ondblclick="_action_266(this,22,-1, 'loops/miniMD_openmpi_18.html');"  style="cursor:pointer;"><td id="_tr_344_22-1"  data-_i="22" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 18</td><td id="_tr_344_22-2"  data-_i="22" data-_j="2"  class=" _centered" >miniMD_openmpi</td><td id="_tr_344_22-3"  data-_i="22" data-_j="3"  class=" _table344_opt3"  style="word-break:break-all;" >atom.cpp:110-120</td><td id="_tr_344_22-4"  data-_i="22" data-_j="4"  class=" _table344_opt4"  style="word-break:break-all;" >Atom::pbc()</td><td id="_tr_344_22-5"  data-_i="22" data-_j="5"  class=" _centered _table344_opt5" >Single</td><td id="_tr_344_22-6"  data-_i="22" data-_j="6"  class=" _centered _table344_opt6" >0.02</td><td id="_tr_344_22-7"  data-_i="22" data-_j="7"  class=" _centered _table344_opt7" >0.02</td><td id="_tr_344_22-8"  data-_i="22" data-_j="8"  class=" _centered _table344_opt8" >0.03</td><td id="_tr_344_22-9"  data-_i="22" data-_j="9"  class=" _centered _table344_opt9" >1.00</td><td id="_tr_344_22-10"  data-_i="22" data-_j="10"  class=" _centered _table344_opt10" >1.08</td><td id="_tr_344_22-11"  data-_i="22" data-_j="11"  class=" _centered _table344_opt11"  style="background:var(--score_color_medium);" >8.00</td><td id="_tr_344_22-12"  data-_i="22" data-_j="12"  class=" _centered _table344_opt12"  style="background:var(--score_color_acceptable);" >1.44</td><td id="_tr_344_22-13"  data-_i="22" data-_j="13"  class=" _centered _table344_opt13" >64</td><td id="_tr_344_22-14"  data-_i="22" data-_j="14"  class=" _centered _table344_opt14"  style="background:var(--score_color_bad);" >0.00</td><td id="_tr_344_22-15"  data-_i="22" data-_j="15"  class=" _centered _table344_opt15"  style="background:var(--score_color_bad);" >12.50</td><td id="_tr_344_22-16"  data-_i="22" data-_j="16"  class=" _centered _table344_opt16" >6.50</td><td id="_tr_344_22-17"  data-_i="22" data-_j="17"  class=" _centered _table344_opt17" >6.50</td><td id="_tr_344_22-18"  data-_i="22" data-_j="18"  class=" _centered _table344_opt18" >6.00</td><td id="_tr_344_22-19"  data-_i="22" data-_j="19"  class=" _centered _table344_opt19" >0.81</td><td id="_tr_344_22-20"  data-_i="22" data-_j="20"  class=" _centered _table344_opt20" >4.50</td></tr>
+<tr class=" _outer_row"  id="_tr_344_23"  ondblclick="_action_266(this,23,-1, 'loops/miniMD_openmpi_248.html');"  style="cursor:pointer;"><td id="_tr_344_23-1"  data-_i="23" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 248</td><td id="_tr_344_23-2"  data-_i="23" data-_j="2"  class=" _centered" >miniMD_openmpi</td><td id="_tr_344_23-3"  data-_i="23" data-_j="3"  class=" _table344_opt3"  style="word-break:break-all;" >setup.cpp:478-481</td><td id="_tr_344_23-4"  data-_i="23" data-_j="4"  class=" _table344_opt4"  style="word-break:break-all;" >create_velocity(double, Atom&, Thermo&)</td><td id="_tr_344_23-5"  data-_i="23" data-_j="5"  class=" _centered _table344_opt5" >Single</td><td id="_tr_344_23-6"  data-_i="23" data-_j="6"  class=" _centered _table344_opt6" >0.01</td><td id="_tr_344_23-7"  data-_i="23" data-_j="7"  class=" _centered _table344_opt7" >0.01</td><td id="_tr_344_23-8"  data-_i="23" data-_j="8"  class=" _centered _table344_opt8" >0.02</td><td id="_tr_344_23-9"  data-_i="23" data-_j="9"  class=" _centered _table344_opt9" >1.00</td><td id="_tr_344_23-10"  data-_i="23" data-_j="10"  class=" _centered _table344_opt10" >1.00</td><td id="_tr_344_23-11"  data-_i="23" data-_j="11"  class=" _centered _table344_opt11"  style="background:var(--score_color_medium);" >3.26</td><td id="_tr_344_23-12"  data-_i="23" data-_j="12"  class=" _centered _table344_opt12"  style="background:var(--score_color_medium);" >14.67</td><td id="_tr_344_23-13"  data-_i="23" data-_j="13"  class=" _centered _table344_opt13" >1</td><td id="_tr_344_23-14"  data-_i="23" data-_j="14"  class=" _centered _table344_opt14"  style="background:var(--score_color_good);" >100.00</td><td id="_tr_344_23-15"  data-_i="23" data-_j="15"  class=" _centered _table344_opt15"  style="background:var(--score_color_bad);" >39.10</td><td id="_tr_344_23-16"  data-_i="23" data-_j="16"  class=" _centered _table344_opt16" >22.00</td><td id="_tr_344_23-17"  data-_i="23" data-_j="17"  class=" _centered _table344_opt17" >22.00</td><td id="_tr_344_23-18"  data-_i="23" data-_j="18"  class=" _centered _table344_opt18" >22.00</td><td id="_tr_344_23-19"  data-_i="23" data-_j="19"  class=" _centered _table344_opt19" >6.75</td><td id="_tr_344_23-20"  data-_i="23" data-_j="20"  class=" _centered _table344_opt20" >1.50</td></tr>
+<tr class=" _outer_row"  id="_tr_344_24"  ondblclick="_action_266(this,24,-1, 'loops/miniMD_openmpi_249.html');"  style="cursor:pointer;"><td id="_tr_344_24-1"  data-_i="24" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 249</td><td id="_tr_344_24-2"  data-_i="24" data-_j="2"  class=" _centered" >miniMD_openmpi</td><td id="_tr_344_24-3"  data-_i="24" data-_j="3"  class=" _table344_opt3"  style="word-break:break-all;" >setup.cpp:464-467</td><td id="_tr_344_24-4"  data-_i="24" data-_j="4"  class=" _table344_opt4"  style="word-break:break-all;" >create_velocity(double, Atom&, Thermo&)</td><td id="_tr_344_24-5"  data-_i="24" data-_j="5"  class=" _centered _table344_opt5" >Single</td><td id="_tr_344_24-6"  data-_i="24" data-_j="6"  class=" _centered _table344_opt6" >0.01</td><td id="_tr_344_24-7"  data-_i="24" data-_j="7"  class=" _centered _table344_opt7" >0.01</td><td id="_tr_344_24-8"  data-_i="24" data-_j="8"  class=" _centered _table344_opt8" >0.02</td><td id="_tr_344_24-9"  data-_i="24" data-_j="9"  class=" _centered _table344_opt9" >1.00</td><td id="_tr_344_24-10"  data-_i="24" data-_j="10"  class=" _centered _table344_opt10"  style="background:var(--score_color_acceptable);" >1.78</td><td id="_tr_344_24-11"  data-_i="24" data-_j="11"  class=" _centered _table344_opt11"  style="background:var(--score_color_medium);" >8.00</td><td id="_tr_344_24-12"  data-_i="24" data-_j="12"  class=" _centered _table344_opt12" >1.00</td><td id="_tr_344_24-13"  data-_i="24" data-_j="13"  class=" _centered _table344_opt13" >1</td><td id="_tr_344_24-14"  data-_i="24" data-_j="14"  class=" _centered _table344_opt14"  style="background:var(--score_color_bad);" >0.00</td><td id="_tr_344_24-15"  data-_i="24" data-_j="15"  class=" _centered _table344_opt15"  style="background:var(--score_color_bad);" >12.50</td><td id="_tr_344_24-16"  data-_i="24" data-_j="16"  class=" _centered _table344_opt16" >4.00</td><td id="_tr_344_24-17"  data-_i="24" data-_j="17"  class=" _centered _table344_opt17" >4.00</td><td id="_tr_344_24-18"  data-_i="24" data-_j="18"  class=" _centered _table344_opt18" >2.25</td><td id="_tr_344_24-19"  data-_i="24" data-_j="19"  class=" _centered _table344_opt19" >0.50</td><td id="_tr_344_24-20"  data-_i="24" data-_j="20"  class=" _centered _table344_opt20" >4.00</td></tr>
+<tr class=" _outer_row"  id="_tr_344_25"  ondblclick="_action_266(this,25,-1, 'loops/miniMD_openmpi_22.html');"  style="cursor:pointer;"><td id="_tr_344_25-1"  data-_i="25" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 22</td><td id="_tr_344_25-2"  data-_i="25" data-_j="2"  class=" _centered" >miniMD_openmpi</td><td id="_tr_344_25-3"  data-_i="25" data-_j="3"  class=" _table344_opt3"  style="word-break:break-all;" >atom.cpp:166-166</td><td id="_tr_344_25-4"  data-_i="25" data-_j="4"  class=" _table344_opt4"  style="word-break:break-all;" >Atom::unpack_comm(int, int, double*)</td><td id="_tr_344_25-5"  data-_i="25" data-_j="5"  class=" _centered _table344_opt5" >Single</td><td id="_tr_344_25-6"  data-_i="25" data-_j="6"  class=" _centered _table344_opt6" >0.01</td><td id="_tr_344_25-7"  data-_i="25" data-_j="7"  class=" _centered _table344_opt7" >0.01</td><td id="_tr_344_25-8"  data-_i="25" data-_j="8"  class=" _centered _table344_opt8" >0.02</td><td id="_tr_344_25-9"  data-_i="25" data-_j="9"  class=" _centered _table344_opt9"  style="background:var(--score_color_acceptable);" >1.13</td><td id="_tr_344_25-10"  data-_i="25" data-_j="10"  class=" _centered _table344_opt10" >1.00</td><td id="_tr_344_25-11"  data-_i="25" data-_j="11"  class=" _centered _table344_opt11"  style="background:var(--score_color_acceptable);" >1.20</td><td id="_tr_344_25-12"  data-_i="25" data-_j="12"  class=" _centered _table344_opt12"  style="background:var(--score_color_acceptable);" >1.80</td><td id="_tr_344_25-13"  data-_i="25" data-_j="13"  class=" _centered _table344_opt13" >1</td><td id="_tr_344_25-14"  data-_i="25" data-_j="14"  class=" _centered _table344_opt14"  style="background:var(--score_color_good);" >100.00</td><td id="_tr_344_25-15"  data-_i="25" data-_j="15"  class=" _centered _table344_opt15"  style="background:var(--score_color_bad);" >50.00</td><td id="_tr_344_25-16"  data-_i="25" data-_j="16"  class=" _centered _table344_opt16" >1.80</td><td id="_tr_344_25-17"  data-_i="25" data-_j="17"  class=" _centered _table344_opt17" >1.60</td><td id="_tr_344_25-18"  data-_i="25" data-_j="18"  class=" _centered _table344_opt18" >1.80</td><td id="_tr_344_25-19"  data-_i="25" data-_j="19"  class=" _centered _table344_opt19" >1.50</td><td id="_tr_344_25-20"  data-_i="25" data-_j="20"  class=" _centered _table344_opt20" >1.00</td></tr>
+</table></div>
+</div>
+<script>
+function _action_266 (obj, i, j, p){open(""+p+"");}
+</script>
+<script>
+var list_opts_table344 = ['_table344_opt3','_table344_opt4','_table344_opt5','_table344_opt6','_table344_opt7','_table344_opt8','_table344_opt9','_table344_opt10','_table344_opt11','_table344_opt12','_table344_opt13','_table344_opt14','_table344_opt15','_table344_opt16','_table344_opt17','_table344_opt18','_table344_opt19','_table344_opt20',];
+function __reset_checkboxes_table344 () {
+  var displayed_columns = [{id:"_table344_opt1", value:true}, {id:"_table344_opt2", value:true}, {id:"_table344_opt3", value:true}, {id:"_table344_opt4", value:true}, {id:"_table344_opt5", value:true}, {id:"_table344_opt6", value:true}, {id:"_table344_opt7", value:true}, {id:"_table344_opt8", value:true}, {id:"_table344_opt9", value:true}, {id:"_table344_opt10", value:true}, {id:"_table344_opt11", value:true}, {id:"_table344_opt12", value:true}, {id:"_table344_opt13", value:true}, {id:"_table344_opt14", value:true}, {id:"_table344_opt15", value:true}, {id:"_table344_opt16", value:true}, {id:"_table344_opt17", value:true}, {id:"_table344_opt18", value:true}, {id:"_table344_opt19", value:true}, {id:"_table344_opt20", value:true}];
+  // Update initial state using localStorage
+  for (var i = 0; i < displayed_columns.length; i++) {
+    var dcol = displayed_columns[i];
+    var val = localStorage.getItem (dcol.id);
+    if (val) {
+      dcol.value = (val === "true");
+    }
+    var obj = document.getElementById(dcol.id);
+    if (obj) {
+      if (dcol.value == true) {
+        obj.checked = true;
+      }
+      else {
+        obj.checked = false;
+      }
+    }
+  }
+  // Update table
+  var table = document.getElementById("_tree_table_344");
+  for (let i in table.rows) {
+    let row = table.rows[i]
+    for (let j in row.cells) {
+      let col = row.cells[j]
+      if (col.classList) {
+        if (displayed_columns[j].value == true) {
+          col.classList.remove("_tcol_hidden");
+        }
+        else {
+          col.classList.add("_tcol_hidden");
+        }
+      }
+    }
+  }
+  {
+    var value = localStorage.getItem("_table344_opt_all");
+    if (value) {
+      var obj = document.getElementById ("_table344_opt_all");
+      if (obj) {
+        obj.value = value;
+      }
+    }
+  }
+  _check_all_checkbox_ ("_table344_opt_all", "list_opts_table344");
+};
+addLoadEvent(function(){
+  __reset_checkboxes_table344 ();
+});
+</script>
+<style>
+._filter_hidden {display: none;}
+</style>
+<script>
+addLoadEvent(function(){
+  var id = "_tree_table_344";
+  var table_asm = document.getElementById(id);
+  var tab = [];
+  for (var i = 0, row; row = table_asm.rows[i]; i++) {
+    if (i > 0 && row.classList.contains ("_tree_hidden") == false) {
+        tab.push (row.firstChild.firstChild);
+    }
+  }
+  tab.forEach(function(item, index, array) {
+    _click_tree (item);
+  });
+  var qs = getQueryStringArray();
+  if (false) {}
+  else if (qs.view && qs.view !== "undefined" && qs.view == "paths") {
+    for (var i = 0, cell; cell = table_asm.rows[0].cells[i]; i++) {
+      var found = false;
+      if (false) {}
+      else if (cell.textContent == "ID") {
+        found = true;
+      }
+      else if (cell.textContent == "Module") {
+        found = true;
+      }
+      else if (cell.textContent == "Coverage (% app. time)") {
+        found = true;
+      }
+      else if (cell.textContent == "Number of paths") {
+        found = true;
+      }
+      else if (cell.textContent == "Function") {
+        found = true;
+      }
+      else if (cell.textContent == "Source") {
+        found = true;
+      }
+      var e = document.getElementById("_table344_opt" + (i + 1));
+      if (e != null) {
+          e.checked = found;
+          click_table_menu("_table344_opt" + (i + 1), "_table344_opt_all", "list_opts_table344");
+      }
+    }
+  }
+  else if (qs.view && qs.view !== "undefined" && qs.view == "iterations") {
+    for (var i = 0, cell; cell = table_asm.rows[0].cells[i]; i++) {
+      var found = false;
+      if (false) {}
+      else if (cell.textContent == "ID") {
+        found = true;
+      }
+      else if (cell.textContent == "Module") {
+        found = true;
+      }
+      else if (cell.textContent == "Coverage (% app. time)") {
+        found = true;
+      }
+      else if (cell.textContent == "min (Iteration count)") {
+        found = true;
+      }
+      else if (cell.textContent == "avg (Iteration count)") {
+        found = true;
+      }
+      else if (cell.textContent == "max (Iteration count)") {
+        found = true;
+      }
+      else if (cell.textContent == "Function") {
+        found = true;
+      }
+      else if (cell.textContent == "Source") {
+        found = true;
+      }
+      var e = document.getElementById("_table344_opt" + (i + 1));
+      if (e != null) {
+          e.checked = found;
+          click_table_menu("_table344_opt" + (i + 1), "_table344_opt_all", "list_opts_table344");
+      }
+    }
+  }
+  __disable_CSV_generator_buttons (["save_button_344"]);
+});
+function toggle_loop_index() {
+  var table = document.getElementById("_tree_table_344");
+  var last_level;
+  var button = document.getElementById("button_toggle_loop_index");
+  if (button.innerHTML.localeCompare ("Show Full Profile") == 0) {
+    button.innerHTML = "Show Innermost Profile";
+    for (var i = 1, row; row = table.rows[i]; i++) {
+      row.classList.remove ("_filter_hidden");
+    }
+  }
+  else {
+    button.innerHTML = "Show Full Profile";
+    for (var i = 1, row; row = table.rows[i]; i++) {
+      var level = row.cells[4].innerHTML;
+      if (level != "") {
+        last_level = level;
+      }
+      if (last_level.localeCompare("Single") != 0
+      &&  last_level.localeCompare("Innermost") != 0) {
+        row.classList.add ("_filter_hidden");
+      }
+    }
+  }
+}
+function _onresize () {
+  __maqao_legacy_onresize ();
+  var d = document.getElementById ("_tree_table_344").parentNode;
+  d.style.maxHeight = (window.innerHeight - getPos (d).y - 20)+"px";
+}
+window.onresize = _onresize;
+addLoadEvent(function(){
+  _onresize ();
+});
+</script>
+</div></div>
+  <div id="MaqaoModal" class="maqao_modal">
+    <div class="maqao_modal-content">
+      <div class="maqao_modal-header">
+        <span class="maqao_close">&times;</span>
+      </div>
+      <div id="maqao_modal-body" class="maqao_modal-body">
+      </div>
+    </div>
+  </div>
+</div><script>
+var tooltips_texts = ['A set of filters to display / hide some columns',
+'Source file and source lines where the loop is defined',
+'Source function where the loop is defined',
+'Level in the loop hierarchy',
+'Maximal execution time over all threads spent in the loop.',
+'Time of the loop with regard to the global wall time.',
+'Percentage of time spent in the loop.',
+'Potential speedup if all data are in L1 cache and if instructions performing address computation are removed.',
+'Potential speedup if all data are in L1 cache and if floating point computation is vectorized.',
+'Potential speedup if all data are in L1 cache and if both floating point computation and memory accesses are vectorized.',
+'Potential speedup if only floating point computation is kept.',
+'Number of paths in the loop.',
+'Percentage of the loop that have been vectorized. The color is red when the value is lower than 70%, orange when the value is between 70% and 90% and green when it is greater than 90%',
+'Average width (percentage) of vector registers used by the loop. The color is red when the value is lower than 70%, orange when the value is between 70% and 90% and green when it is greater than 90%',
+'Number of cycles needed to run one iteration of the loop if all data are in L1.',
+'Number of cycles needed to run one iteration of the loop if all data are in L1 cache and if instructions performing address computation are removed.',
+'Number of cycles needed to run one iteration of the loop if all data are in L1 and if floating point computation is vectorized.',
+'Number of cycles needed to run one iteration of the loop if all data are in L1 and if both floating point computation and memory accesses are vectorized.',
+'Number of cycles needed to run one iteration of the loop if only floating point computation is kept.',
+'Internal uniq loop identifier. It is recognize by all MAQAO tools.',
+'Assembly file (binary or dynamic librarie) containing the loop.',
+'Source file and source lines where the loop is defined',
+'Source function where the loop is defined',
+'Level in the loop hierarchy',
+'Maximal execution time over all threads spent in the loop.',
+'Time of the loop with regard to the global wall time.',
+'Percentage of time spent in the loop.',
+'Potential speedup if all data are in L1 cache and if instructions performing address computation are removed.',
+'Potential speedup if all data are in L1 cache and if floating point computation is vectorized.',
+'Potential speedup if all data are in L1 cache and if both floating point computation and memory accesses are vectorized.',
+'Potential speedup if only floating point computation is kept.',
+'Number of paths in the loop.',
+'Percentage of the loop that have been vectorized. The color is red when the value is lower than 70%, orange when the value is between 70% and 90% and green when it is greater than 90%',
+'Average width (percentage) of vector registers used by the loop. The color is red when the value is lower than 70%, orange when the value is between 70% and 90% and green when it is greater than 90%',
+'Number of cycles needed to run one iteration of the loop if all data are in L1.',
+'Number of cycles needed to run one iteration of the loop if all data are in L1 cache and if instructions performing address computation are removed.',
+'Number of cycles needed to run one iteration of the loop if all data are in L1 and if floating point computation is vectorized.',
+'Number of cycles needed to run one iteration of the loop if all data are in L1 and if both floating point computation and memory accesses are vectorized.',
+'Number of cycles needed to run one iteration of the loop if only floating point computation is kept.'];
+var modal = document.getElementById('MaqaoModal');
+var span = document.getElementsByClassName("maqao_close")[0];
+span.onclick = function() {
+    modal.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+const comparer = (idx, asc) => (a, b) => ((v1, v2) => 
+    v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v2 - v1 : v1.toString().localeCompare(v2)
+    )(getCellValue(asc ? a : b, idx) === '' ? -1: (getCellValue(asc ? a : b, idx).replace(/\s/g,'')), 
+      getCellValue(asc ? b : a, idx) === '' ? -1: (getCellValue(asc ? b : a, idx).replace(/\s/g,'')));
+addLoadEvent(function(){
+  document.querySelectorAll('._fixed_table:not(._no_auto_sorting) th').forEach(th => th.addEventListener('click', (() => {
+    const table = th.closest('table');
+    // Remove all symbols in header
+    table.querySelectorAll('th').forEach(function (e) {
+      e.firstChild.textContent = "";
+    });
+    // Change the symbol on the clicked header
+    if (this.asc != true) {
+      th.firstChild.textContent = "\u25BC";
+    }
+    else {
+      th.firstChild.textContent = "\u25B2";
+    }
+    Array.from(table.querySelectorAll('tr:nth-child(n+2)'))
+        .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+        .forEach(tr => table.appendChild(tr) );
+  })));
+});
+addLoadEvent(function(){
+  document.querySelectorAll('._tree_table:not(._no_auto_sorting) th').forEach(th => th.addEventListener('click', (() => {
+    const table = th.closest('table');
+    // Remove all symbols in header
+    table.querySelectorAll('th').forEach(function (e) {
+      e.firstChild.textContent = "";
+    });
+    // Change the symbol on the clicked header
+    if (this.asc != true) {
+      th.firstChild.textContent = "\u25BC";
+    }
+    else {
+      th.firstChild.textContent = "\u25B2";
+    }
+    let last_id = "";
+    const t_outermost = new Array ();
+    const t_children  = new Map ();
+    for (let i = 1, row; row = table.rows[i]; i++) {
+      if (row.classList.contains ("_outer_row")) {
+        t_outermost.push (row);
+        last_id = row.id;
+        t_children [last_id] = new Array ();
+      }
+      else {
+        t_children [last_id].push (row);
+      }
+    }
+    t_outermost.sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc));
+    for (let i = 0, row; row = t_outermost[i]; i++) {
+      table.appendChild(row)
+      for (let j = 0, child; child = t_children[row.id][j]; j++) {
+        table.appendChild(child)
+      }
+    }
+  })));
+});
+// Hide unselected tabs
+addLoadEvent(function(){
+  var x = document.getElementsByClassName("_tab_header_li");
+  for (var i = 0; i < x.length; i++) {
+    if (x[i].classList.contains("selected_tab") == false) {
+      var e = document.getElementById (x[i].dataset.tab);
+      e.style.display = "none";
+    }
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html translate="no" lang="en-US"><head><title>OV - miniMD_openmpi - Topology</title>
+<meta charset="utf-8" />
+<meta name="google" content="notranslate" />
+<link rel="stylesheet" type="text/css" media="screen" href="css/ui.jqgrid.css" />
+<link rel="stylesheet" type="text/css" href="css/themes/redmond_custom/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="css/themes/redmond_custom/jquery.jqplot.min.css" />
+<link rel="stylesheet" type="text/css" href="css/MAQAO_theme.css" />
+<link rel="stylesheet" type="text/css" href="css/maqao_modal.css" />
+<link rel="stylesheet" type="text/css" href="css/global.css" />
+<link rel="stylesheet" type="text/css" href="css/maqao_menu.css" />
+<script src="js/jquery-1.9.0.min.js" ></script>
+<script src="js/jquery-ui-1.10.3.custom.min.js" ></script>
+<script src="js/grid.locale-en.js" ></script>
+<script src="js/jquery.jqGrid.min.js" ></script>
+<script src="js/d3.min.js" ></script>
+<script class="include" src="js/chart.min.js"></script>
+<script class="include" src="js/maqao_utils.js"></script>
+<script src="js/flamegraph.js" ></script>
+<script class="include" src="js/maqao_menu.js"></script>
+<script>
+addLoadEvent(function(){
+  var theme = localStorage.getItem("__MAQAO_OV_theme__");
+  if (theme) {
+    loadCSS("css/"+theme+".css");
+  }
+  else {
+    localStorage.setItem("__MAQAO_OV_theme__", "MAQAO_theme");
+    loadCSS("css/MAQAO_theme.css");
+  }
+});
+</script>
+</head><body>
+<div id="__chartJS_tooltip" class="tt_chartJS"></div>
+<div id="page_title"><img alt="MAQAO" id="maqao_logo" src="images/MAQAO_small_logo.png"/><ul id="maqao_menu"><li ><a  href="index.html">Global</a><ul><li ><a  href="config.html">Configurations</a></li><li ><a  href="env.html">Environment Variables</a></li><li ><a  href="outputs.html">Outputs</a></li><li ><a  href="log.html">Logs</a></li><li ><a  href="tools_status.html">Tools Status</a></li></ul></li><li ><a  href="summary.html">Summary</a></li><li ><a  href="application.html">Application</a></li><li ><a  href="fcts_and_loops.html">Functions</a></li><li ><a  href="loops_index.html">Loops</a></li><li ><a class="_current_page _first_menu_level" href="topology.html">Topology</a><ul><li ><a  href="lstopo.html">lstopo</a></li><li ><a  href="lstopo_PU.html">lstopo_PU</a></li><li ><a  href="lstopo_threads.html">lstopo_threads</a></li></ul></li></ul>
+<span><img alt="options" id="menu_options_icon" src="images/gear_20.png" onclick="__open_options ()"/></span>
+</div>
+<script>
+function __change_theme () {
+  var new_theme = document.getElementById("select_theme").value;
+  localStorage.setItem("__MAQAO_OV_theme__", new_theme);
+    loadCSS("css/"+new_theme+".css");
+}
+function __open_options () {
+  var elem = document.getElementById ("options_configuration");
+  if (elem.dataset.open == "false") {
+    elem.dataset.open = "true";
+    elem.style.display = "block";
+  }
+  else {
+    elem.dataset.open = "false";
+    elem.style.display = "none";
+  }
+}
+</script>
+<div id="anchor_file_start"></div>
+<div id="maqao_content">
+<div>
+  <div id="spacer_page_title" ></div>
+  <div id="options_configuration" data-open="false" style="display:none;">
+    <h3 id="options_configuration_header">Report Configuration</h3>
+    <span style="margin-left:10px;"><label for="select_theme">Theme: </label>    <select name="theme" id="select_theme" onchange="__change_theme ()">  <option value="MAQAO_theme">MAQAO_theme</option>  <option value="darkgrey">darkgrey</option>  <option value="cyan">cyan</option></select></span>    <span style="margin-left:10px;"><label for="select_chart_theme">Chart Theme: </label>    <select name="theme" id="select_chart_theme" onchange="__change_chart_theme ()">  <option value="Default_Chart_Theme">Default_Chart_Theme</option>  <option value="grey">grey</option></select></span></div>
+</div>
+<script>
+  let theme = localStorage.getItem("__MAQAO_OV_theme__");
+  if (theme) {
+    document.getElementById("select_theme").value = theme;
+  }
+  theme = localStorage.getItem("__MAQAO_OV_chart_theme__");
+  if (theme) {
+    document.getElementById("select_chart_theme").value = theme;
+  }
+document.getElementById("spacer_page_title").style.height = (document.getElementById("page_title").clientHeight + 25)+"px";
+var obj = document.getElementById("page_title");
+if (obj) {
+  var elems = document.getElementsByClassName ("_first_menu_level")
+  if (obj.clientHeight < 90) {
+    for (var i = 0; i < elems.length; i++) {
+      elems.item(i).style.borderBottomLeftRadius = "";
+      elems.item(i).style.borderBottomRightRadius = "";
+    }
+  }
+  else {
+    for (var i = 0; i < elems.length; i++) {
+      elems.item(i).style.borderBottomLeftRadius = "10px";
+      elems.item(i).style.borderBottomRightRadius = "10px";
+    }
+  }
+}
+</script>
+<div class="_fixed_box" ><h3 class="_header">Software Topology<span class="tooltip-maqao-button help-maqao" title="" tooltip_id="0" ></span></h3>
+<div class="_content"><div style="overflow:auto;">
+<span style="white-space: nowrap;margin-left: 30px;display:inline-block;"><b>Run Command:</b> &lt;executable&gt;  -i ../../launcher/in.param_analyse.miniMD -s 100</span><span style="white-space: nowrap;margin-left: 30px;display:inline-block;"><b>MPI Command:</b> mpirun -np 1</span><span style="white-space: nowrap;margin-left: 30px;display:inline-block;"><b>Run Directory:</b> .</span></div>
+<div class="_div_table" style="margin-bottom: 10px;"><input class='downloadCSVButton' id='save_button_345' type='button' value='Download table as CSV' onclick='downloadFileAsCSV(_tree_table_345)' />
+<table id="_tree_table_345" class="_tree_table _no_auto_sorting"><tr><th class="_freezed_row  _left "><span></span>ID</th><th class="_freezed_row " style="width:5%;"><span></span>Observed Processes</th><th class="_freezed_row " style="width:5%;"><span></span>Observed Threads</th><th class="_freezed_row " style="width:5%;"><span></span>Time(s)</th><th class="_freezed_row " style="width:5%;"><span></span>Elapsed Time (s)</th><th class="_freezed_row  tooltip-maqao" title="" tooltip_id="1" style="width:5%;"><span></span>Active Time (%)</th><th class="_freezed_row " style="width:5%;"><span></span>Start (after process) (s)</th><th class="_freezed_row " style="width:5%;"><span></span>End (before process) (s)</th><th class="_freezed_row " style="width:5%;"><span></span>Maximum Time on the Same CPU (s)</th></tr>
+<tr class=" _outer_row"  id="_tr_345_1" ><td id="_tr_345_1-1"  data-_i="1" data-_j="1"  class=" _left" ><span onclick="_click_tree(this)" style="margin-right:5px;margin-left:0px;cursor:pointer;" >&#x25BA;</span>Node sacha-VivoBook-F515EA<span onclick="_click_expand(this)" class="span_expand">&#43;</span></td><td id="_tr_345_1-2"  data-_i="1" data-_j="2"  class=" _centered" >1</td><td id="_tr_345_1-3"  data-_i="1" data-_j="3"  class=" _centered" >1</td><td id="_tr_345_1-4"  data-_i="1" data-_j="4"  class=" _centered" >48.12</td><td id="_tr_345_1-5"  data-_i="1" data-_j="5"  class=" _centered" ></td><td id="_tr_345_1-6"  data-_i="1" data-_j="6"  class=" _centered" ></td><td id="_tr_345_1-7"  data-_i="1" data-_j="7"  class=" _centered" ></td><td id="_tr_345_1-8"  data-_i="1" data-_j="8"  class=" _centered" ></td><td id="_tr_345_1-9"  data-_i="1" data-_j="9"  class=" _centered" ></td></tr>
+<tr class="_tree_hidden _tr_345_1"  id="_tr_345_1_1" ><td id="_tr_345_1_1-1"  data-_i="2" data-_j="1"  class=" _left" ><span onclick="_click_tree(this)" style="margin-right:5px;margin-left:15px;cursor:pointer;" >&#x25BA;</span>MPI # 0 (PID 7772)<span onclick="_click_expand(this)" class="span_expand">&#43;</span></td><td id="_tr_345_1_1-2"  data-_i="2" data-_j="2"  class=" _centered" ></td><td id="_tr_345_1_1-3"  data-_i="2" data-_j="3"  class=" _centered" >1</td><td id="_tr_345_1_1-4"  data-_i="2" data-_j="4"  class=" _centered" >48.12</td><td id="_tr_345_1_1-5"  data-_i="2" data-_j="5"  class=" _centered" ></td><td id="_tr_345_1_1-6"  data-_i="2" data-_j="6"  class=" _centered" ></td><td id="_tr_345_1_1-7"  data-_i="2" data-_j="7"  class=" _centered" ></td><td id="_tr_345_1_1-8"  data-_i="2" data-_j="8"  class=" _centered" ></td><td id="_tr_345_1_1-9"  data-_i="2" data-_j="9"  class=" _centered" ></td></tr>
+<tr class="_tree_hidden _tr_345_1_1"  id="_tr_345_1_1_1"  ondblclick="_action_4(this,3,-1, 'topo/run_0_sacha-VivoBook-F515EA_7772_7772.html');"  style="cursor:pointer;"><td id="_tr_345_1_1_1-1"  data-_i="3" data-_j="1"  data-_p="0_sacha-VivoBook-F515EA_7772_7772" class=" _left" ><span style="margin-right:10px;margin-left:33px;" >&#x25CB;</span>MPI # 0 - OMP # 0.0 (TID 7772)</td><td id="_tr_345_1_1_1-2"  data-_i="3" data-_j="2"  data-_p="0_sacha-VivoBook-F515EA_7772_7772" class=" _centered" ></td><td id="_tr_345_1_1_1-3"  data-_i="3" data-_j="3"  data-_p="0_sacha-VivoBook-F515EA_7772_7772" class=" _centered" ></td><td id="_tr_345_1_1_1-4"  data-_i="3" data-_j="4"  data-_p="0_sacha-VivoBook-F515EA_7772_7772" class=" _centered" >48.12</td><td id="_tr_345_1_1_1-5"  data-_i="3" data-_j="5"  data-_p="0_sacha-VivoBook-F515EA_7772_7772" class=" _centered" >48.35</td><td id="_tr_345_1_1_1-6"  data-_i="3" data-_j="6"  data-_p="0_sacha-VivoBook-F515EA_7772_7772" class=" _centered" >99.53</td><td id="_tr_345_1_1_1-7"  data-_i="3" data-_j="7"  data-_p="0_sacha-VivoBook-F515EA_7772_7772" class=" _centered" >0.00</td><td id="_tr_345_1_1_1-8"  data-_i="3" data-_j="8"  data-_p="0_sacha-VivoBook-F515EA_7772_7772" class=" _centered" >0.00</td><td id="_tr_345_1_1_1-9"  data-_i="3" data-_j="9"  data-_p="0_sacha-VivoBook-F515EA_7772_7772" class=" _centered" >19.45</td></tr>
+</table></div>
+<script>
+function _action_4 (obj, i, j, p){open(""+p+"");}
+</script>
+<style>
+.menu {
+width: 250px;
+  color: var(--cntxt_menu_font);
+  z-index: 4;
+  box-shadow: 0 4px 5px 3px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  display: none;
+  transition: 0.2s display ease-in;
+  background-color: var(--cntxt_menu_background);
+}
+.menu-options {
+  list-style: none;
+  padding: 0px 0;
+  z-index: 1;
+  font-weight: 500;
+  z-index: 1;
+  font-size: 14px;
+  padding: 2px 10px 2px 10px;
+  cursor: pointer;
+  color: var(--cntxt_menu_font);
+}
+.menu-option:hover {
+  background: var(--cntxt_menu_background_over);
+}
+</style>
+<div class="menu" data-visible=false id="mctxMenu6">
+  <ul class="menu-options">
+<li class="menu-option" id="mctxMenu6_1" onclick="_action_261('_p', '_p6_1')" oncontextmenu="_action_261('_p', '_p6_1')" >Usage</li>
+<li class="menu-option" id="mctxMenu6_2" onclick="_action_262('_p', '_p6_2')" oncontextmenu="_action_262('_p', '_p6_2')" >Profile</li>
+  </ul>
+</div>
+<script>
+function toggleMenu_345 (menu, command) {
+  menu.style.display = command === "show" ? "block" : "none";
+  if (menu.style.display == "block") {
+    menu.dataset.visible = true;
+  }
+  else {
+    menu.dataset.visible = false;
+    if (_previous_elem != null) {
+      _previous_elem.parentNode.classList.remove ("selected-context");
+    }
+  }
+}
+const setPosition_345 = (menu, { top, left }) => {
+  menu.style.left = `${left}px`;
+  menu.style.top = `${top}px`;
+  toggleMenu_345(menu, "show");
+};
+var _global_elem = null;
+var _previous_elem = null;
+var _ids;
+var _current_menu = null;
+
+document.addEventListener("click", e => {
+  if (_current_menu != null && _current_menu.dataset.visible) {
+    toggleMenu_345 (_current_menu, "hide");
+    _current_menu = null;
+  }
+});
+document.getElementById("mctxMenu6").addEventListener('contextmenu', event => event.preventDefault());
+
+let _ids_345_6 = ["_tr_345_1_1_1"];
+for (var i = 0; i < _ids_345_6.length; i++) {
+  var elem = document.getElementById(_ids_345_6[i]);
+  elem.addEventListener("contextmenu", e => {
+    e.preventDefault();
+    _global_elem = event.target || event.srcElement;
+    if (_global_elem.nodeName == "SPAN") {
+       _global_elem = _global_elem.parentNode;
+    }
+    const origin = {
+      left: e.clientX, top: e.clientY
+    };
+    if (_current_menu != null && _current_menu.dataset.visible) {
+      toggleMenu_345 (_current_menu, "hide");
+      _current_menu = null;
+    }
+    _previous_elem = _global_elem;    var menu = document.getElementById("mctxMenu6");
+    if (menu != null) {
+      _current_menu = menu;
+      setPosition_345(menu, origin);
+      _global_elem.parentNode.classList.add ("selected-context");
+    }
+    return false;
+  });
+}
+function _action_261 (p, pm){document.getElementById("maqao_modal-body").innerHTML="<object id=\"maqao_modal-body_content\" type=\"text/html\" data=\"modals/thread_usage.html?id="+_global_elem.dataset._p+"\"></object>";var modal = document.getElementById('MaqaoModal');modal.style.display = "block";}
+function _action_262 (p, pm){open("topo/redirect.html?thread="+_global_elem.dataset._p+"");}
+</script>
+</div></div><script>
+addLoadEvent(function(){
+  __disable_CSV_generator_buttons (["save_button_345",]);
+});
+function open_material_config () {
+  document.getElementById("maqao_modal-body").innerHTML="<object id=\"maqao_modal-body_content\" type=\"text/html\" data=\"./modals/material_configuration.html\"></object>";  var modal = document.getElementById('MaqaoModal');  modal.style.display = "block";}
+function _onresize () {
+  __maqao_legacy_onresize ();
+}
+window.onresize = _onresize;
+</script>
+
+  <div id="MaqaoModal" class="maqao_modal">
+    <div class="maqao_modal-content">
+      <div class="maqao_modal-header">
+        <span class="maqao_close">&times;</span>
+      </div>
+      <div id="maqao_modal-body" class="maqao_modal-body">
+      </div>
+    </div>
+  </div>
+</div><script>
+var tooltips_texts = ['Details nodes, processes and threads used during the run. Each thread can be clicked to display a profiling of the application at the thread level or right-cliked to display a contextual menu.',
+' = (Time (s) / Elapsed Time) * 100'];
+var modal = document.getElementById('MaqaoModal');
+var span = document.getElementsByClassName("maqao_close")[0];
+span.onclick = function() {
+    modal.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+const comparer = (idx, asc) => (a, b) => ((v1, v2) => 
+    v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v2 - v1 : v1.toString().localeCompare(v2)
+    )(getCellValue(asc ? a : b, idx) === '' ? -1: (getCellValue(asc ? a : b, idx).replace(/\s/g,'')), 
+      getCellValue(asc ? b : a, idx) === '' ? -1: (getCellValue(asc ? b : a, idx).replace(/\s/g,'')));
+addLoadEvent(function(){
+  document.querySelectorAll('._fixed_table:not(._no_auto_sorting) th').forEach(th => th.addEventListener('click', (() => {
+    const table = th.closest('table');
+    // Remove all symbols in header
+    table.querySelectorAll('th').forEach(function (e) {
+      e.firstChild.textContent = "";
+    });
+    // Change the symbol on the clicked header
+    if (this.asc != true) {
+      th.firstChild.textContent = "\u25BC";
+    }
+    else {
+      th.firstChild.textContent = "\u25B2";
+    }
+    Array.from(table.querySelectorAll('tr:nth-child(n+2)'))
+        .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+        .forEach(tr => table.appendChild(tr) );
+  })));
+});
+addLoadEvent(function(){
+  document.querySelectorAll('._tree_table:not(._no_auto_sorting) th').forEach(th => th.addEventListener('click', (() => {
+    const table = th.closest('table');
+    // Remove all symbols in header
+    table.querySelectorAll('th').forEach(function (e) {
+      e.firstChild.textContent = "";
+    });
+    // Change the symbol on the clicked header
+    if (this.asc != true) {
+      th.firstChild.textContent = "\u25BC";
+    }
+    else {
+      th.firstChild.textContent = "\u25B2";
+    }
+    let last_id = "";
+    const t_outermost = new Array ();
+    const t_children  = new Map ();
+    for (let i = 1, row; row = table.rows[i]; i++) {
+      if (row.classList.contains ("_outer_row")) {
+        t_outermost.push (row);
+        last_id = row.id;
+        t_children [last_id] = new Array ();
+      }
+      else {
+        t_children [last_id].push (row);
+      }
+    }
+    t_outermost.sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc));
+    for (let i = 0, row; row = t_outermost[i]; i++) {
+      table.appendChild(row)
+      for (let j = 0, child; child = t_children[row.id][j]; j++) {
+        table.appendChild(child)
+      }
+    }
+  })));
+});
+// Hide unselected tabs
+addLoadEvent(function(){
+  var x = document.getElementsByClassName("_tab_header_li");
+  for (var i = 0; i < x.length; i++) {
+    if (x[i].classList.contains("selected_tab") == false) {
+      var e = document.getElementById (x[i].dataset.tab);
+      e.style.display = "none";
+    }
+  }
+});
+</script>
+</body>
+</html>

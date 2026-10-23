@@ -1,0 +1,16 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/atom.cpp: 88 - 100
+--------------------------------------------------------------------------------
+
+88: {
+89:   if(nlocal == nmax) growarray();
+90: 
+91:   x[nlocal*PAD + 0] = x_in;
+92:   x[nlocal*PAD + 1] = y_in;
+93:   x[nlocal*PAD + 2] = z_in;
+94:   v[nlocal*PAD + 0] = vx_in;
+95:   v[nlocal*PAD + 1] = vy_in;
+96:   v[nlocal*PAD + 2] = vz_in;
+97:   type[nlocal] = rand()%ntypes;
+98: 
+99:   nlocal++;
+100: }

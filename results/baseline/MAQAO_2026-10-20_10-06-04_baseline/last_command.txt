@@ -1,1 +1,0 @@
-../../maqao.2026.1.0/bin/maqao oneview -R1 -uarch=ICELAKE "--mpi-command=mpirun -np 1" --xp=../../results/baseline/MAQAO_2026-10-20_10-06-04_baseline --show-program-output -- miniMD_openmpi -i ../../launcher/in.param_analyse.miniMD -s 100 

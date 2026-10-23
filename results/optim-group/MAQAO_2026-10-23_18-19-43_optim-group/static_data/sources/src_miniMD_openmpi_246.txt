@@ -1,0 +1,4 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/setup.cpp: 490 - 490
+--------------------------------------------------------------------------------
+
+490:     atom.v[i * PAD + 0] *= factor;

@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html translate="no" lang="en-US"><head><title>OV - miniMD_openmpi - Loops</title>
+<meta charset="utf-8" />
+<meta name="google" content="notranslate" />
+<link rel="stylesheet" type="text/css" media="screen" href="css/ui.jqgrid.css" />
+<link rel="stylesheet" type="text/css" href="css/themes/redmond_custom/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="css/themes/redmond_custom/jquery.jqplot.min.css" />
+<link rel="stylesheet" type="text/css" href="css/MAQAO_theme.css" />
+<link rel="stylesheet" type="text/css" href="css/maqao_modal.css" />
+<link rel="stylesheet" type="text/css" href="css/global.css" />
+<link rel="stylesheet" type="text/css" href="css/maqao_menu.css" />
+<script src="js/jquery-1.9.0.min.js" ></script>
+<script src="js/jquery-ui-1.10.3.custom.min.js" ></script>
+<script src="js/grid.locale-en.js" ></script>
+<script src="js/jquery.jqGrid.min.js" ></script>
+<script src="js/d3.min.js" ></script>
+<script class="include" src="js/chart.min.js"></script>
+<script class="include" src="js/maqao_utils.js"></script>
+<script src="js/flamegraph.js" ></script>
+<script class="include" src="js/maqao_menu.js"></script>
+<script>
+addLoadEvent(function(){
+  var theme = localStorage.getItem("__MAQAO_OV_theme__");
+  if (theme) {
+    loadCSS("css/"+theme+".css");
+  }
+  else {
+    localStorage.setItem("__MAQAO_OV_theme__", "MAQAO_theme");
+    loadCSS("css/MAQAO_theme.css");
+  }
+});
+</script>
+</head><body>
+<div id="__chartJS_tooltip" class="tt_chartJS"></div>
+<div id="page_title"><img alt="MAQAO" id="maqao_logo" src="images/MAQAO_small_logo.png"/><ul id="maqao_menu"><li ><a  href="index.html">Global</a><ul><li ><a  href="config.html">Configurations</a></li><li ><a  href="env.html">Environment Variables</a></li><li ><a  href="outputs.html">Outputs</a></li><li ><a  href="log.html">Logs</a></li><li ><a  href="tools_status.html">Tools Status</a></li></ul></li><li ><a  href="summary.html">Summary</a></li><li ><a  href="application.html">Application</a></li><li ><a  href="fcts_and_loops.html">Functions</a></li><li ><a class="_current_page _first_menu_level" href="loops_index.html">Loops</a></li><li ><a  href="topology.html">Topology</a><ul><li ><a  href="lstopo.html">lstopo</a></li><li ><a  href="lstopo_PU.html">lstopo_PU</a></li><li ><a  href="lstopo_threads.html">lstopo_threads</a></li></ul></li></ul>
+<span><img alt="options" id="menu_options_icon" src="images/gear_20.png" onclick="__open_options ()"/></span>
+</div>
+<script>
+function __change_theme () {
+  var new_theme = document.getElementById("select_theme").value;
+  localStorage.setItem("__MAQAO_OV_theme__", new_theme);
+    loadCSS("css/"+new_theme+".css");
+}
+function __open_options () {
+  var elem = document.getElementById ("options_configuration");
+  if (elem.dataset.open == "false") {
+    elem.dataset.open = "true";
+    elem.style.display = "block";
+  }
+  else {
+    elem.dataset.open = "false";
+    elem.style.display = "none";
+  }
+}
+</script>
+<div id="anchor_file_start"></div>
+<div id="maqao_content">
+<div>
+  <div id="spacer_page_title" ></div>
+  <div id="options_configuration" data-open="false" style="display:none;">
+    <h3 id="options_configuration_header">Report Configuration</h3>
+    <span style="margin-left:10px;"><label for="select_theme">Theme: </label>    <select name="theme" id="select_theme" onchange="__change_theme ()">  <option value="MAQAO_theme">MAQAO_theme</option>  <option value="darkgrey">darkgrey</option>  <option value="cyan">cyan</option></select></span>    <span style="margin-left:10px;"><label for="select_chart_theme">Chart Theme: </label>    <select name="theme" id="select_chart_theme" onchange="__change_chart_theme ()">  <option value="Default_Chart_Theme">Default_Chart_Theme</option>  <option value="grey">grey</option></select></span></div>
+</div>
+<script>
+  let theme = localStorage.getItem("__MAQAO_OV_theme__");
+  if (theme) {
+    document.getElementById("select_theme").value = theme;
+  }
+  theme = localStorage.getItem("__MAQAO_OV_chart_theme__");
+  if (theme) {
+    document.getElementById("select_chart_theme").value = theme;
+  }
+document.getElementById("spacer_page_title").style.height = (document.getElementById("page_title").clientHeight + 25)+"px";
+var obj = document.getElementById("page_title");
+if (obj) {
+  var elems = document.getElementsByClassName ("_first_menu_level")
+  if (obj.clientHeight < 90) {
+    for (var i = 0; i < elems.length; i++) {
+      elems.item(i).style.borderBottomLeftRadius = "";
+      elems.item(i).style.borderBottomRightRadius = "";
+    }
+  }
+  else {
+    for (var i = 0; i < elems.length; i++) {
+      elems.item(i).style.borderBottomLeftRadius = "10px";
+      elems.item(i).style.borderBottomRightRadius = "10px";
+    }
+  }
+}
+</script>
+<button id="button_toggle_loop_index" onclick="toggle_loop_index();" type="button" style="margin-bottom: 10px;margin-right: 10px;cursor:pointer;">Show Full Profile</button><button onclick="window.open('expert_summary.html');" type="button" style="margin-bottom: 10px;margin-right: 10px;cursor:pointer;">Open Expert Summary</button><div class="_fixed_box" ><h3 class="_header">Loops Index<span class="tooltip-maqao-button help-maqao" title="" tooltip_id="0" ></span></h3>
+<div class="_content"><div style="margin-bottom: 10px;">3 loops have been discarded from the report because their ratio ((Max Inclusive Time Over Threads * 100) / Max Thread Active Time) is lower than the threshold set by <i>object_coverage_threshold</i> (0.01%). It represents about 0.03% of the application. To include them, change the value of <i>object_coverage_threshold</i> in the experiment directory configuration file, then rerun the command with the additionnal parameter <i>--force-static-analysis</i></div><div class="_accordion_box collapsed" ><h3 id="_accordion_header_1" class="_header collapsed" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25B6;</span>Filters<span class="tooltip-maqao-button help-maqao" title="" tooltip_id="1" ></span></h3><div id="_accordion_content_1" class="_content collapsed"><form><u>Modules:</u><br style="margin-bottom:10px;">
+<input id="_input_check_all_mods" type="checkbox" style="vertical-align: middle;cursor:pointer" onchange="_onchange_modules (this)" checked ><span id="_input_check_all_mods_text">Uncheck all modules</span><br>
+<input id="_input_check_mod_miniMD_openmpi" type="checkbox" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked >miniMD_openmpi - 65.21 %<br>
+<br>
+<u>Dynamic Results:</u><br style="margin-bottom:10px;">
+<input id="_input_check_all_decan" type="checkbox" style="vertical-align: middle;cursor:pointer"><span id="_input_check_all_decan_text">Get only loops with dynamic results</span><br>
+</form><hr><button type="button" onclick="_upd_table();" style="cursor:pointer;">Filter Results</button>
+</div></div><div class="_div_table" id="_fixed_345" ><div class="_accordion_box" ><h3 id="_accordion_header_2" class="_header" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25BC;</span>Columns Filter<span class="tooltip-maqao-button help-maqao" title="" tooltip_id="2" ></span></h3><div id="_accordion_content_2" class="_content"><div style="max-height:165px;"><form>
+<span style="white-space:nowrap;display: none;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt4" onclick="click_table_menu('_table345_opt4', '_table345_opt_all', 'list_opts_table345')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="3" >Level</span></span>
+<span style="white-space:nowrap;display: none;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt5" onclick="click_table_menu('_table345_opt5', '_table345_opt_all', 'list_opts_table345')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked  ><span class="tooltip-maqao" title="" tooltip_id="4" >Max Thread Time / Walltime run_0 (%)</span></span>
+<span style="white-space:nowrap;display: none;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt6" onclick="click_table_menu('_table345_opt6', '_table345_opt_all', 'list_opts_table345')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked  ><span class="tooltip-maqao" title="" tooltip_id="5" >Exclusive Coverage run_0 (%)</span></span>
+<span style="white-space:nowrap;display: none;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt7" onclick="click_table_menu('_table345_opt7', '_table345_opt_all', 'list_opts_table345')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="6" >Inclusive Coverage run_0 (%)</span></span>
+<span style="white-space:nowrap;display: none;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt8" onclick="click_table_menu('_table345_opt8', '_table345_opt_all', 'list_opts_table345')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked  ><span class="tooltip-maqao" title="" tooltip_id="7" >Max Exclusive Time Over Threads run_0 (s)</span></span>
+<span style="white-space:nowrap;display: none;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt9" onclick="click_table_menu('_table345_opt9', '_table345_opt_all', 'list_opts_table345')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="8" >Max Inclusive Time Over Threads run_0 (s)</span></span>
+<span style="white-space:nowrap;display: none;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt10" onclick="click_table_menu('_table345_opt10', '_table345_opt_all', 'list_opts_table345')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="9" >Exclusive Time w.r.t. Wall Time run_0 (s)</span></span>
+<span style="white-space:nowrap;display: none;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt11" onclick="click_table_menu('_table345_opt11', '_table345_opt_all', 'list_opts_table345')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="10" >Inclusive Time w.r.t. Wall Time run_0 (s)</span></span>
+<span style="white-space:nowrap;display: none;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt12" onclick="click_table_menu('_table345_opt12', '_table345_opt_all', 'list_opts_table345')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked  ><span class="tooltip-maqao" title="" tooltip_id="11" >Nb Threads run_0</span></span>
+<span style="white-space:nowrap;display: none;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt13" onclick="click_table_menu('_table345_opt13', '_table345_opt_all', 'list_opts_table345')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked  ><span class="tooltip-maqao" title="" tooltip_id="12" >Vectorization Ratio (%)</span></span>
+<span style="white-space:nowrap;display: none;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt14" onclick="click_table_menu('_table345_opt14', '_table345_opt_all', 'list_opts_table345')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked  ><span class="tooltip-maqao" title="" tooltip_id="13" >Vector Length Use (%)</span></span>
+<span style="white-space:nowrap;display: none;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt15" onclick="click_table_menu('_table345_opt15', '_table345_opt_all', 'list_opts_table345')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="14" >Speedup If No Scalar Integer</span></span>
+<span style="white-space:nowrap;display: none;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt16" onclick="click_table_menu('_table345_opt16', '_table345_opt_all', 'list_opts_table345')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="15" >Speedup If FP Vectorized</span></span>
+<span style="white-space:nowrap;display: none;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt17" onclick="click_table_menu('_table345_opt17', '_table345_opt_all', 'list_opts_table345')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="16" >Speedup If Fully Vectorized</span></span>
+<span style="white-space:nowrap;display: none;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt18" onclick="click_table_menu('_table345_opt18', '_table345_opt_all', 'list_opts_table345')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" ><span class="tooltip-maqao" title="" tooltip_id="17" >Speedup If Perfect Load Balancing run_0</span></span>
+<span style="white-space:nowrap;display: none;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt19" onclick="click_table_menu('_table345_opt19', '_table345_opt_all', 'list_opts_table345')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" >Stride 0</span>
+<span style="white-space:nowrap;display: none;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt20" onclick="click_table_menu('_table345_opt20', '_table345_opt_all', 'list_opts_table345')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" >Stride 1</span>
+<span style="white-space:nowrap;display: none;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt21" onclick="click_table_menu('_table345_opt21', '_table345_opt_all', 'list_opts_table345')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" >Stride n</span>
+<span style="white-space:nowrap;display: none;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt22" onclick="click_table_menu('_table345_opt22', '_table345_opt_all', 'list_opts_table345')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" >Stride Unknown</span>
+<span style="white-space:nowrap;display: none;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt23" onclick="click_table_menu('_table345_opt23', '_table345_opt_all', 'list_opts_table345')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" >Stride Indirect</span>
+<span style="white-space:nowrap;display: none;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt24" onclick="click_table_menu('_table345_opt24', '_table345_opt_all', 'list_opts_table345')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" >Array Access Efficiency</span>
+<span style='white-space:nowrap;'><input class="input_check_table_menu" type="button" id="_table345_opt_all" onclick="set_all_table_menu(this, 'list_opts_table345')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" value="Select all"></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt_cust_1" onclick="click_table_custom(_table345_opt_cust_1, '_table345', [_table345_opt4])" style="margin-left: 30px;vertical-align: middle;cursor:pointer;">Level</span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt_cust_2" onclick="click_table_custom(_table345_opt_cust_2, '_table345', [_table345_opt5])" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked >Max Thread Time / Walltime</span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt_cust_3" onclick="click_table_custom(_table345_opt_cust_3, '_table345', [_table345_opt6])" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked >Exclusive Coverage</span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt_cust_4" onclick="click_table_custom(_table345_opt_cust_4, '_table345', [_table345_opt7])" style="margin-left: 30px;vertical-align: middle;cursor:pointer;">Inclusive Coverage</span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt_cust_5" onclick="click_table_custom(_table345_opt_cust_5, '_table345', [_table345_opt8])" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked >Max Exclusive Time Over Threads</span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt_cust_6" onclick="click_table_custom(_table345_opt_cust_6, '_table345', [_table345_opt9])" style="margin-left: 30px;vertical-align: middle;cursor:pointer;">Max Inclusive Time Over Threads</span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt_cust_7" onclick="click_table_custom(_table345_opt_cust_7, '_table345', [_table345_opt10])" style="margin-left: 30px;vertical-align: middle;cursor:pointer;">Exclusive Time w.r.t. Wall Time</span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt_cust_8" onclick="click_table_custom(_table345_opt_cust_8, '_table345', [_table345_opt11])" style="margin-left: 30px;vertical-align: middle;cursor:pointer;">Inclusive Time w.r.t. Wall Time</span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt_cust_9" onclick="click_table_custom(_table345_opt_cust_9, '_table345', [_table345_opt12])" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked >Nb Threads</span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt_cust_10" onclick="click_table_custom(_table345_opt_cust_10, '_table345', [_table345_opt13])" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked >Vectorization Ratio</span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt_cust_11" onclick="click_table_custom(_table345_opt_cust_11, '_table345', [_table345_opt14])" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked >Vector Length Use</span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt_cust_12" onclick="click_table_custom(_table345_opt_cust_12, '_table345', [_table345_opt15])" style="margin-left: 30px;vertical-align: middle;cursor:pointer;">Speedup If No Scalar Integer</span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt_cust_13" onclick="click_table_custom(_table345_opt_cust_13, '_table345', [_table345_opt16])" style="margin-left: 30px;vertical-align: middle;cursor:pointer;">Speedup If FP Vectorized</span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt_cust_14" onclick="click_table_custom(_table345_opt_cust_14, '_table345', [_table345_opt17])" style="margin-left: 30px;vertical-align: middle;cursor:pointer;">Speedup If Fully Vectorized</span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt_cust_15" onclick="click_table_custom(_table345_opt_cust_15, '_table345', [_table345_opt18])" style="margin-left: 30px;vertical-align: middle;cursor:pointer;">Speedup If Perfect Load Balancing</span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt_cust_16" onclick="click_table_custom(_table345_opt_cust_16, '_table345', [_table345_opt19])" style="margin-left: 30px;vertical-align: middle;cursor:pointer;">Stride 0</span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt_cust_17" onclick="click_table_custom(_table345_opt_cust_17, '_table345', [_table345_opt20])" style="margin-left: 30px;vertical-align: middle;cursor:pointer;">Stride 1</span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt_cust_18" onclick="click_table_custom(_table345_opt_cust_18, '_table345', [_table345_opt21])" style="margin-left: 30px;vertical-align: middle;cursor:pointer;">Stride n</span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt_cust_19" onclick="click_table_custom(_table345_opt_cust_19, '_table345', [_table345_opt22])" style="margin-left: 30px;vertical-align: middle;cursor:pointer;">Stride Unknown</span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt_cust_20" onclick="click_table_custom(_table345_opt_cust_20, '_table345', [_table345_opt23])" style="margin-left: 30px;vertical-align: middle;cursor:pointer;">Stride Indirect</span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table345_opt_cust_21" onclick="click_table_custom(_table345_opt_cust_21, '_table345', [_table345_opt24])" style="margin-left: 30px;vertical-align: middle;cursor:pointer;">Array Access Efficiency</span>
+</form></div>
+</div></div><div style="overflow:auto;">
+<input class='downloadCSVButton' id='save_button_345' type='button' value='Download table as CSV' onclick='downloadFileAsCSV(_fixed_table_345)' />
+<table class="_fixed_table" id="_fixed_table_345"><tr><th class="_freezed_row  _left _freezed_col tooltip-maqao" title="" tooltip_id="18"><span></span>Loop id</th><th class="_freezed_row  tooltip-maqao" title="" tooltip_id="19"><span></span>Source Location</th><th class="_freezed_row  tooltip-maqao" title="" tooltip_id="20"><span></span>Source Function</th><th class="_freezed_row  _table345_opt4 _tcol_hidden tooltip-maqao" title="" tooltip_id="21"><span></span>Level</th><th class="_freezed_row  _table345_opt5 tooltip-maqao" title="" tooltip_id="22"><span></span>Max Thread Time / Walltime run_0 (%)</th><th class="_freezed_row  _table345_opt6 tooltip-maqao" title="" tooltip_id="23"><span></span>Exclusive Coverage run_0 (%)</th><th class="_freezed_row  _table345_opt7 _tcol_hidden tooltip-maqao" title="" tooltip_id="24"><span></span>Inclusive Coverage run_0 (%)</th><th class="_freezed_row  _table345_opt8 tooltip-maqao" title="" tooltip_id="25"><span></span>Max Exclusive Time Over Threads run_0 (s)</th><th class="_freezed_row  _table345_opt9 _tcol_hidden tooltip-maqao" title="" tooltip_id="26"><span></span>Max Inclusive Time Over Threads run_0 (s)</th><th class="_freezed_row  _table345_opt10 _tcol_hidden tooltip-maqao" title="" tooltip_id="27"><span></span>Exclusive Time w.r.t. Wall Time run_0 (s)</th><th class="_freezed_row  _table345_opt11 _tcol_hidden tooltip-maqao" title="" tooltip_id="28"><span></span>Inclusive Time w.r.t. Wall Time run_0 (s)</th><th class="_freezed_row  _table345_opt12 tooltip-maqao" title="" tooltip_id="29"><span></span>Nb Threads run_0</th><th class="_freezed_row  _table345_opt13 tooltip-maqao" title="" tooltip_id="30"><span></span>Vectorization Ratio (%)</th><th class="_freezed_row  _table345_opt14 tooltip-maqao" title="" tooltip_id="31"><span></span>Vector Length Use (%)</th><th class="_freezed_row  _table345_opt15 _tcol_hidden tooltip-maqao" title="" tooltip_id="32"><span></span>Speedup If No Scalar Integer</th><th class="_freezed_row  _table345_opt16 _tcol_hidden tooltip-maqao" title="" tooltip_id="33"><span></span>Speedup If FP Vectorized</th><th class="_freezed_row  _table345_opt17 _tcol_hidden tooltip-maqao" title="" tooltip_id="34"><span></span>Speedup If Fully Vectorized</th><th class="_freezed_row  _table345_opt18 _tcol_hidden tooltip-maqao" title="" tooltip_id="35"><span></span>Speedup If Perfect Load Balancing run_0</th><th class="_freezed_row  _table345_opt19 _tcol_hidden"><span></span>Stride 0</th><th class="_freezed_row  _table345_opt20 _tcol_hidden"><span></span>Stride 1</th><th class="_freezed_row  _table345_opt21 _tcol_hidden"><span></span>Stride n</th><th class="_freezed_row  _table345_opt22 _tcol_hidden"><span></span>Stride Unknown</th><th class="_freezed_row  _table345_opt23 _tcol_hidden"><span></span>Stride Indirect</th><th class="_freezed_row  _table345_opt24 _tcol_hidden"><span></span>Array Access Efficiency</th></tr><tr id="_tr_345_1"  ondblclick="_action_267(this,1,-1, 'loops/miniMD_openmpi_56.html');"  style="cursor:pointer;"><td id="_td_345_1_1"  data-_i="1" data-_j="1"  data-_p = "miniMD_openmpi_56"  class=" _left _freezed_col  _centered" >56</td><td id="_td_345_1_2"  data-_i="1" data-_j="2"  data-_p = "miniMD_openmpi_56"  style="word-break:break-all;" >miniMD_openmpi - force_lj.cpp:221-242</td><td id="_td_345_1_3"  data-_i="1" data-_j="3"  data-_p = "miniMD_openmpi_56"  style="word-break:break-all;" >ForceLJ::compute(Atom&amp;, Neighbor&amp;, Comm&amp;, int)</td><td id="_td_345_1_4"  data-_i="1" data-_j="4"  data-_p = "miniMD_openmpi_56"  class=" _centered _table345_opt4 _tcol_hidden" >Innermost</td><td id="_td_345_1_5"  data-_i="1" data-_j="5"  data-_p = "miniMD_openmpi_56"  class=" _centered _table345_opt5" >39.09</td><td id="_td_345_1_6"  data-_i="1" data-_j="6"  data-_p = "miniMD_openmpi_56"  class=" _centered _table345_opt6"  style="background:#E9442F;" >39.25</td><td id="_td_345_1_7"  data-_i="1" data-_j="7"  data-_p = "miniMD_openmpi_56"  class=" _centered _table345_opt7 _tcol_hidden" >39.25</td><td id="_td_345_1_8"  data-_i="1" data-_j="8"  data-_p = "miniMD_openmpi_56"  class=" _centered _table345_opt8" >24.27</td><td id="_td_345_1_9"  data-_i="1" data-_j="9"  data-_p = "miniMD_openmpi_56"  class=" _centered _table345_opt9 _tcol_hidden" >24.27</td><td id="_td_345_1_10"  data-_i="1" data-_j="10"  data-_p = "miniMD_openmpi_56"  class=" _centered _table345_opt10 _tcol_hidden" >24.27</td><td id="_td_345_1_11"  data-_i="1" data-_j="11"  data-_p = "miniMD_openmpi_56"  class=" _centered _table345_opt11 _tcol_hidden" >24.27</td><td id="_td_345_1_12"  data-_i="1" data-_j="12"  data-_p = "miniMD_openmpi_56"  class=" _centered _table345_opt12" >1</td><td id="_td_345_1_13"  data-_i="1" data-_j="13"  data-_p = "miniMD_openmpi_56"  class=" _centered _table345_opt13"  style="background:#FF3333" >30.3</td><td id="_td_345_1_14"  data-_i="1" data-_j="14"  data-_p = "miniMD_openmpi_56"  class=" _centered _table345_opt14"  style="background:#FF3333" >16.29</td><td id="_td_345_1_15"  data-_i="1" data-_j="15"  data-_p = "miniMD_openmpi_56"  class=" _centered _table345_opt15 _tcol_hidden" >1.05</td><td id="_td_345_1_16"  data-_i="1" data-_j="16"  data-_p = "miniMD_openmpi_56"  class=" _centered _table345_opt16 _tcol_hidden"  style="background:#FF950E" >2.18</td><td id="_td_345_1_17"  data-_i="1" data-_j="17"  data-_p = "miniMD_openmpi_56"  class=" _centered _table345_opt17 _tcol_hidden"  style="background:#FF950E" >5.81</td><td id="_td_345_1_18"  data-_i="1" data-_j="18"  data-_p = "miniMD_openmpi_56"  class=" _centered _table345_opt18 _tcol_hidden" >1</td><td id="_td_345_1_19"  data-_i="1" data-_j="19"  data-_p = "miniMD_openmpi_56"  class=" _centered _table345_opt19 _tcol_hidden" >3</td><td id="_td_345_1_20"  data-_i="1" data-_j="20"  data-_p = "miniMD_openmpi_56"  class=" _centered _table345_opt20 _tcol_hidden" >1</td><td id="_td_345_1_21"  data-_i="1" data-_j="21"  data-_p = "miniMD_openmpi_56"  class=" _centered _table345_opt21 _tcol_hidden" >0</td><td id="_td_345_1_22"  data-_i="1" data-_j="22"  data-_p = "miniMD_openmpi_56"  class=" _centered _table345_opt22 _tcol_hidden" >0</td><td id="_td_345_1_23"  data-_i="1" data-_j="23"  data-_p = "miniMD_openmpi_56"  class=" _centered _table345_opt23 _tcol_hidden" >3</td><td id="_td_345_1_24"  data-_i="1" data-_j="24"  data-_p = "miniMD_openmpi_56"  class=" _centered _table345_opt24 _tcol_hidden" >57.78</td></tr>
+<tr id="_tr_345_2"  ondblclick="_action_267(this,2,-1, 'loops/miniMD_openmpi_155.html');"  style="cursor:pointer;"><td id="_td_345_2_1"  data-_i="2" data-_j="1"  data-_p = "miniMD_openmpi_155"  class=" _left _freezed_col  _centered" >155</td><td id="_td_345_2_2"  data-_i="2" data-_j="2"  data-_p = "miniMD_openmpi_155"  style="word-break:break-all;" >miniMD_openmpi - neighbor.cpp:168-179</td><td id="_td_345_2_3"  data-_i="2" data-_j="3"  data-_p = "miniMD_openmpi_155"  style="word-break:break-all;" >Neighbor::build(Atom&amp;)</td><td id="_td_345_2_4"  data-_i="2" data-_j="4"  data-_p = "miniMD_openmpi_155"  class=" _centered _table345_opt4 _tcol_hidden" >Innermost</td><td id="_td_345_2_5"  data-_i="2" data-_j="5"  data-_p = "miniMD_openmpi_155"  class=" _centered _table345_opt5" >14.66</td><td id="_td_345_2_6"  data-_i="2" data-_j="6"  data-_p = "miniMD_openmpi_155"  class=" _centered _table345_opt6"  style="background:#D05652;" >14.72</td><td id="_td_345_2_7"  data-_i="2" data-_j="7"  data-_p = "miniMD_openmpi_155"  class=" _centered _table345_opt7 _tcol_hidden" >14.72</td><td id="_td_345_2_8"  data-_i="2" data-_j="8"  data-_p = "miniMD_openmpi_155"  class=" _centered _table345_opt8" >9.10</td><td id="_td_345_2_9"  data-_i="2" data-_j="9"  data-_p = "miniMD_openmpi_155"  class=" _centered _table345_opt9 _tcol_hidden" >9.10</td><td id="_td_345_2_10"  data-_i="2" data-_j="10"  data-_p = "miniMD_openmpi_155"  class=" _centered _table345_opt10 _tcol_hidden" >9.10</td><td id="_td_345_2_11"  data-_i="2" data-_j="11"  data-_p = "miniMD_openmpi_155"  class=" _centered _table345_opt11 _tcol_hidden" >9.10</td><td id="_td_345_2_12"  data-_i="2" data-_j="12"  data-_p = "miniMD_openmpi_155"  class=" _centered _table345_opt12" >1</td><td id="_td_345_2_13"  data-_i="2" data-_j="13"  data-_p = "miniMD_openmpi_155"  class=" _centered _table345_opt13"  style="background:#FF3333" >20</td><td id="_td_345_2_14"  data-_i="2" data-_j="14"  data-_p = "miniMD_openmpi_155"  class=" _centered _table345_opt14"  style="background:#FF3333" >12.92</td><td id="_td_345_2_15"  data-_i="2" data-_j="15"  data-_p = "miniMD_openmpi_155"  class=" _centered _table345_opt15 _tcol_hidden"  style="background:#FFCC99" >1.61</td><td id="_td_345_2_16"  data-_i="2" data-_j="16"  data-_p = "miniMD_openmpi_155"  class=" _centered _table345_opt16 _tcol_hidden"  style="background:#FF950E" >2.68</td><td id="_td_345_2_17"  data-_i="2" data-_j="17"  data-_p = "miniMD_openmpi_155"  class=" _centered _table345_opt17 _tcol_hidden"  style="background:#FF950E" >10.98</td><td id="_td_345_2_18"  data-_i="2" data-_j="18"  data-_p = "miniMD_openmpi_155"  class=" _centered _table345_opt18 _tcol_hidden" >1</td><td id="_td_345_2_19"  data-_i="2" data-_j="19"  data-_p = "miniMD_openmpi_155"  class=" _centered _table345_opt19 _tcol_hidden" >NA</td><td id="_td_345_2_20"  data-_i="2" data-_j="20"  data-_p = "miniMD_openmpi_155"  class=" _centered _table345_opt20 _tcol_hidden" >NA</td><td id="_td_345_2_21"  data-_i="2" data-_j="21"  data-_p = "miniMD_openmpi_155"  class=" _centered _table345_opt21 _tcol_hidden" >NA</td><td id="_td_345_2_22"  data-_i="2" data-_j="22"  data-_p = "miniMD_openmpi_155"  class=" _centered _table345_opt22 _tcol_hidden" >NA</td><td id="_td_345_2_23"  data-_i="2" data-_j="23"  data-_p = "miniMD_openmpi_155"  class=" _centered _table345_opt23 _tcol_hidden" >NA</td><td id="_td_345_2_24"  data-_i="2" data-_j="24"  data-_p = "miniMD_openmpi_155"  class=" _centered _table345_opt24 _tcol_hidden" >0.00</td></tr>
+<tr id="_tr_345_3"  ondblclick="_action_267(this,3,-1, 'loops/miniMD_openmpi_92.html');"  style="cursor:pointer;"><td id="_td_345_3_1"  data-_i="3" data-_j="1"  data-_p = "miniMD_openmpi_92"  class=" _left _freezed_col  _centered" >92</td><td id="_td_345_3_2"  data-_i="3" data-_j="2"  data-_p = "miniMD_openmpi_92"  style="word-break:break-all;" >miniMD_openmpi - force_lj.cpp:221-248</td><td id="_td_345_3_3"  data-_i="3" data-_j="3"  data-_p = "miniMD_openmpi_92"  style="word-break:break-all;" >ForceLJ::compute(Atom&amp;, Neighbor&amp;, Comm&amp;, int)</td><td id="_td_345_3_4"  data-_i="3" data-_j="4"  data-_p = "miniMD_openmpi_92"  class=" _centered _table345_opt4 _tcol_hidden" >Innermost</td><td id="_td_345_3_5"  data-_i="3" data-_j="5"  data-_p = "miniMD_openmpi_92"  class=" _centered _table345_opt5" >4.54</td><td id="_td_345_3_6"  data-_i="3" data-_j="6"  data-_p = "miniMD_openmpi_92"  class=" _centered _table345_opt6"  style="background:#947FA5;" >4.56</td><td id="_td_345_3_7"  data-_i="3" data-_j="7"  data-_p = "miniMD_openmpi_92"  class=" _centered _table345_opt7 _tcol_hidden" >4.56</td><td id="_td_345_3_8"  data-_i="3" data-_j="8"  data-_p = "miniMD_openmpi_92"  class=" _centered _table345_opt8" >2.82</td><td id="_td_345_3_9"  data-_i="3" data-_j="9"  data-_p = "miniMD_openmpi_92"  class=" _centered _table345_opt9 _tcol_hidden" >2.82</td><td id="_td_345_3_10"  data-_i="3" data-_j="10"  data-_p = "miniMD_openmpi_92"  class=" _centered _table345_opt10 _tcol_hidden" >2.82</td><td id="_td_345_3_11"  data-_i="3" data-_j="11"  data-_p = "miniMD_openmpi_92"  class=" _centered _table345_opt11 _tcol_hidden" >2.82</td><td id="_td_345_3_12"  data-_i="3" data-_j="12"  data-_p = "miniMD_openmpi_92"  class=" _centered _table345_opt12" >1</td><td id="_td_345_3_13"  data-_i="3" data-_j="13"  data-_p = "miniMD_openmpi_92"  class=" _centered _table345_opt13"  style="background:#FF3333" >27.92</td><td id="_td_345_3_14"  data-_i="3" data-_j="14"  data-_p = "miniMD_openmpi_92"  class=" _centered _table345_opt14"  style="background:#FF3333" >15.99</td><td id="_td_345_3_15"  data-_i="3" data-_j="15"  data-_p = "miniMD_openmpi_92"  class=" _centered _table345_opt15 _tcol_hidden" >1.05</td><td id="_td_345_3_16"  data-_i="3" data-_j="16"  data-_p = "miniMD_openmpi_92"  class=" _centered _table345_opt16 _tcol_hidden"  style="background:#FF950E" >2.36</td><td id="_td_345_3_17"  data-_i="3" data-_j="17"  data-_p = "miniMD_openmpi_92"  class=" _centered _table345_opt17 _tcol_hidden"  style="background:#FF950E" >6.5</td><td id="_td_345_3_18"  data-_i="3" data-_j="18"  data-_p = "miniMD_openmpi_92"  class=" _centered _table345_opt18 _tcol_hidden" >1</td><td id="_td_345_3_19"  data-_i="3" data-_j="19"  data-_p = "miniMD_openmpi_92"  class=" _centered _table345_opt19 _tcol_hidden" >3.5</td><td id="_td_345_3_20"  data-_i="3" data-_j="20"  data-_p = "miniMD_openmpi_92"  class=" _centered _table345_opt20 _tcol_hidden" >1</td><td id="_td_345_3_21"  data-_i="3" data-_j="21"  data-_p = "miniMD_openmpi_92"  class=" _centered _table345_opt21 _tcol_hidden" >0</td><td id="_td_345_3_22"  data-_i="3" data-_j="22"  data-_p = "miniMD_openmpi_92"  class=" _centered _table345_opt22 _tcol_hidden" >0.5</td><td id="_td_345_3_23"  data-_i="3" data-_j="23"  data-_p = "miniMD_openmpi_92"  class=" _centered _table345_opt23 _tcol_hidden" >2.5</td><td id="_td_345_3_24"  data-_i="3" data-_j="24"  data-_p = "miniMD_openmpi_92"  class=" _centered _table345_opt24 _tcol_hidden" >62.50</td></tr>
+<tr id="_tr_345_4"  ondblclick="_action_267(this,4,-1, 'loops/miniMD_openmpi_153.html');"  style="cursor:pointer;"><td id="_td_345_4_1"  data-_i="4" data-_j="1"  data-_p = "miniMD_openmpi_153"  class=" _left _freezed_col  _centered" >153</td><td id="_td_345_4_2"  data-_i="4" data-_j="2"  data-_p = "miniMD_openmpi_153"  style="word-break:break-all;" >miniMD_openmpi - neighbor.cpp:144-179</td><td id="_td_345_4_3"  data-_i="4" data-_j="3"  data-_p = "miniMD_openmpi_153"  style="word-break:break-all;" >Neighbor::build(Atom&amp;)</td><td id="_td_345_4_4"  data-_i="4" data-_j="4"  data-_p = "miniMD_openmpi_153"  class=" _centered _table345_opt4 _tcol_hidden" >InBetween</td><td id="_td_345_4_5"  data-_i="4" data-_j="5"  data-_p = "miniMD_openmpi_153"  class=" _centered _table345_opt5" >1.39</td><td id="_td_345_4_6"  data-_i="4" data-_j="6"  data-_p = "miniMD_openmpi_153"  class=" _centered _table345_opt6"  style="background:#947FA5;" >1.40</td><td id="_td_345_4_7"  data-_i="4" data-_j="7"  data-_p = "miniMD_openmpi_153"  class=" _centered _table345_opt7 _tcol_hidden" >16.53</td><td id="_td_345_4_8"  data-_i="4" data-_j="8"  data-_p = "miniMD_openmpi_153"  class=" _centered _table345_opt8" >0.86</td><td id="_td_345_4_9"  data-_i="4" data-_j="9"  data-_p = "miniMD_openmpi_153"  class=" _centered _table345_opt9 _tcol_hidden" >10.22</td><td id="_td_345_4_10"  data-_i="4" data-_j="10"  data-_p = "miniMD_openmpi_153"  class=" _centered _table345_opt10 _tcol_hidden" >0.87</td><td id="_td_345_4_11"  data-_i="4" data-_j="11"  data-_p = "miniMD_openmpi_153"  class=" _centered _table345_opt11 _tcol_hidden" >10.22</td><td id="_td_345_4_12"  data-_i="4" data-_j="12"  data-_p = "miniMD_openmpi_153"  class=" _centered _table345_opt12" >1</td><td id="_td_345_4_13"  data-_i="4" data-_j="13"  data-_p = "miniMD_openmpi_153"  class=" _centered _table345_opt13"  style="background:#FF3333" >0</td><td id="_td_345_4_14"  data-_i="4" data-_j="14"  data-_p = "miniMD_openmpi_153"  class=" _centered _table345_opt14"  style="background:#FF3333" >7.59</td><td id="_td_345_4_15"  data-_i="4" data-_j="15"  data-_p = "miniMD_openmpi_153"  class=" _centered _table345_opt15 _tcol_hidden" >1</td><td id="_td_345_4_16"  data-_i="4" data-_j="16"  data-_p = "miniMD_openmpi_153"  class=" _centered _table345_opt16 _tcol_hidden" >1</td><td id="_td_345_4_17"  data-_i="4" data-_j="17"  data-_p = "miniMD_openmpi_153"  class=" _centered _table345_opt17 _tcol_hidden"  style="background:#FF950E" >14.74</td><td id="_td_345_4_18"  data-_i="4" data-_j="18"  data-_p = "miniMD_openmpi_153"  class=" _centered _table345_opt18 _tcol_hidden" >1</td><td id="_td_345_4_19"  data-_i="4" data-_j="19"  data-_p = "miniMD_openmpi_153"  class=" _centered _table345_opt19 _tcol_hidden" >NA</td><td id="_td_345_4_20"  data-_i="4" data-_j="20"  data-_p = "miniMD_openmpi_153"  class=" _centered _table345_opt20 _tcol_hidden" >NA</td><td id="_td_345_4_21"  data-_i="4" data-_j="21"  data-_p = "miniMD_openmpi_153"  class=" _centered _table345_opt21 _tcol_hidden" >NA</td><td id="_td_345_4_22"  data-_i="4" data-_j="22"  data-_p = "miniMD_openmpi_153"  class=" _centered _table345_opt22 _tcol_hidden" >NA</td><td id="_td_345_4_23"  data-_i="4" data-_j="23"  data-_p = "miniMD_openmpi_153"  class=" _centered _table345_opt23 _tcol_hidden" >NA</td><td id="_td_345_4_24"  data-_i="4" data-_j="24"  data-_p = "miniMD_openmpi_153"  class=" _centered _table345_opt24 _tcol_hidden" >0.00</td></tr>
+<tr id="_tr_345_5"  ondblclick="_action_267(this,5,-1, 'loops/miniMD_openmpi_11.html');"  style="cursor:pointer;"><td id="_td_345_5_1"  data-_i="5" data-_j="1"  data-_p = "miniMD_openmpi_11"  class=" _left _freezed_col  _centered" >11</td><td id="_td_345_5_2"  data-_i="5" data-_j="2"  data-_p = "miniMD_openmpi_11"  style="word-break:break-all;" >miniMD_openmpi - integrate.cpp:50-55</td><td id="_td_345_5_3"  data-_i="5" data-_j="3"  data-_p = "miniMD_openmpi_11"  style="word-break:break-all;" >Integrate::initialIntegrate()</td><td id="_td_345_5_4"  data-_i="5" data-_j="4"  data-_p = "miniMD_openmpi_11"  class=" _centered _table345_opt4 _tcol_hidden" >Single</td><td id="_td_345_5_5"  data-_i="5" data-_j="5"  data-_p = "miniMD_openmpi_11"  class=" _centered _table345_opt5" >1.31</td><td id="_td_345_5_6"  data-_i="5" data-_j="6"  data-_p = "miniMD_openmpi_11"  class=" _centered _table345_opt6"  style="background:#947FA5;" >1.32</td><td id="_td_345_5_7"  data-_i="5" data-_j="7"  data-_p = "miniMD_openmpi_11"  class=" _centered _table345_opt7 _tcol_hidden" >1.32</td><td id="_td_345_5_8"  data-_i="5" data-_j="8"  data-_p = "miniMD_openmpi_11"  class=" _centered _table345_opt8" >0.81</td><td id="_td_345_5_9"  data-_i="5" data-_j="9"  data-_p = "miniMD_openmpi_11"  class=" _centered _table345_opt9 _tcol_hidden" >0.81</td><td id="_td_345_5_10"  data-_i="5" data-_j="10"  data-_p = "miniMD_openmpi_11"  class=" _centered _table345_opt10 _tcol_hidden" >0.81</td><td id="_td_345_5_11"  data-_i="5" data-_j="11"  data-_p = "miniMD_openmpi_11"  class=" _centered _table345_opt11 _tcol_hidden" >0.81</td><td id="_td_345_5_12"  data-_i="5" data-_j="12"  data-_p = "miniMD_openmpi_11"  class=" _centered _table345_opt12" >1</td><td id="_td_345_5_13"  data-_i="5" data-_j="13"  data-_p = "miniMD_openmpi_11"  class=" _centered _table345_opt13"  style="background:#66cc00" >100</td><td id="_td_345_5_14"  data-_i="5" data-_j="14"  data-_p = "miniMD_openmpi_11"  class=" _centered _table345_opt14"  style="background:#FF3333" >39.18</td><td id="_td_345_5_15"  data-_i="5" data-_j="15"  data-_p = "miniMD_openmpi_11"  class=" _centered _table345_opt15 _tcol_hidden" >1</td><td id="_td_345_5_16"  data-_i="5" data-_j="16"  data-_p = "miniMD_openmpi_11"  class=" _centered _table345_opt16 _tcol_hidden" >1</td><td id="_td_345_5_17"  data-_i="5" data-_j="17"  data-_p = "miniMD_openmpi_11"  class=" _centered _table345_opt17 _tcol_hidden"  style="background:#FF950E" >3.23</td><td id="_td_345_5_18"  data-_i="5" data-_j="18"  data-_p = "miniMD_openmpi_11"  class=" _centered _table345_opt18 _tcol_hidden" >1</td><td id="_td_345_5_19"  data-_i="5" data-_j="19"  data-_p = "miniMD_openmpi_11"  class=" _centered _table345_opt19 _tcol_hidden" >0</td><td id="_td_345_5_20"  data-_i="5" data-_j="20"  data-_p = "miniMD_openmpi_11"  class=" _centered _table345_opt20 _tcol_hidden" >2</td><td id="_td_345_5_21"  data-_i="5" data-_j="21"  data-_p = "miniMD_openmpi_11"  class=" _centered _table345_opt21 _tcol_hidden" >3</td><td id="_td_345_5_22"  data-_i="5" data-_j="22"  data-_p = "miniMD_openmpi_11"  class=" _centered _table345_opt22 _tcol_hidden" >0</td><td id="_td_345_5_23"  data-_i="5" data-_j="23"  data-_p = "miniMD_openmpi_11"  class=" _centered _table345_opt23 _tcol_hidden" >0</td><td id="_td_345_5_24"  data-_i="5" data-_j="24"  data-_p = "miniMD_openmpi_11"  class=" _centered _table345_opt24 _tcol_hidden" >85.00</td></tr>
+<tr id="_tr_345_6"  ondblclick="_action_267(this,6,-1, 'loops/miniMD_openmpi_13.html');"  style="cursor:pointer;"><td id="_td_345_6_1"  data-_i="6" data-_j="1"  data-_p = "miniMD_openmpi_13"  class=" _left _freezed_col  _centered" >13</td><td id="_td_345_6_2"  data-_i="6" data-_j="2"  data-_p = "miniMD_openmpi_13"  style="word-break:break-all;" >miniMD_openmpi - integrate.cpp:63-65</td><td id="_td_345_6_3"  data-_i="6" data-_j="3"  data-_p = "miniMD_openmpi_13"  style="word-break:break-all;" >Integrate::finalIntegrate()</td><td id="_td_345_6_4"  data-_i="6" data-_j="4"  data-_p = "miniMD_openmpi_13"  class=" _centered _table345_opt4 _tcol_hidden" >Single</td><td id="_td_345_6_5"  data-_i="6" data-_j="5"  data-_p = "miniMD_openmpi_13"  class=" _centered _table345_opt5" >0.75</td><td id="_td_345_6_6"  data-_i="6" data-_j="6"  data-_p = "miniMD_openmpi_13"  class=" _centered _table345_opt6"  style="background:#7B90C8;" >0.75</td><td id="_td_345_6_7"  data-_i="6" data-_j="7"  data-_p = "miniMD_openmpi_13"  class=" _centered _table345_opt7 _tcol_hidden" >0.75</td><td id="_td_345_6_8"  data-_i="6" data-_j="8"  data-_p = "miniMD_openmpi_13"  class=" _centered _table345_opt8" >0.47</td><td id="_td_345_6_9"  data-_i="6" data-_j="9"  data-_p = "miniMD_openmpi_13"  class=" _centered _table345_opt9 _tcol_hidden" >0.47</td><td id="_td_345_6_10"  data-_i="6" data-_j="10"  data-_p = "miniMD_openmpi_13"  class=" _centered _table345_opt10 _tcol_hidden" >0.47</td><td id="_td_345_6_11"  data-_i="6" data-_j="11"  data-_p = "miniMD_openmpi_13"  class=" _centered _table345_opt11 _tcol_hidden" >0.47</td><td id="_td_345_6_12"  data-_i="6" data-_j="12"  data-_p = "miniMD_openmpi_13"  class=" _centered _table345_opt12" >1</td><td id="_td_345_6_13"  data-_i="6" data-_j="13"  data-_p = "miniMD_openmpi_13"  class=" _centered _table345_opt13"  style="background:#66cc00" >100</td><td id="_td_345_6_14"  data-_i="6" data-_j="14"  data-_p = "miniMD_openmpi_13"  class=" _centered _table345_opt14"  style="background:#FF3333" >38.71</td><td id="_td_345_6_15"  data-_i="6" data-_j="15"  data-_p = "miniMD_openmpi_13"  class=" _centered _table345_opt15 _tcol_hidden" >1</td><td id="_td_345_6_16"  data-_i="6" data-_j="16"  data-_p = "miniMD_openmpi_13"  class=" _centered _table345_opt16 _tcol_hidden" >1</td><td id="_td_345_6_17"  data-_i="6" data-_j="17"  data-_p = "miniMD_openmpi_13"  class=" _centered _table345_opt17 _tcol_hidden"  style="background:#FF950E" >3.22</td><td id="_td_345_6_18"  data-_i="6" data-_j="18"  data-_p = "miniMD_openmpi_13"  class=" _centered _table345_opt18 _tcol_hidden" >1</td><td id="_td_345_6_19"  data-_i="6" data-_j="19"  data-_p = "miniMD_openmpi_13"  class=" _centered _table345_opt19 _tcol_hidden" >0</td><td id="_td_345_6_20"  data-_i="6" data-_j="20"  data-_p = "miniMD_openmpi_13"  class=" _centered _table345_opt20 _tcol_hidden" >1</td><td id="_td_345_6_21"  data-_i="6" data-_j="21"  data-_p = "miniMD_openmpi_13"  class=" _centered _table345_opt21 _tcol_hidden" >3</td><td id="_td_345_6_22"  data-_i="6" data-_j="22"  data-_p = "miniMD_openmpi_13"  class=" _centered _table345_opt22 _tcol_hidden" >0</td><td id="_td_345_6_23"  data-_i="6" data-_j="23"  data-_p = "miniMD_openmpi_13"  class=" _centered _table345_opt23 _tcol_hidden" >0</td><td id="_td_345_6_24"  data-_i="6" data-_j="24"  data-_p = "miniMD_openmpi_13"  class=" _centered _table345_opt24 _tcol_hidden" >81.25</td></tr>
+<tr id="_tr_345_7"  ondblclick="_action_267(this,7,-1, 'loops/miniMD_openmpi_57.html');"  style="cursor:pointer;"><td id="_td_345_7_1"  data-_i="7" data-_j="1"  data-_p = "miniMD_openmpi_57"  class=" _left _freezed_col  _centered" >57</td><td id="_td_345_7_2"  data-_i="7" data-_j="2"  data-_p = "miniMD_openmpi_57"  style="word-break:break-all;" >miniMD_openmpi - force_lj.cpp:195-196</td><td id="_td_345_7_3"  data-_i="7" data-_j="3"  data-_p = "miniMD_openmpi_57"  style="word-break:break-all;" >ForceLJ::compute(Atom&amp;, Neighbor&amp;, Comm&amp;, int)</td><td id="_td_345_7_4"  data-_i="7" data-_j="4"  data-_p = "miniMD_openmpi_57"  class=" _centered _table345_opt4 _tcol_hidden" >Single</td><td id="_td_345_7_5"  data-_i="7" data-_j="5"  data-_p = "miniMD_openmpi_57"  class=" _centered _table345_opt5" >0.61</td><td id="_td_345_7_6"  data-_i="7" data-_j="6"  data-_p = "miniMD_openmpi_57"  class=" _centered _table345_opt6"  style="background:#7B90C8;" >0.61</td><td id="_td_345_7_7"  data-_i="7" data-_j="7"  data-_p = "miniMD_openmpi_57"  class=" _centered _table345_opt7 _tcol_hidden" >0.61</td><td id="_td_345_7_8"  data-_i="7" data-_j="8"  data-_p = "miniMD_openmpi_57"  class=" _centered _table345_opt8" >0.38</td><td id="_td_345_7_9"  data-_i="7" data-_j="9"  data-_p = "miniMD_openmpi_57"  class=" _centered _table345_opt9 _tcol_hidden" >0.38</td><td id="_td_345_7_10"  data-_i="7" data-_j="10"  data-_p = "miniMD_openmpi_57"  class=" _centered _table345_opt10 _tcol_hidden" >0.38</td><td id="_td_345_7_11"  data-_i="7" data-_j="11"  data-_p = "miniMD_openmpi_57"  class=" _centered _table345_opt11 _tcol_hidden" >0.38</td><td id="_td_345_7_12"  data-_i="7" data-_j="12"  data-_p = "miniMD_openmpi_57"  class=" _centered _table345_opt12" >1</td><td id="_td_345_7_13"  data-_i="7" data-_j="13"  data-_p = "miniMD_openmpi_57"  class=" _centered _table345_opt13"  style="background:#66cc00" >100</td><td id="_td_345_7_14"  data-_i="7" data-_j="14"  data-_p = "miniMD_openmpi_57"  class=" _centered _table345_opt14"  style="background:#FF3333" >50</td><td id="_td_345_7_15"  data-_i="7" data-_j="15"  data-_p = "miniMD_openmpi_57"  class=" _centered _table345_opt15 _tcol_hidden" >1</td><td id="_td_345_7_16"  data-_i="7" data-_j="16"  data-_p = "miniMD_openmpi_57"  class=" _centered _table345_opt16 _tcol_hidden" >1</td><td id="_td_345_7_17"  data-_i="7" data-_j="17"  data-_p = "miniMD_openmpi_57"  class=" _centered _table345_opt17 _tcol_hidden" >1</td><td id="_td_345_7_18"  data-_i="7" data-_j="18"  data-_p = "miniMD_openmpi_57"  class=" _centered _table345_opt18 _tcol_hidden" >1</td><td id="_td_345_7_19"  data-_i="7" data-_j="19"  data-_p = "miniMD_openmpi_57"  class=" _centered _table345_opt19 _tcol_hidden" >0</td><td id="_td_345_7_20"  data-_i="7" data-_j="20"  data-_p = "miniMD_openmpi_57"  class=" _centered _table345_opt20 _tcol_hidden" >0</td><td id="_td_345_7_21"  data-_i="7" data-_j="21"  data-_p = "miniMD_openmpi_57"  class=" _centered _table345_opt21 _tcol_hidden" >2</td><td id="_td_345_7_22"  data-_i="7" data-_j="22"  data-_p = "miniMD_openmpi_57"  class=" _centered _table345_opt22 _tcol_hidden" >0</td><td id="_td_345_7_23"  data-_i="7" data-_j="23"  data-_p = "miniMD_openmpi_57"  class=" _centered _table345_opt23 _tcol_hidden" >0</td><td id="_td_345_7_24"  data-_i="7" data-_j="24"  data-_p = "miniMD_openmpi_57"  class=" _centered _table345_opt24 _tcol_hidden" >75.00</td></tr>
+<tr id="_tr_345_8"  ondblclick="_action_267(this,8,-1, 'loops/miniMD_openmpi_55.html');"  style="cursor:pointer;"><td id="_td_345_8_1"  data-_i="8" data-_j="1"  data-_p = "miniMD_openmpi_55"  class=" _left _freezed_col  _centered" >55</td><td id="_td_345_8_2"  data-_i="8" data-_j="2"  data-_p = "miniMD_openmpi_55"  style="word-break:break-all;" ><span class="tooltip-maqao" title="" tooltip_id="36" >miniMD_openmpi - force_lj.cpp:206-256 [...]</span></td><td id="_td_345_8_3"  data-_i="8" data-_j="3"  data-_p = "miniMD_openmpi_55"  style="word-break:break-all;" >ForceLJ::compute(Atom&amp;, Neighbor&amp;, Comm&amp;, int)</td><td id="_td_345_8_4"  data-_i="8" data-_j="4"  data-_p = "miniMD_openmpi_55"  class=" _centered _table345_opt4 _tcol_hidden" >Outermost</td><td id="_td_345_8_5"  data-_i="8" data-_j="5"  data-_p = "miniMD_openmpi_55"  class=" _centered _table345_opt5" >0.52</td><td id="_td_345_8_6"  data-_i="8" data-_j="6"  data-_p = "miniMD_openmpi_55"  class=" _centered _table345_opt6"  style="background:#7B90C8;" >0.53</td><td id="_td_345_8_7"  data-_i="8" data-_j="7"  data-_p = "miniMD_openmpi_55"  class=" _centered _table345_opt7 _tcol_hidden" >39.78</td><td id="_td_345_8_8"  data-_i="8" data-_j="8"  data-_p = "miniMD_openmpi_55"  class=" _centered _table345_opt8" >0.33</td><td id="_td_345_8_9"  data-_i="8" data-_j="9"  data-_p = "miniMD_openmpi_55"  class=" _centered _table345_opt9 _tcol_hidden" >24.60</td><td id="_td_345_8_10"  data-_i="8" data-_j="10"  data-_p = "miniMD_openmpi_55"  class=" _centered _table345_opt10 _tcol_hidden" >0.33</td><td id="_td_345_8_11"  data-_i="8" data-_j="11"  data-_p = "miniMD_openmpi_55"  class=" _centered _table345_opt11 _tcol_hidden" >24.60</td><td id="_td_345_8_12"  data-_i="8" data-_j="12"  data-_p = "miniMD_openmpi_55"  class=" _centered _table345_opt12" >1</td><td id="_td_345_8_13"  data-_i="8" data-_j="13"  data-_p = "miniMD_openmpi_55"  class=" _centered _table345_opt13"  style="background:#FF3333" >37.5</td><td id="_td_345_8_14"  data-_i="8" data-_j="14"  data-_p = "miniMD_openmpi_55"  class=" _centered _table345_opt14"  style="background:#FF3333" >15.63</td><td id="_td_345_8_15"  data-_i="8" data-_j="15"  data-_p = "miniMD_openmpi_55"  class=" _centered _table345_opt15 _tcol_hidden"  style="background:#FFCC99" >1.71</td><td id="_td_345_8_16"  data-_i="8" data-_j="16"  data-_p = "miniMD_openmpi_55"  class=" _centered _table345_opt16 _tcol_hidden"  style="background:#FFCC99" >1.51</td><td id="_td_345_8_17"  data-_i="8" data-_j="17"  data-_p = "miniMD_openmpi_55"  class=" _centered _table345_opt17 _tcol_hidden"  style="background:#FF950E" >9.27</td><td id="_td_345_8_18"  data-_i="8" data-_j="18"  data-_p = "miniMD_openmpi_55"  class=" _centered _table345_opt18 _tcol_hidden" >1</td><td id="_td_345_8_19"  data-_i="8" data-_j="19"  data-_p = "miniMD_openmpi_55"  class=" _centered _table345_opt19 _tcol_hidden" >NA</td><td id="_td_345_8_20"  data-_i="8" data-_j="20"  data-_p = "miniMD_openmpi_55"  class=" _centered _table345_opt20 _tcol_hidden" >NA</td><td id="_td_345_8_21"  data-_i="8" data-_j="21"  data-_p = "miniMD_openmpi_55"  class=" _centered _table345_opt21 _tcol_hidden" >NA</td><td id="_td_345_8_22"  data-_i="8" data-_j="22"  data-_p = "miniMD_openmpi_55"  class=" _centered _table345_opt22 _tcol_hidden" >NA</td><td id="_td_345_8_23"  data-_i="8" data-_j="23"  data-_p = "miniMD_openmpi_55"  class=" _centered _table345_opt23 _tcol_hidden" >NA</td><td id="_td_345_8_24"  data-_i="8" data-_j="24"  data-_p = "miniMD_openmpi_55"  class=" _centered _table345_opt24 _tcol_hidden" >50.00</td></tr>
+<tr id="_tr_345_9"  ondblclick="_action_267(this,9,-1, 'loops/miniMD_openmpi_244.html');"  style="cursor:pointer;"><td id="_td_345_9_1"  data-_i="9" data-_j="1"  data-_p = "miniMD_openmpi_244"  class=" _left _freezed_col  _centered" >244</td><td id="_td_345_9_2"  data-_i="9" data-_j="2"  data-_p = "miniMD_openmpi_244"  style="word-break:break-all;" ><span class="tooltip-maqao" title="" tooltip_id="37" >miniMD_openmpi - setup.cpp:359-515 [...]</span></td><td id="_td_345_9_3"  data-_i="9" data-_j="3"  data-_p = "miniMD_openmpi_244"  style="word-break:break-all;" >create_atoms(Atom&amp;, int, int, int, double)</td><td id="_td_345_9_4"  data-_i="9" data-_j="4"  data-_p = "miniMD_openmpi_244"  class=" _centered _table345_opt4 _tcol_hidden" >Innermost</td><td id="_td_345_9_5"  data-_i="9" data-_j="5"  data-_p = "miniMD_openmpi_244"  class=" _centered _table345_opt5" >0.41</td><td id="_td_345_9_6"  data-_i="9" data-_j="6"  data-_p = "miniMD_openmpi_244"  class=" _centered _table345_opt6"  style="background:#7B90C8;" >0.41</td><td id="_td_345_9_7"  data-_i="9" data-_j="7"  data-_p = "miniMD_openmpi_244"  class=" _centered _table345_opt7 _tcol_hidden" >0.41</td><td id="_td_345_9_8"  data-_i="9" data-_j="8"  data-_p = "miniMD_openmpi_244"  class=" _centered _table345_opt8" >0.25</td><td id="_td_345_9_9"  data-_i="9" data-_j="9"  data-_p = "miniMD_openmpi_244"  class=" _centered _table345_opt9 _tcol_hidden" >0.25</td><td id="_td_345_9_10"  data-_i="9" data-_j="10"  data-_p = "miniMD_openmpi_244"  class=" _centered _table345_opt10 _tcol_hidden" >0.25</td><td id="_td_345_9_11"  data-_i="9" data-_j="11"  data-_p = "miniMD_openmpi_244"  class=" _centered _table345_opt11 _tcol_hidden" >0.25</td><td id="_td_345_9_12"  data-_i="9" data-_j="12"  data-_p = "miniMD_openmpi_244"  class=" _centered _table345_opt12" >1</td><td id="_td_345_9_13"  data-_i="9" data-_j="13"  data-_p = "miniMD_openmpi_244"  class=" _centered _table345_opt13"  style="background:#FF3333" >4.65</td><td id="_td_345_9_14"  data-_i="9" data-_j="14"  data-_p = "miniMD_openmpi_244"  class=" _centered _table345_opt14"  style="background:#FF3333" >9.59</td><td id="_td_345_9_15"  data-_i="9" data-_j="15"  data-_p = "miniMD_openmpi_244"  class=" _centered _table345_opt15 _tcol_hidden"  style="background:#FFCC99" >1.72</td><td id="_td_345_9_16"  data-_i="9" data-_j="16"  data-_p = "miniMD_openmpi_244"  class=" _centered _table345_opt16 _tcol_hidden"  style="background:#FF950E" >6.47</td><td id="_td_345_9_17"  data-_i="9" data-_j="17"  data-_p = "miniMD_openmpi_244"  class=" _centered _table345_opt17 _tcol_hidden"  style="background:#FF950E" >16</td><td id="_td_345_9_18"  data-_i="9" data-_j="18"  data-_p = "miniMD_openmpi_244"  class=" _centered _table345_opt18 _tcol_hidden" >1</td><td id="_td_345_9_19"  data-_i="9" data-_j="19"  data-_p = "miniMD_openmpi_244"  class=" _centered _table345_opt19 _tcol_hidden" >NA</td><td id="_td_345_9_20"  data-_i="9" data-_j="20"  data-_p = "miniMD_openmpi_244"  class=" _centered _table345_opt20 _tcol_hidden" >NA</td><td id="_td_345_9_21"  data-_i="9" data-_j="21"  data-_p = "miniMD_openmpi_244"  class=" _centered _table345_opt21 _tcol_hidden" >NA</td><td id="_td_345_9_22"  data-_i="9" data-_j="22"  data-_p = "miniMD_openmpi_244"  class=" _centered _table345_opt22 _tcol_hidden" >NA</td><td id="_td_345_9_23"  data-_i="9" data-_j="23"  data-_p = "miniMD_openmpi_244"  class=" _centered _table345_opt23 _tcol_hidden" >NA</td><td id="_td_345_9_24"  data-_i="9" data-_j="24"  data-_p = "miniMD_openmpi_244"  class=" _centered _table345_opt24 _tcol_hidden" >0.00</td></tr>
+<tr id="_tr_345_10"  ondblclick="_action_267(this,10,-1, 'loops/miniMD_openmpi_154.html');"  style="cursor:pointer;"><td id="_td_345_10_1"  data-_i="10" data-_j="1"  data-_p = "miniMD_openmpi_154"  class=" _left _freezed_col  _centered" >154</td><td id="_td_345_10_2"  data-_i="10" data-_j="2"  data-_p = "miniMD_openmpi_154"  style="word-break:break-all;" >miniMD_openmpi - neighbor.cpp:150-165</td><td id="_td_345_10_3"  data-_i="10" data-_j="3"  data-_p = "miniMD_openmpi_154"  style="word-break:break-all;" >Neighbor::build(Atom&amp;)</td><td id="_td_345_10_4"  data-_i="10" data-_j="4"  data-_p = "miniMD_openmpi_154"  class=" _centered _table345_opt4 _tcol_hidden" >Innermost</td><td id="_td_345_10_5"  data-_i="10" data-_j="5"  data-_p = "miniMD_openmpi_154"  class=" _centered _table345_opt5" >0.41</td><td id="_td_345_10_6"  data-_i="10" data-_j="6"  data-_p = "miniMD_openmpi_154"  class=" _centered _table345_opt6"  style="background:#7B90C8;" >0.41</td><td id="_td_345_10_7"  data-_i="10" data-_j="7"  data-_p = "miniMD_openmpi_154"  class=" _centered _table345_opt7 _tcol_hidden" >0.41</td><td id="_td_345_10_8"  data-_i="10" data-_j="8"  data-_p = "miniMD_openmpi_154"  class=" _centered _table345_opt8" >0.25</td><td id="_td_345_10_9"  data-_i="10" data-_j="9"  data-_p = "miniMD_openmpi_154"  class=" _centered _table345_opt9 _tcol_hidden" >0.25</td><td id="_td_345_10_10"  data-_i="10" data-_j="10"  data-_p = "miniMD_openmpi_154"  class=" _centered _table345_opt10 _tcol_hidden" >0.25</td><td id="_td_345_10_11"  data-_i="10" data-_j="11"  data-_p = "miniMD_openmpi_154"  class=" _centered _table345_opt11 _tcol_hidden" >0.25</td><td id="_td_345_10_12"  data-_i="10" data-_j="12"  data-_p = "miniMD_openmpi_154"  class=" _centered _table345_opt12" >1</td><td id="_td_345_10_13"  data-_i="10" data-_j="13"  data-_p = "miniMD_openmpi_154"  class=" _centered _table345_opt13"  style="background:#FF3333" >10.34</td><td id="_td_345_10_14"  data-_i="10" data-_j="14"  data-_p = "miniMD_openmpi_154"  class=" _centered _table345_opt14"  style="background:#FF3333" >11.85</td><td id="_td_345_10_15"  data-_i="10" data-_j="15"  data-_p = "miniMD_openmpi_154"  class=" _centered _table345_opt15 _tcol_hidden"  style="background:#FFCC99" >1.37</td><td id="_td_345_10_16"  data-_i="10" data-_j="16"  data-_p = "miniMD_openmpi_154"  class=" _centered _table345_opt16 _tcol_hidden"  style="background:#FF950E" >2.02</td><td id="_td_345_10_17"  data-_i="10" data-_j="17"  data-_p = "miniMD_openmpi_154"  class=" _centered _table345_opt17 _tcol_hidden"  style="background:#FF950E" >11.38</td><td id="_td_345_10_18"  data-_i="10" data-_j="18"  data-_p = "miniMD_openmpi_154"  class=" _centered _table345_opt18 _tcol_hidden" >1</td><td id="_td_345_10_19"  data-_i="10" data-_j="19"  data-_p = "miniMD_openmpi_154"  class=" _centered _table345_opt19 _tcol_hidden" >NA</td><td id="_td_345_10_20"  data-_i="10" data-_j="20"  data-_p = "miniMD_openmpi_154"  class=" _centered _table345_opt20 _tcol_hidden" >NA</td><td id="_td_345_10_21"  data-_i="10" data-_j="21"  data-_p = "miniMD_openmpi_154"  class=" _centered _table345_opt21 _tcol_hidden" >NA</td><td id="_td_345_10_22"  data-_i="10" data-_j="22"  data-_p = "miniMD_openmpi_154"  class=" _centered _table345_opt22 _tcol_hidden" >NA</td><td id="_td_345_10_23"  data-_i="10" data-_j="23"  data-_p = "miniMD_openmpi_154"  class=" _centered _table345_opt23 _tcol_hidden" >NA</td><td id="_td_345_10_24"  data-_i="10" data-_j="24"  data-_p = "miniMD_openmpi_154"  class=" _centered _table345_opt24 _tcol_hidden" >0.00</td></tr>
+<tr id="_tr_345_11"  ondblclick="_action_267(this,11,-1, 'loops/miniMD_openmpi_150.html');"  style="cursor:pointer;"><td id="_td_345_11_1"  data-_i="11" data-_j="1"  data-_p = "miniMD_openmpi_150"  class=" _left _freezed_col  _centered" >150</td><td id="_td_345_11_2"  data-_i="11" data-_j="2"  data-_p = "miniMD_openmpi_150"  style="word-break:break-all;" ><span class="tooltip-maqao" title="" tooltip_id="38" >miniMD_openmpi - neighbor.cpp:239-299 [...]</span></td><td id="_td_345_11_3"  data-_i="11" data-_j="3"  data-_p = "miniMD_openmpi_150"  style="word-break:break-all;" >Neighbor::binatoms(Atom&amp;, int)</td><td id="_td_345_11_4"  data-_i="11" data-_j="4"  data-_p = "miniMD_openmpi_150"  class=" _centered _table345_opt4 _tcol_hidden" >Innermost</td><td id="_td_345_11_5"  data-_i="11" data-_j="5"  data-_p = "miniMD_openmpi_150"  class=" _centered _table345_opt5" >0.27</td><td id="_td_345_11_6"  data-_i="11" data-_j="6"  data-_p = "miniMD_openmpi_150"  class=" _centered _table345_opt6"  style="background:#7B90C8;" >0.27</td><td id="_td_345_11_7"  data-_i="11" data-_j="7"  data-_p = "miniMD_openmpi_150"  class=" _centered _table345_opt7 _tcol_hidden" >0.27</td><td id="_td_345_11_8"  data-_i="11" data-_j="8"  data-_p = "miniMD_openmpi_150"  class=" _centered _table345_opt8" >0.17</td><td id="_td_345_11_9"  data-_i="11" data-_j="9"  data-_p = "miniMD_openmpi_150"  class=" _centered _table345_opt9 _tcol_hidden" >0.17</td><td id="_td_345_11_10"  data-_i="11" data-_j="10"  data-_p = "miniMD_openmpi_150"  class=" _centered _table345_opt10 _tcol_hidden" >0.17</td><td id="_td_345_11_11"  data-_i="11" data-_j="11"  data-_p = "miniMD_openmpi_150"  class=" _centered _table345_opt11 _tcol_hidden" >0.17</td><td id="_td_345_11_12"  data-_i="11" data-_j="12"  data-_p = "miniMD_openmpi_150"  class=" _centered _table345_opt12" >1</td><td id="_td_345_11_13"  data-_i="11" data-_j="13"  data-_p = "miniMD_openmpi_150"  class=" _centered _table345_opt13"  style="background:#FF3333" >7.5</td><td id="_td_345_11_14"  data-_i="11" data-_j="14"  data-_p = "miniMD_openmpi_150"  class=" _centered _table345_opt14"  style="background:#FF3333" >12.34</td><td id="_td_345_11_15"  data-_i="11" data-_j="15"  data-_p = "miniMD_openmpi_150"  class=" _centered _table345_opt15 _tcol_hidden"  style="background:#FFCC99" >1.11</td><td id="_td_345_11_16"  data-_i="11" data-_j="16"  data-_p = "miniMD_openmpi_150"  class=" _centered _table345_opt16 _tcol_hidden"  style="background:#FFCC99" >1.43</td><td id="_td_345_11_17"  data-_i="11" data-_j="17"  data-_p = "miniMD_openmpi_150"  class=" _centered _table345_opt17 _tcol_hidden"  style="background:#FF950E" >9.49</td><td id="_td_345_11_18"  data-_i="11" data-_j="18"  data-_p = "miniMD_openmpi_150"  class=" _centered _table345_opt18 _tcol_hidden" >1</td><td id="_td_345_11_19"  data-_i="11" data-_j="19"  data-_p = "miniMD_openmpi_150"  class=" _centered _table345_opt19 _tcol_hidden" >NA</td><td id="_td_345_11_20"  data-_i="11" data-_j="20"  data-_p = "miniMD_openmpi_150"  class=" _centered _table345_opt20 _tcol_hidden" >NA</td><td id="_td_345_11_21"  data-_i="11" data-_j="21"  data-_p = "miniMD_openmpi_150"  class=" _centered _table345_opt21 _tcol_hidden" >NA</td><td id="_td_345_11_22"  data-_i="11" data-_j="22"  data-_p = "miniMD_openmpi_150"  class=" _centered _table345_opt22 _tcol_hidden" >NA</td><td id="_td_345_11_23"  data-_i="11" data-_j="23"  data-_p = "miniMD_openmpi_150"  class=" _centered _table345_opt23 _tcol_hidden" >NA</td><td id="_td_345_11_24"  data-_i="11" data-_j="24"  data-_p = "miniMD_openmpi_150"  class=" _centered _table345_opt24 _tcol_hidden" >0.00</td></tr>
+<tr id="_tr_345_12"  ondblclick="_action_267(this,12,-1, 'loops/miniMD_openmpi_205.html');"  style="cursor:pointer;"><td id="_td_345_12_1"  data-_i="12" data-_j="1"  data-_p = "miniMD_openmpi_205"  class=" _left _freezed_col  _centered" >205</td><td id="_td_345_12_2"  data-_i="12" data-_j="2"  data-_p = "miniMD_openmpi_205"  style="word-break:break-all;" ><span class="tooltip-maqao" title="" tooltip_id="39" >miniMD_openmpi - comm.cpp:767-782 [...]</span></td><td id="_td_345_12_3"  data-_i="12" data-_j="3"  data-_p = "miniMD_openmpi_205"  style="word-break:break-all;" >Comm::borders(Atom&amp;)</td><td id="_td_345_12_4"  data-_i="12" data-_j="4"  data-_p = "miniMD_openmpi_205"  class=" _centered _table345_opt4 _tcol_hidden" >Innermost</td><td id="_td_345_12_5"  data-_i="12" data-_j="5"  data-_p = "miniMD_openmpi_205"  class=" _centered _table345_opt5" >0.17</td><td id="_td_345_12_6"  data-_i="12" data-_j="6"  data-_p = "miniMD_openmpi_205"  class=" _centered _table345_opt6"  style="background:#7B90C8;" >0.17</td><td id="_td_345_12_7"  data-_i="12" data-_j="7"  data-_p = "miniMD_openmpi_205"  class=" _centered _table345_opt7 _tcol_hidden" >0.17</td><td id="_td_345_12_8"  data-_i="12" data-_j="8"  data-_p = "miniMD_openmpi_205"  class=" _centered _table345_opt8" >0.11</td><td id="_td_345_12_9"  data-_i="12" data-_j="9"  data-_p = "miniMD_openmpi_205"  class=" _centered _table345_opt9 _tcol_hidden" >0.11</td><td id="_td_345_12_10"  data-_i="12" data-_j="10"  data-_p = "miniMD_openmpi_205"  class=" _centered _table345_opt10 _tcol_hidden" >0.10</td><td id="_td_345_12_11"  data-_i="12" data-_j="11"  data-_p = "miniMD_openmpi_205"  class=" _centered _table345_opt11 _tcol_hidden" >0.10</td><td id="_td_345_12_12"  data-_i="12" data-_j="12"  data-_p = "miniMD_openmpi_205"  class=" _centered _table345_opt12" >1</td><td id="_td_345_12_13"  data-_i="12" data-_j="13"  data-_p = "miniMD_openmpi_205"  class=" _centered _table345_opt13"  style="background:#FF3333" >0</td><td id="_td_345_12_14"  data-_i="12" data-_j="14"  data-_p = "miniMD_openmpi_205"  class=" _centered _table345_opt14"  style="background:#FF3333" >11.09</td><td id="_td_345_12_15"  data-_i="12" data-_j="15"  data-_p = "miniMD_openmpi_205"  class=" _centered _table345_opt15 _tcol_hidden"  style="background:#FFCC99" >1.44</td><td id="_td_345_12_16"  data-_i="12" data-_j="16"  data-_p = "miniMD_openmpi_205"  class=" _centered _table345_opt16 _tcol_hidden" >1</td><td id="_td_345_12_17"  data-_i="12" data-_j="17"  data-_p = "miniMD_openmpi_205"  class=" _centered _table345_opt17 _tcol_hidden"  style="background:#FF950E" >10.59</td><td id="_td_345_12_18"  data-_i="12" data-_j="18"  data-_p = "miniMD_openmpi_205"  class=" _centered _table345_opt18 _tcol_hidden" >1</td><td id="_td_345_12_19"  data-_i="12" data-_j="19"  data-_p = "miniMD_openmpi_205"  class=" _centered _table345_opt19 _tcol_hidden" >1</td><td id="_td_345_12_20"  data-_i="12" data-_j="20"  data-_p = "miniMD_openmpi_205"  class=" _centered _table345_opt20 _tcol_hidden" >0</td><td id="_td_345_12_21"  data-_i="12" data-_j="21"  data-_p = "miniMD_openmpi_205"  class=" _centered _table345_opt21 _tcol_hidden" >1</td><td id="_td_345_12_22"  data-_i="12" data-_j="22"  data-_p = "miniMD_openmpi_205"  class=" _centered _table345_opt22 _tcol_hidden" >1.25</td><td id="_td_345_12_23"  data-_i="12" data-_j="23"  data-_p = "miniMD_openmpi_205"  class=" _centered _table345_opt23 _tcol_hidden" >0.75</td><td id="_td_345_12_24"  data-_i="12" data-_j="24"  data-_p = "miniMD_openmpi_205"  class=" _centered _table345_opt24 _tcol_hidden" >65.89</td></tr>
+<tr id="_tr_345_13"  ondblclick="_action_267(this,13,-1, 'loops/miniMD_openmpi_19.html');"  style="cursor:pointer;"><td id="_td_345_13_1"  data-_i="13" data-_j="1"  data-_p = "miniMD_openmpi_19"  class=" _left _freezed_col  _centered" >19</td><td id="_td_345_13_2"  data-_i="13" data-_j="2"  data-_p = "miniMD_openmpi_19"  style="word-break:break-all;" >miniMD_openmpi - atom.cpp:153-155</td><td id="_td_345_13_3"  data-_i="13" data-_j="3"  data-_p = "miniMD_openmpi_19"  style="word-break:break-all;" >Atom::pack_comm(int, int*, double*, int*)</td><td id="_td_345_13_4"  data-_i="13" data-_j="4"  data-_p = "miniMD_openmpi_19"  class=" _centered _table345_opt4 _tcol_hidden" >Single</td><td id="_td_345_13_5"  data-_i="13" data-_j="5"  data-_p = "miniMD_openmpi_19"  class=" _centered _table345_opt5" >0.12</td><td id="_td_345_13_6"  data-_i="13" data-_j="6"  data-_p = "miniMD_openmpi_19"  class=" _centered _table345_opt6"  style="background:#7B90C8;" >0.12</td><td id="_td_345_13_7"  data-_i="13" data-_j="7"  data-_p = "miniMD_openmpi_19"  class=" _centered _table345_opt7 _tcol_hidden" >0.12</td><td id="_td_345_13_8"  data-_i="13" data-_j="8"  data-_p = "miniMD_openmpi_19"  class=" _centered _table345_opt8"  style="background:#C69E3B;" >0.08</td><td id="_td_345_13_9"  data-_i="13" data-_j="9"  data-_p = "miniMD_openmpi_19"  class=" _centered _table345_opt9 _tcol_hidden" >0.08</td><td id="_td_345_13_10"  data-_i="13" data-_j="10"  data-_p = "miniMD_openmpi_19"  class=" _centered _table345_opt10 _tcol_hidden" >0.07</td><td id="_td_345_13_11"  data-_i="13" data-_j="11"  data-_p = "miniMD_openmpi_19"  class=" _centered _table345_opt11 _tcol_hidden" >0.07</td><td id="_td_345_13_12"  data-_i="13" data-_j="12"  data-_p = "miniMD_openmpi_19"  class=" _centered _table345_opt12" >1</td><td id="_td_345_13_13"  data-_i="13" data-_j="13"  data-_p = "miniMD_openmpi_19"  class=" _centered _table345_opt13"  style="background:#FF3333" >0</td><td id="_td_345_13_14"  data-_i="13" data-_j="14"  data-_p = "miniMD_openmpi_19"  class=" _centered _table345_opt14"  style="background:#FF3333" >12.5</td><td id="_td_345_13_15"  data-_i="13" data-_j="15"  data-_p = "miniMD_openmpi_19"  class=" _centered _table345_opt15 _tcol_hidden"  style="background:#FFCC99" >1.2</td><td id="_td_345_13_16"  data-_i="13" data-_j="16"  data-_p = "miniMD_openmpi_19"  class=" _centered _table345_opt16 _tcol_hidden"  style="background:#FFCC99" >1.18</td><td id="_td_345_13_17"  data-_i="13" data-_j="17"  data-_p = "miniMD_openmpi_19"  class=" _centered _table345_opt17 _tcol_hidden"  style="background:#FF950E" >8</td><td id="_td_345_13_18"  data-_i="13" data-_j="18"  data-_p = "miniMD_openmpi_19"  class=" _centered _table345_opt18 _tcol_hidden" >1</td><td id="_td_345_13_19"  data-_i="13" data-_j="19"  data-_p = "miniMD_openmpi_19"  class=" _centered _table345_opt19 _tcol_hidden" >1</td><td id="_td_345_13_20"  data-_i="13" data-_j="20"  data-_p = "miniMD_openmpi_19"  class=" _centered _table345_opt20 _tcol_hidden" >2</td><td id="_td_345_13_21"  data-_i="13" data-_j="21"  data-_p = "miniMD_openmpi_19"  class=" _centered _table345_opt21 _tcol_hidden" >0</td><td id="_td_345_13_22"  data-_i="13" data-_j="22"  data-_p = "miniMD_openmpi_19"  class=" _centered _table345_opt22 _tcol_hidden" >0</td><td id="_td_345_13_23"  data-_i="13" data-_j="23"  data-_p = "miniMD_openmpi_19"  class=" _centered _table345_opt23 _tcol_hidden" >1</td><td id="_td_345_13_24"  data-_i="13" data-_j="24"  data-_p = "miniMD_openmpi_19"  class=" _centered _table345_opt24 _tcol_hidden" >75.00</td></tr>
+<tr id="_tr_345_14"  ondblclick="_action_267(this,14,-1, 'loops/miniMD_openmpi_25.html');"  style="cursor:pointer;"><td id="_td_345_14_1"  data-_i="14" data-_j="1"  data-_p = "miniMD_openmpi_25"  class=" _left _freezed_col  _centered" >25</td><td id="_td_345_14_2"  data-_i="14" data-_j="2"  data-_p = "miniMD_openmpi_25"  style="word-break:break-all;" >miniMD_openmpi - atom.cpp:191-193</td><td id="_td_345_14_3"  data-_i="14" data-_j="3"  data-_p = "miniMD_openmpi_25"  style="word-break:break-all;" >Atom::unpack_reverse(int, int*, double*)</td><td id="_td_345_14_4"  data-_i="14" data-_j="4"  data-_p = "miniMD_openmpi_25"  class=" _centered _table345_opt4 _tcol_hidden" >Single</td><td id="_td_345_14_5"  data-_i="14" data-_j="5"  data-_p = "miniMD_openmpi_25"  class=" _centered _table345_opt5" >0.12</td><td id="_td_345_14_6"  data-_i="14" data-_j="6"  data-_p = "miniMD_openmpi_25"  class=" _centered _table345_opt6"  style="background:#7B90C8;" >0.12</td><td id="_td_345_14_7"  data-_i="14" data-_j="7"  data-_p = "miniMD_openmpi_25"  class=" _centered _table345_opt7 _tcol_hidden" >0.12</td><td id="_td_345_14_8"  data-_i="14" data-_j="8"  data-_p = "miniMD_openmpi_25"  class=" _centered _table345_opt8"  style="background:#C69E3B;" >0.08</td><td id="_td_345_14_9"  data-_i="14" data-_j="9"  data-_p = "miniMD_openmpi_25"  class=" _centered _table345_opt9 _tcol_hidden" >0.08</td><td id="_td_345_14_10"  data-_i="14" data-_j="10"  data-_p = "miniMD_openmpi_25"  class=" _centered _table345_opt10 _tcol_hidden" >0.07</td><td id="_td_345_14_11"  data-_i="14" data-_j="11"  data-_p = "miniMD_openmpi_25"  class=" _centered _table345_opt11 _tcol_hidden" >0.07</td><td id="_td_345_14_12"  data-_i="14" data-_j="12"  data-_p = "miniMD_openmpi_25"  class=" _centered _table345_opt12" >1</td><td id="_td_345_14_13"  data-_i="14" data-_j="13"  data-_p = "miniMD_openmpi_25"  class=" _centered _table345_opt13"  style="background:#FF3333" >0</td><td id="_td_345_14_14"  data-_i="14" data-_j="14"  data-_p = "miniMD_openmpi_25"  class=" _centered _table345_opt14"  style="background:#FF3333" >12.5</td><td id="_td_345_14_15"  data-_i="14" data-_j="15"  data-_p = "miniMD_openmpi_25"  class=" _centered _table345_opt15 _tcol_hidden"  style="background:#FFCC99" >1.17</td><td id="_td_345_14_16"  data-_i="14" data-_j="16"  data-_p = "miniMD_openmpi_25"  class=" _centered _table345_opt16 _tcol_hidden"  style="background:#FFCC99" >1.14</td><td id="_td_345_14_17"  data-_i="14" data-_j="17"  data-_p = "miniMD_openmpi_25"  class=" _centered _table345_opt17 _tcol_hidden"  style="background:#FF950E" >8</td><td id="_td_345_14_18"  data-_i="14" data-_j="18"  data-_p = "miniMD_openmpi_25"  class=" _centered _table345_opt18 _tcol_hidden" >1</td><td id="_td_345_14_19"  data-_i="14" data-_j="19"  data-_p = "miniMD_openmpi_25"  class=" _centered _table345_opt19 _tcol_hidden" >0</td><td id="_td_345_14_20"  data-_i="14" data-_j="20"  data-_p = "miniMD_openmpi_25"  class=" _centered _table345_opt20 _tcol_hidden" >2</td><td id="_td_345_14_21"  data-_i="14" data-_j="21"  data-_p = "miniMD_openmpi_25"  class=" _centered _table345_opt21 _tcol_hidden" >0</td><td id="_td_345_14_22"  data-_i="14" data-_j="22"  data-_p = "miniMD_openmpi_25"  class=" _centered _table345_opt22 _tcol_hidden" >0</td><td id="_td_345_14_23"  data-_i="14" data-_j="23"  data-_p = "miniMD_openmpi_25"  class=" _centered _table345_opt23 _tcol_hidden" >1</td><td id="_td_345_14_24"  data-_i="14" data-_j="24"  data-_p = "miniMD_openmpi_25"  class=" _centered _table345_opt24 _tcol_hidden" >66.67</td></tr>
+<tr id="_tr_345_15"  ondblclick="_action_267(this,15,-1, 'loops/miniMD_openmpi_151.html');"  style="cursor:pointer;"><td id="_td_345_15_1"  data-_i="15" data-_j="1"  data-_p = "miniMD_openmpi_151"  class=" _left _freezed_col  _centered" >151</td><td id="_td_345_15_2"  data-_i="15" data-_j="2"  data-_p = "miniMD_openmpi_151"  style="word-break:break-all;" ><span class="tooltip-maqao" title="" tooltip_id="40" >miniMD_openmpi - neighbor.cpp:128-299 [...]</span></td><td id="_td_345_15_3"  data-_i="15" data-_j="3"  data-_p = "miniMD_openmpi_151"  style="word-break:break-all;" >Neighbor::build(Atom&amp;)</td><td id="_td_345_15_4"  data-_i="15" data-_j="4"  data-_p = "miniMD_openmpi_151"  class=" _centered _table345_opt4 _tcol_hidden" >InBetween</td><td id="_td_345_15_5"  data-_i="15" data-_j="5"  data-_p = "miniMD_openmpi_151"  class=" _centered _table345_opt5" >0.11</td><td id="_td_345_15_6"  data-_i="15" data-_j="6"  data-_p = "miniMD_openmpi_151"  class=" _centered _table345_opt6"  style="background:#7B90C8;" >0.11</td><td id="_td_345_15_7"  data-_i="15" data-_j="7"  data-_p = "miniMD_openmpi_151"  class=" _centered _table345_opt7 _tcol_hidden" >16.65</td><td id="_td_345_15_8"  data-_i="15" data-_j="8"  data-_p = "miniMD_openmpi_151"  class=" _centered _table345_opt8"  style="background:#C69E3B;" >0.07</td><td id="_td_345_15_9"  data-_i="15" data-_j="9"  data-_p = "miniMD_openmpi_151"  class=" _centered _table345_opt9 _tcol_hidden" >10.29</td><td id="_td_345_15_10"  data-_i="15" data-_j="10"  data-_p = "miniMD_openmpi_151"  class=" _centered _table345_opt10 _tcol_hidden" >0.07</td><td id="_td_345_15_11"  data-_i="15" data-_j="11"  data-_p = "miniMD_openmpi_151"  class=" _centered _table345_opt11 _tcol_hidden" >10.29</td><td id="_td_345_15_12"  data-_i="15" data-_j="12"  data-_p = "miniMD_openmpi_151"  class=" _centered _table345_opt12" >1</td><td id="_td_345_15_13"  data-_i="15" data-_j="13"  data-_p = "miniMD_openmpi_151"  class=" _centered _table345_opt13"  style="background:#FF3333" >6</td><td id="_td_345_15_14"  data-_i="15" data-_j="14"  data-_p = "miniMD_openmpi_151"  class=" _centered _table345_opt14"  style="background:#FF3333" >11.25</td><td id="_td_345_15_15"  data-_i="15" data-_j="15"  data-_p = "miniMD_openmpi_151"  class=" _centered _table345_opt15 _tcol_hidden"  style="background:#FFCC99" >1.44</td><td id="_td_345_15_16"  data-_i="15" data-_j="16"  data-_p = "miniMD_openmpi_151"  class=" _centered _table345_opt16 _tcol_hidden"  style="background:#FFCC99" >1.55</td><td id="_td_345_15_17"  data-_i="15" data-_j="17"  data-_p = "miniMD_openmpi_151"  class=" _centered _table345_opt17 _tcol_hidden"  style="background:#FF950E" >10.43</td><td id="_td_345_15_18"  data-_i="15" data-_j="18"  data-_p = "miniMD_openmpi_151"  class=" _centered _table345_opt18 _tcol_hidden" >1</td><td id="_td_345_15_19"  data-_i="15" data-_j="19"  data-_p = "miniMD_openmpi_151"  class=" _centered _table345_opt19 _tcol_hidden" >NA</td><td id="_td_345_15_20"  data-_i="15" data-_j="20"  data-_p = "miniMD_openmpi_151"  class=" _centered _table345_opt20 _tcol_hidden" >NA</td><td id="_td_345_15_21"  data-_i="15" data-_j="21"  data-_p = "miniMD_openmpi_151"  class=" _centered _table345_opt21 _tcol_hidden" >NA</td><td id="_td_345_15_22"  data-_i="15" data-_j="22"  data-_p = "miniMD_openmpi_151"  class=" _centered _table345_opt22 _tcol_hidden" >NA</td><td id="_td_345_15_23"  data-_i="15" data-_j="23"  data-_p = "miniMD_openmpi_151"  class=" _centered _table345_opt23 _tcol_hidden" >NA</td><td id="_td_345_15_24"  data-_i="15" data-_j="24"  data-_p = "miniMD_openmpi_151"  class=" _centered _table345_opt24 _tcol_hidden" >0.00</td></tr>
+<tr id="_tr_345_16"  ondblclick="_action_267(this,16,-1, 'loops/miniMD_openmpi_27.html');"  style="cursor:pointer;"><td id="_td_345_16_1"  data-_i="16" data-_j="1"  data-_p = "miniMD_openmpi_27"  class=" _left _freezed_col  _centered" >27</td><td id="_td_345_16_2"  data-_i="16" data-_j="2"  data-_p = "miniMD_openmpi_27"  style="word-break:break-all;" >miniMD_openmpi - atom.cpp:394-403</td><td id="_td_345_16_3"  data-_i="16" data-_j="3"  data-_p = "miniMD_openmpi_27"  style="word-break:break-all;" >Atom::sort(Neighbor&amp;)</td><td id="_td_345_16_4"  data-_i="16" data-_j="4"  data-_p = "miniMD_openmpi_27"  class=" _centered _table345_opt4 _tcol_hidden" >Innermost</td><td id="_td_345_16_5"  data-_i="16" data-_j="5"  data-_p = "miniMD_openmpi_27"  class=" _centered _table345_opt5" >0.10</td><td id="_td_345_16_6"  data-_i="16" data-_j="6"  data-_p = "miniMD_openmpi_27"  class=" _centered _table345_opt6"  style="background:#7B90C8;" >0.11</td><td id="_td_345_16_7"  data-_i="16" data-_j="7"  data-_p = "miniMD_openmpi_27"  class=" _centered _table345_opt7 _tcol_hidden" >0.11</td><td id="_td_345_16_8"  data-_i="16" data-_j="8"  data-_p = "miniMD_openmpi_27"  class=" _centered _table345_opt8"  style="background:#C69E3B;" >0.07</td><td id="_td_345_16_9"  data-_i="16" data-_j="9"  data-_p = "miniMD_openmpi_27"  class=" _centered _table345_opt9 _tcol_hidden" >0.07</td><td id="_td_345_16_10"  data-_i="16" data-_j="10"  data-_p = "miniMD_openmpi_27"  class=" _centered _table345_opt10 _tcol_hidden" >0.07</td><td id="_td_345_16_11"  data-_i="16" data-_j="11"  data-_p = "miniMD_openmpi_27"  class=" _centered _table345_opt11 _tcol_hidden" >0.07</td><td id="_td_345_16_12"  data-_i="16" data-_j="12"  data-_p = "miniMD_openmpi_27"  class=" _centered _table345_opt12" >1</td><td id="_td_345_16_13"  data-_i="16" data-_j="13"  data-_p = "miniMD_openmpi_27"  class=" _centered _table345_opt13"  style="background:#FF3333" >0</td><td id="_td_345_16_14"  data-_i="16" data-_j="14"  data-_p = "miniMD_openmpi_27"  class=" _centered _table345_opt14"  style="background:#FF3333" >12.02</td><td id="_td_345_16_15"  data-_i="16" data-_j="15"  data-_p = "miniMD_openmpi_27"  class=" _centered _table345_opt15 _tcol_hidden"  style="background:#FFCC99" >1.26</td><td id="_td_345_16_16"  data-_i="16" data-_j="16"  data-_p = "miniMD_openmpi_27"  class=" _centered _table345_opt16 _tcol_hidden" >1</td><td id="_td_345_16_17"  data-_i="16" data-_j="17"  data-_p = "miniMD_openmpi_27"  class=" _centered _table345_opt17 _tcol_hidden"  style="background:#FF950E" >5.42</td><td id="_td_345_16_18"  data-_i="16" data-_j="18"  data-_p = "miniMD_openmpi_27"  class=" _centered _table345_opt18 _tcol_hidden" >1</td><td id="_td_345_16_19"  data-_i="16" data-_j="19"  data-_p = "miniMD_openmpi_27"  class=" _centered _table345_opt19 _tcol_hidden" >0</td><td id="_td_345_16_20"  data-_i="16" data-_j="20"  data-_p = "miniMD_openmpi_27"  class=" _centered _table345_opt20 _tcol_hidden" >4</td><td id="_td_345_16_21"  data-_i="16" data-_j="21"  data-_p = "miniMD_openmpi_27"  class=" _centered _table345_opt21 _tcol_hidden" >0</td><td id="_td_345_16_22"  data-_i="16" data-_j="22"  data-_p = "miniMD_openmpi_27"  class=" _centered _table345_opt22 _tcol_hidden" >0</td><td id="_td_345_16_23"  data-_i="16" data-_j="23"  data-_p = "miniMD_openmpi_27"  class=" _centered _table345_opt23 _tcol_hidden" >3</td><td id="_td_345_16_24"  data-_i="16" data-_j="24"  data-_p = "miniMD_openmpi_27"  class=" _centered _table345_opt24 _tcol_hidden" >57.14</td></tr>
+<tr id="_tr_345_17"  ondblclick="_action_267(this,17,-1, 'loops/miniMD_openmpi_91.html');"  style="cursor:pointer;"><td id="_td_345_17_1"  data-_i="17" data-_j="1"  data-_p = "miniMD_openmpi_91"  class=" _left _freezed_col  _centered" >91</td><td id="_td_345_17_2"  data-_i="17" data-_j="2"  data-_p = "miniMD_openmpi_91"  style="word-break:break-all;" ><span class="tooltip-maqao" title="" tooltip_id="41" >miniMD_openmpi - force_lj.cpp:206-256 [...]</span></td><td id="_td_345_17_3"  data-_i="17" data-_j="3"  data-_p = "miniMD_openmpi_91"  style="word-break:break-all;" >ForceLJ::compute(Atom&amp;, Neighbor&amp;, Comm&amp;, int)</td><td id="_td_345_17_4"  data-_i="17" data-_j="4"  data-_p = "miniMD_openmpi_91"  class=" _centered _table345_opt4 _tcol_hidden" >Outermost</td><td id="_td_345_17_5"  data-_i="17" data-_j="5"  data-_p = "miniMD_openmpi_91"  class=" _centered _table345_opt5" >0.09</td><td id="_td_345_17_6"  data-_i="17" data-_j="6"  data-_p = "miniMD_openmpi_91"  class=" _centered _table345_opt6"  style="background:#7B90C8;" >0.09</td><td id="_td_345_17_7"  data-_i="17" data-_j="7"  data-_p = "miniMD_openmpi_91"  class=" _centered _table345_opt7 _tcol_hidden" >4.65</td><td id="_td_345_17_8"  data-_i="17" data-_j="8"  data-_p = "miniMD_openmpi_91"  class=" _centered _table345_opt8"  style="background:#C69E3B;" >0.05</td><td id="_td_345_17_9"  data-_i="17" data-_j="9"  data-_p = "miniMD_openmpi_91"  class=" _centered _table345_opt9 _tcol_hidden" >2.88</td><td id="_td_345_17_10"  data-_i="17" data-_j="10"  data-_p = "miniMD_openmpi_91"  class=" _centered _table345_opt10 _tcol_hidden" >0.06</td><td id="_td_345_17_11"  data-_i="17" data-_j="11"  data-_p = "miniMD_openmpi_91"  class=" _centered _table345_opt11 _tcol_hidden" >2.88</td><td id="_td_345_17_12"  data-_i="17" data-_j="12"  data-_p = "miniMD_openmpi_91"  class=" _centered _table345_opt12" >1</td><td id="_td_345_17_13"  data-_i="17" data-_j="13"  data-_p = "miniMD_openmpi_91"  class=" _centered _table345_opt13"  style="background:#FF3333" >35.19</td><td id="_td_345_17_14"  data-_i="17" data-_j="14"  data-_p = "miniMD_openmpi_91"  class=" _centered _table345_opt14"  style="background:#FF3333" >14.99</td><td id="_td_345_17_15"  data-_i="17" data-_j="15"  data-_p = "miniMD_openmpi_91"  class=" _centered _table345_opt15 _tcol_hidden"  style="background:#FFCC99" >1.5</td><td id="_td_345_17_16"  data-_i="17" data-_j="16"  data-_p = "miniMD_openmpi_91"  class=" _centered _table345_opt16 _tcol_hidden"  style="background:#FFCC99" >1.48</td><td id="_td_345_17_17"  data-_i="17" data-_j="17"  data-_p = "miniMD_openmpi_91"  class=" _centered _table345_opt17 _tcol_hidden"  style="background:#FF950E" >9.6</td><td id="_td_345_17_18"  data-_i="17" data-_j="18"  data-_p = "miniMD_openmpi_91"  class=" _centered _table345_opt18 _tcol_hidden" >1</td><td id="_td_345_17_19"  data-_i="17" data-_j="19"  data-_p = "miniMD_openmpi_91"  class=" _centered _table345_opt19 _tcol_hidden" >NA</td><td id="_td_345_17_20"  data-_i="17" data-_j="20"  data-_p = "miniMD_openmpi_91"  class=" _centered _table345_opt20 _tcol_hidden" >NA</td><td id="_td_345_17_21"  data-_i="17" data-_j="21"  data-_p = "miniMD_openmpi_91"  class=" _centered _table345_opt21 _tcol_hidden" >NA</td><td id="_td_345_17_22"  data-_i="17" data-_j="22"  data-_p = "miniMD_openmpi_91"  class=" _centered _table345_opt22 _tcol_hidden" >NA</td><td id="_td_345_17_23"  data-_i="17" data-_j="23"  data-_p = "miniMD_openmpi_91"  class=" _centered _table345_opt23 _tcol_hidden" >NA</td><td id="_td_345_17_24"  data-_i="17" data-_j="24"  data-_p = "miniMD_openmpi_91"  class=" _centered _table345_opt24 _tcol_hidden" >60.00</td></tr>
+<tr id="_tr_345_18"  ondblclick="_action_267(this,18,-1, 'loops/miniMD_openmpi_93.html');"  style="cursor:pointer;"><td id="_td_345_18_1"  data-_i="18" data-_j="1"  data-_p = "miniMD_openmpi_93"  class=" _left _freezed_col  _centered" >93</td><td id="_td_345_18_2"  data-_i="18" data-_j="2"  data-_p = "miniMD_openmpi_93"  style="word-break:break-all;" >miniMD_openmpi - force_lj.cpp:195-196</td><td id="_td_345_18_3"  data-_i="18" data-_j="3"  data-_p = "miniMD_openmpi_93"  style="word-break:break-all;" >ForceLJ::compute(Atom&amp;, Neighbor&amp;, Comm&amp;, int)</td><td id="_td_345_18_4"  data-_i="18" data-_j="4"  data-_p = "miniMD_openmpi_93"  class=" _centered _table345_opt4 _tcol_hidden" >Single</td><td id="_td_345_18_5"  data-_i="18" data-_j="5"  data-_p = "miniMD_openmpi_93"  class=" _centered _table345_opt5" >0.06</td><td id="_td_345_18_6"  data-_i="18" data-_j="6"  data-_p = "miniMD_openmpi_93"  class=" _centered _table345_opt6"  style="background:#7B90C8;" >0.06</td><td id="_td_345_18_7"  data-_i="18" data-_j="7"  data-_p = "miniMD_openmpi_93"  class=" _centered _table345_opt7 _tcol_hidden" >0.06</td><td id="_td_345_18_8"  data-_i="18" data-_j="8"  data-_p = "miniMD_openmpi_93"  class=" _centered _table345_opt8"  style="background:#C69E3B;" >0.04</td><td id="_td_345_18_9"  data-_i="18" data-_j="9"  data-_p = "miniMD_openmpi_93"  class=" _centered _table345_opt9 _tcol_hidden" >0.04</td><td id="_td_345_18_10"  data-_i="18" data-_j="10"  data-_p = "miniMD_openmpi_93"  class=" _centered _table345_opt10 _tcol_hidden" >0.04</td><td id="_td_345_18_11"  data-_i="18" data-_j="11"  data-_p = "miniMD_openmpi_93"  class=" _centered _table345_opt11 _tcol_hidden" >0.04</td><td id="_td_345_18_12"  data-_i="18" data-_j="12"  data-_p = "miniMD_openmpi_93"  class=" _centered _table345_opt12" >1</td><td id="_td_345_18_13"  data-_i="18" data-_j="13"  data-_p = "miniMD_openmpi_93"  class=" _centered _table345_opt13"  style="background:#66cc00" >100</td><td id="_td_345_18_14"  data-_i="18" data-_j="14"  data-_p = "miniMD_openmpi_93"  class=" _centered _table345_opt14"  style="background:#FF3333" >50</td><td id="_td_345_18_15"  data-_i="18" data-_j="15"  data-_p = "miniMD_openmpi_93"  class=" _centered _table345_opt15 _tcol_hidden" >1</td><td id="_td_345_18_16"  data-_i="18" data-_j="16"  data-_p = "miniMD_openmpi_93"  class=" _centered _table345_opt16 _tcol_hidden" >1</td><td id="_td_345_18_17"  data-_i="18" data-_j="17"  data-_p = "miniMD_openmpi_93"  class=" _centered _table345_opt17 _tcol_hidden" >1</td><td id="_td_345_18_18"  data-_i="18" data-_j="18"  data-_p = "miniMD_openmpi_93"  class=" _centered _table345_opt18 _tcol_hidden" >1</td><td id="_td_345_18_19"  data-_i="18" data-_j="19"  data-_p = "miniMD_openmpi_93"  class=" _centered _table345_opt19 _tcol_hidden" >0</td><td id="_td_345_18_20"  data-_i="18" data-_j="20"  data-_p = "miniMD_openmpi_93"  class=" _centered _table345_opt20 _tcol_hidden" >0</td><td id="_td_345_18_21"  data-_i="18" data-_j="21"  data-_p = "miniMD_openmpi_93"  class=" _centered _table345_opt21 _tcol_hidden" >2</td><td id="_td_345_18_22"  data-_i="18" data-_j="22"  data-_p = "miniMD_openmpi_93"  class=" _centered _table345_opt22 _tcol_hidden" >0</td><td id="_td_345_18_23"  data-_i="18" data-_j="23"  data-_p = "miniMD_openmpi_93"  class=" _centered _table345_opt23 _tcol_hidden" >0</td><td id="_td_345_18_24"  data-_i="18" data-_j="24"  data-_p = "miniMD_openmpi_93"  class=" _centered _table345_opt24 _tcol_hidden" >75.00</td></tr>
+<tr id="_tr_345_19"  ondblclick="_action_267(this,19,-1, 'loops/miniMD_openmpi_24.html');"  style="cursor:pointer;"><td id="_td_345_19_1"  data-_i="19" data-_j="1"  data-_p = "miniMD_openmpi_24"  class=" _left _freezed_col  _centered" >24</td><td id="_td_345_19_2"  data-_i="19" data-_j="2"  data-_p = "miniMD_openmpi_24"  style="word-break:break-all;" >miniMD_openmpi - atom.cpp:178-178</td><td id="_td_345_19_3"  data-_i="19" data-_j="3"  data-_p = "miniMD_openmpi_24"  style="word-break:break-all;" >Atom::pack_reverse(int, int, double*)</td><td id="_td_345_19_4"  data-_i="19" data-_j="4"  data-_p = "miniMD_openmpi_24"  class=" _centered _table345_opt4 _tcol_hidden" >Single</td><td id="_td_345_19_5"  data-_i="19" data-_j="5"  data-_p = "miniMD_openmpi_24"  class=" _centered _table345_opt5" >0.03</td><td id="_td_345_19_6"  data-_i="19" data-_j="6"  data-_p = "miniMD_openmpi_24"  class=" _centered _table345_opt6"  style="background:#7B90C8;" >0.03</td><td id="_td_345_19_7"  data-_i="19" data-_j="7"  data-_p = "miniMD_openmpi_24"  class=" _centered _table345_opt7 _tcol_hidden" >0.03</td><td id="_td_345_19_8"  data-_i="19" data-_j="8"  data-_p = "miniMD_openmpi_24"  class=" _centered _table345_opt8"  style="background:#C69E3B;" >0.02</td><td id="_td_345_19_9"  data-_i="19" data-_j="9"  data-_p = "miniMD_openmpi_24"  class=" _centered _table345_opt9 _tcol_hidden" >0.02</td><td id="_td_345_19_10"  data-_i="19" data-_j="10"  data-_p = "miniMD_openmpi_24"  class=" _centered _table345_opt10 _tcol_hidden" >0.02</td><td id="_td_345_19_11"  data-_i="19" data-_j="11"  data-_p = "miniMD_openmpi_24"  class=" _centered _table345_opt11 _tcol_hidden" >0.02</td><td id="_td_345_19_12"  data-_i="19" data-_j="12"  data-_p = "miniMD_openmpi_24"  class=" _centered _table345_opt12" >1</td><td id="_td_345_19_13"  data-_i="19" data-_j="13"  data-_p = "miniMD_openmpi_24"  class=" _centered _table345_opt13"  style="background:#66cc00" >100</td><td id="_td_345_19_14"  data-_i="19" data-_j="14"  data-_p = "miniMD_openmpi_24"  class=" _centered _table345_opt14"  style="background:#FF3333" >50</td><td id="_td_345_19_15"  data-_i="19" data-_j="15"  data-_p = "miniMD_openmpi_24"  class=" _centered _table345_opt15 _tcol_hidden"  style="background:#FFCC99" >1.13</td><td id="_td_345_19_16"  data-_i="19" data-_j="16"  data-_p = "miniMD_openmpi_24"  class=" _centered _table345_opt16 _tcol_hidden" >1</td><td id="_td_345_19_17"  data-_i="19" data-_j="17"  data-_p = "miniMD_openmpi_24"  class=" _centered _table345_opt17 _tcol_hidden"  style="background:#FFCC99" >1.2</td><td id="_td_345_19_18"  data-_i="19" data-_j="18"  data-_p = "miniMD_openmpi_24"  class=" _centered _table345_opt18 _tcol_hidden" >1</td><td id="_td_345_19_19"  data-_i="19" data-_j="19"  data-_p = "miniMD_openmpi_24"  class=" _centered _table345_opt19 _tcol_hidden" >0</td><td id="_td_345_19_20"  data-_i="19" data-_j="20"  data-_p = "miniMD_openmpi_24"  class=" _centered _table345_opt20 _tcol_hidden" >1</td><td id="_td_345_19_21"  data-_i="19" data-_j="21"  data-_p = "miniMD_openmpi_24"  class=" _centered _table345_opt21 _tcol_hidden" >2</td><td id="_td_345_19_22"  data-_i="19" data-_j="22"  data-_p = "miniMD_openmpi_24"  class=" _centered _table345_opt22 _tcol_hidden" >0</td><td id="_td_345_19_23"  data-_i="19" data-_j="23"  data-_p = "miniMD_openmpi_24"  class=" _centered _table345_opt23 _tcol_hidden" >0</td><td id="_td_345_19_24"  data-_i="19" data-_j="24"  data-_p = "miniMD_openmpi_24"  class=" _centered _table345_opt24 _tcol_hidden" >83.33</td></tr>
+<tr id="_tr_345_20"  ondblclick="_action_267(this,20,-1, 'loops/miniMD_openmpi_166.html');"  style="cursor:pointer;"><td id="_td_345_20_1"  data-_i="20" data-_j="1"  data-_p = "miniMD_openmpi_166"  class=" _left _freezed_col  _centered" >166</td><td id="_td_345_20_2"  data-_i="20" data-_j="2"  data-_p = "miniMD_openmpi_166"  style="word-break:break-all;" >miniMD_openmpi - thermo.cpp:153-156</td><td id="_td_345_20_3"  data-_i="20" data-_j="3"  data-_p = "miniMD_openmpi_166"  style="word-break:break-all;" >Thermo::temperature(Atom&amp;)</td><td id="_td_345_20_4"  data-_i="20" data-_j="4"  data-_p = "miniMD_openmpi_166"  class=" _centered _table345_opt4 _tcol_hidden" >Single</td><td id="_td_345_20_5"  data-_i="20" data-_j="5"  data-_p = "miniMD_openmpi_166"  class=" _centered _table345_opt5" >0.03</td><td id="_td_345_20_6"  data-_i="20" data-_j="6"  data-_p = "miniMD_openmpi_166"  class=" _centered _table345_opt6"  style="background:#7B90C8;" >0.03</td><td id="_td_345_20_7"  data-_i="20" data-_j="7"  data-_p = "miniMD_openmpi_166"  class=" _centered _table345_opt7 _tcol_hidden" >0.03</td><td id="_td_345_20_8"  data-_i="20" data-_j="8"  data-_p = "miniMD_openmpi_166"  class=" _centered _table345_opt8"  style="background:#C69E3B;" >0.02</td><td id="_td_345_20_9"  data-_i="20" data-_j="9"  data-_p = "miniMD_openmpi_166"  class=" _centered _table345_opt9 _tcol_hidden" >0.02</td><td id="_td_345_20_10"  data-_i="20" data-_j="10"  data-_p = "miniMD_openmpi_166"  class=" _centered _table345_opt10 _tcol_hidden" >0.02</td><td id="_td_345_20_11"  data-_i="20" data-_j="11"  data-_p = "miniMD_openmpi_166"  class=" _centered _table345_opt11 _tcol_hidden" >0.02</td><td id="_td_345_20_12"  data-_i="20" data-_j="12"  data-_p = "miniMD_openmpi_166"  class=" _centered _table345_opt12" >1</td><td id="_td_345_20_13"  data-_i="20" data-_j="13"  data-_p = "miniMD_openmpi_166"  class=" _centered _table345_opt13"  style="background:#66cc00" >100</td><td id="_td_345_20_14"  data-_i="20" data-_j="14"  data-_p = "miniMD_openmpi_166"  class=" _centered _table345_opt14"  style="background:#FF3333" >39.81</td><td id="_td_345_20_15"  data-_i="20" data-_j="15"  data-_p = "miniMD_openmpi_166"  class=" _centered _table345_opt15 _tcol_hidden" >1</td><td id="_td_345_20_16"  data-_i="20" data-_j="16"  data-_p = "miniMD_openmpi_166"  class=" _centered _table345_opt16 _tcol_hidden" >1</td><td id="_td_345_20_17"  data-_i="20" data-_j="17"  data-_p = "miniMD_openmpi_166"  class=" _centered _table345_opt17 _tcol_hidden"  style="background:#FF950E" >3.16</td><td id="_td_345_20_18"  data-_i="20" data-_j="18"  data-_p = "miniMD_openmpi_166"  class=" _centered _table345_opt18 _tcol_hidden" >1</td><td id="_td_345_20_19"  data-_i="20" data-_j="19"  data-_p = "miniMD_openmpi_166"  class=" _centered _table345_opt19 _tcol_hidden" >0</td><td id="_td_345_20_20"  data-_i="20" data-_j="20"  data-_p = "miniMD_openmpi_166"  class=" _centered _table345_opt20 _tcol_hidden" >0</td><td id="_td_345_20_21"  data-_i="20" data-_j="21"  data-_p = "miniMD_openmpi_166"  class=" _centered _table345_opt21 _tcol_hidden" >2</td><td id="_td_345_20_22"  data-_i="20" data-_j="22"  data-_p = "miniMD_openmpi_166"  class=" _centered _table345_opt22 _tcol_hidden" >0</td><td id="_td_345_20_23"  data-_i="20" data-_j="23"  data-_p = "miniMD_openmpi_166"  class=" _centered _table345_opt23 _tcol_hidden" >0</td><td id="_td_345_20_24"  data-_i="20" data-_j="24"  data-_p = "miniMD_openmpi_166"  class=" _centered _table345_opt24 _tcol_hidden" >75.00</td></tr>
+<tr id="_tr_345_21"  ondblclick="_action_267(this,21,-1, 'loops/miniMD_openmpi_246.html');"  style="cursor:pointer;"><td id="_td_345_21_1"  data-_i="21" data-_j="1"  data-_p = "miniMD_openmpi_246"  class=" _left _freezed_col  _centered" >246</td><td id="_td_345_21_2"  data-_i="21" data-_j="2"  data-_p = "miniMD_openmpi_246"  style="word-break:break-all;" >miniMD_openmpi - setup.cpp:490-490</td><td id="_td_345_21_3"  data-_i="21" data-_j="3"  data-_p = "miniMD_openmpi_246"  style="word-break:break-all;" >create_velocity(double, Atom&amp;, Thermo&amp;)</td><td id="_td_345_21_4"  data-_i="21" data-_j="4"  data-_p = "miniMD_openmpi_246"  class=" _centered _table345_opt4 _tcol_hidden" >Single</td><td id="_td_345_21_5"  data-_i="21" data-_j="5"  data-_p = "miniMD_openmpi_246"  class=" _centered _table345_opt5" >0.03</td><td id="_td_345_21_6"  data-_i="21" data-_j="6"  data-_p = "miniMD_openmpi_246"  class=" _centered _table345_opt6"  style="background:#7B90C8;" >0.03</td><td id="_td_345_21_7"  data-_i="21" data-_j="7"  data-_p = "miniMD_openmpi_246"  class=" _centered _table345_opt7 _tcol_hidden" >0.03</td><td id="_td_345_21_8"  data-_i="21" data-_j="8"  data-_p = "miniMD_openmpi_246"  class=" _centered _table345_opt8"  style="background:#C69E3B;" >0.02</td><td id="_td_345_21_9"  data-_i="21" data-_j="9"  data-_p = "miniMD_openmpi_246"  class=" _centered _table345_opt9 _tcol_hidden" >0.02</td><td id="_td_345_21_10"  data-_i="21" data-_j="10"  data-_p = "miniMD_openmpi_246"  class=" _centered _table345_opt10 _tcol_hidden" >0.02</td><td id="_td_345_21_11"  data-_i="21" data-_j="11"  data-_p = "miniMD_openmpi_246"  class=" _centered _table345_opt11 _tcol_hidden" >0.02</td><td id="_td_345_21_12"  data-_i="21" data-_j="12"  data-_p = "miniMD_openmpi_246"  class=" _centered _table345_opt12" >1</td><td id="_td_345_21_13"  data-_i="21" data-_j="13"  data-_p = "miniMD_openmpi_246"  class=" _centered _table345_opt13"  style="background:#66cc00" >100</td><td id="_td_345_21_14"  data-_i="21" data-_j="14"  data-_p = "miniMD_openmpi_246"  class=" _centered _table345_opt14"  style="background:#FF3333" >50</td><td id="_td_345_21_15"  data-_i="21" data-_j="15"  data-_p = "miniMD_openmpi_246"  class=" _centered _table345_opt15 _tcol_hidden" >1</td><td id="_td_345_21_16"  data-_i="21" data-_j="16"  data-_p = "miniMD_openmpi_246"  class=" _centered _table345_opt16 _tcol_hidden" >1.07</td><td id="_td_345_21_17"  data-_i="21" data-_j="17"  data-_p = "miniMD_openmpi_246"  class=" _centered _table345_opt17 _tcol_hidden" >1.07</td><td id="_td_345_21_18"  data-_i="21" data-_j="18"  data-_p = "miniMD_openmpi_246"  class=" _centered _table345_opt18 _tcol_hidden" >1</td><td id="_td_345_21_19"  data-_i="21" data-_j="19"  data-_p = "miniMD_openmpi_246"  class=" _centered _table345_opt19 _tcol_hidden" >0</td><td id="_td_345_21_20"  data-_i="21" data-_j="20"  data-_p = "miniMD_openmpi_246"  class=" _centered _table345_opt20 _tcol_hidden" >1</td><td id="_td_345_21_21"  data-_i="21" data-_j="21"  data-_p = "miniMD_openmpi_246"  class=" _centered _table345_opt21 _tcol_hidden" >1</td><td id="_td_345_21_22"  data-_i="21" data-_j="22"  data-_p = "miniMD_openmpi_246"  class=" _centered _table345_opt22 _tcol_hidden" >0</td><td id="_td_345_21_23"  data-_i="21" data-_j="23"  data-_p = "miniMD_openmpi_246"  class=" _centered _table345_opt23 _tcol_hidden" >0</td><td id="_td_345_21_24"  data-_i="21" data-_j="24"  data-_p = "miniMD_openmpi_246"  class=" _centered _table345_opt24 _tcol_hidden" >87.50</td></tr>
+<tr id="_tr_345_22"  ondblclick="_action_267(this,22,-1, 'loops/miniMD_openmpi_18.html');"  style="cursor:pointer;"><td id="_td_345_22_1"  data-_i="22" data-_j="1"  data-_p = "miniMD_openmpi_18"  class=" _left _freezed_col  _centered" >18</td><td id="_td_345_22_2"  data-_i="22" data-_j="2"  data-_p = "miniMD_openmpi_18"  style="word-break:break-all;" >miniMD_openmpi - atom.cpp:110-120</td><td id="_td_345_22_3"  data-_i="22" data-_j="3"  data-_p = "miniMD_openmpi_18"  style="word-break:break-all;" >Atom::pbc()</td><td id="_td_345_22_4"  data-_i="22" data-_j="4"  data-_p = "miniMD_openmpi_18"  class=" _centered _table345_opt4 _tcol_hidden" >Single</td><td id="_td_345_22_5"  data-_i="22" data-_j="5"  data-_p = "miniMD_openmpi_18"  class=" _centered _table345_opt5" >0.03</td><td id="_td_345_22_6"  data-_i="22" data-_j="6"  data-_p = "miniMD_openmpi_18"  class=" _centered _table345_opt6"  style="background:#7B90C8;" >0.03</td><td id="_td_345_22_7"  data-_i="22" data-_j="7"  data-_p = "miniMD_openmpi_18"  class=" _centered _table345_opt7 _tcol_hidden" >0.03</td><td id="_td_345_22_8"  data-_i="22" data-_j="8"  data-_p = "miniMD_openmpi_18"  class=" _centered _table345_opt8"  style="background:#C69E3B;" >0.02</td><td id="_td_345_22_9"  data-_i="22" data-_j="9"  data-_p = "miniMD_openmpi_18"  class=" _centered _table345_opt9 _tcol_hidden" >0.02</td><td id="_td_345_22_10"  data-_i="22" data-_j="10"  data-_p = "miniMD_openmpi_18"  class=" _centered _table345_opt10 _tcol_hidden" >0.02</td><td id="_td_345_22_11"  data-_i="22" data-_j="11"  data-_p = "miniMD_openmpi_18"  class=" _centered _table345_opt11 _tcol_hidden" >0.02</td><td id="_td_345_22_12"  data-_i="22" data-_j="12"  data-_p = "miniMD_openmpi_18"  class=" _centered _table345_opt12" >1</td><td id="_td_345_22_13"  data-_i="22" data-_j="13"  data-_p = "miniMD_openmpi_18"  class=" _centered _table345_opt13"  style="background:#FF3333" >0</td><td id="_td_345_22_14"  data-_i="22" data-_j="14"  data-_p = "miniMD_openmpi_18"  class=" _centered _table345_opt14"  style="background:#FF3333" >12.5</td><td id="_td_345_22_15"  data-_i="22" data-_j="15"  data-_p = "miniMD_openmpi_18"  class=" _centered _table345_opt15 _tcol_hidden" >1</td><td id="_td_345_22_16"  data-_i="22" data-_j="16"  data-_p = "miniMD_openmpi_18"  class=" _centered _table345_opt16 _tcol_hidden" >1.08</td><td id="_td_345_22_17"  data-_i="22" data-_j="17"  data-_p = "miniMD_openmpi_18"  class=" _centered _table345_opt17 _tcol_hidden"  style="background:#FF950E" >8</td><td id="_td_345_22_18"  data-_i="22" data-_j="18"  data-_p = "miniMD_openmpi_18"  class=" _centered _table345_opt18 _tcol_hidden" >1</td><td id="_td_345_22_19"  data-_i="22" data-_j="19"  data-_p = "miniMD_openmpi_18"  class=" _centered _table345_opt19 _tcol_hidden" >NA</td><td id="_td_345_22_20"  data-_i="22" data-_j="20"  data-_p = "miniMD_openmpi_18"  class=" _centered _table345_opt20 _tcol_hidden" >NA</td><td id="_td_345_22_21"  data-_i="22" data-_j="21"  data-_p = "miniMD_openmpi_18"  class=" _centered _table345_opt21 _tcol_hidden" >NA</td><td id="_td_345_22_22"  data-_i="22" data-_j="22"  data-_p = "miniMD_openmpi_18"  class=" _centered _table345_opt22 _tcol_hidden" >NA</td><td id="_td_345_22_23"  data-_i="22" data-_j="23"  data-_p = "miniMD_openmpi_18"  class=" _centered _table345_opt23 _tcol_hidden" >NA</td><td id="_td_345_22_24"  data-_i="22" data-_j="24"  data-_p = "miniMD_openmpi_18"  class=" _centered _table345_opt24 _tcol_hidden" >0.00</td></tr>
+<tr id="_tr_345_23"  ondblclick="_action_267(this,23,-1, 'loops/miniMD_openmpi_248.html');"  style="cursor:pointer;"><td id="_td_345_23_1"  data-_i="23" data-_j="1"  data-_p = "miniMD_openmpi_248"  class=" _left _freezed_col  _centered" >248</td><td id="_td_345_23_2"  data-_i="23" data-_j="2"  data-_p = "miniMD_openmpi_248"  style="word-break:break-all;" >miniMD_openmpi - setup.cpp:478-481</td><td id="_td_345_23_3"  data-_i="23" data-_j="3"  data-_p = "miniMD_openmpi_248"  style="word-break:break-all;" >create_velocity(double, Atom&amp;, Thermo&amp;)</td><td id="_td_345_23_4"  data-_i="23" data-_j="4"  data-_p = "miniMD_openmpi_248"  class=" _centered _table345_opt4 _tcol_hidden" >Single</td><td id="_td_345_23_5"  data-_i="23" data-_j="5"  data-_p = "miniMD_openmpi_248"  class=" _centered _table345_opt5" >0.02</td><td id="_td_345_23_6"  data-_i="23" data-_j="6"  data-_p = "miniMD_openmpi_248"  class=" _centered _table345_opt6"  style="background:#7B90C8;" >0.02</td><td id="_td_345_23_7"  data-_i="23" data-_j="7"  data-_p = "miniMD_openmpi_248"  class=" _centered _table345_opt7 _tcol_hidden" >0.02</td><td id="_td_345_23_8"  data-_i="23" data-_j="8"  data-_p = "miniMD_openmpi_248"  class=" _centered _table345_opt8"  style="background:#C69E3B;" >0.01</td><td id="_td_345_23_9"  data-_i="23" data-_j="9"  data-_p = "miniMD_openmpi_248"  class=" _centered _table345_opt9 _tcol_hidden" >0.01</td><td id="_td_345_23_10"  data-_i="23" data-_j="10"  data-_p = "miniMD_openmpi_248"  class=" _centered _table345_opt10 _tcol_hidden" >0.01</td><td id="_td_345_23_11"  data-_i="23" data-_j="11"  data-_p = "miniMD_openmpi_248"  class=" _centered _table345_opt11 _tcol_hidden" >0.01</td><td id="_td_345_23_12"  data-_i="23" data-_j="12"  data-_p = "miniMD_openmpi_248"  class=" _centered _table345_opt12" >1</td><td id="_td_345_23_13"  data-_i="23" data-_j="13"  data-_p = "miniMD_openmpi_248"  class=" _centered _table345_opt13"  style="background:#66cc00" >100</td><td id="_td_345_23_14"  data-_i="23" data-_j="14"  data-_p = "miniMD_openmpi_248"  class=" _centered _table345_opt14"  style="background:#FF3333" >39.1</td><td id="_td_345_23_15"  data-_i="23" data-_j="15"  data-_p = "miniMD_openmpi_248"  class=" _centered _table345_opt15 _tcol_hidden" >1</td><td id="_td_345_23_16"  data-_i="23" data-_j="16"  data-_p = "miniMD_openmpi_248"  class=" _centered _table345_opt16 _tcol_hidden" >1</td><td id="_td_345_23_17"  data-_i="23" data-_j="17"  data-_p = "miniMD_openmpi_248"  class=" _centered _table345_opt17 _tcol_hidden"  style="background:#FF950E" >3.26</td><td id="_td_345_23_18"  data-_i="23" data-_j="18"  data-_p = "miniMD_openmpi_248"  class=" _centered _table345_opt18 _tcol_hidden" >1</td><td id="_td_345_23_19"  data-_i="23" data-_j="19"  data-_p = "miniMD_openmpi_248"  class=" _centered _table345_opt19 _tcol_hidden" >0</td><td id="_td_345_23_20"  data-_i="23" data-_j="20"  data-_p = "miniMD_openmpi_248"  class=" _centered _table345_opt20 _tcol_hidden" >1</td><td id="_td_345_23_21"  data-_i="23" data-_j="21"  data-_p = "miniMD_openmpi_248"  class=" _centered _table345_opt21 _tcol_hidden" >1</td><td id="_td_345_23_22"  data-_i="23" data-_j="22"  data-_p = "miniMD_openmpi_248"  class=" _centered _table345_opt22 _tcol_hidden" >0</td><td id="_td_345_23_23"  data-_i="23" data-_j="23"  data-_p = "miniMD_openmpi_248"  class=" _centered _table345_opt23 _tcol_hidden" >0</td><td id="_td_345_23_24"  data-_i="23" data-_j="24"  data-_p = "miniMD_openmpi_248"  class=" _centered _table345_opt24 _tcol_hidden" >87.50</td></tr>
+<tr id="_tr_345_24"  ondblclick="_action_267(this,24,-1, 'loops/miniMD_openmpi_249.html');"  style="cursor:pointer;"><td id="_td_345_24_1"  data-_i="24" data-_j="1"  data-_p = "miniMD_openmpi_249"  class=" _left _freezed_col  _centered" >249</td><td id="_td_345_24_2"  data-_i="24" data-_j="2"  data-_p = "miniMD_openmpi_249"  style="word-break:break-all;" >miniMD_openmpi - setup.cpp:464-467</td><td id="_td_345_24_3"  data-_i="24" data-_j="3"  data-_p = "miniMD_openmpi_249"  style="word-break:break-all;" >create_velocity(double, Atom&amp;, Thermo&amp;)</td><td id="_td_345_24_4"  data-_i="24" data-_j="4"  data-_p = "miniMD_openmpi_249"  class=" _centered _table345_opt4 _tcol_hidden" >Single</td><td id="_td_345_24_5"  data-_i="24" data-_j="5"  data-_p = "miniMD_openmpi_249"  class=" _centered _table345_opt5" >0.02</td><td id="_td_345_24_6"  data-_i="24" data-_j="6"  data-_p = "miniMD_openmpi_249"  class=" _centered _table345_opt6"  style="background:#7B90C8;" >0.02</td><td id="_td_345_24_7"  data-_i="24" data-_j="7"  data-_p = "miniMD_openmpi_249"  class=" _centered _table345_opt7 _tcol_hidden" >0.02</td><td id="_td_345_24_8"  data-_i="24" data-_j="8"  data-_p = "miniMD_openmpi_249"  class=" _centered _table345_opt8"  style="background:#C69E3B;" >0.01</td><td id="_td_345_24_9"  data-_i="24" data-_j="9"  data-_p = "miniMD_openmpi_249"  class=" _centered _table345_opt9 _tcol_hidden" >0.01</td><td id="_td_345_24_10"  data-_i="24" data-_j="10"  data-_p = "miniMD_openmpi_249"  class=" _centered _table345_opt10 _tcol_hidden" >0.01</td><td id="_td_345_24_11"  data-_i="24" data-_j="11"  data-_p = "miniMD_openmpi_249"  class=" _centered _table345_opt11 _tcol_hidden" >0.01</td><td id="_td_345_24_12"  data-_i="24" data-_j="12"  data-_p = "miniMD_openmpi_249"  class=" _centered _table345_opt12" >1</td><td id="_td_345_24_13"  data-_i="24" data-_j="13"  data-_p = "miniMD_openmpi_249"  class=" _centered _table345_opt13"  style="background:#FF3333" >0</td><td id="_td_345_24_14"  data-_i="24" data-_j="14"  data-_p = "miniMD_openmpi_249"  class=" _centered _table345_opt14"  style="background:#FF3333" >12.5</td><td id="_td_345_24_15"  data-_i="24" data-_j="15"  data-_p = "miniMD_openmpi_249"  class=" _centered _table345_opt15 _tcol_hidden" >1</td><td id="_td_345_24_16"  data-_i="24" data-_j="16"  data-_p = "miniMD_openmpi_249"  class=" _centered _table345_opt16 _tcol_hidden"  style="background:#FFCC99" >1.78</td><td id="_td_345_24_17"  data-_i="24" data-_j="17"  data-_p = "miniMD_openmpi_249"  class=" _centered _table345_opt17 _tcol_hidden"  style="background:#FF950E" >8</td><td id="_td_345_24_18"  data-_i="24" data-_j="18"  data-_p = "miniMD_openmpi_249"  class=" _centered _table345_opt18 _tcol_hidden" >1</td><td id="_td_345_24_19"  data-_i="24" data-_j="19"  data-_p = "miniMD_openmpi_249"  class=" _centered _table345_opt19 _tcol_hidden" >1</td><td id="_td_345_24_20"  data-_i="24" data-_j="20"  data-_p = "miniMD_openmpi_249"  class=" _centered _table345_opt20 _tcol_hidden" >0</td><td id="_td_345_24_21"  data-_i="24" data-_j="21"  data-_p = "miniMD_openmpi_249"  class=" _centered _table345_opt21 _tcol_hidden" >2</td><td id="_td_345_24_22"  data-_i="24" data-_j="22"  data-_p = "miniMD_openmpi_249"  class=" _centered _table345_opt22 _tcol_hidden" >0</td><td id="_td_345_24_23"  data-_i="24" data-_j="23"  data-_p = "miniMD_openmpi_249"  class=" _centered _table345_opt23 _tcol_hidden" >0</td><td id="_td_345_24_24"  data-_i="24" data-_j="24"  data-_p = "miniMD_openmpi_249"  class=" _centered _table345_opt24 _tcol_hidden" >83.33</td></tr>
+<tr id="_tr_345_25"  ondblclick="_action_267(this,25,-1, 'loops/miniMD_openmpi_22.html');"  style="cursor:pointer;"><td id="_td_345_25_1"  data-_i="25" data-_j="1"  data-_p = "miniMD_openmpi_22"  class=" _left _freezed_col  _centered" >22</td><td id="_td_345_25_2"  data-_i="25" data-_j="2"  data-_p = "miniMD_openmpi_22"  style="word-break:break-all;" >miniMD_openmpi - atom.cpp:166-166</td><td id="_td_345_25_3"  data-_i="25" data-_j="3"  data-_p = "miniMD_openmpi_22"  style="word-break:break-all;" >Atom::unpack_comm(int, int, double*)</td><td id="_td_345_25_4"  data-_i="25" data-_j="4"  data-_p = "miniMD_openmpi_22"  class=" _centered _table345_opt4 _tcol_hidden" >Single</td><td id="_td_345_25_5"  data-_i="25" data-_j="5"  data-_p = "miniMD_openmpi_22"  class=" _centered _table345_opt5" >0.02</td><td id="_td_345_25_6"  data-_i="25" data-_j="6"  data-_p = "miniMD_openmpi_22"  class=" _centered _table345_opt6"  style="background:#7B90C8;" >0.02</td><td id="_td_345_25_7"  data-_i="25" data-_j="7"  data-_p = "miniMD_openmpi_22"  class=" _centered _table345_opt7 _tcol_hidden" >0.02</td><td id="_td_345_25_8"  data-_i="25" data-_j="8"  data-_p = "miniMD_openmpi_22"  class=" _centered _table345_opt8"  style="background:#C69E3B;" >0.01</td><td id="_td_345_25_9"  data-_i="25" data-_j="9"  data-_p = "miniMD_openmpi_22"  class=" _centered _table345_opt9 _tcol_hidden" >0.01</td><td id="_td_345_25_10"  data-_i="25" data-_j="10"  data-_p = "miniMD_openmpi_22"  class=" _centered _table345_opt10 _tcol_hidden" >0.01</td><td id="_td_345_25_11"  data-_i="25" data-_j="11"  data-_p = "miniMD_openmpi_22"  class=" _centered _table345_opt11 _tcol_hidden" >0.01</td><td id="_td_345_25_12"  data-_i="25" data-_j="12"  data-_p = "miniMD_openmpi_22"  class=" _centered _table345_opt12" >1</td><td id="_td_345_25_13"  data-_i="25" data-_j="13"  data-_p = "miniMD_openmpi_22"  class=" _centered _table345_opt13"  style="background:#66cc00" >100</td><td id="_td_345_25_14"  data-_i="25" data-_j="14"  data-_p = "miniMD_openmpi_22"  class=" _centered _table345_opt14"  style="background:#FF3333" >50</td><td id="_td_345_25_15"  data-_i="25" data-_j="15"  data-_p = "miniMD_openmpi_22"  class=" _centered _table345_opt15 _tcol_hidden"  style="background:#FFCC99" >1.13</td><td id="_td_345_25_16"  data-_i="25" data-_j="16"  data-_p = "miniMD_openmpi_22"  class=" _centered _table345_opt16 _tcol_hidden" >1</td><td id="_td_345_25_17"  data-_i="25" data-_j="17"  data-_p = "miniMD_openmpi_22"  class=" _centered _table345_opt17 _tcol_hidden"  style="background:#FFCC99" >1.2</td><td id="_td_345_25_18"  data-_i="25" data-_j="18"  data-_p = "miniMD_openmpi_22"  class=" _centered _table345_opt18 _tcol_hidden" >1</td><td id="_td_345_25_19"  data-_i="25" data-_j="19"  data-_p = "miniMD_openmpi_22"  class=" _centered _table345_opt19 _tcol_hidden" >0</td><td id="_td_345_25_20"  data-_i="25" data-_j="20"  data-_p = "miniMD_openmpi_22"  class=" _centered _table345_opt20 _tcol_hidden" >1</td><td id="_td_345_25_21"  data-_i="25" data-_j="21"  data-_p = "miniMD_openmpi_22"  class=" _centered _table345_opt21 _tcol_hidden" >2</td><td id="_td_345_25_22"  data-_i="25" data-_j="22"  data-_p = "miniMD_openmpi_22"  class=" _centered _table345_opt22 _tcol_hidden" >0</td><td id="_td_345_25_23"  data-_i="25" data-_j="23"  data-_p = "miniMD_openmpi_22"  class=" _centered _table345_opt23 _tcol_hidden" >0</td><td id="_td_345_25_24"  data-_i="25" data-_j="24"  data-_p = "miniMD_openmpi_22"  class=" _centered _table345_opt24 _tcol_hidden" >83.33</td></tr>
+</table></div>
+</div><script>
+function _action_267 (obj, i, j, p){open(""+p+"");}
+</script>
+<style>
+.menu {
+width: 250px;
+  color: var(--cntxt_menu_font);
+  z-index: 4;
+  box-shadow: 0 4px 5px 3px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  display: none;
+  transition: 0.2s display ease-in;
+  background-color: var(--cntxt_menu_background);
+}
+.menu-options {
+  list-style: none;
+  padding: 0px 0;
+  z-index: 1;
+  font-weight: 500;
+  z-index: 1;
+  font-size: 14px;
+  padding: 2px 10px 2px 10px;
+  cursor: pointer;
+  color: var(--cntxt_menu_font);
+}
+.menu-option:hover {
+  background: var(--cntxt_menu_background_over);
+}
+</style>
+<div class="menu" data-visible=false id="mctxMenu4">
+  <ul class="menu-options">
+<li class="menu-option" id="mctxMenu4_1" onclick="_action_268('_p', '_p4_1')" oncontextmenu="_action_268('_p', '_p4_1')" >Load Distribution</li>
+<li class="menu-option" id="mctxMenu4_2" onclick="_action_269('_p', '_p4_2')" oncontextmenu="_action_269('_p', '_p4_2')" >Sorted Load Distribution</li>
+<li class="menu-option" id="mctxMenu4_3" onclick="_action_270('_p', '_p4_3')" oncontextmenu="_action_270('_p', '_p4_3')" >Load Distribution All Threads</li>
+<li class="menu-option" id="mctxMenu4_4" onclick="_action_271('_p', '_p4_4')" oncontextmenu="_action_271('_p', '_p4_4')" >Load Callchains</li>
+<li class="menu-option" id="mctxMenu4_5" onclick="_action_272('_p', '_p4_5')" oncontextmenu="_action_272('_p', '_p4_5')" >Go to report ...</li>
+  </ul>
+</div>
+<script>
+function toggleMenu_345 (menu, command) {
+  menu.style.display = command === "show" ? "block" : "none";
+  if (menu.style.display == "block") {
+    menu.dataset.visible = true;
+  }
+  else {
+    menu.dataset.visible = false;
+    if (_previous_elem != null) {
+      _previous_elem.parentNode.classList.remove ("selected-context");
+    }
+  }
+}
+const setPosition_345 = (menu, { top, left }) => {
+  menu.style.left = `${left}px`;
+  menu.style.top = `${top}px`;
+  toggleMenu_345(menu, "show");
+};
+var _global_elem = null;
+var _previous_elem = null;
+var _ids;
+var _current_menu = null;
+
+document.addEventListener("click", e => {
+  if (_current_menu != null && _current_menu.dataset.visible) {
+    toggleMenu_345 (_current_menu, "hide");
+    _current_menu = null;
+  }
+});
+document.getElementById("mctxMenu4").addEventListener('contextmenu', event => event.preventDefault());
+
+let _ids_345_4 = ["_tr_345_1", "_tr_345_2", "_tr_345_3", "_tr_345_4", "_tr_345_5", "_tr_345_6", "_tr_345_7", "_tr_345_8", "_tr_345_9", "_tr_345_10", "_tr_345_11", "_tr_345_12", "_tr_345_13", "_tr_345_14", "_tr_345_15", "_tr_345_16", "_tr_345_17", "_tr_345_18", "_tr_345_19", "_tr_345_20", "_tr_345_21", "_tr_345_22", "_tr_345_23", "_tr_345_24", "_tr_345_25"];
+for (var i = 0; i < _ids_345_4.length; i++) {
+  var elem = document.getElementById(_ids_345_4[i]);
+  elem.addEventListener("contextmenu", e => {
+    e.preventDefault();
+    _global_elem = event.target || event.srcElement;
+    if (_global_elem.nodeName == "SPAN") {
+       _global_elem = _global_elem.parentNode;
+    }
+    const origin = {
+      left: e.clientX, top: e.clientY
+    };
+    if (_current_menu != null && _current_menu.dataset.visible) {
+      toggleMenu_345 (_current_menu, "hide");
+      _current_menu = null;
+    }
+    _previous_elem = _global_elem;    var menu = document.getElementById("mctxMenu4");
+    if (menu != null) {
+      _current_menu = menu;
+      setPosition_345(menu, origin);
+      _global_elem.parentNode.classList.add ("selected-context");
+    }
+    return false;
+  });
+}
+function _action_268 (p, pm){document.getElementById("maqao_modal-body").innerHTML="<object id=\"maqao_modal-body_content\" type=\"text/html\" data=\"modals/"+_global_elem.dataset._p+".html?mode=loadbal\"></object>";var modal = document.getElementById('MaqaoModal');modal.style.display = "block";}
+function _action_269 (p, pm){document.getElementById("maqao_modal-body").innerHTML="<object id=\"maqao_modal-body_content\" type=\"text/html\" data=\"modals/"+_global_elem.dataset._p+".html?mode=loadbal_sorted\"></object>";var modal = document.getElementById('MaqaoModal');modal.style.display = "block";}
+function _action_270 (p, pm){document.getElementById("maqao_modal-body").innerHTML="<object id=\"maqao_modal-body_content\" type=\"text/html\" data=\"modals/"+_global_elem.dataset._p+".html?mode=loadbal_all\"></object>";var modal = document.getElementById('MaqaoModal');modal.style.display = "block";}
+function _action_271 (p, pm){document.getElementById("maqao_modal-body").innerHTML="<object id=\"maqao_modal-body_content\" type=\"text/html\" data=\"modals/"+_global_elem.dataset._p+".html?mode=callchains\"></object>";var modal = document.getElementById('MaqaoModal');modal.style.display = "block";}
+function _action_272 (p, pm){open("loops/"+_global_elem.dataset._p+".html", "_self");}
+</script>
+<script>
+var list_opts_table345 = ['_table345_opt4','_table345_opt5','_table345_opt6','_table345_opt7','_table345_opt8','_table345_opt9','_table345_opt10','_table345_opt11','_table345_opt12','_table345_opt13','_table345_opt14','_table345_opt15','_table345_opt16','_table345_opt17','_table345_opt18','_table345_opt19','_table345_opt20','_table345_opt21','_table345_opt22','_table345_opt23','_table345_opt24','_table345_opt_cust_1','_table345_opt_cust_2','_table345_opt_cust_3','_table345_opt_cust_4','_table345_opt_cust_5','_table345_opt_cust_6','_table345_opt_cust_7','_table345_opt_cust_8','_table345_opt_cust_9','_table345_opt_cust_10','_table345_opt_cust_11','_table345_opt_cust_12','_table345_opt_cust_13','_table345_opt_cust_14','_table345_opt_cust_15','_table345_opt_cust_16','_table345_opt_cust_17','_table345_opt_cust_18','_table345_opt_cust_19','_table345_opt_cust_20','_table345_opt_cust_21','_table345_opt_cust_1','_table345_opt_cust_2','_table345_opt_cust_3','_table345_opt_cust_4','_table345_opt_cust_5','_table345_opt_cust_6','_table345_opt_cust_7','_table345_opt_cust_8','_table345_opt_cust_9','_table345_opt_cust_10','_table345_opt_cust_11','_table345_opt_cust_12','_table345_opt_cust_13','_table345_opt_cust_14','_table345_opt_cust_15','_table345_opt_cust_16','_table345_opt_cust_17','_table345_opt_cust_18','_table345_opt_cust_19','_table345_opt_cust_20','_table345_opt_cust_21',];
+function __reset_checkboxes_table345 () {
+  var displayed_columns = [{id:"_table345_opt1", value:true}, {id:"_table345_opt2", value:true}, {id:"_table345_opt3", value:true}, {id:"_table345_opt4", value:false}, {id:"_table345_opt5", value:true}, {id:"_table345_opt6", value:true}, {id:"_table345_opt7", value:false}, {id:"_table345_opt8", value:true}, {id:"_table345_opt9", value:false}, {id:"_table345_opt10", value:false}, {id:"_table345_opt11", value:false}, {id:"_table345_opt12", value:true}, {id:"_table345_opt13", value:true}, {id:"_table345_opt14", value:true}, {id:"_table345_opt15", value:false}, {id:"_table345_opt16", value:false}, {id:"_table345_opt17", value:false}, {id:"_table345_opt18", value:false}, {id:"_table345_opt19", value:false}, {id:"_table345_opt20", value:false}, {id:"_table345_opt21", value:false}, {id:"_table345_opt22", value:false}, {id:"_table345_opt23", value:false}, {id:"_table345_opt24", value:false}];
+  // Update initial state using localStorage
+  for (var i = 0; i < displayed_columns.length; i++) {
+    var dcol = displayed_columns[i];
+    var val = localStorage.getItem (dcol.id);
+    if (val) {
+      dcol.value = (val === "true");
+    }
+    var obj = document.getElementById(dcol.id);
+    if (obj) {
+      if (dcol.value == true) {
+        obj.checked = true;
+      }
+      else {
+        obj.checked = false;
+      }
+    }
+  }
+  // Update table
+  var table = document.getElementById("_fixed_table_345");
+  for (let i in table.rows) {
+    let row = table.rows[i]
+    for (let j in row.cells) {
+      let col = row.cells[j]
+      if (col.classList) {
+        if (displayed_columns[j].value == true) {
+          col.classList.remove("_tcol_hidden");
+        }
+        else {
+          col.classList.add("_tcol_hidden");
+        }
+      }
+    }
+  }
+  {
+    var value = localStorage.getItem("_table345_opt_all");
+    if (value) {
+      var obj = document.getElementById ("_table345_opt_all");
+      if (obj) {
+        obj.value = value;
+      }
+    }
+  }
+  {
+    var checked     = localStorage.getItem("_table345_opt_cust_1");
+    var sel         = document.getElementById("_table345_opt_cust_1");
+    if (sel && checked) {
+      let v = (checked === "true");
+      if (v == true) {
+        sel.checked = true;
+      }
+      else {
+        sel.checked = false;
+      }
+    }
+  }
+  {
+    var checked     = localStorage.getItem("_table345_opt_cust_2");
+    var sel         = document.getElementById("_table345_opt_cust_2");
+    if (sel && checked) {
+      let v = (checked === "true");
+      if (v == true) {
+        sel.checked = true;
+      }
+      else {
+        sel.checked = false;
+      }
+    }
+  }
+  {
+    var checked     = localStorage.getItem("_table345_opt_cust_3");
+    var sel         = document.getElementById("_table345_opt_cust_3");
+    if (sel && checked) {
+      let v = (checked === "true");
+      if (v == true) {
+        sel.checked = true;
+      }
+      else {
+        sel.checked = false;
+      }
+    }
+  }
+  {
+    var checked     = localStorage.getItem("_table345_opt_cust_4");
+    var sel         = document.getElementById("_table345_opt_cust_4");
+    if (sel && checked) {
+      let v = (checked === "true");
+      if (v == true) {
+        sel.checked = true;
+      }
+      else {
+        sel.checked = false;
+      }
+    }
+  }
+  {
+    var checked     = localStorage.getItem("_table345_opt_cust_5");
+    var sel         = document.getElementById("_table345_opt_cust_5");
+    if (sel && checked) {
+      let v = (checked === "true");
+      if (v == true) {
+        sel.checked = true;
+      }
+      else {
+        sel.checked = false;
+      }
+    }
+  }
+  {
+    var checked     = localStorage.getItem("_table345_opt_cust_6");
+    var sel         = document.getElementById("_table345_opt_cust_6");
+    if (sel && checked) {
+      let v = (checked === "true");
+      if (v == true) {
+        sel.checked = true;
+      }
+      else {
+        sel.checked = false;
+      }
+    }
+  }
+  {
+    var checked     = localStorage.getItem("_table345_opt_cust_7");
+    var sel         = document.getElementById("_table345_opt_cust_7");
+    if (sel && checked) {
+      let v = (checked === "true");
+      if (v == true) {
+        sel.checked = true;
+      }
+      else {
+        sel.checked = false;
+      }
+    }
+  }
+  {
+    var checked     = localStorage.getItem("_table345_opt_cust_8");
+    var sel         = document.getElementById("_table345_opt_cust_8");
+    if (sel && checked) {
+      let v = (checked === "true");
+      if (v == true) {
+        sel.checked = true;
+      }
+      else {
+        sel.checked = false;
+      }
+    }
+  }
+  {
+    var checked     = localStorage.getItem("_table345_opt_cust_9");
+    var sel         = document.getElementById("_table345_opt_cust_9");
+    if (sel && checked) {
+      let v = (checked === "true");
+      if (v == true) {
+        sel.checked = true;
+      }
+      else {
+        sel.checked = false;
+      }
+    }
+  }
+  {
+    var checked     = localStorage.getItem("_table345_opt_cust_10");
+    var sel         = document.getElementById("_table345_opt_cust_10");
+    if (sel && checked) {
+      let v = (checked === "true");
+      if (v == true) {
+        sel.checked = true;
+      }
+      else {
+        sel.checked = false;
+      }
+    }
+  }
+  {
+    var checked     = localStorage.getItem("_table345_opt_cust_11");
+    var sel         = document.getElementById("_table345_opt_cust_11");
+    if (sel && checked) {
+      let v = (checked === "true");
+      if (v == true) {
+        sel.checked = true;
+      }
+      else {
+        sel.checked = false;
+      }
+    }
+  }
+  {
+    var checked     = localStorage.getItem("_table345_opt_cust_12");
+    var sel         = document.getElementById("_table345_opt_cust_12");
+    if (sel && checked) {
+      let v = (checked === "true");
+      if (v == true) {
+        sel.checked = true;
+      }
+      else {
+        sel.checked = false;
+      }
+    }
+  }
+  {
+    var checked     = localStorage.getItem("_table345_opt_cust_13");
+    var sel         = document.getElementById("_table345_opt_cust_13");
+    if (sel && checked) {
+      let v = (checked === "true");
+      if (v == true) {
+        sel.checked = true;
+      }
+      else {
+        sel.checked = false;
+      }
+    }
+  }
+  {
+    var checked     = localStorage.getItem("_table345_opt_cust_14");
+    var sel         = document.getElementById("_table345_opt_cust_14");
+    if (sel && checked) {
+      let v = (checked === "true");
+      if (v == true) {
+        sel.checked = true;
+      }
+      else {
+        sel.checked = false;
+      }
+    }
+  }
+  {
+    var checked     = localStorage.getItem("_table345_opt_cust_15");
+    var sel         = document.getElementById("_table345_opt_cust_15");
+    if (sel && checked) {
+      let v = (checked === "true");
+      if (v == true) {
+        sel.checked = true;
+      }
+      else {
+        sel.checked = false;
+      }
+    }
+  }
+  {
+    var checked     = localStorage.getItem("_table345_opt_cust_16");
+    var sel         = document.getElementById("_table345_opt_cust_16");
+    if (sel && checked) {
+      let v = (checked === "true");
+      if (v == true) {
+        sel.checked = true;
+      }
+      else {
+        sel.checked = false;
+      }
+    }
+  }
+  {
+    var checked     = localStorage.getItem("_table345_opt_cust_17");
+    var sel         = document.getElementById("_table345_opt_cust_17");
+    if (sel && checked) {
+      let v = (checked === "true");
+      if (v == true) {
+        sel.checked = true;
+      }
+      else {
+        sel.checked = false;
+      }
+    }
+  }
+  {
+    var checked     = localStorage.getItem("_table345_opt_cust_18");
+    var sel         = document.getElementById("_table345_opt_cust_18");
+    if (sel && checked) {
+      let v = (checked === "true");
+      if (v == true) {
+        sel.checked = true;
+      }
+      else {
+        sel.checked = false;
+      }
+    }
+  }
+  {
+    var checked     = localStorage.getItem("_table345_opt_cust_19");
+    var sel         = document.getElementById("_table345_opt_cust_19");
+    if (sel && checked) {
+      let v = (checked === "true");
+      if (v == true) {
+        sel.checked = true;
+      }
+      else {
+        sel.checked = false;
+      }
+    }
+  }
+  {
+    var checked     = localStorage.getItem("_table345_opt_cust_20");
+    var sel         = document.getElementById("_table345_opt_cust_20");
+    if (sel && checked) {
+      let v = (checked === "true");
+      if (v == true) {
+        sel.checked = true;
+      }
+      else {
+        sel.checked = false;
+      }
+    }
+  }
+  {
+    var checked     = localStorage.getItem("_table345_opt_cust_21");
+    var sel         = document.getElementById("_table345_opt_cust_21");
+    if (sel && checked) {
+      let v = (checked === "true");
+      if (v == true) {
+        sel.checked = true;
+      }
+      else {
+        sel.checked = false;
+      }
+    }
+  }
+  _check_all_checkbox_ ("_table345_opt_all", "list_opts_table345");
+};
+addLoadEvent(function(){
+  __reset_checkboxes_table345 ();
+});
+</script>
+</div></div><script>
+// Function called to check / uncheck all modules in the filter
+function _onchange_modules (obj) {
+  var inputs = ["_input_check_mod_miniMD_openmpi", ];
+  if (obj.checked == true) {
+    document.getElementById("_input_check_all_mods_text").innerHTML = "Uncheck all modules";
+    for (var i = 0; i < inputs.length; i++) {
+      document.getElementById(inputs[i]).checked = true;
+    }
+  }
+  else {
+    document.getElementById("_input_check_all_mods_text").innerHTML = "Check all modules";
+    for (var i = 0; i < inputs.length; i++) {
+      document.getElementById(inputs[i]).checked = false;
+    }
+  }
+}
+// Function called to handle filters
+function _upd_table() {
+  var tab     = document.getElementById("_fixed_table_345");
+  var rows    = tab.childNodes[0].rows;
+  var nb_rows = rows.length;
+  var button  = document.getElementById("button_toggle_loop_index");
+  for (var i = 1; i < nb_rows; i++) {
+    var cells = rows[i].cells;
+    if (cells[1].innerHTML != "") {
+       if (document.getElementById("_input_check_all_decan").checked == true
+       &&  cells[0].style.backgroundColor == "") {
+          rows[i].classList.add("_tree_hidden");
+      }
+      else if ((document.getElementById("_input_check_mod_" + cells[1].textContent.replace (/ - .*/g, "")).checked == false)
+      ||  ((button.innerHTML.localeCompare ("Show Full Profile") == 0)
+        && (cells[3].innerHTML.localeCompare("Single") != 0)
+        && (cells[3].innerHTML.localeCompare("Innermost") != 0))) {
+          rows[i].classList.add("_tree_hidden");
+      }
+      else {
+          rows[i].classList.remove("_tree_hidden");
+      }
+    }
+  }
+}
+addLoadEvent(function(){
+  const mapping_opt_optCust = {
+    "_table345_opt4": ["_table345_opt_cust_1",],
+    "_table345_opt5": ["_table345_opt_cust_2",],
+    "_table345_opt6": ["_table345_opt_cust_3",],
+    "_table345_opt7": ["_table345_opt_cust_4",],
+    "_table345_opt8": ["_table345_opt_cust_5",],
+    "_table345_opt9": ["_table345_opt_cust_6",],
+    "_table345_opt10": ["_table345_opt_cust_7",],
+    "_table345_opt11": ["_table345_opt_cust_8",],
+    "_table345_opt12": ["_table345_opt_cust_9",],
+    "_table345_opt13": ["_table345_opt_cust_10",],
+    "_table345_opt14": ["_table345_opt_cust_11",],
+    "_table345_opt15": ["_table345_opt_cust_12",],
+    "_table345_opt16": ["_table345_opt_cust_13",],
+    "_table345_opt17": ["_table345_opt_cust_14",],
+    "_table345_opt18": ["_table345_opt_cust_15",],
+    "_table345_opt19": ["_table345_opt_cust_16",],
+    "_table345_opt20": ["_table345_opt_cust_17",],
+    "_table345_opt21": ["_table345_opt_cust_18",],
+    "_table345_opt22": ["_table345_opt_cust_19",],
+    "_table345_opt23": ["_table345_opt_cust_20",],
+    "_table345_opt24": ["_table345_opt_cust_21",],
+  }
+  const boxs_on  = ["_input_check_all_mods","_input_check_mod_miniMD_openmpi", ];
+  const boxs_off = ["_input_check_all_decan"];
+  for (let i = 0; i < boxs_on.length; i++) {
+    document.getElementById(boxs_on[i]).checked = true;
+  }
+  for (let i = 0; i < boxs_off.length; i++) {
+    document.getElementById(boxs_off[i]).checked = false;
+  }
+  var qs = getQueryStringArray();
+  if (false) {}
+  else if (qs.view && qs.view !== "undefined" && qs.view == "aa_eff") {
+    const table_loops = document.getElementById("_fixed_table_345");
+    for (var i = 0, cell; cell = table_loops.rows[0].cells[i]; i++) {
+      var found = false;
+      if (false) {}
+      else if (cell.textContent == "Array Access Efficiency") {
+        found = true;
+      }
+      var e = document.getElementById("_table345_opt" + (i + 1));
+      if (e != null) {
+        e.checked = found;
+        click_table_menu("_table345_opt" + (i + 1), "_table345_opt_all", "list_opts_table345");
+        for (let j = 0; grpsel = mapping_opt_optCust[e.id][j]; j++) {
+          let ee = document.getElementById(grpsel);
+          if (ee != null) {
+            ee.checked = found;
+            updateLocalStorage(ee.id, found);
+          }
+        }
+      }
+    }
+  }
+  __disable_CSV_generator_buttons (["save_button_345"]);
+});
+function _onresize () {
+  __maqao_legacy_onresize ();
+  var d = document.getElementById ("_fixed_table_345").parentNode;
+  d.style.maxHeight = (window.innerHeight - getPos (d).y - 20)+"px";
+}
+window.onresize = _onresize;
+function toggle_loop_index() {
+  var table = document.getElementById("_fixed_table_345");
+  var button = document.getElementById("button_toggle_loop_index");
+  if (button.innerHTML.localeCompare ("Show Full Profile") == 0) {
+    button.innerHTML = "Show Innermost Profile";
+    for (var i = 1, row; row = table.rows[i]; i++) {
+      var mod = "";
+      if (row.cells[1].children.length == 0) {
+        mod = row.cells[1].innerHTML.replace (/ - .*/g, "");
+      }
+      else {
+        mod = row.cells[1].children[0].innerText.replace (/ - .*/g, "");
+      }
+      if (document.getElementById("_input_check_mod_" + mod).checked == true) {
+        row.classList.remove ("_tree_hidden");
+      }
+    }
+    let level_selector_id = "_table345_opt4";
+    let level_selector = document.getElementById (level_selector_id);
+    if (level_selector && level_selector.checked == false ) {
+       level_selector.checked = true;
+       click_table_menu(level_selector_id, "_table345_opt_all", "list_opts_table345");
+       level_selector.dataset.allLoopsFlag = "true";
+    }
+  }
+  else {
+    button.innerHTML = "Show Full Profile";
+    for (var i = 1, row; row = table.rows[i]; i++) {
+      if (row.cells[3].innerHTML.localeCompare("Single") != 0
+      && row.cells[3].innerHTML.localeCompare("Innermost") != 0) {
+        row.classList.add ("_tree_hidden");
+      }
+    }
+    let level_selector_id = "_table345_opt4";
+    let level_selector = document.getElementById (level_selector_id);
+    if (level_selector && level_selector.checked == true && level_selector.dataset.allLoopsFlag == "true") {
+       level_selector.checked = false;
+       click_table_menu(level_selector_id, "_table345_opt_all", "list_opts_table345");
+       level_selector.dataset.allLoopsFlag = "false";
+    }
+  }
+}
+addLoadEvent(function(){
+  toggle_loop_index();
+  _onresize ();
+});
+function click_table_custom (group_selector, id_root, __params__) {
+  const mapping_opt_optCust = {
+    "_table345_opt4": ["_table345_opt_cust_1",],
+    "_table345_opt5": ["_table345_opt_cust_2",],
+    "_table345_opt6": ["_table345_opt_cust_3",],
+    "_table345_opt7": ["_table345_opt_cust_4",],
+    "_table345_opt8": ["_table345_opt_cust_5",],
+    "_table345_opt9": ["_table345_opt_cust_6",],
+    "_table345_opt10": ["_table345_opt_cust_7",],
+    "_table345_opt11": ["_table345_opt_cust_8",],
+    "_table345_opt12": ["_table345_opt_cust_9",],
+    "_table345_opt13": ["_table345_opt_cust_10",],
+    "_table345_opt14": ["_table345_opt_cust_11",],
+    "_table345_opt15": ["_table345_opt_cust_12",],
+    "_table345_opt16": ["_table345_opt_cust_13",],
+    "_table345_opt17": ["_table345_opt_cust_14",],
+    "_table345_opt18": ["_table345_opt_cust_15",],
+    "_table345_opt19": ["_table345_opt_cust_16",],
+    "_table345_opt20": ["_table345_opt_cust_17",],
+    "_table345_opt21": ["_table345_opt_cust_18",],
+    "_table345_opt22": ["_table345_opt_cust_19",],
+    "_table345_opt23": ["_table345_opt_cust_20",],
+    "_table345_opt24": ["_table345_opt_cust_21",],
+  }
+  for (var i = 0, sel; sel = __params__[i]; i++) {
+    if (group_selector.checked == true) {
+      let is_full_true = true
+      for (var j = 0; grpsel = mapping_opt_optCust[sel.id][j]; j++) {
+        if (!document.getElementById (grpsel).checked) {
+          is_full_true = false;
+        }
+      }
+      if (is_full_true == true) {
+        sel.checked = group_selector.checked;
+        click_table_menu (sel.id);
+      }
+    }
+    else {
+      sel.checked = group_selector.checked;
+      click_table_menu (sel.id);
+    }
+  }
+  updateLocalStorage(group_selector.id, group_selector.checked);
+  _check_all_checkbox_ (id_root + "_opt_all", "list_opts" + id_root);
+}
+</script>
+
+  <div id="MaqaoModal" class="maqao_modal">
+    <div class="maqao_modal-content">
+      <div class="maqao_modal-header">
+        <span class="maqao_close">&times;</span>
+      </div>
+      <div id="maqao_modal-body" class="maqao_modal-body">
+      </div>
+    </div>
+  </div>
+</div><script>
+var tooltips_texts = ['List of profiled loops. Details about metrics can be obtained by moving the cursor on the column header. Rows can be sorted ascending or descending by clicking on the column header. Colors in the coverage column are from red for hot loops to blue for cold loops. Some additionnal columns can be displayed by clicking on the form above the table. Double click on a loop to display its analysis report in a new tab.',
+'A form that can be displayed / hidden by clicking on the header to specify which modules must be displayed in the profiling. By clicking on the button, only checked categories are displayed.',
+'A set of filters to display / hide some columns',
+'Loop Level (Innermost / Single / InBetween / Outermost)',
+'(Maximal exclusive execution time over all threads (s)) divided by (Walltime (s)) for run run_0',
+'Exclusive percentage of the execution time spent in the loop for run run_0',
+'Inclusive percentage of the execution time spent in the loop for run run_0',
+'Maximal exclusive execution time over all threads spent in the loop in seconds for run run_0',
+'Maximal inclusive execution time over all threads spent in the loop in seconds for run run_0',
+'Exclusive time of the loop with regard to the global wall time in seconds for run run_0',
+'Inclusive time of the loop with regard to the global wall time in seconds for run run_0',
+'Number of threads that executed the loop for run run_0',
+'Percentage of the loop that have been vectorized. The color is red when the value is lower than 70%, orange when the value is between 70% and 90% and green when it is greater than 90%.',
+'Average width (percentage) of vector registers used by the loop. The color is red when the value is lower than 70%, orange when the value is between 70% and 90% and green when it is greater than 90%',
+'Optimistic speedup of the loop available if it has no scalar integer instructions. This speedup can be achieved by removing all instructions which do not perform any floating-point computation or memory accesses. Instructions used to handle the loop control flow are not included in the instructions set to remove. A light orange color means the speedup is between 1 and 2, a darker orange color means the speedup is greater than 2.',
+'Optimistic speedup of the loop available if it has all its floating point computation vectorized. This speedup can be achived by vectorizing all instructions performing floating point computation. It does not take into account memory accesses. A light orange color means the speedup is between 1 and 2, a darker orange color means the speedup is greater than 2.</li>',
+'Optimistic speedup of the loop available if it has all its instructions vectorized. This speedup can be achived by vectorizing all instructions, both floating point computation instructions and memory accesses instructions. A light orange color means the speedup is between 1 and 2, a darker orange color means the speedup is greater than 2;</li>',
+'Optimistic speedup of the loop available if it is perfectly load balanced for run run_0. This speedup can be achieved by balancing all threads. A light orange color means the speedup is between 1 and 2, a darker orange color means the speedup is greater than 2;</li>',
+'MAQAO loop identifier. A green cell means the loop has been dynamically analyzed with DECAN, an orange cell means there no DECAN results but only VPROF results',
+'Name of the source file that contains the loop and its location in the file.',
+'Name of the fonction that contains the loop.',
+'Loop Level (Innermost / Single / InBetween / Outermost)',
+'(Maximal exclusive execution time over all threads (s)) divided by (Walltime (s)) for run run_0',
+'Exclusive percentage of the execution time spent in the loop for run run_0',
+'Inclusive percentage of the execution time spent in the loop for run run_0',
+'Maximal exclusive execution time over all threads spent in the loop in seconds for run run_0',
+'Maximal inclusive execution time over all threads spent in the loop in seconds for run run_0',
+'Exclusive time of the loop with regard to the global wall time in seconds for run run_0',
+'Inclusive time of the loop with regard to the global wall time in seconds for run run_0',
+'Number of threads that executed the loop for run run_0',
+'Percentage of the loop that have been vectorized. The color is red when the value is lower than 70%, orange when the value is between 70% and 90% and green when it is greater than 90%.',
+'Average width (percentage) of vector registers used by the loop. The color is red when the value is lower than 70%, orange when the value is between 70% and 90% and green when it is greater than 90%',
+'Optimistic speedup of the loop available if it has no scalar integer instructions. This speedup can be achieved by removing all instructions which do not perform any floating-point computation or memory accesses. Instructions used to handle the loop control flow are not included in the instructions set to remove. A light orange color means the speedup is between 1 and 2, a darker orange color means the speedup is greater than 2.',
+'Optimistic speedup of the loop available if it has all its floating point computation vectorized. This speedup can be achived by vectorizing all instructions performing floating point computation. It does not take into account memory accesses. A light orange color means the speedup is between 1 and 2, a darker orange color means the speedup is greater than 2.</li>',
+'Optimistic speedup of the loop available if it has all its instructions vectorized. This speedup can be achived by vectorizing all instructions, both floating point computation instructions and memory accesses instructions. A light orange color means the speedup is between 1 and 2, a darker orange color means the speedup is greater than 2;</li>',
+'Optimistic speedup of the loop available if it is perfectly load balanced for run run_0. This speedup can be achieved by balancing all threads. A light orange color means the speedup is between 1 and 2, a darker orange color means the speedup is greater than 2;</li>',
+'/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/force_lj.cpp: 206-209<br>/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/force_lj.cpp: 216-242<br>/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/force_lj.cpp: 254-256<br>',
+'/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/setup.cpp: 359-378<br>/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/setup.cpp: 392-420<br>/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/setup.cpp: 510-515<br>',
+'/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/neighbor.cpp: 239-241<br>/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/neighbor.cpp: 247-250<br>/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/neighbor.cpp: 278-299<br>',
+'/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp: 767-767<br>/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp: 776-782<br>',
+'/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/neighbor.cpp: 128-135<br>/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/neighbor.cpp: 144-189<br>/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/neighbor.cpp: 278-299<br>',
+'/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/force_lj.cpp: 206-209<br>/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/force_lj.cpp: 216-248<br>/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/force_lj.cpp: 254-256<br>'];
+var modal = document.getElementById('MaqaoModal');
+var span = document.getElementsByClassName("maqao_close")[0];
+span.onclick = function() {
+    modal.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+const comparer = (idx, asc) => (a, b) => ((v1, v2) => 
+    v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v2 - v1 : v1.toString().localeCompare(v2)
+    )(getCellValue(asc ? a : b, idx) === '' ? -1: (getCellValue(asc ? a : b, idx).replace(/\s/g,'')), 
+      getCellValue(asc ? b : a, idx) === '' ? -1: (getCellValue(asc ? b : a, idx).replace(/\s/g,'')));
+addLoadEvent(function(){
+  document.querySelectorAll('._fixed_table:not(._no_auto_sorting) th').forEach(th => th.addEventListener('click', (() => {
+    const table = th.closest('table');
+    // Remove all symbols in header
+    table.querySelectorAll('th').forEach(function (e) {
+      e.firstChild.textContent = "";
+    });
+    // Change the symbol on the clicked header
+    if (this.asc != true) {
+      th.firstChild.textContent = "\u25BC";
+    }
+    else {
+      th.firstChild.textContent = "\u25B2";
+    }
+    Array.from(table.querySelectorAll('tr:nth-child(n+2)'))
+        .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+        .forEach(tr => table.appendChild(tr) );
+  })));
+});
+addLoadEvent(function(){
+  document.querySelectorAll('._tree_table:not(._no_auto_sorting) th').forEach(th => th.addEventListener('click', (() => {
+    const table = th.closest('table');
+    // Remove all symbols in header
+    table.querySelectorAll('th').forEach(function (e) {
+      e.firstChild.textContent = "";
+    });
+    // Change the symbol on the clicked header
+    if (this.asc != true) {
+      th.firstChild.textContent = "\u25BC";
+    }
+    else {
+      th.firstChild.textContent = "\u25B2";
+    }
+    let last_id = "";
+    const t_outermost = new Array ();
+    const t_children  = new Map ();
+    for (let i = 1, row; row = table.rows[i]; i++) {
+      if (row.classList.contains ("_outer_row")) {
+        t_outermost.push (row);
+        last_id = row.id;
+        t_children [last_id] = new Array ();
+      }
+      else {
+        t_children [last_id].push (row);
+      }
+    }
+    t_outermost.sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc));
+    for (let i = 0, row; row = t_outermost[i]; i++) {
+      table.appendChild(row)
+      for (let j = 0, child; child = t_children[row.id][j]; j++) {
+        table.appendChild(child)
+      }
+    }
+  })));
+});
+// Hide unselected tabs
+addLoadEvent(function(){
+  var x = document.getElementsByClassName("_tab_header_li");
+  for (var i = 0; i < x.length; i++) {
+    if (x[i].classList.contains("selected_tab") == false) {
+      var e = document.getElementById (x[i].dataset.tab);
+      e.style.display = "none";
+    }
+  }
+});
+</script>
+</body>
+</html>

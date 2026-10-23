@@ -1,0 +1,10 @@
+********************************************************************************
+MAQAO 2026.1.0 - 9b208d1bfae07aebf93563f02cac5969c107cc95::20260713-144914 || 2026/07/13
+../../maqao.2026.1.0/bin/maqao oneview -R1 -uarch=TIGER_LAKE "--mpi-command=mpirun -np 1" --xp=../../results/optim-group/MAQAO_2026-10-23_18-19-43_optim-group --show-program-output -- miniMD_openmpi -i ../../launcher/in.param_analyse.miniMD -s 100 
+CPY:  [true] miniMD_openmpi --> /home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/../../results/optim-group/MAQAO_2026-10-23_18-19-43_optim-group/binaries/miniMD_openmpi
+CMD:   /home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/../../maqao.2026.1.0/bin/maqao lprof _caller=oneview  --xp="/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/../../results/optim-group/MAQAO_2026-10-23_18-19-43_optim-group/tools/lprof_run_0" --mpi-command="mpirun -np 1" --collect-CPU-time-intervals --collect-topology tpp=1  -ldi=off  -- /home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/../../results/optim-group/MAQAO_2026-10-23_18-19-43_optim-group/binaries/miniMD_openmpi  -i ../../launcher/in.param_analyse.miniMD -s 100
+Run run_0: At cluster level, discarded 5 functions cumulating 0.2% of application profiled time
+
+Run run_0: At cluster level, discarded 3 loops cumulating 0.0% of application profiled time
+
+CMD:  /home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/../../maqao.2026.1.0/bin/maqao otter  -input=/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/../../results/optim-group/MAQAO_2026-10-23_18-19-43_optim-group/OTTER/input_manifest.csv -output=/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/../../results/optim-group/MAQAO_2026-10-23_18-19-43_optim-group/OTTER/output_manifest.csv --reduce-threads-files=on
