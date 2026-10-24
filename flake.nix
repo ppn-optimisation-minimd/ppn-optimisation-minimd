@@ -54,6 +54,7 @@
           clang-tools
           valgrind
           gdb
+          hwloc
         ] ++ [ self.packages."${system}".maqao ];
       };
     });
