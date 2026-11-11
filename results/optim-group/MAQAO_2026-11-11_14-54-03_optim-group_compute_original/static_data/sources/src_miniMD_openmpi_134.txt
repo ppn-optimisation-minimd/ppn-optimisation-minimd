@@ -1,0 +1,6 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/comm.cpp: 805 - 807
+--------------------------------------------------------------------------------
+
+805:       for(int k = 0; k < nsend; k++) {
+806:         atom.pack_border(exc_sendlist_thread[tid][k], &buf_send[(k + nsend_thread[tid] - nsend) * 4], pbc_flags);
+807:         sendlist[iswap][k + nsend_thread[tid] - nsend] = exc_sendlist_thread[tid][k];
