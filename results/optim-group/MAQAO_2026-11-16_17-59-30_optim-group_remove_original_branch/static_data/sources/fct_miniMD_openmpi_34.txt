@@ -1,0 +1,20 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/atom.cpp: 198 - 214
+--------------------------------------------------------------------------------
+
+198: {
+199:   int m = 0;
+200: 
+201:   if(pbc_flags[0] == 0) {
+202:     buf[m++] = x[i * PAD + 0];
+203:     buf[m++] = x[i * PAD + 1];
+204:     buf[m++] = x[i * PAD + 2];
+205:     buf[m++] = type[i];
+206:   } else {
+207:     buf[m++] = x[i * PAD + 0] + pbc_flags[1] * box.xprd;
+208:     buf[m++] = x[i * PAD + 1] + pbc_flags[2] * box.yprd;
+209:     buf[m++] = x[i * PAD + 2] + pbc_flags[3] * box.zprd;
+210:     buf[m++] = type[i];
+211:   }
+212: 
+213:   return m;
+214: }
