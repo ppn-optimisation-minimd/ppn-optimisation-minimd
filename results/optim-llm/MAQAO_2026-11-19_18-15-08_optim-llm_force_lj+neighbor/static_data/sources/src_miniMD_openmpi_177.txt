@@ -1,0 +1,5 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/comm.cpp: 847 - 848
+--------------------------------------------------------------------------------
+
+847:       for(int i = 0; i < nrecv; i++)
+848:         atom.unpack_border(n + i, &buf[i * 4]);

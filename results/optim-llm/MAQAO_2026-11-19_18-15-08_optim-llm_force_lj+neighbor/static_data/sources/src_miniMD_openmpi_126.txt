@@ -1,0 +1,4 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/neighbor.cpp: 240 - 240
+--------------------------------------------------------------------------------
+
+240:       for(int i = 0; i < mbins; i++) bc_t[i] = 0;

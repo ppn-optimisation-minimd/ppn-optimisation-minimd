@@ -1,0 +1,665 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/force_lj.cpp: 71 - 857
+--------------------------------------------------------------------------------
+
+71: {
+72:   eng_vdwl = 0;
+73:   virial = 0;
+74: 
+75:   if(evflag) {
+76:     if(use_oldcompute)
+77:       return compute_original<1>(atom, neighbor, me);
+78: 
+79:     if(neighbor.halfneigh) {
+80:       if(neighbor.ghost_newton) {
+81:         if(threads->omp_num_threads > 1)
+82:           return compute_halfneigh_threaded<1, 1>(atom, neighbor, me);
+83:         else
+84:           return compute_halfneigh<1, 1>(atom, neighbor, me);
+85:       } else {
+86:         if(threads->omp_num_threads > 1)
+[...]
+93:     if(use_oldcompute)
+94:       return compute_original<0>(atom, neighbor, me);
+95: 
+96:     if(neighbor.halfneigh) {
+97:       if(neighbor.ghost_newton) {
+98:         if(threads->omp_num_threads > 1)
+99:           return compute_halfneigh_threaded<0, 1>(atom, neighbor, me);
+100:         else
+101:           return compute_halfneigh<0, 1>(atom, neighbor, me);
+102:       } else {
+103:         if(threads->omp_num_threads > 1)
+104:           return compute_halfneigh_threaded<0, 0>(atom, neighbor, me);
+105:         else
+106:           return compute_halfneigh<0, 0>(atom, neighbor, me);
+107:       }
+108:     } else return compute_fullneigh<0>(atom, neighbor, me);
+109:   }
+110: }
+[...]
+118:   const int nlocal = atom.nlocal;
+119:   const int nall = atom.nlocal + atom.nghost;
+120:   const MMD_float* const x = atom.x;
+121:   MMD_float* const f = atom.f;
+122:   const int* const type = atom.type;
+123: 
+124:   eng_vdwl = 0;
+125:   virial = 0;
+126: 
+127:   for(int i = 0; i < nall; i++) {
+128:     f[i * PAD + 0] = 0.0;
+129:     f[i * PAD + 1] = 0.0;
+130:     f[i * PAD + 2] = 0.0;
+131:   }
+132: 
+133:   for(int i = 0; i < nlocal; i++) {
+134:     const int* const neighs = &neighbor.neighbors[i * neighbor.maxneighs];
+135:     const int numneigh = neighbor.numneigh[i];
+136:     const MMD_float xtmp = x[i * PAD + 0];
+137:     const MMD_float ytmp = x[i * PAD + 1];
+138:     const MMD_float ztmp = x[i * PAD + 2];
+139:     const int type_i = type[i];
+140: 
+141:     for(int k = 0; k < numneigh; k++) {
+142:       const int j = neighs[k];
+143:       const MMD_float delx = xtmp - x[j * PAD + 0];
+144:       const MMD_float dely = ytmp - x[j * PAD + 1];
+145:       const MMD_float delz = ztmp - x[j * PAD + 2];
+146:       const int type_j = type[j];
+147:       const MMD_float rsq = delx * delx + dely * dely + delz * delz;
+148:       const int type_ij = type_i * ntypes + type_j;
+149: 
+150:       if(rsq < cutforcesq[type_ij]) {
+151:         const MMD_float sr2 = 1.0 / rsq;
+152:         const MMD_float sr6 = sr2 * sr2 * sr2 * sigma6[type_ij];
+153:         const MMD_float force = 48.0 * sr6 * (sr6 - 0.5) * sr2 * epsilon[type_ij];
+154:         f[i * PAD + 0] += delx * force;
+155:         f[i * PAD + 1] += dely * force;
+156:         f[i * PAD + 2] += delz * force;
+157:         f[j * PAD + 0] -= delx * force;
+158:         f[j * PAD + 1] -= dely * force;
+159:         f[j * PAD + 2] -= delz * force;
+160: 
+161:         if(EVFLAG) {
+162:           eng_vdwl += (4.0 * sr6 * (sr6 - 1.0)) * epsilon[type_ij];
+163:           virial += (delx * delx + dely * dely + delz * delz) * force;
+[...]
+192:   for(int i = 0; i < nall; i++) {
+193:     f[i * PAD + 0] = 0.0;
+194:     f[i * PAD + 1] = 0.0;
+195:     f[i * PAD + 2] = 0.0;
+196:   }
+197: 
+198:   MMD_float t_energy = 0.0;
+199:   MMD_float t_virial = 0.0;
+200: 
+201:   for(int i = 0; i < nlocal; i++) {
+202:     const int* const neighs = &neighs_base[i * maxneighs];
+203:     const int numneighs = neighbor.numneigh[i];
+204:     const MMD_float xtmp = x[i * PAD + 0];
+205:     const MMD_float ytmp = x[i * PAD + 1];
+206:     const MMD_float ztmp = x[i * PAD + 2];
+207:     const int type_i = type[i];
+208: 
+209:     MMD_float fix = 0.0;
+210:     MMD_float fiy = 0.0;
+211:     MMD_float fiz = 0.0;
+212: 
+213:     /* ---- process 4 neighbours per iteration (ILP + vectorisable) ---- */
+214:     const int n4 = numneighs & ~3;
+215:     int k = 0;
+216:     for(; k < n4; k += 4) {
+217:       /* prefetch positions for next group (hide memory latency) */
+218:       const int j0 = neighs[k];
+219:       const int j1 = neighs[k+1];
+220:       const int j2 = neighs[k+2];
+221:       const int j3 = neighs[k+3];
+222: 
+223:       /* look-ahead prefetch (next group of 4) */
+224:       if(k + 8 < numneighs) {
+225:         PREFETCH(&x[neighs[k+4] * PAD]);
+226:         PREFETCH(&x[neighs[k+5] * PAD]);
+227:         PREFETCH(&x[neighs[k+6] * PAD]);
+228:         PREFETCH(&x[neighs[k+7] * PAD]);
+229:       }
+230: 
+231:       /* ---- neighbour 0 ---- */
+232:       {
+233:         const MMD_float delx = xtmp - x[j0 * PAD + 0];
+234:         const MMD_float dely = ytmp - x[j0 * PAD + 1];
+235:         const MMD_float delz = ztmp - x[j0 * PAD + 2];
+236:         const int type_ij = type_i * ntypes + type[j0];
+237:         const MMD_float rsq = delx*delx + dely*dely + delz*delz;
+238: 
+239:         if(LIKELY(rsq < cutforcesq[type_ij])) {
+240:           const MMD_float sr2 = 1.0 / rsq;
+241:           const MMD_float sig6 = sigma6[type_ij];
+242:           const MMD_float eps  = epsilon[type_ij];
+243:           const MMD_float sr6  = sr2 * sr2 * sr2 * sig6;
+244:           const MMD_float c48  = 48.0 * sig6 * eps;
+245:           const MMD_float force = c48 * sr6 * (sr6 - 0.5) * sr2;
+246: 
+247:           fix += delx * force;
+248:           fiy += dely * force;
+249:           fiz += delz * force;
+250: 
+251:           if(GHOST_NEWTON || j0 < nlocal) {
+252:             f[j0 * PAD + 0] -= delx * force;
+253:             f[j0 * PAD + 1] -= dely * force;
+254:             f[j0 * PAD + 2] -= delz * force;
+255:           }
+256:           if(EVFLAG) {
+257:             const MMD_float scale = (GHOST_NEWTON || j0 < nlocal) ? 1.0 : 0.5;
+258:             const MMD_float c4 = 4.0 * eps;
+259:             t_energy += scale * c4 * sr6 * (sr6 - 1.0);
+260:             t_virial += scale * rsq * force;
+[...]
+266:         const MMD_float delx = xtmp - x[j1 * PAD + 0];
+267:         const MMD_float dely = ytmp - x[j1 * PAD + 1];
+268:         const MMD_float delz = ztmp - x[j1 * PAD + 2];
+269:         const int type_ij = type_i * ntypes + type[j1];
+270:         const MMD_float rsq = delx*delx + dely*dely + delz*delz;
+271: 
+272:         if(LIKELY(rsq < cutforcesq[type_ij])) {
+273:           const MMD_float sr2 = 1.0 / rsq;
+274:           const MMD_float sig6 = sigma6[type_ij];
+275:           const MMD_float eps  = epsilon[type_ij];
+276:           const MMD_float sr6  = sr2 * sr2 * sr2 * sig6;
+277:           const MMD_float c48  = 48.0 * sig6 * eps;
+278:           const MMD_float force = c48 * sr6 * (sr6 - 0.5) * sr2;
+279: 
+280:           fix += delx * force;
+281:           fiy += dely * force;
+282:           fiz += delz * force;
+283: 
+284:           if(GHOST_NEWTON || j1 < nlocal) {
+285:             f[j1 * PAD + 0] -= delx * force;
+286:             f[j1 * PAD + 1] -= dely * force;
+287:             f[j1 * PAD + 2] -= delz * force;
+288:           }
+289:           if(EVFLAG) {
+290:             const MMD_float scale = (GHOST_NEWTON || j1 < nlocal) ? 1.0 : 0.5;
+291:             const MMD_float c4 = 4.0 * eps;
+292:             t_energy += scale * c4 * sr6 * (sr6 - 1.0);
+293:             t_virial += scale * rsq * force;
+[...]
+299:         const MMD_float delx = xtmp - x[j2 * PAD + 0];
+300:         const MMD_float dely = ytmp - x[j2 * PAD + 1];
+301:         const MMD_float delz = ztmp - x[j2 * PAD + 2];
+302:         const int type_ij = type_i * ntypes + type[j2];
+303:         const MMD_float rsq = delx*delx + dely*dely + delz*delz;
+304: 
+305:         if(LIKELY(rsq < cutforcesq[type_ij])) {
+306:           const MMD_float sr2 = 1.0 / rsq;
+307:           const MMD_float sig6 = sigma6[type_ij];
+308:           const MMD_float eps  = epsilon[type_ij];
+309:           const MMD_float sr6  = sr2 * sr2 * sr2 * sig6;
+310:           const MMD_float c48  = 48.0 * sig6 * eps;
+311:           const MMD_float force = c48 * sr6 * (sr6 - 0.5) * sr2;
+312: 
+313:           fix += delx * force;
+314:           fiy += dely * force;
+315:           fiz += delz * force;
+316: 
+317:           if(GHOST_NEWTON || j2 < nlocal) {
+318:             f[j2 * PAD + 0] -= delx * force;
+319:             f[j2 * PAD + 1] -= dely * force;
+320:             f[j2 * PAD + 2] -= delz * force;
+321:           }
+322:           if(EVFLAG) {
+323:             const MMD_float scale = (GHOST_NEWTON || j2 < nlocal) ? 1.0 : 0.5;
+324:             const MMD_float c4 = 4.0 * eps;
+325:             t_energy += scale * c4 * sr6 * (sr6 - 1.0);
+326:             t_virial += scale * rsq * force;
+[...]
+332:         const MMD_float delx = xtmp - x[j3 * PAD + 0];
+333:         const MMD_float dely = ytmp - x[j3 * PAD + 1];
+334:         const MMD_float delz = ztmp - x[j3 * PAD + 2];
+335:         const int type_ij = type_i * ntypes + type[j3];
+336:         const MMD_float rsq = delx*delx + dely*dely + delz*delz;
+337: 
+338:         if(LIKELY(rsq < cutforcesq[type_ij])) {
+339:           const MMD_float sr2 = 1.0 / rsq;
+340:           const MMD_float sig6 = sigma6[type_ij];
+341:           const MMD_float eps  = epsilon[type_ij];
+342:           const MMD_float sr6  = sr2 * sr2 * sr2 * sig6;
+343:           const MMD_float c48  = 48.0 * sig6 * eps;
+344:           const MMD_float force = c48 * sr6 * (sr6 - 0.5) * sr2;
+345: 
+346:           fix += delx * force;
+347:           fiy += dely * force;
+348:           fiz += delz * force;
+349: 
+350:           if(GHOST_NEWTON || j3 < nlocal) {
+351:             f[j3 * PAD + 0] -= delx * force;
+352:             f[j3 * PAD + 1] -= dely * force;
+353:             f[j3 * PAD + 2] -= delz * force;
+354:           }
+355:           if(EVFLAG) {
+356:             const MMD_float scale = (GHOST_NEWTON || j3 < nlocal) ? 1.0 : 0.5;
+357:             const MMD_float c4 = 4.0 * eps;
+358:             t_energy += scale * c4 * sr6 * (sr6 - 1.0);
+359:             t_virial += scale * rsq * force;
+[...]
+365:     for(; k < numneighs; k++) {
+366:       const int j = neighs[k];
+367:       const MMD_float delx = xtmp - x[j * PAD + 0];
+368:       const MMD_float dely = ytmp - x[j * PAD + 1];
+369:       const MMD_float delz = ztmp - x[j * PAD + 2];
+370:       const int type_ij = type_i * ntypes + type[j];
+371:       const MMD_float rsq = delx*delx + dely*dely + delz*delz;
+372: 
+373:       if(LIKELY(rsq < cutforcesq[type_ij])) {
+374:         const MMD_float sr2 = 1.0 / rsq;
+375:         const MMD_float sig6 = sigma6[type_ij];
+376:         const MMD_float eps  = epsilon[type_ij];
+377:         const MMD_float sr6  = sr2 * sr2 * sr2 * sig6;
+378:         const MMD_float c48  = 48.0 * sig6 * eps;
+379:         const MMD_float force = c48 * sr6 * (sr6 - 0.5) * sr2;
+380: 
+381:         fix += delx * force;
+382:         fiy += dely * force;
+383:         fiz += delz * force;
+384: 
+385:         if(GHOST_NEWTON || j < nlocal) {
+386:           f[j * PAD + 0] -= delx * force;
+387:           f[j * PAD + 1] -= dely * force;
+388:           f[j * PAD + 2] -= delz * force;
+389:         }
+390:         if(EVFLAG) {
+391:           const MMD_float scale = (GHOST_NEWTON || j < nlocal) ? 1.0 : 0.5;
+392:           const MMD_float c4 = 4.0 * eps;
+393:           t_energy += scale * c4 * sr6 * (sr6 - 1.0);
+394:           t_virial += scale * rsq * force;
+395:         }
+396:       }
+397:     }
+398: 
+399:     f[i * PAD + 0] += fix;
+400:     f[i * PAD + 1] += fiy;
+401:     f[i * PAD + 2] += fiz;
+402:   }
+403: 
+404:   eng_vdwl += t_energy;
+405:   virial += t_virial;
+[...]
+420:   MMD_float t_eng_vdwl = 0.0;
+421:   MMD_float t_virial = 0.0;
+422: 
+423:   const int nlocal = atom.nlocal;
+424:   const int nall = atom.nlocal + atom.nghost;
+[...]
+435:   for(int i = 0; i < nall; i++) {
+436:     f[i * PAD + 0] = 0.0;
+437:     f[i * PAD + 1] = 0.0;
+438:     f[i * PAD + 2] = 0.0;
+439:   }
+440: 
+441:   /* ---- main force kernel ---- */
+442:   OMPFORSCHEDULE
+443:   for(int i = 0; i < nlocal; i++) {
+444:     const int* const neighs = &neighs_base[i * maxneighs];
+445:     const int numneighs = neighbor.numneigh[i];
+446:     const MMD_float xtmp = x[i * PAD + 0];
+447:     const MMD_float ytmp = x[i * PAD + 1];
+448:     const MMD_float ztmp = x[i * PAD + 2];
+449:     const int type_i = type[i];
+450: 
+451:     MMD_float fix = 0.0;
+452:     MMD_float fiy = 0.0;
+453:     MMD_float fiz = 0.0;
+454: 
+455:     const int n4 = numneighs & ~3;
+456:     int k = 0;
+457:     for(; k < n4; k += 4) {
+458:       const int j0 = neighs[k];
+459:       const int j1 = neighs[k+1];
+460:       const int j2 = neighs[k+2];
+461:       const int j3 = neighs[k+3];
+462: 
+463:       if(k + 8 < numneighs) {
+464:         PREFETCH(&x[neighs[k+4] * PAD]);
+465:         PREFETCH(&x[neighs[k+5] * PAD]);
+466:         PREFETCH(&x[neighs[k+6] * PAD]);
+467:         PREFETCH(&x[neighs[k+7] * PAD]);
+468:       }
+469: 
+470:       {
+471:         const MMD_float delx = xtmp - x[j0 * PAD + 0];
+472:         const MMD_float dely = ytmp - x[j0 * PAD + 1];
+473:         const MMD_float delz = ztmp - x[j0 * PAD + 2];
+474:         const int type_ij = type_i * ntypes + type[j0];
+475:         const MMD_float rsq = delx*delx + dely*dely + delz*delz;
+476: 
+477:         if(LIKELY(rsq < cutforcesq[type_ij])) {
+478:           const MMD_float sr2 = 1.0 / rsq;
+479:           const MMD_float sig6 = sigma6[type_ij];
+480:           const MMD_float eps  = epsilon[type_ij];
+481:           const MMD_float sr6  = sr2 * sr2 * sr2 * sig6;
+482:           const MMD_float force = 48.0 * sig6 * eps * sr6 * (sr6 - 0.5) * sr2;
+483: 
+484:           fix += delx * force;
+485:           fiy += dely * force;
+486:           fiz += delz * force;
+487: 
+488:           if(GHOST_NEWTON || j0 < nlocal) {
+489:             #pragma omp atomic
+490:             f[j0 * PAD + 0] -= delx * force;
+491:             #pragma omp atomic
+492:             f[j0 * PAD + 1] -= dely * force;
+493:             #pragma omp atomic
+494:             f[j0 * PAD + 2] -= delz * force;
+495:           }
+496:           if(EVFLAG) {
+497:             const MMD_float scale = (GHOST_NEWTON || j0 < nlocal) ? 1.0 : 0.5;
+498:             t_eng_vdwl += scale * 4.0 * eps * sr6 * (sr6 - 1.0);
+499:             t_virial   += scale * rsq * force;
+500:           }
+501:         }
+502:       }
+503:       {
+504:         const MMD_float delx = xtmp - x[j1 * PAD + 0];
+505:         const MMD_float dely = ytmp - x[j1 * PAD + 1];
+506:         const MMD_float delz = ztmp - x[j1 * PAD + 2];
+507:         const int type_ij = type_i * ntypes + type[j1];
+508:         const MMD_float rsq = delx*delx + dely*dely + delz*delz;
+509: 
+510:         if(LIKELY(rsq < cutforcesq[type_ij])) {
+511:           const MMD_float sr2 = 1.0 / rsq;
+512:           const MMD_float sig6 = sigma6[type_ij];
+513:           const MMD_float eps  = epsilon[type_ij];
+514:           const MMD_float sr6  = sr2 * sr2 * sr2 * sig6;
+515:           const MMD_float force = 48.0 * sig6 * eps * sr6 * (sr6 - 0.5) * sr2;
+516: 
+517:           fix += delx * force;
+518:           fiy += dely * force;
+519:           fiz += delz * force;
+520: 
+521:           if(GHOST_NEWTON || j1 < nlocal) {
+522:             #pragma omp atomic
+523:             f[j1 * PAD + 0] -= delx * force;
+524:             #pragma omp atomic
+525:             f[j1 * PAD + 1] -= dely * force;
+526:             #pragma omp atomic
+527:             f[j1 * PAD + 2] -= delz * force;
+528:           }
+529:           if(EVFLAG) {
+530:             const MMD_float scale = (GHOST_NEWTON || j1 < nlocal) ? 1.0 : 0.5;
+531:             t_eng_vdwl += scale * 4.0 * eps * sr6 * (sr6 - 1.0);
+532:             t_virial   += scale * rsq * force;
+533:           }
+534:         }
+535:       }
+536:       {
+537:         const MMD_float delx = xtmp - x[j2 * PAD + 0];
+538:         const MMD_float dely = ytmp - x[j2 * PAD + 1];
+539:         const MMD_float delz = ztmp - x[j2 * PAD + 2];
+540:         const int type_ij = type_i * ntypes + type[j2];
+541:         const MMD_float rsq = delx*delx + dely*dely + delz*delz;
+542: 
+543:         if(LIKELY(rsq < cutforcesq[type_ij])) {
+544:           const MMD_float sr2 = 1.0 / rsq;
+545:           const MMD_float sig6 = sigma6[type_ij];
+546:           const MMD_float eps  = epsilon[type_ij];
+547:           const MMD_float sr6  = sr2 * sr2 * sr2 * sig6;
+548:           const MMD_float force = 48.0 * sig6 * eps * sr6 * (sr6 - 0.5) * sr2;
+549: 
+550:           fix += delx * force;
+551:           fiy += dely * force;
+552:           fiz += delz * force;
+553: 
+554:           if(GHOST_NEWTON || j2 < nlocal) {
+555:             #pragma omp atomic
+556:             f[j2 * PAD + 0] -= delx * force;
+557:             #pragma omp atomic
+558:             f[j2 * PAD + 1] -= dely * force;
+559:             #pragma omp atomic
+560:             f[j2 * PAD + 2] -= delz * force;
+561:           }
+562:           if(EVFLAG) {
+563:             const MMD_float scale = (GHOST_NEWTON || j2 < nlocal) ? 1.0 : 0.5;
+564:             t_eng_vdwl += scale * 4.0 * eps * sr6 * (sr6 - 1.0);
+565:             t_virial   += scale * rsq * force;
+566:           }
+567:         }
+568:       }
+569:       {
+570:         const MMD_float delx = xtmp - x[j3 * PAD + 0];
+571:         const MMD_float dely = ytmp - x[j3 * PAD + 1];
+572:         const MMD_float delz = ztmp - x[j3 * PAD + 2];
+573:         const int type_ij = type_i * ntypes + type[j3];
+574:         const MMD_float rsq = delx*delx + dely*dely + delz*delz;
+575: 
+576:         if(LIKELY(rsq < cutforcesq[type_ij])) {
+577:           const MMD_float sr2 = 1.0 / rsq;
+578:           const MMD_float sig6 = sigma6[type_ij];
+579:           const MMD_float eps  = epsilon[type_ij];
+580:           const MMD_float sr6  = sr2 * sr2 * sr2 * sig6;
+581:           const MMD_float force = 48.0 * sig6 * eps * sr6 * (sr6 - 0.5) * sr2;
+582: 
+583:           fix += delx * force;
+584:           fiy += dely * force;
+585:           fiz += delz * force;
+586: 
+587:           if(GHOST_NEWTON || j3 < nlocal) {
+588:             #pragma omp atomic
+589:             f[j3 * PAD + 0] -= delx * force;
+590:             #pragma omp atomic
+591:             f[j3 * PAD + 1] -= dely * force;
+592:             #pragma omp atomic
+593:             f[j3 * PAD + 2] -= delz * force;
+594:           }
+595:           if(EVFLAG) {
+596:             const MMD_float scale = (GHOST_NEWTON || j3 < nlocal) ? 1.0 : 0.5;
+597:             t_eng_vdwl += scale * 4.0 * eps * sr6 * (sr6 - 1.0);
+598:             t_virial   += scale * rsq * force;
+599:           }
+600:         }
+601:       }
+602:     }
+603:     for(; k < numneighs; k++) {
+604:       const int j = neighs[k];
+605:       const MMD_float delx = xtmp - x[j * PAD + 0];
+606:       const MMD_float dely = ytmp - x[j * PAD + 1];
+607:       const MMD_float delz = ztmp - x[j * PAD + 2];
+608:       const int type_ij = type_i * ntypes + type[j];
+609:       const MMD_float rsq = delx*delx + dely*dely + delz*delz;
+610: 
+611:       if(LIKELY(rsq < cutforcesq[type_ij])) {
+612:         const MMD_float sr2 = 1.0 / rsq;
+613:         const MMD_float sig6 = sigma6[type_ij];
+614:         const MMD_float eps  = epsilon[type_ij];
+615:         const MMD_float sr6  = sr2 * sr2 * sr2 * sig6;
+616:         const MMD_float force = 48.0 * sig6 * eps * sr6 * (sr6 - 0.5) * sr2;
+617: 
+618:         fix += delx * force;
+619:         fiy += dely * force;
+620:         fiz += delz * force;
+621: 
+622:         if(GHOST_NEWTON || j < nlocal) {
+623:           #pragma omp atomic
+624:           f[j * PAD + 0] -= delx * force;
+625:           #pragma omp atomic
+626:           f[j * PAD + 1] -= dely * force;
+627:           #pragma omp atomic
+628:           f[j * PAD + 2] -= delz * force;
+629:         }
+630:         if(EVFLAG) {
+631:           const MMD_float scale = (GHOST_NEWTON || j < nlocal) ? 1.0 : 0.5;
+632:           t_eng_vdwl += scale * 4.0 * eps * sr6 * (sr6 - 1.0);
+633:           t_virial   += scale * rsq * force;
+[...]
+639:     f[i * PAD + 0] += fix;
+640:     f[i * PAD + 1] += fiy;
+641:     f[i * PAD + 2] += fiz;
+642:   }
+643: 
+644:   #pragma omp atomic
+645:   eng_vdwl += t_eng_vdwl;
+646:   #pragma omp atomic
+647:   virial += t_virial;
+648: 
+649:   #pragma omp barrier
+650: }
+[...]
+664:   MMD_float t_eng_vdwl = 0.0;
+665:   MMD_float t_virial = 0.0;
+[...]
+678:   for(int i = 0; i < nlocal; i++) {
+679:     f[i * PAD + 0] = 0.0;
+680:     f[i * PAD + 1] = 0.0;
+681:     f[i * PAD + 2] = 0.0;
+682:   }
+683: 
+684:   OMPFORSCHEDULE
+685:   for(int i = 0; i < nlocal; i++) {
+686:     const int* const neighs = &neighs_base[i * maxneighs];
+687:     const int numneighs = neighbor.numneigh[i];
+688:     const MMD_float xtmp = x[i * PAD + 0];
+689:     const MMD_float ytmp = x[i * PAD + 1];
+690:     const MMD_float ztmp = x[i * PAD + 2];
+691:     const int type_i = type[i];
+692: 
+693:     MMD_float fix = 0.0;
+694:     MMD_float fiy = 0.0;
+695:     MMD_float fiz = 0.0;
+696: 
+697:     const int n4 = numneighs & ~3;
+698:     int k = 0;
+699:     for(; k < n4; k += 4) {
+700:       const int j0 = neighs[k];
+701:       const int j1 = neighs[k+1];
+702:       const int j2 = neighs[k+2];
+703:       const int j3 = neighs[k+3];
+704: 
+705:       if(k + 8 < numneighs) {
+706:         PREFETCH(&x[neighs[k+4] * PAD]);
+707:         PREFETCH(&x[neighs[k+5] * PAD]);
+708:         PREFETCH(&x[neighs[k+6] * PAD]);
+709:         PREFETCH(&x[neighs[k+7] * PAD]);
+710:       }
+711: 
+712:       {
+713:         const MMD_float delx = xtmp - x[j0 * PAD + 0];
+714:         const MMD_float dely = ytmp - x[j0 * PAD + 1];
+715:         const MMD_float delz = ztmp - x[j0 * PAD + 2];
+716:         const int type_ij = type_i * ntypes + type[j0];
+717:         const MMD_float rsq = delx*delx + dely*dely + delz*delz;
+718: 
+719:         if(LIKELY(rsq < cutforcesq[type_ij])) {
+720:           const MMD_float sr2 = 1.0 / rsq;
+721:           const MMD_float sig6 = sigma6[type_ij];
+722:           const MMD_float eps  = epsilon[type_ij];
+723:           const MMD_float sr6  = sr2 * sr2 * sr2 * sig6;
+724:           const MMD_float force = 48.0 * sig6 * eps * sr6 * (sr6 - 0.5) * sr2;
+725:           fix += delx * force;
+726:           fiy += dely * force;
+727:           fiz += delz * force;
+728: 
+729:           if(EVFLAG) {
+730:             t_eng_vdwl += 4.0 * eps * sr6 * (sr6 - 1.0);
+731:             t_virial   += rsq * force;
+732:           }
+733:         }
+734:       }
+735:       {
+736:         const MMD_float delx = xtmp - x[j1 * PAD + 0];
+737:         const MMD_float dely = ytmp - x[j1 * PAD + 1];
+738:         const MMD_float delz = ztmp - x[j1 * PAD + 2];
+739:         const int type_ij = type_i * ntypes + type[j1];
+740:         const MMD_float rsq = delx*delx + dely*dely + delz*delz;
+741: 
+742:         if(LIKELY(rsq < cutforcesq[type_ij])) {
+743:           const MMD_float sr2 = 1.0 / rsq;
+744:           const MMD_float sig6 = sigma6[type_ij];
+745:           const MMD_float eps  = epsilon[type_ij];
+746:           const MMD_float sr6  = sr2 * sr2 * sr2 * sig6;
+747:           const MMD_float force = 48.0 * sig6 * eps * sr6 * (sr6 - 0.5) * sr2;
+748:           fix += delx * force;
+749:           fiy += dely * force;
+750:           fiz += delz * force;
+751: 
+752:           if(EVFLAG) {
+753:             t_eng_vdwl += 4.0 * eps * sr6 * (sr6 - 1.0);
+754:             t_virial   += rsq * force;
+755:           }
+756:         }
+757:       }
+758:       {
+759:         const MMD_float delx = xtmp - x[j2 * PAD + 0];
+760:         const MMD_float dely = ytmp - x[j2 * PAD + 1];
+761:         const MMD_float delz = ztmp - x[j2 * PAD + 2];
+762:         const int type_ij = type_i * ntypes + type[j2];
+763:         const MMD_float rsq = delx*delx + dely*dely + delz*delz;
+764: 
+765:         if(LIKELY(rsq < cutforcesq[type_ij])) {
+766:           const MMD_float sr2 = 1.0 / rsq;
+767:           const MMD_float sig6 = sigma6[type_ij];
+768:           const MMD_float eps  = epsilon[type_ij];
+769:           const MMD_float sr6  = sr2 * sr2 * sr2 * sig6;
+770:           const MMD_float force = 48.0 * sig6 * eps * sr6 * (sr6 - 0.5) * sr2;
+771:           fix += delx * force;
+772:           fiy += dely * force;
+773:           fiz += delz * force;
+774: 
+775:           if(EVFLAG) {
+776:             t_eng_vdwl += 4.0 * eps * sr6 * (sr6 - 1.0);
+777:             t_virial   += rsq * force;
+778:           }
+779:         }
+780:       }
+781:       {
+782:         const MMD_float delx = xtmp - x[j3 * PAD + 0];
+783:         const MMD_float dely = ytmp - x[j3 * PAD + 1];
+784:         const MMD_float delz = ztmp - x[j3 * PAD + 2];
+785:         const int type_ij = type_i * ntypes + type[j3];
+786:         const MMD_float rsq = delx*delx + dely*dely + delz*delz;
+787: 
+788:         if(LIKELY(rsq < cutforcesq[type_ij])) {
+789:           const MMD_float sr2 = 1.0 / rsq;
+790:           const MMD_float sig6 = sigma6[type_ij];
+791:           const MMD_float eps  = epsilon[type_ij];
+792:           const MMD_float sr6  = sr2 * sr2 * sr2 * sig6;
+793:           const MMD_float force = 48.0 * sig6 * eps * sr6 * (sr6 - 0.5) * sr2;
+794:           fix += delx * force;
+795:           fiy += dely * force;
+796:           fiz += delz * force;
+797: 
+798:           if(EVFLAG) {
+799:             t_eng_vdwl += 4.0 * eps * sr6 * (sr6 - 1.0);
+800:             t_virial   += rsq * force;
+[...]
+806:     for(; k < numneighs; k++) {
+807:       const int j = neighs[k];
+808:       const MMD_float delx = xtmp - x[j * PAD + 0];
+809:       const MMD_float dely = ytmp - x[j * PAD + 1];
+810:       const MMD_float delz = ztmp - x[j * PAD + 2];
+811:       const int type_ij = type_i * ntypes + type[j];
+812:       const MMD_float rsq = delx*delx + dely*dely + delz*delz;
+813: 
+814:       if(LIKELY(rsq < cutforcesq[type_ij])) {
+815:         const MMD_float sr2 = 1.0 / rsq;
+816:         const MMD_float sig6 = sigma6[type_ij];
+817:         const MMD_float eps  = epsilon[type_ij];
+818:         const MMD_float sr6  = sr2 * sr2 * sr2 * sig6;
+819:         const MMD_float force = 48.0 * sig6 * eps * sr6 * (sr6 - 0.5) * sr2;
+820:         fix += delx * force;
+821:         fiy += dely * force;
+822:         fiz += delz * force;
+823: 
+824:         if(EVFLAG) {
+825:           t_eng_vdwl += 4.0 * eps * sr6 * (sr6 - 1.0);
+826:           t_virial   += rsq * force;
+827:         }
+828:       }
+829:     }
+830: 
+831:     f[i * PAD + 0] += fix;
+832:     f[i * PAD + 1] += fiy;
+833:     f[i * PAD + 2] += fiz;
+[...]
+853:   eng_vdwl += t_eng_vdwl;
+854:   #pragma omp atomic
+855:   virial += t_virial;
+856:   #pragma omp barrier
+857: }

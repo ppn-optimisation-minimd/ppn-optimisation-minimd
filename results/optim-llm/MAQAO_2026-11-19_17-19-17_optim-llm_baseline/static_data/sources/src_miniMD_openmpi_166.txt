@@ -1,0 +1,15 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/comm.cpp: 775 - 786
+--------------------------------------------------------------------------------
+
+775:       for(int i = nfirst; i < nlast; i++) {
+776:         if(x[i * PAD + idim] >= lo && x[i * PAD + idim] <= hi) {
+777:           if(nsend >= maxsend_thread[tid])  {
+778:             maxsend_thread[tid] = nsend + 100;
+779:             exc_sendlist_thread[tid] = (int*) realloc(exc_sendlist_thread[tid], (nsend + 100) * sizeof(int));
+780:           }
+781: 
+782:           exc_sendlist_thread[tid][nsend++] = i;
+783:         }
+784:       }
+785: 
+786:       nsend_thread[tid] = nsend;

@@ -1,0 +1,108 @@
+{
+  "__fct":
+    {
+      "loops":
+        {
+          "_44":
+            {
+              "_46":
+                {
+                  "src_regions":
+                    [
+                      {
+                        "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/force_lj.cpp",
+                        "regions":
+                          [
+                            [
+                            216,
+                            254
+                            ],
+                            [
+                            266,
+                            287
+                            ],
+                            [
+                            299,
+                            320
+                            ],
+                            [
+                            332,
+                            353
+                            ]
+                          ]
+                      }
+                    ],
+                  "src": "force_lj.cpp:216-353"
+                },
+              "_45":
+                {
+                  "src_regions":
+                    [
+                      {
+                        "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/force_lj.cpp",
+                        "regions":
+                          [
+                            [
+                            365,
+                            388
+                            ]
+                          ]
+                      }
+                    ],
+                  "src": "force_lj.cpp:365-388"
+                },
+              "src_regions":
+                [
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/force_lj.cpp",
+                    "regions":
+                      [
+                        [
+                        201,
+                        254
+                        ],
+                        [
+                        266,
+                        287
+                        ],
+                        [
+                        299,
+                        320
+                        ],
+                        [
+                        332,
+                        353
+                        ],
+                        [
+                        365,
+                        388
+                        ],
+                        [
+                        399,
+                        401
+                        ]
+                      ]
+                  }
+                ],
+              "src": "force_lj.cpp:201-401"
+            },
+          "_47":
+            {
+              "src_regions":
+                [
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/force_lj.cpp",
+                    "regions":
+                      [
+                        [
+                        192,
+                        193
+                        ]
+                      ]
+                  }
+                ],
+              "src": "force_lj.cpp:192-193"
+            }
+        }
+    }
+}

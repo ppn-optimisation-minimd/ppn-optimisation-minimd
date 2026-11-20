@@ -1,0 +1,33 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/force_lj.cpp: 365 - 394
+--------------------------------------------------------------------------------
+
+365:     for(; k < numneighs; k++) {
+366:       const int j = neighs[k];
+367:       const MMD_float delx = xtmp - x[j * PAD + 0];
+368:       const MMD_float dely = ytmp - x[j * PAD + 1];
+369:       const MMD_float delz = ztmp - x[j * PAD + 2];
+370:       const int type_ij = type_i * ntypes + type[j];
+371:       const MMD_float rsq = delx*delx + dely*dely + delz*delz;
+372: 
+373:       if(LIKELY(rsq < cutforcesq[type_ij])) {
+374:         const MMD_float sr2 = 1.0 / rsq;
+375:         const MMD_float sig6 = sigma6[type_ij];
+376:         const MMD_float eps  = epsilon[type_ij];
+377:         const MMD_float sr6  = sr2 * sr2 * sr2 * sig6;
+378:         const MMD_float c48  = 48.0 * sig6 * eps;
+379:         const MMD_float force = c48 * sr6 * (sr6 - 0.5) * sr2;
+380: 
+381:         fix += delx * force;
+382:         fiy += dely * force;
+383:         fiz += delz * force;
+384: 
+385:         if(GHOST_NEWTON || j < nlocal) {
+386:           f[j * PAD + 0] -= delx * force;
+387:           f[j * PAD + 1] -= dely * force;
+388:           f[j * PAD + 2] -= delz * force;
+389:         }
+390:         if(EVFLAG) {
+391:           const MMD_float scale = (GHOST_NEWTON || j < nlocal) ? 1.0 : 0.5;
+392:           const MMD_float c4 = 4.0 * eps;
+393:           t_energy += scale * c4 * sr6 * (sr6 - 1.0);
+394:           t_virial += scale * rsq * force;

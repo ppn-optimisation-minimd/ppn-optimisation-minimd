@@ -1,0 +1,135 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/force_lj.cpp: 216 - 359
+--------------------------------------------------------------------------------
+
+216:     for(; k < n4; k += 4) {
+217:       /* prefetch positions for next group (hide memory latency) */
+218:       const int j0 = neighs[k];
+219:       const int j1 = neighs[k+1];
+220:       const int j2 = neighs[k+2];
+221:       const int j3 = neighs[k+3];
+222: 
+223:       /* look-ahead prefetch (next group of 4) */
+224:       if(k + 8 < numneighs) {
+225:         PREFETCH(&x[neighs[k+4] * PAD]);
+226:         PREFETCH(&x[neighs[k+5] * PAD]);
+227:         PREFETCH(&x[neighs[k+6] * PAD]);
+228:         PREFETCH(&x[neighs[k+7] * PAD]);
+229:       }
+230: 
+231:       /* ---- neighbour 0 ---- */
+232:       {
+233:         const MMD_float delx = xtmp - x[j0 * PAD + 0];
+234:         const MMD_float dely = ytmp - x[j0 * PAD + 1];
+235:         const MMD_float delz = ztmp - x[j0 * PAD + 2];
+236:         const int type_ij = type_i * ntypes + type[j0];
+237:         const MMD_float rsq = delx*delx + dely*dely + delz*delz;
+238: 
+239:         if(LIKELY(rsq < cutforcesq[type_ij])) {
+240:           const MMD_float sr2 = 1.0 / rsq;
+241:           const MMD_float sig6 = sigma6[type_ij];
+242:           const MMD_float eps  = epsilon[type_ij];
+243:           const MMD_float sr6  = sr2 * sr2 * sr2 * sig6;
+244:           const MMD_float c48  = 48.0 * sig6 * eps;
+245:           const MMD_float force = c48 * sr6 * (sr6 - 0.5) * sr2;
+246: 
+247:           fix += delx * force;
+248:           fiy += dely * force;
+249:           fiz += delz * force;
+250: 
+251:           if(GHOST_NEWTON || j0 < nlocal) {
+252:             f[j0 * PAD + 0] -= delx * force;
+253:             f[j0 * PAD + 1] -= dely * force;
+254:             f[j0 * PAD + 2] -= delz * force;
+255:           }
+256:           if(EVFLAG) {
+257:             const MMD_float scale = (GHOST_NEWTON || j0 < nlocal) ? 1.0 : 0.5;
+258:             const MMD_float c4 = 4.0 * eps;
+259:             t_energy += scale * c4 * sr6 * (sr6 - 1.0);
+260:             t_virial += scale * rsq * force;
+[...]
+266:         const MMD_float delx = xtmp - x[j1 * PAD + 0];
+267:         const MMD_float dely = ytmp - x[j1 * PAD + 1];
+268:         const MMD_float delz = ztmp - x[j1 * PAD + 2];
+269:         const int type_ij = type_i * ntypes + type[j1];
+270:         const MMD_float rsq = delx*delx + dely*dely + delz*delz;
+271: 
+272:         if(LIKELY(rsq < cutforcesq[type_ij])) {
+273:           const MMD_float sr2 = 1.0 / rsq;
+274:           const MMD_float sig6 = sigma6[type_ij];
+275:           const MMD_float eps  = epsilon[type_ij];
+276:           const MMD_float sr6  = sr2 * sr2 * sr2 * sig6;
+277:           const MMD_float c48  = 48.0 * sig6 * eps;
+278:           const MMD_float force = c48 * sr6 * (sr6 - 0.5) * sr2;
+279: 
+280:           fix += delx * force;
+281:           fiy += dely * force;
+282:           fiz += delz * force;
+283: 
+284:           if(GHOST_NEWTON || j1 < nlocal) {
+285:             f[j1 * PAD + 0] -= delx * force;
+286:             f[j1 * PAD + 1] -= dely * force;
+287:             f[j1 * PAD + 2] -= delz * force;
+288:           }
+289:           if(EVFLAG) {
+290:             const MMD_float scale = (GHOST_NEWTON || j1 < nlocal) ? 1.0 : 0.5;
+291:             const MMD_float c4 = 4.0 * eps;
+292:             t_energy += scale * c4 * sr6 * (sr6 - 1.0);
+293:             t_virial += scale * rsq * force;
+[...]
+299:         const MMD_float delx = xtmp - x[j2 * PAD + 0];
+300:         const MMD_float dely = ytmp - x[j2 * PAD + 1];
+301:         const MMD_float delz = ztmp - x[j2 * PAD + 2];
+302:         const int type_ij = type_i * ntypes + type[j2];
+303:         const MMD_float rsq = delx*delx + dely*dely + delz*delz;
+304: 
+305:         if(LIKELY(rsq < cutforcesq[type_ij])) {
+306:           const MMD_float sr2 = 1.0 / rsq;
+307:           const MMD_float sig6 = sigma6[type_ij];
+308:           const MMD_float eps  = epsilon[type_ij];
+309:           const MMD_float sr6  = sr2 * sr2 * sr2 * sig6;
+310:           const MMD_float c48  = 48.0 * sig6 * eps;
+311:           const MMD_float force = c48 * sr6 * (sr6 - 0.5) * sr2;
+312: 
+313:           fix += delx * force;
+314:           fiy += dely * force;
+315:           fiz += delz * force;
+316: 
+317:           if(GHOST_NEWTON || j2 < nlocal) {
+318:             f[j2 * PAD + 0] -= delx * force;
+319:             f[j2 * PAD + 1] -= dely * force;
+320:             f[j2 * PAD + 2] -= delz * force;
+321:           }
+322:           if(EVFLAG) {
+323:             const MMD_float scale = (GHOST_NEWTON || j2 < nlocal) ? 1.0 : 0.5;
+324:             const MMD_float c4 = 4.0 * eps;
+325:             t_energy += scale * c4 * sr6 * (sr6 - 1.0);
+326:             t_virial += scale * rsq * force;
+[...]
+332:         const MMD_float delx = xtmp - x[j3 * PAD + 0];
+333:         const MMD_float dely = ytmp - x[j3 * PAD + 1];
+334:         const MMD_float delz = ztmp - x[j3 * PAD + 2];
+335:         const int type_ij = type_i * ntypes + type[j3];
+336:         const MMD_float rsq = delx*delx + dely*dely + delz*delz;
+337: 
+338:         if(LIKELY(rsq < cutforcesq[type_ij])) {
+339:           const MMD_float sr2 = 1.0 / rsq;
+340:           const MMD_float sig6 = sigma6[type_ij];
+341:           const MMD_float eps  = epsilon[type_ij];
+342:           const MMD_float sr6  = sr2 * sr2 * sr2 * sig6;
+343:           const MMD_float c48  = 48.0 * sig6 * eps;
+344:           const MMD_float force = c48 * sr6 * (sr6 - 0.5) * sr2;
+345: 
+346:           fix += delx * force;
+347:           fiy += dely * force;
+348:           fiz += delz * force;
+349: 
+350:           if(GHOST_NEWTON || j3 < nlocal) {
+351:             f[j3 * PAD + 0] -= delx * force;
+352:             f[j3 * PAD + 1] -= dely * force;
+353:             f[j3 * PAD + 2] -= delz * force;
+354:           }
+355:           if(EVFLAG) {
+356:             const MMD_float scale = (GHOST_NEWTON || j3 < nlocal) ? 1.0 : 0.5;
+357:             const MMD_float c4 = 4.0 * eps;
+358:             t_energy += scale * c4 * sr6 * (sr6 - 1.0);
+359:             t_virial += scale * rsq * force;

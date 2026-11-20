@@ -1,0 +1,8 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/atom.cpp: 189 - 193
+--------------------------------------------------------------------------------
+
+189:   for(i = 0; i < n; i++) {
+190:     j = list[i];
+191:     f[j * PAD + 0] += buf[3 * i];
+192:     f[j * PAD + 1] += buf[3 * i + 1];
+193:     f[j * PAD + 2] += buf[3 * i + 2];

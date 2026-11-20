@@ -1,0 +1,159 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/neighbor.cpp: 59 - 320
+--------------------------------------------------------------------------------
+
+59: {
+60:   ncalls++;
+61:   const int nlocal = atom.nlocal;
+62:   const int nall   = atom.nlocal + atom.nghost;
+63: 
+64:   #pragma omp master
+65:   if(nall > nmax) {
+66:     nmax = nall;
+[...]
+73:     if(numneigh)  free(numneigh);
+74:     if(neighbors) free(neighbors);
+75:     numneigh  = (int*)malloc(nmax * sizeof(int));
+76:     neighbors = (int*)malloc(nmax * maxneighs * sizeof(int));
+77: #endif
+78:   }
+79: 
+80:   #pragma omp barrier
+81:   binatoms(atom);
+82:   count = 0;
+83: 
+84:   const MMD_float* const x    = atom.x;
+85:   const int*        const typ = atom.type;
+86:   const int         ntypes_l  = atom.ntypes;
+87:   const MMD_float*  const cutsq = cutneighsq;   // alias const → aide l'aliasing
+88: 
+89:   resize = 1;
+90:   #pragma omp barrier
+91: 
+92:   while(resize) {
+93:     #pragma omp barrier
+94:     const int maxneighs_local = maxneighs;   // évite accès membre répété
+95:     int new_maxneighs = maxneighs_local;
+96:     resize = 0;
+97:     #pragma omp barrier
+98: 
+99:     OMPFORSCHEDULE
+100:     for(int i = 0; i < nlocal; i++) {
+101: 
+102:       int* neighptr = &neighbors[i * maxneighs_local];
+103:       int  n = 0;
+104: 
+105:       const MMD_float xtmp = x[i * PAD + 0];
+106:       const MMD_float ytmp = x[i * PAD + 1];
+107:       const MMD_float ztmp = x[i * PAD + 2];
+108: 
+109:       const int    type_i     = typ[i];
+110:       const int    type_i_base = type_i * ntypes_l;   // ★ pré-calcul
+111:       const int    ibin       = coord2bin(xtmp, ytmp, ztmp);
+112: 
+113:       const int*  const st    = stencil;
+114:       const int   nst_l       = nstencil;
+115:       const int*  const bc    = bincount;
+116:       const int*  const b     = bins;
+117:       const int   apb         = atoms_per_bin;
+118:       const int   nl          = nlocal;
+119: 
+120:       for(int k = 0; k < nst_l; k++) {
+121:         const int offset = st[k];
+122:         const int jbin   = ibin + offset;
+123:         const int* loc_bin = &b[jbin * apb];
+124:         const int bcnt    = bc[jbin];
+125: 
+126:         if(offset == 0) {
+127:           /* -------- self-bin : skip complexe -------- */
+128:           for(int m = 0; m < bcnt; m++) {
+129:             const int j = loc_bin[m];
+130: 
+131:             /* skip i==j */
+132:             if(j == i) continue;
+133: 
+134:             /* halfneigh: skip j < i (owned) */
+135:             if(halfneigh) {
+136:               if(!ghost_newton) {
+137:                 if(j < i) continue;
+138:               } else {
+139:                 if(j < i) continue;
+140:                 /* ghost_newton: keep ghost only if spatially "below" i */
+141:                 if(j >= nl) {
+142:                   const MMD_float jz = x[j * PAD + 2];
+143:                   if(jz > ztmp) continue;
+144:                   if(jz == ztmp) {
+145:                     const MMD_float jy = x[j * PAD + 1];
+146:                     if(jy > ytmp) continue;
+147:                     if(jy == ytmp && x[j * PAD + 0] > xtmp) continue;
+[...]
+153:             const MMD_float delx = xtmp - x[j * PAD + 0];
+154:             const MMD_float dely = ytmp - x[j * PAD + 1];
+155:             const MMD_float delz = ztmp - x[j * PAD + 2];
+156:             const MMD_float rsq  = delx * delx + dely * dely + delz * delz;
+157: 
+158:             if(rsq <= cutsq[type_i_base + typ[j]])
+159:               neighptr[n++] = j;
+160:           }
+161:         } else {
+162:           /* -------- bins adjacents : skip plus simple -------- */
+163:           for(int m = 0; m < bcnt; m++) {
+164:             const int j = loc_bin[m];
+165: 
+166:             if(halfneigh && !ghost_newton && (j < i)) continue;
+167:             /* ghost_newton && halfneigh : pas de skip sur j<i ici
+168:                (les bins adjacents ne contiennent que des images "avancées") */
+169: 
+170:             const MMD_float delx = xtmp - x[j * PAD + 0];
+171:             const MMD_float dely = ytmp - x[j * PAD + 1];
+172:             const MMD_float delz = ztmp - x[j * PAD + 2];
+173:             const MMD_float rsq  = delx * delx + dely * dely + delz * delz;
+174: 
+175:             if(rsq <= cutsq[type_i_base + typ[j]])
+176:               neighptr[n++] = j;
+177:           }
+178:         }
+179:       }
+180: 
+181:       numneigh[i] = n;
+182: 
+183:       if(n >= maxneighs_local) {
+184:         resize = 1;
+185:         if(n >= new_maxneighs) new_maxneighs = n;
+186:       }
+187:     }
+188: 
+189:     if(resize) {
+190:       #pragma omp master
+191:       {
+192:         maxneighs = (int)(new_maxneighs * 1.2);
+193: #ifdef ALIGNMALLOC
+194:         _mm_free(neighbors);
+195:         neighbors = (int*)_mm_malloc(nmax * maxneighs * sizeof(int) + ALIGNMALLOC, ALIGNMALLOC);
+196: #else
+197:         free(neighbors);
+198:         neighbors = (int*)malloc(nmax * maxneighs * sizeof(int));
+[...]
+206: }
+[...]
+299:   if(x >= xprd)
+300:     ix = (int)((x - xprd) * bininvx) + nbinx - mbinxlo;
+301:   else if(x >= 0.0)
+302:     ix = (int)(x * bininvx) - mbinxlo;
+303:   else
+304:     ix = (int)(x * bininvx) - mbinxlo - 1;
+305: 
+306:   if(y >= yprd)
+307:     iy = (int)((y - yprd) * bininvy) + nbiny - mbinylo;
+308:   else if(y >= 0.0)
+309:     iy = (int)(y * bininvy) - mbinylo;
+310:   else
+311:     iy = (int)(y * bininvy) - mbinylo - 1;
+312: 
+313:   if(z >= zprd)
+314:     iz = (int)((z - zprd) * bininvz) + nbinz - mbinzlo;
+315:   else if(z >= 0.0)
+316:     iz = (int)(z * bininvz) - mbinzlo;
+317:   else
+318:     iz = (int)(z * bininvz) - mbinzlo - 1;
+319: 
+320:   return (iz * mbiny * mbinx + iy * mbinx + ix + 1);

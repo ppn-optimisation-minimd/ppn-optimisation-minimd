@@ -1,0 +1,56 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/neighbor.cpp: 120 - 176
+--------------------------------------------------------------------------------
+
+120:       for(int k = 0; k < nst_l; k++) {
+121:         const int offset = st[k];
+122:         const int jbin   = ibin + offset;
+123:         const int* loc_bin = &b[jbin * apb];
+124:         const int bcnt    = bc[jbin];
+125: 
+126:         if(offset == 0) {
+127:           /* -------- self-bin : skip complexe -------- */
+128:           for(int m = 0; m < bcnt; m++) {
+129:             const int j = loc_bin[m];
+130: 
+131:             /* skip i==j */
+132:             if(j == i) continue;
+133: 
+134:             /* halfneigh: skip j < i (owned) */
+135:             if(halfneigh) {
+136:               if(!ghost_newton) {
+137:                 if(j < i) continue;
+138:               } else {
+139:                 if(j < i) continue;
+140:                 /* ghost_newton: keep ghost only if spatially "below" i */
+141:                 if(j >= nl) {
+142:                   const MMD_float jz = x[j * PAD + 2];
+143:                   if(jz > ztmp) continue;
+144:                   if(jz == ztmp) {
+145:                     const MMD_float jy = x[j * PAD + 1];
+146:                     if(jy > ytmp) continue;
+147:                     if(jy == ytmp && x[j * PAD + 0] > xtmp) continue;
+[...]
+153:             const MMD_float delx = xtmp - x[j * PAD + 0];
+154:             const MMD_float dely = ytmp - x[j * PAD + 1];
+155:             const MMD_float delz = ztmp - x[j * PAD + 2];
+156:             const MMD_float rsq  = delx * delx + dely * dely + delz * delz;
+157: 
+158:             if(rsq <= cutsq[type_i_base + typ[j]])
+159:               neighptr[n++] = j;
+160:           }
+161:         } else {
+162:           /* -------- bins adjacents : skip plus simple -------- */
+163:           for(int m = 0; m < bcnt; m++) {
+164:             const int j = loc_bin[m];
+165: 
+166:             if(halfneigh && !ghost_newton && (j < i)) continue;
+167:             /* ghost_newton && halfneigh : pas de skip sur j<i ici
+168:                (les bins adjacents ne contiennent que des images "avancées") */
+169: 
+170:             const MMD_float delx = xtmp - x[j * PAD + 0];
+171:             const MMD_float dely = ytmp - x[j * PAD + 1];
+172:             const MMD_float delz = ztmp - x[j * PAD + 2];
+173:             const MMD_float rsq  = delx * delx + dely * dely + delz * delz;
+174: 
+175:             if(rsq <= cutsq[type_i_base + typ[j]])
+176:               neighptr[n++] = j;

@@ -1,0 +1,17 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/neighbor.cpp: 163 - 176
+--------------------------------------------------------------------------------
+
+163:           for(int m = 0; m < bcnt; m++) {
+164:             const int j = loc_bin[m];
+165: 
+166:             if(halfneigh && !ghost_newton && (j < i)) continue;
+167:             /* ghost_newton && halfneigh : pas de skip sur j<i ici
+168:                (les bins adjacents ne contiennent que des images "avancées") */
+169: 
+170:             const MMD_float delx = xtmp - x[j * PAD + 0];
+171:             const MMD_float dely = ytmp - x[j * PAD + 1];
+172:             const MMD_float delz = ztmp - x[j * PAD + 2];
+173:             const MMD_float rsq  = delx * delx + dely * dely + delz * delz;
+174: 
+175:             if(rsq <= cutsq[type_i_base + typ[j]])
+176:               neighptr[n++] = j;

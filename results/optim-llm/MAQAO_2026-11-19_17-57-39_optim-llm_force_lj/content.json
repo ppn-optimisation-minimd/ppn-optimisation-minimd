@@ -1,0 +1,31 @@
+{
+  "content":
+    {
+      "otter": "OTTER",
+      "logfile": "logs/log.txt",
+      "decan_mapping": "static_data/decan_mapping",
+      "binaries_status": "static_data/binaries_status.csv",
+      "libs": "libs",
+      "vprof": "tools/vprof",
+      "hierarchy": "static_data/hierarchy",
+      "dataset": "dataset",
+      "sources": "static_data/sources",
+      "logs": "logs",
+      "shared": "shared",
+      "results": "RESULTS",
+      "batch_script": "ref.batch",
+      "decan_status": "tools/decan/status.csv",
+      "cqa": "static_data/cqa",
+      "asm": "static_data/asm",
+      "localvars_csv": "local_vars.csv",
+      "decan": "tools/decan",
+      "binaries": "binaries",
+      "tools": "tools",
+      "static_data": "static_data",
+      "lprof": "tools/lprof",
+      "scripts": "scripts",
+      "decan_metrics": "tools/decan/metrics.txt",
+      "groups": "static_data/groups",
+      "config": "config.json"
+    }
+}

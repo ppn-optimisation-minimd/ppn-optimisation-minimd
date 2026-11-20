@@ -1,0 +1,25 @@
+{
+  "__fct":
+    {
+      "loops":
+        {
+          "_126":
+            {
+              "src_regions":
+                [
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp",
+                    "regions":
+                      [
+                        [
+                        152,
+                        156
+                        ]
+                      ]
+                  }
+                ],
+              "src": "thermo.cpp:152-156"
+            }
+        }
+    }
+}

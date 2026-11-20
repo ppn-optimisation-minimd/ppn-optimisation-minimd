@@ -1,0 +1,86 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/neighbor.cpp: 214 - 320
+--------------------------------------------------------------------------------
+
+214: {
+215:   const int nlocal = atom.nlocal;
+216:   const int nall   = (count < 0) ? (atom.nlocal + atom.nghost) : count;
+217:   const MMD_float* const x = atom.x;
+218:   const int num_threads = threads->omp_num_threads;
+219: 
+220:   xprd = atom.box.xprd;
+221:   yprd = atom.box.yprd;
+222:   zprd = atom.box.zprd;
+223: 
+224:   resize = 1;
+225:   #pragma omp barrier
+226: 
+227:   while(resize > 0) {
+228:     #pragma omp barrier
+229:     resize = 0;
+[...]
+236:       int*  bc_t = &bincount_local[tid * mbins];
+237:       int*  b_t  = bins_local;   // base, décalage en dessous
+238: 
+239:       // zéro les compteurs locaux
+240:       for(int i = 0; i < mbins; i++) bc_t[i] = 0;
+241: 
+242:       #pragma omp for schedule(dynamic)
+243:       for(int i = 0; i < nall; i++) {
+244:         const int ibin = coord2bin(x[i * PAD + 0],
+245:                                    x[i * PAD + 1],
+246:                                    x[i * PAD + 2]);
+247:         const int slot = bc_t[ibin];
+248:         if(slot < atoms_per_bin) {
+249:           bc_t[ibin] = slot + 1;
+250:           b_t[(tid * mbins + ibin) * atoms_per_bin + slot] = i;
+251:         } else {
+252:           resize = 1;
+[...]
+261:       for(int bin = 0; bin < mbins; bin++) {
+262:         int offset = 0;
+263:         for(int t = 0; t < num_threads; t++) {
+264:           int*  bc_t = &bincount_local[t * mbins];
+265:           int*  dst  = &bins[bin * atoms_per_bin + offset];
+266:           int*  src  = &bins_local[(t * mbins + bin) * atoms_per_bin];
+267:           const int cnt = bc_t[bin];
+268:           // memcpy optimisé par le compilateur (alignment + taille)
+269:           for(int s = 0; s < cnt; s++) dst[s] = src[s];
+270:           offset += cnt;
+271:         }
+272:         bincount[bin] = offset;
+273:       }
+274:     }
+275: 
+276:     #pragma omp master
+277:     if(resize) {
+278:       free(bins);
+279:       atoms_per_bin *= 2;
+280:       bins = (int*)malloc(mbins * atoms_per_bin * sizeof(int));
+281:       // réallocation buffer local aussi
+282:       free(bins_local);
+283:       bins_local = (int*)malloc(mbins * num_threads * atoms_per_bin * sizeof(int));
+[...]
+290: }
+[...]
+299:   if(x >= xprd)
+300:     ix = (int)((x - xprd) * bininvx) + nbinx - mbinxlo;
+301:   else if(x >= 0.0)
+302:     ix = (int)(x * bininvx) - mbinxlo;
+303:   else
+304:     ix = (int)(x * bininvx) - mbinxlo - 1;
+305: 
+306:   if(y >= yprd)
+307:     iy = (int)((y - yprd) * bininvy) + nbiny - mbinylo;
+308:   else if(y >= 0.0)
+309:     iy = (int)(y * bininvy) - mbinylo;
+310:   else
+311:     iy = (int)(y * bininvy) - mbinylo - 1;
+312: 
+313:   if(z >= zprd)
+314:     iz = (int)((z - zprd) * bininvz) + nbinz - mbinzlo;
+315:   else if(z >= 0.0)
+316:     iz = (int)(z * bininvz) - mbinzlo;
+317:   else
+318:     iz = (int)(z * bininvz) - mbinzlo - 1;
+319: 
+320:   return (iz * mbiny * mbinx + iy * mbinx + ix + 1);

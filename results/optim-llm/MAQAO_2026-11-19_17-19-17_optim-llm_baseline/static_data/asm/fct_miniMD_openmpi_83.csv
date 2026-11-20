@@ -1,0 +1,245 @@
+address;source_location;insn;indent
+0x13150;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:141;ENDBR64;
+0x13154;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:141;PUSH	%RBP;
+0x13155;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:141;MOV	%RSP,%RBP;
+0x13158;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:141;PUSH	%RBX;
+0x13159;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:141;AND	$-0x20,%RSP;
+0x1315d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:141;SUB	$0x20,%RSP;
+0x13161;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:141;MOV	%FS:0x28,%RBX;
+0x1316a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:141;MOV	%RBX,0x18(%RSP);
+0x1316f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:141;MOV	%RDI,%RBX;
+0x13172;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;MOV	0x4(%RSI),%EDX;
+0x13175;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:146;MOVQ	$0,0x30(%RDI);
+0x1317d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;TEST	%EDX,%EDX;
+0x1317f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;JLE	135d0 <_ZN6Thermo11temperatureER4Atom+0x480>;
+0x13185;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;MOV	%RSI,%RAX;
+0x13188;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;LEA	-0x1(%RDX),%ECX;
+0x1318b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:149;MOV	0x18(%RSI),%RSI;
+0x1318f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VMOVSD	0x50(%RAX),%XMM12;
+0x13194;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;CMP	$0x2,%ECX;
+0x13197;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;JBE	135d6 <_ZN6Thermo11temperatureER4Atom+0x486>;
+0x1319d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;MOV	%EDX,%R9D;
+0x131a0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;MOV	$0x2aaaaaaaaaaaaab,%RCX;
+0x131aa;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VMOVDQA	0xcace(%RIP),%YMM11;
+0x131b2;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VMOVDQA	0xcae6(%RIP),%YMM10;
+0x131ba;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;SHR	$0x2,%R9D;
+0x131be;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VMOVDQA	0xcafa(%RIP),%YMM9;
+0x131c6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VMOVDQA	0xcb12(%RIP),%YMM14;
+0x131ce;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VBROADCASTSD	%XMM12,%YMM6;
+0x131d3;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;LEA	(%R9,%R9,2),%R10;
+0x131d7;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VMOVDQA	0xcb41(%RIP),%YMM8;
+0x131df;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VMOVDQA	0xcb19(%RIP),%YMM7;
+0x131e7;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;MOV	%RSI,%RAX;
+0x131ea;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;SAL	$0x5,%R10;
+0x131ee;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VXORPD	%XMM0,%XMM0,%XMM0;
+0x131f2;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;LEA	(%R10,%RSI,1),%R11;
+0x131f6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;SUB	$0x60,%R10;
+0x131fa;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;SHR	$0x5,%R10;
+0x131fe;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;IMUL	%RCX,%R10;
+0x13202;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;INC	%R10;
+0x13205;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;AND	$0x3,%R10D;
+0x13209;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;JE	1333c <_ZN6Thermo11temperatureER4Atom+0x1ec>;
+0x1320f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;CMP	$0x1,%R10;
+0x13213;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;JE	132d7 <_ZN6Thermo11temperatureER4Atom+0x187>;
+0x13219;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;CMP	$0x2,%R10;
+0x1321d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;JE	1327b <_ZN6Thermo11temperatureER4Atom+0x12b>;
+0x1321f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVUPD	(%RSI),%YMM1;
+0x13223;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVUPD	0x20(%RSI),%YMM5;
+0x13228;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;LEA	0x60(%RSI),%RAX;
+0x1322c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVUPD	0x40(%RSI),%YMM13;
+0x13231;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVAPD	%YMM1,%YMM15;
+0x13235;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVAPD	%YMM1,%YMM3;
+0x13239;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVAPD	%YMM5,%YMM4;
+0x1323d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM5,%YMM14,%YMM15;
+0x13243;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM5,%YMM11,%YMM3;
+0x13249;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM13,%YMM10,%YMM4;
+0x1324f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM13,%YMM8,%YMM15;
+0x13255;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM4,%YMM9,%YMM3;
+0x1325b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM13,%YMM14,%YMM5;
+0x13261;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VMULPD	%YMM15,%YMM15,%YMM2;
+0x13266;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VPERMT2PD	%YMM5,%YMM7,%YMM1;
+0x1326c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VFMADD132PD	%YMM3,%YMM2,%YMM3;
+0x13271;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VFMADD132PD	%YMM1,%YMM3,%YMM1;
+0x13276;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VFMADD231PD	%YMM6,%YMM1,%YMM0;
+0x1327b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVUPD	(%RAX),%YMM1;
+0x1327f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVUPD	0x20(%RAX),%YMM5;
+0x13284;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;ADD	$0x60,%RAX;
+0x13288;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVUPD	-0x20(%RAX),%YMM13;
+0x1328d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVAPD	%YMM1,%YMM15;
+0x13291;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVAPD	%YMM1,%YMM3;
+0x13295;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVAPD	%YMM5,%YMM4;
+0x13299;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM5,%YMM14,%YMM15;
+0x1329f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM5,%YMM11,%YMM3;
+0x132a5;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM13,%YMM10,%YMM4;
+0x132ab;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM13,%YMM8,%YMM15;
+0x132b1;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM4,%YMM9,%YMM3;
+0x132b7;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM13,%YMM14,%YMM5;
+0x132bd;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VMULPD	%YMM15,%YMM15,%YMM2;
+0x132c2;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VPERMT2PD	%YMM5,%YMM7,%YMM1;
+0x132c8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VFMADD132PD	%YMM3,%YMM2,%YMM3;
+0x132cd;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VFMADD132PD	%YMM1,%YMM3,%YMM1;
+0x132d2;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VFMADD231PD	%YMM6,%YMM1,%YMM0;
+0x132d7;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVUPD	(%RAX),%YMM1;
+0x132db;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVUPD	0x20(%RAX),%YMM5;
+0x132e0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;ADD	$0x60,%RAX;
+0x132e4;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVUPD	-0x20(%RAX),%YMM13;
+0x132e9;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVAPD	%YMM1,%YMM15;
+0x132ed;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVAPD	%YMM1,%YMM3;
+0x132f1;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVAPD	%YMM5,%YMM4;
+0x132f5;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM5,%YMM14,%YMM15;
+0x132fb;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM5,%YMM11,%YMM3;
+0x13301;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM13,%YMM10,%YMM4;
+0x13307;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM13,%YMM8,%YMM15;
+0x1330d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM4,%YMM9,%YMM3;
+0x13313;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM13,%YMM14,%YMM5;
+0x13319;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VMULPD	%YMM15,%YMM15,%YMM2;
+0x1331e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VPERMT2PD	%YMM5,%YMM7,%YMM1;
+0x13324;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VFMADD132PD	%YMM3,%YMM2,%YMM3;
+0x13329;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VFMADD132PD	%YMM1,%YMM3,%YMM1;
+0x1332e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VFMADD231PD	%YMM6,%YMM1,%YMM0;
+0x13333;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;CMP	%R11,%RAX;
+0x13336;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;JE	134c0 <_ZN6Thermo11temperatureER4Atom+0x370>;
+0x1333c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVUPD	(%RAX),%YMM1;(126) 
+0x13340;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVUPD	0x20(%RAX),%YMM5;(126) 
+0x13345;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;ADD	$0x180,%RAX;(126) 
+0x1334b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVUPD	-0x140(%RAX),%YMM13;(126) 
+0x13353;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVAPD	%YMM1,%YMM15;(126) 
+0x13357;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVAPD	%YMM1,%YMM3;(126) 
+0x1335b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVAPD	%YMM5,%YMM4;(126) 
+0x1335f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM5,%YMM14,%YMM15;(126) 
+0x13365;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM13,%YMM10,%YMM4;(126) 
+0x1336b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM5,%YMM11,%YMM3;(126) 
+0x13371;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM13,%YMM8,%YMM15;(126) 
+0x13377;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM4,%YMM9,%YMM3;(126) 
+0x1337d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM13,%YMM14,%YMM5;(126) 
+0x13383;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVUPD	-0xe0(%RAX),%YMM13;(126) 
+0x1338b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VMULPD	%YMM15,%YMM15,%YMM2;(126) 
+0x13390;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VPERMT2PD	%YMM5,%YMM7,%YMM1;(126) 
+0x13396;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVUPD	-0x100(%RAX),%YMM5;(126) 
+0x1339e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVAPD	%YMM5,%YMM4;(126) 
+0x133a2;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM13,%YMM10,%YMM4;(126) 
+0x133a8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VFMADD132PD	%YMM3,%YMM2,%YMM3;(126) 
+0x133ad;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VFMADD132PD	%YMM1,%YMM3,%YMM1;(126) 
+0x133b2;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VFMADD132PD	%YMM6,%YMM0,%YMM1;(126) 
+0x133b7;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVUPD	-0x120(%RAX),%YMM0;(126) 
+0x133bf;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVAPD	%YMM0,%YMM15;(126) 
+0x133c3;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVAPD	%YMM0,%YMM3;(126) 
+0x133c7;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM5,%YMM14,%YMM15;(126) 
+0x133cd;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM5,%YMM11,%YMM3;(126) 
+0x133d3;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM13,%YMM14,%YMM5;(126) 
+0x133d9;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM13,%YMM8,%YMM15;(126) 
+0x133df;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM4,%YMM9,%YMM3;(126) 
+0x133e5;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM5,%YMM7,%YMM0;(126) 
+0x133eb;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVUPD	-0xa0(%RAX),%YMM5;(126) 
+0x133f3;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VMULPD	%YMM15,%YMM15,%YMM2;(126) 
+0x133f8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVUPD	-0x80(%RAX),%YMM13;(126) 
+0x133fd;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVAPD	%YMM5,%YMM4;(126) 
+0x13401;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM13,%YMM10,%YMM4;(126) 
+0x13407;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VFMADD132PD	%YMM3,%YMM2,%YMM3;(126) 
+0x1340c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VFMADD132PD	%YMM0,%YMM3,%YMM0;(126) 
+0x13411;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VFMADD231PD	%YMM6,%YMM0,%YMM1;(126) 
+0x13416;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVUPD	-0xc0(%RAX),%YMM0;(126) 
+0x1341e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVAPD	%YMM0,%YMM15;(126) 
+0x13422;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVAPD	%YMM0,%YMM3;(126) 
+0x13426;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM5,%YMM14,%YMM15;(126) 
+0x1342c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM5,%YMM11,%YMM3;(126) 
+0x13432;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM13,%YMM14,%YMM5;(126) 
+0x13438;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM13,%YMM8,%YMM15;(126) 
+0x1343e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM4,%YMM9,%YMM3;(126) 
+0x13444;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM5,%YMM7,%YMM0;(126) 
+0x1344a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVUPD	-0x40(%RAX),%YMM5;(126) 
+0x1344f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VMULPD	%YMM15,%YMM15,%YMM2;(126) 
+0x13454;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVUPD	-0x20(%RAX),%YMM13;(126) 
+0x13459;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVAPD	%YMM5,%YMM4;(126) 
+0x1345d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM13,%YMM10,%YMM4;(126) 
+0x13463;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VFMADD132PD	%YMM3,%YMM2,%YMM3;(126) 
+0x13468;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VFMADD132PD	%YMM0,%YMM3,%YMM0;(126) 
+0x1346d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VFMADD231PD	%YMM6,%YMM0,%YMM1;(126) 
+0x13472;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVUPD	-0x60(%RAX),%YMM0;(126) 
+0x13477;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVAPD	%YMM0,%YMM15;(126) 
+0x1347b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVAPD	%YMM0,%YMM3;(126) 
+0x1347f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM5,%YMM14,%YMM15;(126) 
+0x13485;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM5,%YMM11,%YMM3;(126) 
+0x1348b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM13,%YMM14,%YMM5;(126) 
+0x13491;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM13,%YMM8,%YMM15;(126) 
+0x13497;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM4,%YMM9,%YMM3;(126) 
+0x1349d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VPERMT2PD	%YMM5,%YMM7,%YMM0;(126) 
+0x134a3;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VMULPD	%YMM15,%YMM15,%YMM2;(126) 
+0x134a8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VFMADD132PD	%YMM3,%YMM2,%YMM3;(126) 
+0x134ad;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VFMADD132PD	%YMM0,%YMM3,%YMM0;(126) 
+0x134b2;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VFMADD132PD	%YMM6,%YMM1,%YMM0;(126) 
+0x134b7;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;CMP	%R11,%RAX;(126) 
+0x134ba;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;JNE	1333c <_ZN6Thermo11temperatureER4Atom+0x1ec>;(126) 
+0x134c0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;VEXTRACTF64X2	$0x1,%YMM0,%XMM6;
+0x134c7;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;MOV	%EDX,%R8D;
+0x134ca;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;VADDPD	%XMM0,%XMM6,%XMM11;
+0x134ce;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;AND	$-0x4,%R8D;
+0x134d2;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;MOV	%R8D,%EDI;
+0x134d5;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;VUNPCKHPD	%XMM11,%XMM11,%XMM10;
+0x134da;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;VADDPD	%XMM11,%XMM10,%XMM0;
+0x134df;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;CMP	%EDX,%R8D;
+0x134e2;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;JE	135c8 <_ZN6Thermo11temperatureER4Atom+0x478>;
+0x134e8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;VMOVAPD	%XMM11,%XMM2;
+0x134ec;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;VZEROUPPER;
+0x134ef;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;SUB	%EDI,%EDX;
+0x134f1;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;CMP	$0x1,%EDX;
+0x134f4;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;JE	13548 <_ZN6Thermo11temperatureER4Atom+0x3f8>;
+0x134f6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;LEA	(%RDI,%RDI,2),%RDI;
+0x134fa;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;VMOVDDUP	%XMM12,%XMM13;
+0x134ff;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;LEA	(%RSI,%RDI,8),%R9;
+0x13503;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVUPD	0x10(%R9),%XMM14;
+0x13509;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVUPD	0x20(%R9),%XMM8;
+0x1350f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVUPD	(%R9),%XMM9;
+0x13514;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVSD	%XMM14,%XMM8,%XMM0;
+0x13518;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VMULPD	%XMM0,%XMM0,%XMM5;
+0x1351c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VSHUFPD	$0x1,%XMM8,%XMM9,%XMM7;
+0x13522;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VMOVSD	%XMM9,%XMM14,%XMM1;
+0x13526;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;VFMADD132PD	%XMM7,%XMM5,%XMM7;
+0x1352b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;VFMADD132PD	%XMM1,%XMM7,%XMM1;
+0x13530;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;VFMADD132PD	%XMM13,%XMM2,%XMM1;
+0x13535;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;VUNPCKHPD	%XMM1,%XMM1,%XMM3;
+0x13539;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;VADDPD	%XMM1,%XMM3,%XMM0;
+0x1353d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;TEST	$0x1,%DL;
+0x13540;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;JE	13574 <_ZN6Thermo11temperatureER4Atom+0x424>;
+0x13542;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;AND	$-0x2,%EDX;
+0x13545;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;ADD	%EDX,%R8D;
+0x13548;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;LEA	(%R8,%R8,2),%EAX;
+0x1354c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;CLTQ;
+0x1354e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:153;VMOVSD	(%RSI,%RAX,8),%XMM4;
+0x13553;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:154;INC	%RAX;
+0x13556;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:155;VMOVSD	0x8(%RSI,%RAX,8),%XMM2;
+0x1355c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:154;VMOVSD	(%RSI,%RAX,8),%XMM15;
+0x13561;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VMULSD	%XMM2,%XMM2,%XMM6;
+0x13565;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VFMADD132SD	%XMM15,%XMM6,%XMM15;
+0x1356a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VFMADD132SD	%XMM4,%XMM15,%XMM4;
+0x1356f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VFMADD231SD	%XMM4,%XMM12,%XMM0;
+0x13574;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:160;VMOVSD	%XMM0,0x30(%RBX);
+0x13579;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:170;LEA	0x10(%RSP),%RSI;
+0x1357e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:170;LEA	0x30(%RBX),%RDI;
+0x13582;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:170;MOV	$0x1,%EDX;
+0x13587;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:170;LEA	0x10ab2(%RIP),%R9;
+0x1358e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:170;LEA	0xfa8b(%RIP),%R8;
+0x13595;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:170;LEA	0x114a4(%RIP),%RCX;
+0x1359c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:170;CALL	2590 <.plt.sec@start+0x210>;
+0x135a1;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:173;VMOVSD	0x48(%RBX),%XMM12;
+0x135a6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:173;VMULSD	0x10(%RSP),%XMM12,%XMM0;
+0x135ac;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:174;MOV	0x18(%RSP),%RAX;
+0x135b1;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:174;SUB	%FS:0x28,%RAX;
+0x135ba;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:174;JNE	135e8 <_ZN6Thermo11temperatureER4Atom+0x498>;
+0x135bc;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:174;MOV	-0x8(%RBP),%RBX;
+0x135c0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:174;LEAVE;
+0x135c1;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:174;RET;
+0x135c2;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:174;NOPW	(%RAX,%RAX,1);
+0x135c8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:174;VZEROUPPER;
+0x135cb;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:174;JMP	13574 <_ZN6Thermo11temperatureER4Atom+0x424>;
+0x135cd;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:174;NOPL	(%RAX);
+0x135d0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:145;VXORPD	%XMM0,%XMM0,%XMM0;
+0x135d4;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:145;JMP	13574 <_ZN6Thermo11temperatureER4Atom+0x424>;
+0x135d6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;VXORPD	%XMM2,%XMM2,%XMM2;
+0x135da;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:156;XOR	%EDI,%EDI;
+0x135dc;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:145;VXORPD	%XMM0,%XMM0,%XMM0;
+0x135e0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;XOR	%R8D,%R8D;
+0x135e3;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:152;JMP	134ef <_ZN6Thermo11temperatureER4Atom+0x39f>;
+0x135e8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/thermo.cpp:174;CALL	2540 <.plt.sec@start+0x1c0>;
+0x135ed;:0;NOP;
+0x135ee;:0;XCHG	%AX,%AX;

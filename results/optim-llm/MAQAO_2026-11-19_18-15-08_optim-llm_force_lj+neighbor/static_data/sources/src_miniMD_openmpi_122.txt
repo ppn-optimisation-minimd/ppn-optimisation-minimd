@@ -1,0 +1,15 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/neighbor.cpp: 261 - 272
+--------------------------------------------------------------------------------
+
+261:       for(int bin = 0; bin < mbins; bin++) {
+262:         int offset = 0;
+263:         for(int t = 0; t < num_threads; t++) {
+264:           int*  bc_t = &bincount_local[t * mbins];
+265:           int*  dst  = &bins[bin * atoms_per_bin + offset];
+266:           int*  src  = &bins_local[(t * mbins + bin) * atoms_per_bin];
+267:           const int cnt = bc_t[bin];
+268:           // memcpy optimisé par le compilateur (alignment + taille)
+269:           for(int s = 0; s < cnt; s++) dst[s] = src[s];
+270:           offset += cnt;
+271:         }
+272:         bincount[bin] = offset;

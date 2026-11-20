@@ -1,0 +1,36 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/neighbor.cpp: 243 - 320
+--------------------------------------------------------------------------------
+
+243:       for(int i = 0; i < nall; i++) {
+244:         const int ibin = coord2bin(x[i * PAD + 0],
+245:                                    x[i * PAD + 1],
+246:                                    x[i * PAD + 2]);
+247:         const int slot = bc_t[ibin];
+248:         if(slot < atoms_per_bin) {
+249:           bc_t[ibin] = slot + 1;
+250:           b_t[(tid * mbins + ibin) * atoms_per_bin + slot] = i;
+251:         } else {
+252:           resize = 1;
+[...]
+299:   if(x >= xprd)
+300:     ix = (int)((x - xprd) * bininvx) + nbinx - mbinxlo;
+301:   else if(x >= 0.0)
+302:     ix = (int)(x * bininvx) - mbinxlo;
+303:   else
+304:     ix = (int)(x * bininvx) - mbinxlo - 1;
+305: 
+306:   if(y >= yprd)
+307:     iy = (int)((y - yprd) * bininvy) + nbiny - mbinylo;
+308:   else if(y >= 0.0)
+309:     iy = (int)(y * bininvy) - mbinylo;
+310:   else
+311:     iy = (int)(y * bininvy) - mbinylo - 1;
+312: 
+313:   if(z >= zprd)
+314:     iz = (int)((z - zprd) * bininvz) + nbinz - mbinzlo;
+315:   else if(z >= 0.0)
+316:     iz = (int)(z * bininvz) - mbinzlo;
+317:   else
+318:     iz = (int)(z * bininvz) - mbinzlo - 1;
+319: 
+320:   return (iz * mbiny * mbinx + iy * mbinx + ix + 1);

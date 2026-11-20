@@ -1,0 +1,32 @@
+/usr/include/x86_64-linux-gnu/bits/string_fortified.h: 29 - 30
+--------------------------------------------------------------------------------
+
+29:   return __builtin___memcpy_chk (__dest, __src, __len,
+30: 				 __glibc_objsize0 (__dest));
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/atom.cpp: 266 - 303
+--------------------------------------------------------------------------------
+
+266: {
+267:   MMD_float* newarray;
+268: 
+269:   newarray = create_2d_MMD_float_array(n1, n2);
+270: 
+271:   if(nold) memcpy(newarray, array, nold * sizeof(MMD_float));
+272: 
+273:   destroy_2d_MMD_float_array(array);
+274: 
+275:   return newarray;
+276: }
+[...]
+284:   if(n1 * n2 == 0) return NULL;
+285: 
+286:   #ifdef ALIGNMALLOC
+287:     array = (MMD_float*) _mm_malloc((n1 * n2 + 1024 + 1) * sizeof(MMD_float), ALIGNMALLOC);
+288:   #else
+289:     array = (MMD_float*) malloc((n1 * n2 + 1024 + 1) * sizeof(MMD_float));
+[...]
+299:   if(array != NULL) {
+300:   #ifdef ALIGNMALLOC
+301: 	_mm_free(array);
+302:   #else
+303:       free(array);

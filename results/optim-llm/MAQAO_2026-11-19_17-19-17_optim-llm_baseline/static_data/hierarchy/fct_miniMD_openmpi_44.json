@@ -1,0 +1,76 @@
+{
+  "__fct":
+    {
+      "loops":
+        {
+          "_28":
+            {
+              "src_regions":
+                [
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/atom.cpp",
+                    "regions":
+                      [
+                        [
+                        394,
+                        403
+                        ]
+                      ]
+                  }
+                ],
+              "src": "atom.cpp:394-403"
+            },
+          "_26":
+            {
+              "_27":
+                {
+                  "src_regions":
+                    [
+                      {
+                        "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/atom.cpp",
+                        "regions":
+                          [
+                            [
+                            394,
+                            403
+                            ]
+                          ]
+                      }
+                    ],
+                  "src": "atom.cpp:394-403"
+                },
+              "src_regions":
+                [
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/atom.cpp",
+                    "regions":
+                      [
+                        [
+                        391,
+                        403
+                        ]
+                      ]
+                  }
+                ],
+              "src": "atom.cpp:391-403"
+            },
+          "_29":
+            {
+              "src_regions":
+                [
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-llm/ref/Obj_openmpi/atom.cpp",
+                    "regions":
+                      [
+                        [
+                        369,
+                        370
+                        ]
+                      ]
+                  }
+                ],
+              "src": "atom.cpp:369-370"
+            }
+        }
+    }
+}
