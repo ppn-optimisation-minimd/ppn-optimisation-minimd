@@ -1,0 +1,18 @@
+/usr/include/c++/15/bits/stl_vector.h: 1263 - 1263
+--------------------------------------------------------------------------------
+
+1263: 	__glibcxx_requires_subscript(__n);
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/neighbor.cpp: 73 - 96
+--------------------------------------------------------------------------------
+
+73:   if (x >= prd_[d]) return static_cast<int>((x - prd_[d]) * bininv_[d]) + nbin[d] - mbinlo_[d];
+74:   if (x >= 0.0) return static_cast<int>(x * bininv_[d]) - mbinlo_[d];
+75:   return static_cast<int>(x * bininv_[d]) - mbinlo_[d] - 1;
+[...]
+84:     b[d] = bin_coord(pos[d], d);
+85:     if (b[d] < 0 || b[d] >= mbin_[d]) return -1;
+86:   }
+87:   return (b[2] * mbin_[1] + b[1]) * mbin_[0] + b[0];
+[...]
+95: #pragma omp parallel for schedule(static)
+96:   for (int i = 0; i < count; i++) atom_bin_[i] = bin_of(&x[3 * i]);

@@ -1,0 +1,527 @@
+{
+  "report": [
+    {
+      "id_str": "Loop 128 - sosieMD",
+      "module": "sosieMD",
+      "id": 128,
+      "analysis": "Execution Time: 69 % - Vectorization Ratio: 30.91 % - Vector Length Use: 16.25 %",
+      "coverage": 69.814758300781,
+      "issues": [
+        {
+          "id_str": "Loop Computation Issues",
+          "score": 6,
+          "issues": [
+            {
+              "code": "L2_LC_2",
+              "analysis": "[SA] Presence of expensive FP instructions - Perform hoisting, change algorithm, use SVML or proper numerical library or perform value profiling (count the number of distinct input values). There are 1 issues (= instructions) costing 4 points each.",
+              "score": 4,
+            },
+            {
+              "code": "L2_LC_6",
+              "analysis": "[SA] Presence of a large number of scalar integer instructions - Simplify loop structure, perform loop splitting or perform unroll and jam. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Control Flow Issues",
+          "score": 21,
+          "issues": [
+            {
+              "code": "L2_CF_3",
+              "analysis": "[SA] Too many paths (15 paths) - Simplify control structure. There are 15 issues ( = paths) costing 1 point each with a malus of 4 points.",
+              "score": 19,
+            },
+            {
+              "code": "L2_CF_4",
+              "analysis": "[SA] Non innermost loop (InBetween) - Collapse loop with innermost ones. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Data Access Issues",
+          "score": 12,
+          "issues": [
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (INSERT/EXTRACT, BLEND/MERGE, BROADCAST) - Simplify data access and try to get stride 1 access. There are 12 issues (= instructions) costing 1 point each.",
+              "score": 12,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 21,
+          "issues": [
+            {
+              "code": "L2_CF_3",
+              "analysis": "[SA] Too many paths (15 paths) - Simplify control structure. There are 15 issues ( = paths) costing 1 point each with a malus of 4 points.",
+              "score": 19,
+            },
+            {
+              "code": "L2_CF_4",
+              "analysis": "[SA] Non innermost loop (InBetween) - Collapse loop with innermost ones. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Inefficient Vectorization",
+          "score": 12,
+          "issues": [
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (INSERT/EXTRACT, BLEND/MERGE, BROADCAST) - Simplify data access and try to get stride 1 access. There are 12 issues (= instructions) costing 1 point each.",
+              "score": 12,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 151 - sosieMD",
+      "module": "sosieMD",
+      "id": 151,
+      "analysis": "Execution Time: 19 % - Vectorization Ratio: 7.14 % - Vector Length Use: 8.63 %",
+      "coverage": 19.366430282593,
+      "issues": [
+        {
+          "id_str": "Loop Computation Issues",
+          "score": 2,
+          "issues": [
+            {
+              "code": "L2_LC_6",
+              "analysis": "[SA] Presence of a large number of scalar integer instructions - Simplify loop structure, perform loop splitting or perform unroll and jam. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Control Flow Issues",
+          "score": 0,
+          "issues": [
+          ]
+        },
+        {
+          "id_str": "Data Access Issues",
+          "score": 2,
+          "issues": [
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (INSERT/EXTRACT, BLEND/MERGE) - Simplify data access and try to get stride 1 access. There are 2 issues (= instructions) costing 1 point each.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 1000,
+          "issues": [
+            {
+              "code": "L2_CF_3",
+              "analysis": "[SA] Too many paths (at least 1000 paths) - Simplify control structure. There are at least 1000 issues ( = paths) costing 1 point.",
+              "score": 1000,
+            }
+          ]
+        },
+        {
+          "id_str": "Inefficient Vectorization",
+          "score": 2,
+          "issues": [
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (INSERT/EXTRACT, BLEND/MERGE) - Simplify data access and try to get stride 1 access. There are 2 issues (= instructions) costing 1 point each.",
+              "score": 2,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 137 - sosieMD",
+      "module": "sosieMD",
+      "id": 137,
+      "analysis": "Execution Time: 1 % - Vectorization Ratio: 100.00 % - Vector Length Use: 50.00 %",
+      "coverage": 1.9127335548401,
+      "issues": [
+      ]
+    },
+    {
+      "id_str": "Loop 139 - sosieMD",
+      "module": "sosieMD",
+      "id": 139,
+      "analysis": "Execution Time: 1 % - Vectorization Ratio: 100.00 % - Vector Length Use: 50.00 %",
+      "coverage": 1.0759125947952,
+      "issues": [
+      ]
+    },
+    {
+      "id_str": "Loop 145 - sosieMD",
+      "module": "sosieMD",
+      "id": 145,
+      "analysis": "Execution Time: 0 % - Vectorization Ratio: 0.00 % - Vector Length Use: 6.08 %",
+      "coverage": 0.89659386873245,
+      "issues": [
+        {
+          "id_str": "Control Flow Issues",
+          "score": 692,
+          "issues": [
+            {
+              "code": "L2_CF_3",
+              "analysis": "[SA] Too many paths (686 paths) - Simplify control structure. There are 686 issues ( = paths) costing 1 point each with a malus of 4 points.",
+              "score": 690,
+            },
+            {
+              "code": "L2_CF_4",
+              "analysis": "[SA] Non innermost loop (InBetween) - Collapse loop with innermost ones. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Data Access Issues",
+          "score": 2,
+          "issues": [
+            {
+              "code": "L2_DA_6",
+              "analysis": "[SA] More than 20% of the loads are accessing the stack - Perform loop splitting to decrease pressure on registers. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 692,
+          "issues": [
+            {
+              "code": "L2_CF_3",
+              "analysis": "[SA] Too many paths (686 paths) - Simplify control structure. There are 686 issues ( = paths) costing 1 point each with a malus of 4 points.",
+              "score": 690,
+            },
+            {
+              "code": "L2_CF_4",
+              "analysis": "[SA] Non innermost loop (InBetween) - Collapse loop with innermost ones. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 126 - sosieMD",
+      "module": "sosieMD",
+      "id": 126,
+      "analysis": "Execution Time: 0 % - Vectorization Ratio: 36.84 % - Vector Length Use: 16.12 %",
+      "coverage": 0.76210480928421,
+      "issues": [
+        {
+          "id_str": "Loop Computation Issues",
+          "score": 6,
+          "issues": [
+            {
+              "code": "L2_LC_4",
+              "analysis": "[SA] Less than 10% of the FP ADD/SUB/MUL arithmetic operations are performed using FMA - Reorganize arithmetic expressions to exhibit potential for FMA. This issue costs 4 points.",
+              "score": 4,
+            },
+            {
+              "code": "L2_LC_6",
+              "analysis": "[SA] Presence of a large number of scalar integer instructions - Simplify loop structure, perform loop splitting or perform unroll and jam. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Control Flow Issues",
+          "score": 58,
+          "issues": [
+            {
+              "code": "L2_CF_3",
+              "analysis": "[SA] Too many paths (52 paths) - Simplify control structure. There are 52 issues ( = paths) costing 1 point each with a malus of 4 points.",
+              "score": 56,
+            },
+            {
+              "code": "L2_CF_4",
+              "analysis": "[SA] Non innermost loop (Outermost) - Collapse loop with innermost ones. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Data Access Issues",
+          "score": 4,
+          "issues": [
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (INSERT/EXTRACT, BLEND/MERGE) - Simplify data access and try to get stride 1 access. There are 2 issues (= instructions) costing 1 point each.",
+              "score": 2,
+            },
+            {
+              "code": "L2_DA_6",
+              "analysis": "[SA] More than 20% of the loads are accessing the stack - Perform loop splitting to decrease pressure on registers. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 58,
+          "issues": [
+            {
+              "code": "L2_CF_3",
+              "analysis": "[SA] Too many paths (52 paths) - Simplify control structure. There are 52 issues ( = paths) costing 1 point each with a malus of 4 points.",
+              "score": 56,
+            },
+            {
+              "code": "L2_CF_4",
+              "analysis": "[SA] Non innermost loop (Outermost) - Collapse loop with innermost ones. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Inefficient Vectorization",
+          "score": 2,
+          "issues": [
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (INSERT/EXTRACT, BLEND/MERGE) - Simplify data access and try to get stride 1 access. There are 2 issues (= instructions) costing 1 point each.",
+              "score": 2,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 148 - sosieMD",
+      "module": "sosieMD",
+      "id": 148,
+      "analysis": "Execution Time: 0 % - Vectorization Ratio: 17.65 % - Vector Length Use: 12.50 %",
+      "coverage": 0.41841048002243,
+      "issues": [
+        {
+          "id_str": "Loop Computation Issues",
+          "score": 2,
+          "issues": [
+            {
+              "code": "L2_LC_6",
+              "analysis": "[SA] Presence of a large number of scalar integer instructions - Simplify loop structure, perform loop splitting or perform unroll and jam. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Control Flow Issues",
+          "score": 2,
+          "issues": [
+            {
+              "code": "L2_CF_4",
+              "analysis": "[SA] Non innermost loop (InBetween) - Collapse loop with innermost ones. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Data Access Issues",
+          "score": 4,
+          "issues": [
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (BLEND/MERGE) - Simplify data access and try to get stride 1 access. There are 2 issues (= instructions) costing 1 point each.",
+              "score": 2,
+            },
+            {
+              "code": "L2_DA_6",
+              "analysis": "[SA] More than 20% of the loads are accessing the stack - Perform loop splitting to decrease pressure on registers. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 1002,
+          "issues": [
+            {
+              "code": "L2_CF_3",
+              "analysis": "[SA] Too many paths (at least 1000 paths) - Simplify control structure. There are at least 1000 issues ( = paths) costing 1 point.",
+              "score": 1000,
+            },
+            {
+              "code": "L2_CF_4",
+              "analysis": "[SA] Non innermost loop (InBetween) - Collapse loop with innermost ones. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Inefficient Vectorization",
+          "score": 2,
+          "issues": [
+            {
+              "code": "L2_DA_5",
+              "analysis": "[SA] Presence of special instructions executing on a single port (BLEND/MERGE) - Simplify data access and try to get stride 1 access. There are 2 issues (= instructions) costing 1 point each.",
+              "score": 2,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 84 - sosieMD",
+      "module": "sosieMD",
+      "id": 84,
+      "analysis": "Execution Time: 0 % - Vectorization Ratio: 9.09 % - Vector Length Use: 12.50 %",
+      "coverage": 0.20920524001122,
+      "issues": [
+        {
+          "id_str": "Loop Computation Issues",
+          "score": 2,
+          "issues": [
+            {
+              "code": "L2_LC_6",
+              "analysis": "[SA] Presence of a large number of scalar integer instructions - Simplify loop structure, perform loop splitting or perform unroll and jam. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Control Flow Issues",
+          "score": 261,
+          "issues": [
+            {
+              "code": "L2_CF_1",
+              "analysis": "[SA] Presence of calls - Inline either by compiler or by hand and use SVML for libm calls. There are 1 issues (= calls) costing 1 point each.",
+              "score": 1,
+            },
+            {
+              "code": "L2_CF_3",
+              "analysis": "[SA] Too many paths (256 paths) - Simplify control structure. There are 256 issues ( = paths) costing 1 point each with a malus of 4 points.",
+              "score": 260,
+            }
+          ]
+        },
+        {
+          "id_str": "Data Access Issues",
+          "score": 2,
+          "issues": [
+            {
+              "code": "L2_DA_6",
+              "analysis": "[SA] More than 20% of the loads are accessing the stack - Perform loop splitting to decrease pressure on registers. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 261,
+          "issues": [
+            {
+              "code": "L2_CF_1",
+              "analysis": "[SA] Presence of calls - Inline either by compiler or by hand and use SVML for libm calls. There are 1 issues (= calls) costing 1 point each.",
+              "score": 1,
+            },
+            {
+              "code": "L2_CF_3",
+              "analysis": "[SA] Too many paths (256 paths) - Simplify control structure. There are 256 issues ( = paths) costing 1 point each with a malus of 4 points.",
+              "score": 260,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 149 - sosieMD",
+      "module": "sosieMD",
+      "id": 149,
+      "analysis": "Execution Time: 0 % - Vectorization Ratio: 0.00 % - Vector Length Use: 10.42 %",
+      "coverage": 0.19426199793816,
+      "issues": [
+        {
+          "id_str": "Control Flow Issues",
+          "score": 0,
+          "issues": [
+          ]
+        },
+        {
+          "id_str": "Data Access Issues",
+          "score": 2,
+          "issues": [
+            {
+              "code": "L2_DA_6",
+              "analysis": "[SA] More than 20% of the loads are accessing the stack - Perform loop splitting to decrease pressure on registers. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 1000,
+          "issues": [
+            {
+              "code": "L2_CF_3",
+              "analysis": "[SA] Too many paths (at least 1000 paths) - Simplify control structure. There are at least 1000 issues ( = paths) costing 1 point.",
+              "score": 1000,
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id_str": "Loop 73 - sosieMD",
+      "module": "sosieMD",
+      "id": 73,
+      "analysis": "Execution Time: 0 % - Vectorization Ratio: 0.00 % - Vector Length Use: 12.50 %",
+      "coverage": 0.16437554359436,
+      "issues": [
+        {
+          "id_str": "Loop Computation Issues",
+          "score": 6,
+          "issues": [
+            {
+              "code": "L2_LC_4",
+              "analysis": "[SA] Less than 10% of the FP ADD/SUB/MUL arithmetic operations are performed using FMA - Reorganize arithmetic expressions to exhibit potential for FMA. This issue costs 4 points.",
+              "score": 4,
+            },
+            {
+              "code": "L2_LC_6",
+              "analysis": "[SA] Presence of a large number of scalar integer instructions - Simplify loop structure, perform loop splitting or perform unroll and jam. This issue costs 2 points.",
+              "score": 2,
+            }
+          ]
+        },
+        {
+          "id_str": "Data Access Issues",
+          "score": 12,
+          "issues": [
+            {
+              "code": "L2_DA_1",
+              "analysis": "[SA] Presence of constant non unit stride data access - Use array restructuring, perform loop interchange or use gather instructions to lower a bit the cost. There are 4 issues ( = data accesses) costing 2 point each.",
+              "score": 8,
+            },
+            {
+              "code": "L2_DA_2",
+              "analysis": "[SA] Presence of indirect accesses - Use array restructuring or gather instructions to lower the cost. There are 1 issues ( = indirect data accesses) costing 4 point each.",
+              "score": 4,
+            }
+          ]
+        },
+        {
+          "id_str": "Vectorization Roadblocks",
+          "score": 12,
+          "issues": [
+            {
+              "code": "L2_DA_1",
+              "analysis": "[SA] Presence of constant non unit stride data access - Use array restructuring, perform loop interchange or use gather instructions to lower a bit the cost. There are 4 issues ( = data accesses) costing 2 point each.",
+              "score": 8,
+            },
+            {
+              "code": "L2_DA_2",
+              "analysis": "[SA] Presence of indirect accesses - Use array restructuring or gather instructions to lower the cost. There are 1 issues ( = indirect data accesses) costing 4 point each.",
+              "score": 4,
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

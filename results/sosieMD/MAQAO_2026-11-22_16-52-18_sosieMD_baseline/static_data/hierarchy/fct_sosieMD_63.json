@@ -1,0 +1,92 @@
+{
+  "__fct":
+    {
+      "loops":
+        {
+          "_63":
+            {
+              "_64":
+                {
+                  "src_regions":
+                    [
+                      {
+                        "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/domain.cpp",
+                        "regions":
+                          [
+                            [
+                            225,
+                            228
+                            ]
+                          ]
+                      }
+                    ],
+                  "src": "domain.cpp:225-228"
+                },
+              "src_regions":
+                [
+                  {
+                    "path": "/usr/include/c++/15/bits/stl_vector.h",
+                    "regions":
+                      [
+                        [
+                        1119,
+                        1119
+                        ],
+                        [
+                        1145,
+                        1148
+                        ],
+                        [
+                        1396,
+                        1396
+                        ],
+                        [
+                        2241,
+                        2245
+                        ]
+                      ]
+                  },
+                  {
+                    "path": "/usr/include/c++/15/bits/stl_algobase.h",
+                    "regions":
+                      [
+                        [
+                        407,
+                        407
+                        ],
+                        [
+                        424,
+                        431
+                        ]
+                      ]
+                  },
+                  {
+                    "path": "/usr/include/c++/15/bits/stl_iterator.h",
+                    "regions":
+                      [
+                        [
+                        1059,
+                        1059
+                        ],
+                        [
+                        1148,
+                        1148
+                        ]
+                      ]
+                  },
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/domain.cpp",
+                    "regions":
+                      [
+                        [
+                        222,
+                        238
+                        ]
+                      ]
+                  }
+                ],
+              "src": "domain.cpp:222-238"
+            }
+        }
+    }
+}

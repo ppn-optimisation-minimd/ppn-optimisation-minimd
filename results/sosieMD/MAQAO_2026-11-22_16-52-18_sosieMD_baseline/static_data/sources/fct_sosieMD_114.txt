@@ -1,0 +1,11 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp: 20 - 32
+--------------------------------------------------------------------------------
+
+20:   const int k = seed / IQ;
+21:   seed = IA * (seed - k * IQ) - IR * k;
+22:   if (seed < 0) seed += IM;
+23:   return (1.0 / IM) * seed;
+[...]
+30:   for (int m = 0; m < 5; m++) park_miller(seed);
+31:   return park_miller(seed);
+32: }

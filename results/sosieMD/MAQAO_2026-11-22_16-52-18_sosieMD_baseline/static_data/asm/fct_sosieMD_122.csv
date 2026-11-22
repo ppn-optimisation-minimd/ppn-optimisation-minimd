@@ -1,0 +1,256 @@
+address;source_location;insn;indent
+0x27e00;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;ENDBR64;
+0x27e04;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;PUSH	%RBP;
+0x27e05;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;MOV	%RSP,%RBP;
+0x27e08;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;PUSH	%R12;
+0x27e0a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;PUSH	%RBX;
+0x27e0b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;MOV	%RDI,%RBX;
+0x27e0e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;AND	$-0x20,%RSP;
+0x27e12;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;CALL	3bb0 <.plt.sec@start+0x590>;
+0x27e17;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;MOV	%EAX,%R12D;
+0x27e1a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;CALL	3ae0 <.plt.sec@start+0x4c0>;
+0x27e1f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;MOV	$0,%EDI;
+0x27e24;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;VXORPD	%XMM11,%XMM11,%XMM11;
+0x27e29;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;MOV	%EAX,%ESI;
+0x27e2b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;MOV	0x18(%RBX),%EAX;
+0x27e2e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;CLTD;
+0x27e2f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;IDIV	%R12D;
+0x27e32;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;CMP	%EDX,%ESI;
+0x27e34;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;LEA	0x1(%RAX),%ECX;
+0x27e37;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;CMOVL	%ECX,%EAX;
+0x27e3a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;CMOVL	%EDI,%EDX;
+0x27e3d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;IMUL	%EAX,%ESI;
+0x27e40;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;LEA	(%RDX,%RSI,1),%R8D;
+0x27e44;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;LEA	(%RAX,%R8,1),%R9D;
+0x27e48;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;CMP	%R9D,%R8D;
+0x27e4b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;JGE	28200 <_ZNK6Thermo11temperatureERK5Atoms._omp_fn.0+0x400>;
+0x27e51;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;MOV	(%RBX),%R10;
+0x27e54;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;LEA	-0x1(%RAX),%R11D;
+0x27e58;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;MOV	0x8(%RBX),%R12;
+0x27e5c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVSD	0x10(%R10),%XMM7;
+0x27e62;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;CMP	$0x2,%R11D;
+0x27e66;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;JBE	28298 <_ZNK6Thermo11temperatureERK5Atoms._omp_fn.0+0x498>;
+0x27e6c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;MOVSXD	%EDX,%RDI;
+0x27e6f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;MOVSXD	%ESI,%R9;
+0x27e72;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;MOV	%EAX,%R11D;
+0x27e75;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVDQA	0x2dc3(%RIP),%YMM12;
+0x27e7d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;ADD	%RDI,%R9;
+0x27e80;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;SHR	$0x2,%R11D;
+0x27e84;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVDQA	0x2dd4(%RIP),%YMM11;
+0x27e8c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVDQA	0x2dec(%RIP),%YMM10;
+0x27e94;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;LEA	(%R9,%R9,2),%R10;
+0x27e98;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;LEA	(%R11,%R11,2),%R9;
+0x27e9c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVDQA	0x2dfc(%RIP),%YMM14;
+0x27ea4;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVDQA	0x2e14(%RIP),%YMM9;
+0x27eac;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;LEA	(%R12,%R10,8),%RCX;
+0x27eb0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;SAL	$0x5,%R9;
+0x27eb4;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;MOV	$0x2aaaaaaaaaaaaab,%R10;
+0x27ebe;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVDQA	0x2e1a(%RIP),%YMM8;
+0x27ec6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;LEA	(%R9,%RCX,1),%RDI;
+0x27eca;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VBROADCASTSD	%XMM7,%YMM6;
+0x27ecf;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VXORPD	%XMM0,%XMM0,%XMM0;
+0x27ed3;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;SUB	$0x60,%R9;
+0x27ed7;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;SHR	$0x5,%R9;
+0x27edb;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;IMUL	%R10,%R9;
+0x27edf;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;INC	%R9;
+0x27ee2;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;AND	$0x3,%R9D;
+0x27ee6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;JE	27fbd <_ZNK6Thermo11temperatureERK5Atoms._omp_fn.0+0x1bd>;
+0x27eec;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;CMP	$0x1,%R9;
+0x27ef0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;JE	27f58 <_ZNK6Thermo11temperatureERK5Atoms._omp_fn.0+0x158>;
+0x27ef2;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;CMP	$0x2,%R9;
+0x27ef6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;JNE	28230 <_ZNK6Thermo11temperatureERK5Atoms._omp_fn.0+0x430>;
+0x27efc;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVUPD	(%RCX),%YMM1;
+0x27f00;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVUPD	0x20(%RCX),%YMM5;
+0x27f05;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;ADD	$0x60,%RCX;
+0x27f09;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVUPD	-0x20(%RCX),%YMM13;
+0x27f0e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVAPD	%YMM1,%YMM15;
+0x27f12;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVAPD	%YMM1,%YMM3;
+0x27f16;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVAPD	%YMM5,%YMM4;
+0x27f1a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM5,%YMM14,%YMM15;
+0x27f20;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM5,%YMM12,%YMM3;
+0x27f26;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM13,%YMM11,%YMM4;
+0x27f2c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM13,%YMM9,%YMM15;
+0x27f32;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM4,%YMM10,%YMM3;
+0x27f38;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM13,%YMM14,%YMM5;
+0x27f3e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMULPD	%YMM15,%YMM15,%YMM2;
+0x27f43;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM5,%YMM8,%YMM1;
+0x27f49;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VFMADD132PD	%YMM3,%YMM2,%YMM3;
+0x27f4e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VFMADD132PD	%YMM1,%YMM3,%YMM1;
+0x27f53;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VFMADD231PD	%YMM1,%YMM6,%YMM0;
+0x27f58;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVUPD	(%RCX),%YMM1;
+0x27f5c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVUPD	0x20(%RCX),%YMM5;
+0x27f61;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;ADD	$0x60,%RCX;
+0x27f65;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVUPD	-0x20(%RCX),%YMM13;
+0x27f6a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVAPD	%YMM1,%YMM15;
+0x27f6e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVAPD	%YMM1,%YMM3;
+0x27f72;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVAPD	%YMM5,%YMM4;
+0x27f76;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM5,%YMM14,%YMM15;
+0x27f7c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM5,%YMM12,%YMM3;
+0x27f82;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM13,%YMM11,%YMM4;
+0x27f88;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM13,%YMM9,%YMM15;
+0x27f8e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM4,%YMM10,%YMM3;
+0x27f94;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM13,%YMM14,%YMM5;
+0x27f9a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMULPD	%YMM15,%YMM15,%YMM2;
+0x27f9f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM5,%YMM8,%YMM1;
+0x27fa5;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VFMADD132PD	%YMM3,%YMM2,%YMM3;
+0x27faa;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VFMADD132PD	%YMM1,%YMM3,%YMM1;
+0x27faf;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VFMADD231PD	%YMM1,%YMM6,%YMM0;
+0x27fb4;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;CMP	%RCX,%RDI;
+0x27fb7;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;JE	28142 <_ZNK6Thermo11temperatureERK5Atoms._omp_fn.0+0x342>;
+0x27fbd;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVUPD	(%RCX),%YMM1;(230) 
+0x27fc1;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVUPD	0x20(%RCX),%YMM5;(230) 
+0x27fc6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;ADD	$0x180,%RCX;(230) 
+0x27fcd;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVUPD	-0x140(%RCX),%YMM13;(230) 
+0x27fd5;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVAPD	%YMM1,%YMM15;(230) 
+0x27fd9;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVAPD	%YMM1,%YMM3;(230) 
+0x27fdd;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVAPD	%YMM5,%YMM4;(230) 
+0x27fe1;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM5,%YMM14,%YMM15;(230) 
+0x27fe7;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM13,%YMM11,%YMM4;(230) 
+0x27fed;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM5,%YMM12,%YMM3;(230) 
+0x27ff3;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM13,%YMM9,%YMM15;(230) 
+0x27ff9;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM4,%YMM10,%YMM3;(230) 
+0x27fff;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM13,%YMM14,%YMM5;(230) 
+0x28005;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVUPD	-0xe0(%RCX),%YMM13;(230) 
+0x2800d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMULPD	%YMM15,%YMM15,%YMM2;(230) 
+0x28012;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM5,%YMM8,%YMM1;(230) 
+0x28018;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVUPD	-0x100(%RCX),%YMM5;(230) 
+0x28020;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVAPD	%YMM5,%YMM4;(230) 
+0x28024;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM13,%YMM11,%YMM4;(230) 
+0x2802a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VFMADD132PD	%YMM3,%YMM2,%YMM3;(230) 
+0x2802f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VFMADD132PD	%YMM1,%YMM3,%YMM1;(230) 
+0x28034;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VFMADD132PD	%YMM6,%YMM0,%YMM1;(230) 
+0x28039;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVUPD	-0x120(%RCX),%YMM0;(230) 
+0x28041;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVAPD	%YMM0,%YMM15;(230) 
+0x28045;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVAPD	%YMM0,%YMM3;(230) 
+0x28049;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM5,%YMM14,%YMM15;(230) 
+0x2804f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM5,%YMM12,%YMM3;(230) 
+0x28055;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM13,%YMM14,%YMM5;(230) 
+0x2805b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM13,%YMM9,%YMM15;(230) 
+0x28061;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM4,%YMM10,%YMM3;(230) 
+0x28067;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM5,%YMM8,%YMM0;(230) 
+0x2806d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVUPD	-0xa0(%RCX),%YMM5;(230) 
+0x28075;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMULPD	%YMM15,%YMM15,%YMM2;(230) 
+0x2807a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVUPD	-0x80(%RCX),%YMM13;(230) 
+0x2807f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVAPD	%YMM5,%YMM4;(230) 
+0x28083;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM13,%YMM11,%YMM4;(230) 
+0x28089;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VFMADD132PD	%YMM3,%YMM2,%YMM3;(230) 
+0x2808e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VFMADD132PD	%YMM0,%YMM3,%YMM0;(230) 
+0x28093;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VFMADD231PD	%YMM0,%YMM6,%YMM1;(230) 
+0x28098;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVUPD	-0xc0(%RCX),%YMM0;(230) 
+0x280a0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVAPD	%YMM0,%YMM15;(230) 
+0x280a4;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVAPD	%YMM0,%YMM3;(230) 
+0x280a8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM5,%YMM14,%YMM15;(230) 
+0x280ae;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM5,%YMM12,%YMM3;(230) 
+0x280b4;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM13,%YMM14,%YMM5;(230) 
+0x280ba;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM13,%YMM9,%YMM15;(230) 
+0x280c0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM4,%YMM10,%YMM3;(230) 
+0x280c6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM5,%YMM8,%YMM0;(230) 
+0x280cc;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVUPD	-0x40(%RCX),%YMM5;(230) 
+0x280d1;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMULPD	%YMM15,%YMM15,%YMM2;(230) 
+0x280d6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVUPD	-0x20(%RCX),%YMM13;(230) 
+0x280db;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVAPD	%YMM5,%YMM4;(230) 
+0x280df;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM13,%YMM11,%YMM4;(230) 
+0x280e5;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VFMADD132PD	%YMM3,%YMM2,%YMM3;(230) 
+0x280ea;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VFMADD132PD	%YMM0,%YMM3,%YMM0;(230) 
+0x280ef;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VFMADD231PD	%YMM0,%YMM6,%YMM1;(230) 
+0x280f4;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVUPD	-0x60(%RCX),%YMM0;(230) 
+0x280f9;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVAPD	%YMM0,%YMM15;(230) 
+0x280fd;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVAPD	%YMM0,%YMM3;(230) 
+0x28101;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM5,%YMM14,%YMM15;(230) 
+0x28107;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM5,%YMM12,%YMM3;(230) 
+0x2810d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM13,%YMM14,%YMM5;(230) 
+0x28113;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM13,%YMM9,%YMM15;(230) 
+0x28119;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM4,%YMM10,%YMM3;(230) 
+0x2811f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM5,%YMM8,%YMM0;(230) 
+0x28125;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMULPD	%YMM15,%YMM15,%YMM2;(230) 
+0x2812a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VFMADD132PD	%YMM3,%YMM2,%YMM3;(230) 
+0x2812f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VFMADD132PD	%YMM0,%YMM3,%YMM0;(230) 
+0x28134;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VFMADD132PD	%YMM6,%YMM1,%YMM0;(230) 
+0x28139;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;CMP	%RCX,%RDI;(230) 
+0x2813c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;JNE	27fbd <_ZNK6Thermo11temperatureERK5Atoms._omp_fn.0+0x1bd>;(230) 
+0x28142;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VEXTRACTF64X2	$0x1,%YMM0,%XMM6;
+0x28149;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;MOV	%EAX,%ECX;
+0x2814b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VADDPD	%XMM0,%XMM6,%XMM12;
+0x2814f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;AND	$-0x4,%ECX;
+0x28152;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VUNPCKHPD	%XMM12,%XMM12,%XMM11;
+0x28157;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VADDPD	%XMM12,%XMM11,%XMM11;
+0x2815c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;TEST	$0x3,%AL;
+0x2815e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;JE	282a8 <_ZNK6Thermo11temperatureERK5Atoms._omp_fn.0+0x4a8>;
+0x28164;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;ADD	%ECX,%R8D;
+0x28167;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVAPD	%XMM12,%XMM2;
+0x2816b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VZEROUPPER;
+0x2816e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;SUB	%ECX,%EAX;
+0x28170;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;CMP	$0x1,%EAX;
+0x28173;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;JE	281d1 <_ZNK6Thermo11temperatureERK5Atoms._omp_fn.0+0x3d1>;
+0x28175;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;MOVSXD	%EDX,%RDX;
+0x28178;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;MOVSXD	%ESI,%RSI;
+0x2817b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVDDUP	%XMM7,%XMM13;
+0x2817f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;ADD	%RSI,%RDX;
+0x28182;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;ADD	%RCX,%RDX;
+0x28185;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;LEA	(%RDX,%RDX,2),%RCX;
+0x28189;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;LEA	(%R12,%RCX,8),%R11;
+0x2818d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVUPD	0x10(%R11),%XMM14;
+0x28193;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVUPD	0x20(%R11),%XMM9;
+0x28199;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVUPD	(%R11),%XMM10;
+0x2819e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVSD	%XMM14,%XMM9,%XMM0;
+0x281a2;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMULPD	%XMM0,%XMM0,%XMM5;
+0x281a6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VSHUFPD	$0x1,%XMM9,%XMM10,%XMM8;
+0x281ac;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVSD	%XMM10,%XMM14,%XMM1;
+0x281b0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VFMADD132PD	%XMM8,%XMM5,%XMM8;
+0x281b5;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VFMADD132PD	%XMM1,%XMM8,%XMM1;
+0x281ba;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VFMADD132PD	%XMM13,%XMM2,%XMM1;
+0x281bf;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VUNPCKHPD	%XMM1,%XMM1,%XMM3;
+0x281c3;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VADDPD	%XMM1,%XMM3,%XMM11;
+0x281c7;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;TEST	$0x1,%AL;
+0x281c9;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;JE	28200 <_ZNK6Thermo11temperatureERK5Atoms._omp_fn.0+0x400>;
+0x281cb;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;AND	$-0x2,%EAX;
+0x281ce;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;ADD	%EAX,%R8D;
+0x281d1;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;LEA	(%R8,%R8,2),%EAX;
+0x281d5;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;CLTQ;
+0x281d7;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVSD	(%R12,%RAX,8),%XMM4;
+0x281dd;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;INC	%RAX;
+0x281e0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVSD	0x8(%R12,%RAX,8),%XMM2;
+0x281e7;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVSD	(%R12,%RAX,8),%XMM15;
+0x281ed;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMULSD	%XMM2,%XMM2,%XMM6;
+0x281f1;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VFMADD132SD	%XMM15,%XMM6,%XMM15;
+0x281f6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VFMADD132SD	%XMM4,%XMM15,%XMM4;
+0x281fb;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VFMADD231SD	%XMM4,%XMM7,%XMM11;
+0x28200;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;MOV	0x10(%RBX),%RAX;
+0x28204;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;LEA	0x10(%RBX),%R8;
+0x28208;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;VMOVQ	%RAX,%XMM7;(229) 
+0x2820d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;VADDSD	%XMM7,%XMM11,%XMM12;(229) 
+0x28211;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;VMOVQ	%XMM12,%RBX;(229) 
+0x28216;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;LOCK CMPXCHG	%RBX,(%R8);(229) 
+0x2821b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;JNE	28208 <_ZNK6Thermo11temperatureERK5Atoms._omp_fn.0+0x408>;(229) 
+0x2821d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;LEA	-0x10(%RBP),%RSP;
+0x28221;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;POP	%RBX;
+0x28222;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;POP	%R12;
+0x28224;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;POP	%RBP;
+0x28225;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;RET;
+0x28226;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:33;NOPW	%CS:(%RAX,%RAX,1);
+0x28230;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVUPD	(%RCX),%YMM1;
+0x28234;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVUPD	0x20(%RCX),%YMM5;
+0x28239;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;ADD	$0x60,%RCX;
+0x2823d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVUPD	-0x20(%RCX),%YMM13;
+0x28242;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVAPD	%YMM1,%YMM15;
+0x28246;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVAPD	%YMM1,%YMM3;
+0x2824a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMOVAPD	%YMM5,%YMM4;
+0x2824e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM5,%YMM14,%YMM15;
+0x28254;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM5,%YMM12,%YMM3;
+0x2825a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM13,%YMM11,%YMM4;
+0x28260;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM13,%YMM9,%YMM15;
+0x28266;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM4,%YMM10,%YMM3;
+0x2826c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM13,%YMM14,%YMM5;
+0x28272;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VMULPD	%YMM15,%YMM15,%YMM2;
+0x28277;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VPERMT2PD	%YMM5,%YMM8,%YMM1;
+0x2827d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VFMADD132PD	%YMM3,%YMM2,%YMM3;
+0x28282;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VFMADD132PD	%YMM1,%YMM3,%YMM1;
+0x28287;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VFMADD231PD	%YMM1,%YMM6,%YMM0;
+0x2828c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;JMP	27efc <_ZNK6Thermo11temperatureERK5Atoms._omp_fn.0+0xfc>;
+0x28291;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;NOPL	(%RAX);
+0x28298;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VXORPD	%XMM2,%XMM2,%XMM2;
+0x2829c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;XOR	%ECX,%ECX;
+0x2829e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;JMP	2816e <_ZNK6Thermo11temperatureERK5Atoms._omp_fn.0+0x36e>;
+0x282a3;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;NOPL	(%RAX,%RAX,1);
+0x282a8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;VZEROUPPER;
+0x282ab;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp:35;JMP	28200 <_ZNK6Thermo11temperatureERK5Atoms._omp_fn.0+0x400>;

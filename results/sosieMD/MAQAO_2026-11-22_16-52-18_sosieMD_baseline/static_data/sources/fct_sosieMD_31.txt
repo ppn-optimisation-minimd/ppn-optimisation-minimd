@@ -1,0 +1,9 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/atoms.cpp: 41 - 46
+--------------------------------------------------------------------------------
+
+41: #pragma omp parallel for schedule(static)
+42:   for (int i = 0; i < nlocal; i++) {
+43:     for (int d = 0; d < 3; d++) {
+44:       // L'ordre des deux tests garantit 0 <= x < prd même avec les arrondis.
+45:       if (x[3 * i + d] < 0.0) x[3 * i + d] += box.prd[d];
+46:       if (x[3 * i + d] >= box.prd[d]) x[3 * i + d] -= box.prd[d];

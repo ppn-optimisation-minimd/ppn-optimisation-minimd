@@ -1,0 +1,13 @@
+/usr/include/c++/15/bits/stl_vector.h: 1263 - 1263
+--------------------------------------------------------------------------------
+
+1263: 	__glibcxx_requires_subscript(__n);
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/domain.cpp: 192 - 197
+--------------------------------------------------------------------------------
+
+192:       for (int k = 0; k < nsend; k++) {
+193:         const int i = swap.sendlist[k];
+194:         double* buf = &send_[BORDER_WIDTH * k];
+195:         for (int c = 0; c < 3; c++) buf[c] = atoms.x[3 * i + c];
+196:         buf[d] += swap.shift;
+197:         buf[3] = atoms.type[i];

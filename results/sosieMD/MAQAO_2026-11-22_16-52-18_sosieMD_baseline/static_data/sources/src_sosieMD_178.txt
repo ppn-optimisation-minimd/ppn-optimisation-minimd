@@ -1,0 +1,4 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp: 123 - 123
+--------------------------------------------------------------------------------
+
+123:   for (int i = 0; i < 3 * atoms.nlocal; i++) atoms.v[i] *= factor;

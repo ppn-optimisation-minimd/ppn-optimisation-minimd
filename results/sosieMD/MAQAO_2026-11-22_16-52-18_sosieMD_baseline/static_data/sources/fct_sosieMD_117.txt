@@ -1,0 +1,51 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp: 37 - 106
+--------------------------------------------------------------------------------
+
+37:     if (pos[d] < box.lo[d] || pos[d] >= box.hi[d]) return false;
+[...]
+62: {
+63:   atoms.natoms = 4 * nx * ny * nz;
+64:   atoms.nlocal = 0;
+65: 
+66:   // Les sites sont repérés par des indices entiers (i, j, k) de pas un
+67:   // demi-paramètre de maille ; ceux du réseau cfc ont i + j + k pair.
+68:   const Box& box = atoms.box;
+69:   const double half = 0.5 * std::pow(4.0 / rho, 1.0 / 3.0);
+70:   const int nsites[3] = {2 * nx, 2 * ny, 2 * nz};
+71:   int lo[3], hi[3];  // sites pouvant tomber dans mon sous-domaine
+72:   for (int d = 0; d < 3; d++) {
+73:     lo[d] = std::max(static_cast<int>(box.lo[d] / half - 1), 0);
+74:     hi[d] = std::min(static_cast<int>(box.hi[d] / half + 1), nsites[d] - 1);
+[...]
+81:   for (int bz = 0; bz * BLOCK <= hi[2]; bz++)
+82:     for (int by = 0; by * BLOCK <= hi[1]; by++)
+83:       for (int bx = 0; bx * BLOCK <= hi[0]; bx++)
+84:         for (int sz = 0; sz < BLOCK; sz++)
+85:           for (int sy = 0; sy < BLOCK; sy++)
+86:             for (int sx = 0; sx < BLOCK; sx++) {
+87:               const int i = bx * BLOCK + sx;
+88:               const int j = by * BLOCK + sy;
+89:               const int k = bz * BLOCK + sz;
+90:               if ((i + j + k) % 2 != 0) continue;
+91:               if (i < lo[0] || i > hi[0] || j < lo[1] || j > hi[1] || k < lo[2] || k > hi[2]) continue;
+92: 
+93:               const double pos[3] = {half * i, half * j, half * k};
+94:               if (!inside(box, pos)) continue;
+95: 
+96:               // La graine ne dépend que du site : les vitesses sont les
+97:               // mêmes quel que soit le nombre de processus.
+98:               int seed = k * nsites[1] * nsites[0] + j * nsites[0] + i + 1;
+99:               const double vx = velocity_component(seed);
+100:               const double vy = velocity_component(seed);
+101:               const double vz = velocity_component(seed);
+102:               atoms.add_local(pos[0], pos[1], pos[2], vx, vy, vz);
+103:             }
+104: 
+105:   check_atom_count(atoms);
+106: }
+/usr/include/c++/15/bits/stl_algobase.h: 239 - 263
+--------------------------------------------------------------------------------
+
+239:       if (__b < __a)
+[...]
+263:       if (__a < __b)

@@ -1,0 +1,42 @@
+{
+  "__fct":
+    {
+      "loops":
+        {
+          "_229":
+            {
+              "src_regions":
+                [
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp",
+                    "regions":
+                      [
+                        [
+                        33,
+                        33
+                        ]
+                      ]
+                  }
+                ],
+              "src": "thermo.cpp:33-33"
+            },
+          "_230":
+            {
+              "src_regions":
+                [
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp",
+                    "regions":
+                      [
+                        [
+                        35,
+                        35
+                        ]
+                      ]
+                  }
+                ],
+              "src": "thermo.cpp:35-35"
+            }
+        }
+    }
+}

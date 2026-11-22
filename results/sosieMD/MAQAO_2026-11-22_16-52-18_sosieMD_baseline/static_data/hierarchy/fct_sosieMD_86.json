@@ -1,0 +1,202 @@
+{
+  "__fct":
+    {
+      "loops":
+        {
+          "_126":
+            {
+              "_128":
+                {
+                  "_130":
+                    {
+                      "src_regions":
+                        [
+                          {
+                            "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/force.h",
+                            "regions":
+                              [
+                                [
+                                33,
+                                33
+                                ]
+                              ]
+                          }
+                        ],
+                      "src": "force.h:33-33"
+                    },
+                  "_129":
+                    {
+                      "src_regions":
+                        [
+                          {
+                            "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/force.h",
+                            "regions":
+                              [
+                                [
+                                33,
+                                33
+                                ]
+                              ]
+                          }
+                        ],
+                      "src": "force.h:33-33"
+                    },
+                  "_131":
+                    {
+                      "src_regions":
+                        [
+                          {
+                            "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/force.h",
+                            "regions":
+                              [
+                                [
+                                33,
+                                33
+                                ]
+                              ]
+                          }
+                        ],
+                      "src": "force.h:33-33"
+                    },
+                  "src_regions":
+                    [
+                      {
+                        "path": "/usr/include/c++/15/bits/stl_vector.h",
+                        "regions":
+                          [
+                            [
+                            1264,
+                            1264
+                            ]
+                          ]
+                      },
+                      {
+                        "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/force_lj.cpp",
+                        "regions":
+                          [
+                            [
+                            39,
+                            39
+                            ],
+                            [
+                            49,
+                            75
+                            ]
+                          ]
+                      },
+                      {
+                        "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/force.h",
+                        "regions":
+                          [
+                            [
+                            32,
+                            36
+                            ]
+                          ]
+                      }
+                    ],
+                  "src": "force_lj.cpp:39-75"
+                },
+              "_124":
+                {
+                  "src_regions":
+                    [
+                      {
+                        "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/force.h",
+                        "regions":
+                          [
+                            [
+                            33,
+                            33
+                            ]
+                          ]
+                      }
+                    ],
+                  "src": "force.h:33-33"
+                },
+              "_127":
+                {
+                  "src_regions":
+                    [
+                      {
+                        "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/force.h",
+                        "regions":
+                          [
+                            [
+                            33,
+                            33
+                            ]
+                          ]
+                      }
+                    ],
+                  "src": "force.h:33-33"
+                },
+              "_125":
+                {
+                  "src_regions":
+                    [
+                      {
+                        "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/force.h",
+                        "regions":
+                          [
+                            [
+                            33,
+                            33
+                            ]
+                          ]
+                      }
+                    ],
+                  "src": "force.h:33-33"
+                },
+              "src_regions":
+                [
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/neighbor.h",
+                    "regions":
+                      [
+                        [
+                        28,
+                        28
+                        ]
+                      ]
+                  },
+                  {
+                    "path": "/usr/include/c++/15/bits/stl_vector.h",
+                    "regions":
+                      [
+                        [
+                        1264,
+                        1264
+                        ]
+                      ]
+                  },
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/force_lj.cpp",
+                    "regions":
+                      [
+                        [
+                        39,
+                        75
+                        ],
+                        [
+                        81,
+                        82
+                        ]
+                      ]
+                  },
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/force.h",
+                    "regions":
+                      [
+                        [
+                        32,
+                        36
+                        ]
+                      ]
+                  }
+                ],
+              "src": "force.h:32-36"
+            }
+        }
+    }
+}

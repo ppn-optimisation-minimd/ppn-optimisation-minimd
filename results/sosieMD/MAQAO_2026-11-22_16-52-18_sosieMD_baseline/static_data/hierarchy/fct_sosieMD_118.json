@@ -1,0 +1,93 @@
+{
+  "__fct":
+    {
+      "loops":
+        {
+          "_177":
+            {
+              "src_regions":
+                [
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp",
+                    "regions":
+                      [
+                        [
+                        115,
+                        117
+                        ]
+                      ]
+                  }
+                ],
+              "src": "setup.cpp:115-117"
+            },
+          "_181":
+            {
+              "src_regions":
+                [
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp",
+                    "regions":
+                      [
+                        [
+                        111,
+                        112
+                        ]
+                      ]
+                  }
+                ],
+              "src": "setup.cpp:111-112"
+            },
+          "_179":
+            {
+              "src_regions":
+                [
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp",
+                    "regions":
+                      [
+                        [
+                        119,
+                        120
+                        ]
+                      ]
+                  }
+                ],
+              "src": "setup.cpp:119-120"
+            },
+          "_180":
+            {
+              "src_regions":
+                [
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp",
+                    "regions":
+                      [
+                        [
+                        119,
+                        120
+                        ]
+                      ]
+                  }
+                ],
+              "src": "setup.cpp:119-120"
+            },
+          "_178":
+            {
+              "src_regions":
+                [
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp",
+                    "regions":
+                      [
+                        [
+                        123,
+                        123
+                        ]
+                      ]
+                  }
+                ],
+              "src": "setup.cpp:123-123"
+            }
+        }
+    }
+}

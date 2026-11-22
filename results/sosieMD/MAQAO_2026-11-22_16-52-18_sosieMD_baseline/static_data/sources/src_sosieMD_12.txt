@@ -1,0 +1,7 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/atoms.cpp: 43 - 46
+--------------------------------------------------------------------------------
+
+43:     for (int d = 0; d < 3; d++) {
+44:       // L'ordre des deux tests garantit 0 <= x < prd même avec les arrondis.
+45:       if (x[3 * i + d] < 0.0) x[3 * i + d] += box.prd[d];
+46:       if (x[3 * i + d] >= box.prd[d]) x[3 * i + d] -= box.prd[d];

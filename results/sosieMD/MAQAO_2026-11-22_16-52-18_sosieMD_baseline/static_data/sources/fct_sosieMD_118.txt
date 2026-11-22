@@ -1,0 +1,23 @@
+/usr/include/c++/15/bits/stl_vector.h: 1264 - 1264
+--------------------------------------------------------------------------------
+
+1264: 	return *(this->_M_impl._M_start + __n);
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp: 109 - 124
+--------------------------------------------------------------------------------
+
+109: {
+110:   double sum[3] = {0.0, 0.0, 0.0};
+111:   for (int i = 0; i < atoms.nlocal; i++)
+112:     for (int d = 0; d < 3; d++) sum[d] += atoms.v[3 * i + d];
+113: 
+114:   double mean[3];
+115:   for (int d = 0; d < 3; d++) {
+116:     MPI_Allreduce(&sum[d], &mean[d], 1, MPI_DOUBLE, MPI_SUM, MPI_COMM_WORLD);
+117:     mean[d] /= atoms.natoms;
+118:   }
+119:   for (int i = 0; i < atoms.nlocal; i++)
+120:     for (int d = 0; d < 3; d++) atoms.v[3 * i + d] -= mean[d];
+121: 
+122:   const double factor = std::sqrt(t_request / thermo.temperature(atoms));
+123:   for (int i = 0; i < 3 * atoms.nlocal; i++) atoms.v[i] *= factor;
+124: }

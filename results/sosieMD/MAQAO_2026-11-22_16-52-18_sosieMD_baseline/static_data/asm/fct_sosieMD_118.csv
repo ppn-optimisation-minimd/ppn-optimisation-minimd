@@ -1,0 +1,564 @@
+address;source_location;insn;indent
+0x21fe0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:109;ENDBR64;
+0x21fe4;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:109;PUSH	%RBP;
+0x21fe5;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:109;MOV	%RSP,%RBP;
+0x21fe8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:109;PUSH	%R15;
+0x21fea;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:109;PUSH	%R14;
+0x21fec;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:109;PUSH	%R13;
+0x21fee;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:109;PUSH	%R12;
+0x21ff0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:109;MOV	%RDI,%R12;
+0x21ff3;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:109;PUSH	%RBX;
+0x21ff4;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:109;AND	$-0x20,%RSP;
+0x21ff8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:109;SUB	$0x60,%RSP;
+0x21ffc;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:109;MOV	%RSI,0x18(%RSP);
+0x22001;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:111;MOVSXD	0x4(%RDI),%RDX;
+0x22005;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:109;VMOVSD	%XMM0,0x10(%RSP);
+0x2200b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:110;VXORPD	%XMM0,%XMM0,%XMM0;
+0x2200f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:109;MOV	%FS:0x28,%RAX;
+0x22018;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:109;MOV	%RAX,0x58(%RSP);
+0x2201d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:109;XOR	%EAX,%EAX;
+0x2201f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:110;MOVQ	$0,0x50(%RSP);
+0x22028;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:110;VMOVAPD	%XMM0,0x40(%RSP);
+0x2202e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:111;TEST	%EDX,%EDX;
+0x22030;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:111;JLE	222b4 <_Z15create_velocitydR5AtomsRK6Thermo+0x2d4>;
+0x22036;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:111;LEA	(%RDX,%RDX,2),%RCX;
+0x2203a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:111;MOV	0x78(%RDI),%RAX;
+0x2203e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:111;MOV	$0xaaaaaaaaaaaaaab,%RSI;
+0x22048;/usr/include/c++/15/bits/stl_vector.h:1264;VXORPD	%XMM3,%XMM3,%XMM3;
+0x2204c;/usr/include/c++/15/bits/stl_vector.h:1264;LEA	-0x18(,%RCX,8),%RDI;
+0x22054;/usr/include/c++/15/bits/stl_vector.h:1264;VMOVAPD	%XMM3,%XMM1;
+0x22058;/usr/include/c++/15/bits/stl_vector.h:1264;VMOVAPD	%XMM3,%XMM2;
+0x2205c;/usr/include/c++/15/bits/stl_vector.h:1264;SHR	$0x3,%RDI;
+0x22060;/usr/include/c++/15/bits/stl_vector.h:1264;LEA	(%RAX,%RCX,8),%RBX;
+0x22064;/usr/include/c++/15/bits/stl_vector.h:1264;IMUL	%RSI,%RDI;
+0x22068;/usr/include/c++/15/bits/stl_vector.h:1264;INC	%RDI;
+0x2206b;/usr/include/c++/15/bits/stl_vector.h:1264;AND	$0x7,%EDI;
+0x2206e;/usr/include/c++/15/bits/stl_vector.h:1264;JE	22189 <_Z15create_velocitydR5AtomsRK6Thermo+0x1a9>;
+0x22074;/usr/include/c++/15/bits/stl_vector.h:1264;CMP	$0x1,%RDI;
+0x22078;/usr/include/c++/15/bits/stl_vector.h:1264;JE	2215c <_Z15create_velocitydR5AtomsRK6Thermo+0x17c>;
+0x2207e;/usr/include/c++/15/bits/stl_vector.h:1264;CMP	$0x2,%RDI;
+0x22082;/usr/include/c++/15/bits/stl_vector.h:1264;JE	22138 <_Z15create_velocitydR5AtomsRK6Thermo+0x158>;
+0x22088;/usr/include/c++/15/bits/stl_vector.h:1264;CMP	$0x3,%RDI;
+0x2208c;/usr/include/c++/15/bits/stl_vector.h:1264;JE	22114 <_Z15create_velocitydR5AtomsRK6Thermo+0x134>;
+0x22092;/usr/include/c++/15/bits/stl_vector.h:1264;CMP	$0x4,%RDI;
+0x22096;/usr/include/c++/15/bits/stl_vector.h:1264;JE	220f0 <_Z15create_velocitydR5AtomsRK6Thermo+0x110>;
+0x22098;/usr/include/c++/15/bits/stl_vector.h:1264;CMP	$0x5,%RDI;
+0x2209c;/usr/include/c++/15/bits/stl_vector.h:1264;JE	220cc <_Z15create_velocitydR5AtomsRK6Thermo+0xec>;
+0x2209e;/usr/include/c++/15/bits/stl_vector.h:1264;CMP	$0x6,%RDI;
+0x220a2;/usr/include/c++/15/bits/stl_vector.h:1264;JNE	228bc <_Z15create_velocitydR5AtomsRK6Thermo+0x8dc>;
+0x220a8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	(%RAX),%XMM2,%XMM2;
+0x220ac;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:111;ADD	$0x18,%RAX;
+0x220b0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM2,0x40(%RSP);
+0x220b6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0x10(%RAX),%XMM1,%XMM1;
+0x220bb;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM1,0x48(%RSP);
+0x220c1;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0x8(%RAX),%XMM3,%XMM3;
+0x220c6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM3,0x50(%RSP);
+0x220cc;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	(%RAX),%XMM2,%XMM2;
+0x220d0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:111;ADD	$0x18,%RAX;
+0x220d4;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM2,0x40(%RSP);
+0x220da;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0x10(%RAX),%XMM1,%XMM1;
+0x220df;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM1,0x48(%RSP);
+0x220e5;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0x8(%RAX),%XMM3,%XMM3;
+0x220ea;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM3,0x50(%RSP);
+0x220f0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	(%RAX),%XMM2,%XMM2;
+0x220f4;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:111;ADD	$0x18,%RAX;
+0x220f8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM2,0x40(%RSP);
+0x220fe;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0x10(%RAX),%XMM1,%XMM1;
+0x22103;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM1,0x48(%RSP);
+0x22109;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0x8(%RAX),%XMM3,%XMM3;
+0x2210e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM3,0x50(%RSP);
+0x22114;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	(%RAX),%XMM2,%XMM2;
+0x22118;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:111;ADD	$0x18,%RAX;
+0x2211c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM2,0x40(%RSP);
+0x22122;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0x10(%RAX),%XMM1,%XMM1;
+0x22127;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM1,0x48(%RSP);
+0x2212d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0x8(%RAX),%XMM3,%XMM3;
+0x22132;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM3,0x50(%RSP);
+0x22138;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	(%RAX),%XMM2,%XMM2;
+0x2213c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:111;ADD	$0x18,%RAX;
+0x22140;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM2,0x40(%RSP);
+0x22146;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0x10(%RAX),%XMM1,%XMM1;
+0x2214b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM1,0x48(%RSP);
+0x22151;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0x8(%RAX),%XMM3,%XMM3;
+0x22156;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM3,0x50(%RSP);
+0x2215c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	(%RAX),%XMM2,%XMM2;
+0x22160;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:111;ADD	$0x18,%RAX;
+0x22164;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM2,0x40(%RSP);
+0x2216a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0x10(%RAX),%XMM1,%XMM1;
+0x2216f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM1,0x48(%RSP);
+0x22175;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0x8(%RAX),%XMM3,%XMM3;
+0x2217a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM3,0x50(%RSP);
+0x22180;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:111;CMP	%RBX,%RAX;
+0x22183;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:111;JE	222b4 <_Z15create_velocitydR5AtomsRK6Thermo+0x2d4>;
+0x22189;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	(%RAX),%XMM2,%XMM4;(181) 
+0x2218d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:111;ADD	$0xc0,%RAX;(181) 
+0x22193;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM4,0x40(%RSP);(181) 
+0x22199;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0xb8(%RAX),%XMM1,%XMM5;(181) 
+0x221a1;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM5,0x48(%RSP);(181) 
+0x221a7;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0xb0(%RAX),%XMM3,%XMM6;(181) 
+0x221af;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM6,0x50(%RSP);(181) 
+0x221b5;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0xa8(%RAX),%XMM4,%XMM7;(181) 
+0x221bd;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM7,0x40(%RSP);(181) 
+0x221c3;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0xa0(%RAX),%XMM5,%XMM8;(181) 
+0x221cb;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM8,0x48(%RSP);(181) 
+0x221d1;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0x98(%RAX),%XMM6,%XMM9;(181) 
+0x221d9;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM9,0x50(%RSP);(181) 
+0x221df;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0x90(%RAX),%XMM7,%XMM10;(181) 
+0x221e7;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM10,0x40(%RSP);(181) 
+0x221ed;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0x88(%RAX),%XMM8,%XMM11;(181) 
+0x221f5;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM11,0x48(%RSP);(181) 
+0x221fb;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0x80(%RAX),%XMM9,%XMM12;(181) 
+0x22200;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM12,0x50(%RSP);(181) 
+0x22206;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0x78(%RAX),%XMM10,%XMM13;(181) 
+0x2220b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM13,0x40(%RSP);(181) 
+0x22211;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0x70(%RAX),%XMM11,%XMM14;(181) 
+0x22216;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM14,0x48(%RSP);(181) 
+0x2221c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0x68(%RAX),%XMM12,%XMM15;(181) 
+0x22221;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM15,0x50(%RSP);(181) 
+0x22227;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0x60(%RAX),%XMM13,%XMM2;(181) 
+0x2222c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM2,0x40(%RSP);(181) 
+0x22232;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0x58(%RAX),%XMM14,%XMM1;(181) 
+0x22237;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM1,0x48(%RSP);(181) 
+0x2223d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0x50(%RAX),%XMM15,%XMM0;(181) 
+0x22242;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM0,0x50(%RSP);(181) 
+0x22248;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0x48(%RAX),%XMM2,%XMM3;(181) 
+0x2224d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM3,0x40(%RSP);(181) 
+0x22253;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0x40(%RAX),%XMM1,%XMM4;(181) 
+0x22258;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM4,0x48(%RSP);(181) 
+0x2225e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0x38(%RAX),%XMM0,%XMM5;(181) 
+0x22263;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM5,0x50(%RSP);(181) 
+0x22269;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0x30(%RAX),%XMM3,%XMM6;(181) 
+0x2226e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM6,0x40(%RSP);(181) 
+0x22274;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0x28(%RAX),%XMM4,%XMM7;(181) 
+0x22279;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM7,0x48(%RSP);(181) 
+0x2227f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0x20(%RAX),%XMM5,%XMM8;(181) 
+0x22284;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM8,0x50(%RSP);(181) 
+0x2228a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0x18(%RAX),%XMM6,%XMM2;(181) 
+0x2228f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM2,0x40(%RSP);(181) 
+0x22295;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0x10(%RAX),%XMM7,%XMM1;(181) 
+0x2229a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM1,0x48(%RSP);(181) 
+0x222a0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VADDSD	-0x8(%RAX),%XMM8,%XMM3;(181) 
+0x222a5;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM3,0x50(%RSP);(181) 
+0x222ab;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:111;CMP	%RBX,%RAX;(181) 
+0x222ae;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:111;JNE	22189 <_Z15create_velocitydR5AtomsRK6Thermo+0x1a9>;(181) 
+0x222b4;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:115;LEA	0x20(%RSP),%R14;
+0x222b9;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:115;LEA	0x40(%RSP),%RBX;
+0x222be;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:115;MOV	%R14,%R15;
+0x222c1;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:115;LEA	0x38(%RSP),%R13;
+0x222c6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:116;MOV	%R15,%RSI;(177) 
+0x222c9;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:116;MOV	%RBX,%RDI;(177) 
+0x222cc;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:116;LEA	0xdd6d(%RIP),%R9;(177) 
+0x222d3;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:116;MOV	$0x1,%EDX;(177) 
+0x222d8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:116;LEA	0xcd41(%RIP),%R8;(177) 
+0x222df;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:116;LEA	0xe75a(%RIP),%RCX;(177) 
+0x222e6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:115;ADD	$0x8,%R15;(177) 
+0x222ea;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:115;ADD	$0x8,%RBX;(177) 
+0x222ee;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:116;CALL	3950 <.plt.sec@start+0x330>;(177) 
+0x222f3;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:117;VMOVSD	-0x8(%R15),%XMM10;(177) 
+0x222f9;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:117;VXORPD	%XMM9,%XMM9,%XMM9;(177) 
+0x222fe;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:117;VCVTSI2SDL	(%R12),%XMM9,%XMM1;(177) 
+0x22304;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:117;VDIVSD	%XMM1,%XMM10,%XMM11;(177) 
+0x22308;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:117;VMOVSD	%XMM11,-0x8(%R15);(177) 
+0x2230e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:115;CMP	%R15,%R13;(177) 
+0x22311;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:115;JNE	222c6 <_Z15create_velocitydR5AtomsRK6Thermo+0x2e6>;(177) 
+0x22313;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;MOV	0x4(%R12),%R8D;
+0x22318;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;TEST	%R8D,%R8D;
+0x2231b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;JLE	226c9 <_Z15create_velocitydR5AtomsRK6Thermo+0x6e9>;
+0x22321;/usr/include/c++/15/bits/stl_vector.h:1264;MOV	0x78(%R12),%R9;
+0x22326;/usr/include/c++/15/bits/stl_vector.h:1264;MOV	$0x1,%R10D;
+0x2232c;/usr/include/c++/15/bits/stl_vector.h:1264;CMP	$0x1,%R8D;
+0x22330;/usr/include/c++/15/bits/stl_vector.h:1264;JE	228f8 <_Z15create_velocitydR5AtomsRK6Thermo+0x918>;
+0x22336;/usr/include/c++/15/bits/stl_vector.h:1264;MOVSXD	%R8D,%R10;
+0x22339;/usr/include/c++/15/bits/stl_vector.h:1264;LEA	(%R10,%R10,2),%R11;
+0x2233d;/usr/include/c++/15/bits/stl_vector.h:1264;LEA	(%R9,%R11,8),%RDX;
+0x22341;/usr/include/c++/15/bits/stl_vector.h:1264;CMP	%RDX,%R14;
+0x22344;/usr/include/c++/15/bits/stl_vector.h:1264;JAE	2234f <_Z15create_velocitydR5AtomsRK6Thermo+0x36f>;
+0x22346;/usr/include/c++/15/bits/stl_vector.h:1264;CMP	%R13,%R9;
+0x22349;/usr/include/c++/15/bits/stl_vector.h:1264;JB	228f8 <_Z15create_velocitydR5AtomsRK6Thermo+0x918>;
+0x2234f;/usr/include/c++/15/bits/stl_vector.h:1264;LEA	-0x1(%R8),%EAX;
+0x22353;/usr/include/c++/15/bits/stl_vector.h:1264;MOV	%R8D,%ESI;
+0x22356;/usr/include/c++/15/bits/stl_vector.h:1264;CMP	$0x2,%EAX;
+0x22359;/usr/include/c++/15/bits/stl_vector.h:1264;JBE	22aa4 <_Z15create_velocitydR5AtomsRK6Thermo+0xac4>;
+0x2235f;/usr/include/c++/15/bits/stl_vector.h:1264;SHR	$0x2,%ESI;
+0x22362;/usr/include/c++/15/bits/stl_vector.h:1264;VMOVSD	0x20(%RSP),%XMM20;
+0x2236a;/usr/include/c++/15/bits/stl_vector.h:1264;VMOVSD	0x28(%RSP),%XMM21;
+0x22372;/usr/include/c++/15/bits/stl_vector.h:1264;MOV	%R9,%RBX;
+0x22375;/usr/include/c++/15/bits/stl_vector.h:1264;LEA	(%RSI,%RSI,2),%RCX;
+0x22379;/usr/include/c++/15/bits/stl_vector.h:1264;VMOVSD	0x30(%RSP),%XMM22;
+0x22381;/usr/include/c++/15/bits/stl_vector.h:1264;VMOVDQA	0x8917(%RIP),%YMM4;
+0x22389;/usr/include/c++/15/bits/stl_vector.h:1264;SAL	$0x5,%RCX;
+0x2238d;/usr/include/c++/15/bits/stl_vector.h:1264;VMOVDQA64	0x8929(%RIP),%YMM17;
+0x22397;/usr/include/c++/15/bits/stl_vector.h:1264;VMOVDQA	0x88a1(%RIP),%YMM15;
+0x2239f;/usr/include/c++/15/bits/stl_vector.h:1264;VBROADCASTSD	%XMM20,%YMM10;
+0x223a5;/usr/include/c++/15/bits/stl_vector.h:1264;LEA	(%RCX,%R9,1),%RDI;
+0x223a9;/usr/include/c++/15/bits/stl_vector.h:1264;AND	$0x20,%ECX;
+0x223ac;/usr/include/c++/15/bits/stl_vector.h:1264;VMOVDQA	0x88ac(%RIP),%YMM14;
+0x223b4;/usr/include/c++/15/bits/stl_vector.h:1264;VMOVDQA	0x88c4(%RIP),%YMM13;
+0x223bc;/usr/include/c++/15/bits/stl_vector.h:1264;VMOVDQA	0x891c(%RIP),%YMM11;
+0x223c4;/usr/include/c++/15/bits/stl_vector.h:1264;VMOVDQA	0x89b4(%RIP),%YMM9;
+0x223cc;/usr/include/c++/15/bits/stl_vector.h:1264;VBROADCASTSD	%XMM21,%YMM12;
+0x223d2;/usr/include/c++/15/bits/stl_vector.h:1264;VBROADCASTSD	%XMM22,%YMM16;
+0x223d8;/usr/include/c++/15/bits/stl_vector.h:1264;VMOVDQA	0x89c0(%RIP),%YMM8;
+0x223e0;/usr/include/c++/15/bits/stl_vector.h:1264;VMOVDQA	0x89d8(%RIP),%YMM7;
+0x223e8;/usr/include/c++/15/bits/stl_vector.h:1264;VMOVDQA	0x89f0(%RIP),%YMM6;
+0x223f0;/usr/include/c++/15/bits/stl_vector.h:1264;VMOVDQA	0x8a08(%RIP),%YMM5;
+0x223f8;/usr/include/c++/15/bits/stl_vector.h:1264;JE	224a8 <_Z15create_velocitydR5AtomsRK6Thermo+0x4c8>;
+0x223fe;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVUPD	(%R9),%YMM0;
+0x22403;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVUPD	0x20(%R9),%YMM3;
+0x22409;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;LEA	0x60(%R9),%RBX;
+0x2240d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVUPD	0x40(%R9),%YMM18;
+0x22414;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVAPD	%YMM0,%YMM2;
+0x22418;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVAPD	%YMM3,%YMM19;
+0x2241e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM3,%YMM4,%YMM2;
+0x22424;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM18,%YMM14,%YMM19;
+0x2242a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM18,%YMM17,%YMM2;
+0x22430;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBPD	%YMM16,%YMM2,%YMM1;
+0x22436;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVAPD	%YMM0,%YMM2;
+0x2243a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM3,%YMM15,%YMM2;
+0x22440;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM18,%YMM4,%YMM3;
+0x22446;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM3,%YMM11,%YMM0;
+0x2244c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM19,%YMM13,%YMM2;
+0x22452;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBPD	%YMM10,%YMM0,%YMM0;
+0x22457;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBPD	%YMM12,%YMM2,%YMM2;
+0x2245c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVAPD	%YMM0,%YMM3;
+0x22460;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM2,%YMM9,%YMM3;
+0x22466;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM1,%YMM8,%YMM3;
+0x2246c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVUPD	%YMM3,(%R9);
+0x22471;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVAPD	%YMM2,%YMM3;
+0x22475;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM0,%YMM7,%YMM3;
+0x2247b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM2,%YMM6,%YMM0;
+0x22481;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VBLENDPD	$0xd,%YMM3,%YMM1,%YMM3;
+0x22487;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM0,%YMM5,%YMM1;
+0x2248d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVUPD	%YMM3,0x20(%R9);
+0x22493;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVUPD	%YMM1,0x40(%R9);
+0x22499;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;CMP	%RBX,%RDI;
+0x2249c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;JE	225e5 <_Z15create_velocitydR5AtomsRK6Thermo+0x605>;
+0x224a2;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;NOPW	(%RAX,%RAX,1);
+0x224a8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVUPD	(%RBX),%YMM0;(180) 
+0x224ac;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVUPD	0x20(%RBX),%YMM2;(180) 
+0x224b1;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;ADD	$0xc0,%RBX;(180) 
+0x224b8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVUPD	-0x80(%RBX),%YMM23;(180) 
+0x224bf;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVUPD	-0x20(%RBX),%YMM25;(180) 
+0x224c6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVAPD	%YMM0,%YMM1;(180) 
+0x224ca;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVAPD	%YMM2,%YMM24;(180) 
+0x224d0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM2,%YMM4,%YMM1;(180) 
+0x224d6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM23,%YMM14,%YMM24;(180) 
+0x224dc;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM23,%YMM17,%YMM1;(180) 
+0x224e2;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBPD	%YMM16,%YMM1,%YMM3;(180) 
+0x224e8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVAPD	%YMM0,%YMM1;(180) 
+0x224ec;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM2,%YMM15,%YMM1;(180) 
+0x224f2;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM23,%YMM4,%YMM2;(180) 
+0x224f8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM2,%YMM11,%YMM0;(180) 
+0x224fe;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM24,%YMM13,%YMM1;(180) 
+0x22504;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBPD	%YMM10,%YMM0,%YMM0;(180) 
+0x22509;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBPD	%YMM12,%YMM1,%YMM1;(180) 
+0x2250e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVAPD	%YMM0,%YMM2;(180) 
+0x22512;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM1,%YMM9,%YMM2;(180) 
+0x22518;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM3,%YMM8,%YMM2;(180) 
+0x2251e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVUPD	%YMM2,-0xc0(%RBX);(180) 
+0x22526;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVAPD	%YMM1,%YMM2;(180) 
+0x2252a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM0,%YMM7,%YMM2;(180) 
+0x22530;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM1,%YMM6,%YMM0;(180) 
+0x22536;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VBLENDPD	$0xd,%YMM2,%YMM3,%YMM2;(180) 
+0x2253c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM0,%YMM5,%YMM3;(180) 
+0x22542;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVUPD	-0x60(%RBX),%YMM0;(180) 
+0x22547;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVUPD	%YMM3,-0x80(%RBX);(180) 
+0x2254c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVUPD	-0x40(%RBX),%YMM3;(180) 
+0x22551;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVAPD	%YMM0,%YMM1;(180) 
+0x22555;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVUPD	%YMM2,-0xa0(%RBX);(180) 
+0x2255d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVAPD	%YMM0,%YMM2;(180) 
+0x22561;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM3,%YMM4,%YMM1;(180) 
+0x22567;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM3,%YMM15,%YMM2;(180) 
+0x2256d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVAPD	%YMM3,%YMM26;(180) 
+0x22573;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM25,%YMM4,%YMM3;(180) 
+0x22579;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM25,%YMM14,%YMM26;(180) 
+0x2257f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM25,%YMM17,%YMM1;(180) 
+0x22585;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM3,%YMM11,%YMM0;(180) 
+0x2258b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM26,%YMM13,%YMM2;(180) 
+0x22591;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBPD	%YMM16,%YMM1,%YMM1;(180) 
+0x22597;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBPD	%YMM10,%YMM0,%YMM0;(180) 
+0x2259c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBPD	%YMM12,%YMM2,%YMM2;(180) 
+0x225a1;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVAPD	%YMM0,%YMM3;(180) 
+0x225a5;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM2,%YMM9,%YMM3;(180) 
+0x225ab;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM1,%YMM8,%YMM3;(180) 
+0x225b1;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVUPD	%YMM3,-0x60(%RBX);(180) 
+0x225b6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVAPD	%YMM2,%YMM3;(180) 
+0x225ba;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM0,%YMM7,%YMM3;(180) 
+0x225c0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM2,%YMM6,%YMM0;(180) 
+0x225c6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VBLENDPD	$0xd,%YMM3,%YMM1,%YMM3;(180) 
+0x225cc;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VPERMT2PD	%YMM0,%YMM5,%YMM1;(180) 
+0x225d2;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVUPD	%YMM3,-0x40(%RBX);(180) 
+0x225d7;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVUPD	%YMM1,-0x20(%RBX);(180) 
+0x225dc;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;CMP	%RBX,%RDI;(180) 
+0x225df;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;JNE	224a8 <_Z15create_velocitydR5AtomsRK6Thermo+0x4c8>;(180) 
+0x225e5;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;MOV	%R8D,%R14D;
+0x225e8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;AND	$-0x4,%R14D;
+0x225ec;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;MOV	%R14D,%R15D;
+0x225ef;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;CMP	%R14D,%R8D;
+0x225f2;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;JE	228b4 <_Z15create_velocitydR5AtomsRK6Thermo+0x8d4>;
+0x225f8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;MOV	%R8D,%ESI;
+0x225fb;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;SUB	%R14D,%ESI;
+0x225fe;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;CMP	$0x1,%ESI;
+0x22601;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;JE	22acf <_Z15create_velocitydR5AtomsRK6Thermo+0xaef>;
+0x22607;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;VZEROUPPER;
+0x2260a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVDDUP	%XMM22,%XMM27;
+0x22610;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVDDUP	%XMM21,%XMM28;
+0x22616;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVDDUP	%XMM20,%XMM29;
+0x2261c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;MOV	%R15D,%R13D;
+0x2261f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;LEA	(%R13,%R13,2),%R8;
+0x22624;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;LEA	(%R9,%R8,8),%R10;
+0x22628;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVUPD	(%R10),%XMM10;
+0x2262d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVUPD	0x20(%R10),%XMM12;
+0x22633;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVHPS	0x18(%R10),%XMM10,%XMM11;
+0x22639;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVLPD	0x10(%R10),%XMM12,%XMM4;
+0x2263f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBPD	%XMM29,%XMM11,%XMM9;
+0x22645;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBPD	%XMM27,%XMM4,%XMM15;
+0x2264b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSHUFPD	$0x1,%XMM12,%XMM10,%XMM14;
+0x22651;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBPD	%XMM28,%XMM14,%XMM13;
+0x22657;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	%XMM15,%XMM9,%XMM7;
+0x2265b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVUPD	%XMM7,0x10(%R10);
+0x22661;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VUNPCKLPD	%XMM13,%XMM9,%XMM8;
+0x22666;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VUNPCKHPD	%XMM15,%XMM13,%XMM6;
+0x2266b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVUPD	%XMM8,(%R10);
+0x22670;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVUPD	%XMM6,0x20(%R10);
+0x22676;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;TEST	$0x1,%SIL;
+0x2267a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;JE	226c9 <_Z15create_velocitydR5AtomsRK6Thermo+0x6e9>;
+0x2267c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;AND	$-0x2,%ESI;
+0x2267f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;ADD	%ESI,%R14D;
+0x22682;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;LEA	(%R14,%R14,2),%EAX;
+0x22686;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;MOVSXD	%EAX,%R11;
+0x22689;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;INC	%EAX;
+0x2268b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	(%R9,%R11,8),%XMM5;
+0x22691;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;CLTQ;
+0x22693;/usr/include/c++/15/bits/stl_vector.h:1264;SAL	$0x3,%RAX;
+0x22697;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBSD	0x20(%RSP),%XMM5,%XMM1;
+0x2269d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	%XMM1,(%R9,%R11,8);
+0x226a3;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	(%R9,%RAX,1),%XMM2;
+0x226a9;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	0x8(%R9,%RAX,1),%XMM3;
+0x226b0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBSD	0x28(%RSP),%XMM2,%XMM0;
+0x226b6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	%XMM0,(%R9,%RAX,1);
+0x226bc;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBSD	0x30(%RSP),%XMM3,%XMM10;
+0x226c2;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	%XMM10,0x8(%R9,%RAX,1);
+0x226c9;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:122;MOV	0x18(%RSP),%RDI;
+0x226ce;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:122;MOV	%R12,%RSI;
+0x226d1;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:122;CALL	28340 <_ZNK6Thermo11temperatureERK5Atoms>;
+0x226d6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;MOV	0x4(%R12),%R14D;
+0x226db;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;TEST	%R14D,%R14D;
+0x226de;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;JLE	2288c <_Z15create_velocitydR5AtomsRK6Thermo+0x8ac>;
+0x226e4;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:122;VMOVSD	0x10(%RSP),%XMM5;
+0x226ea;/usr/include/c++/15/bits/stl_vector.h:1264;MOV	0x78(%R12),%R15;
+0x226ef;/usr/include/c++/15/bits/stl_vector.h:1264;LEA	(%R14,%R14,2),%R12D;
+0x226f3;/usr/include/c++/15/bits/stl_vector.h:1264;MOV	%R12D,%ECX;
+0x226f6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:122;VDIVSD	%XMM0,%XMM5,%XMM0;
+0x226fa;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:122;VSQRTSD	%XMM0,%XMM0,%XMM0;
+0x226fe;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:122;CMP	$0x3,%R12D;
+0x22702;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:122;JE	22a9a <_Z15create_velocitydR5AtomsRK6Thermo+0xaba>;
+0x22708;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:122;SHR	$0x2,%ECX;
+0x2270b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:122;VBROADCASTSD	%XMM0,%YMM1;
+0x22710;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:122;MOV	%R15,%R13;
+0x22713;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:122;SAL	$0x5,%RCX;
+0x22717;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:122;LEA	(%RCX,%R15,1),%RSI;
+0x2271b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:122;SUB	$0x20,%RCX;
+0x2271f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:122;SHR	$0x5,%RCX;
+0x22723;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:122;INC	%RCX;
+0x22726;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:122;AND	$0x7,%ECX;
+0x22729;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:122;JE	227c0 <_Z15create_velocitydR5AtomsRK6Thermo+0x7e0>;
+0x2272f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:122;CMP	$0x1,%RCX;
+0x22733;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:122;JE	227a7 <_Z15create_velocitydR5AtomsRK6Thermo+0x7c7>;
+0x22735;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:122;CMP	$0x2,%RCX;
+0x22739;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:122;JE	22797 <_Z15create_velocitydR5AtomsRK6Thermo+0x7b7>;
+0x2273b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:122;CMP	$0x3,%RCX;
+0x2273f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:122;JE	22787 <_Z15create_velocitydR5AtomsRK6Thermo+0x7a7>;
+0x22741;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:122;CMP	$0x4,%RCX;
+0x22745;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:122;JE	22777 <_Z15create_velocitydR5AtomsRK6Thermo+0x797>;
+0x22747;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:122;CMP	$0x5,%RCX;
+0x2274b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:122;JE	22767 <_Z15create_velocitydR5AtomsRK6Thermo+0x787>;
+0x2274d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:122;CMP	$0x6,%RCX;
+0x22751;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:122;JNE	228e5 <_Z15create_velocitydR5AtomsRK6Thermo+0x905>;
+0x22757;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMULPD	(%R13),%YMM1,%YMM3;
+0x2275d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;ADD	$0x20,%R13;
+0x22761;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMOVUPD	%YMM3,-0x20(%R13);
+0x22767;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMULPD	(%R13),%YMM1,%YMM10;
+0x2276d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;ADD	$0x20,%R13;
+0x22771;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMOVUPD	%YMM10,-0x20(%R13);
+0x22777;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMULPD	(%R13),%YMM1,%YMM12;
+0x2277d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;ADD	$0x20,%R13;
+0x22781;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMOVUPD	%YMM12,-0x20(%R13);
+0x22787;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMULPD	(%R13),%YMM1,%YMM4;
+0x2278d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;ADD	$0x20,%R13;
+0x22791;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMOVUPD	%YMM4,-0x20(%R13);
+0x22797;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMULPD	(%R13),%YMM1,%YMM15;
+0x2279d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;ADD	$0x20,%R13;
+0x227a1;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMOVUPD	%YMM15,-0x20(%R13);
+0x227a7;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMULPD	(%R13),%YMM1,%YMM14;
+0x227ad;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;ADD	$0x20,%R13;
+0x227b1;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMOVUPD	%YMM14,-0x20(%R13);
+0x227b7;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;CMP	%RSI,%R13;
+0x227ba;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;JE	22845 <_Z15create_velocitydR5AtomsRK6Thermo+0x865>;
+0x227c0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMULPD	(%R13),%YMM1,%YMM13;(178) 
+0x227c6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;ADD	$0x100,%R13;(178) 
+0x227cd;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMULPD	-0xe0(%R13),%YMM1,%YMM11;(178) 
+0x227d6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMULPD	-0xc0(%R13),%YMM1,%YMM9;(178) 
+0x227df;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMULPD	-0xa0(%R13),%YMM1,%YMM8;(178) 
+0x227e8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMULPD	-0x80(%R13),%YMM1,%YMM7;(178) 
+0x227ee;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMULPD	-0x60(%R13),%YMM1,%YMM6;(178) 
+0x227f4;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMOVUPD	%YMM13,-0x100(%R13);(178) 
+0x227fd;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMULPD	-0x40(%R13),%YMM1,%YMM5;(178) 
+0x22803;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMOVUPD	%YMM11,-0xe0(%R13);(178) 
+0x2280c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMULPD	-0x20(%R13),%YMM1,%YMM2;(178) 
+0x22812;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMOVUPD	%YMM9,-0xc0(%R13);(178) 
+0x2281b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMOVUPD	%YMM8,-0xa0(%R13);(178) 
+0x22824;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMOVUPD	%YMM7,-0x80(%R13);(178) 
+0x2282a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMOVUPD	%YMM6,-0x60(%R13);(178) 
+0x22830;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMOVUPD	%YMM5,-0x40(%R13);(178) 
+0x22836;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMOVUPD	%YMM2,-0x20(%R13);(178) 
+0x2283c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;CMP	%RSI,%R13;(178) 
+0x2283f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;JNE	227c0 <_Z15create_velocitydR5AtomsRK6Thermo+0x7e0>;(178) 
+0x22845;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;MOV	%R12D,%EAX;
+0x22848;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;AND	$-0x4,%EAX;
+0x2284b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;MOV	%EAX,%R8D;
+0x2284e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;CMP	%R12D,%EAX;
+0x22851;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;JE	228af <_Z15create_velocitydR5AtomsRK6Thermo+0x8cf>;
+0x22853;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;MOV	%R12D,%ECX;
+0x22856;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;SUB	%EAX,%ECX;
+0x22858;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;CMP	$0x1,%ECX;
+0x2285b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;JE	22ac7 <_Z15create_velocitydR5AtomsRK6Thermo+0xae7>;
+0x22861;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VZEROUPPER;
+0x22864;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMOVDDUP	%XMM0,%XMM1;
+0x22868;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMULPD	(%R15,%R8,8),%XMM1,%XMM3;
+0x2286e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMOVUPD	%XMM3,(%R15,%R8,8);
+0x22874;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;TEST	$0x1,%CL;
+0x22877;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;JE	2288c <_Z15create_velocitydR5AtomsRK6Thermo+0x8ac>;
+0x22879;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;AND	$-0x2,%ECX;
+0x2287c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;ADD	%ECX,%EAX;
+0x2287e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;CLTQ;
+0x22880;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMULSD	(%R15,%RAX,8),%XMM0,%XMM0;
+0x22886;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMOVSD	%XMM0,(%R15,%RAX,8);
+0x2288c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:124;MOV	0x58(%RSP),%RAX;
+0x22891;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:124;SUB	%FS:0x28,%RAX;
+0x2289a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:124;JNE	22b15 <_Z15create_velocitydR5AtomsRK6Thermo+0xb35>;
+0x228a0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:124;LEA	-0x28(%RBP),%RSP;
+0x228a4;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:124;POP	%RBX;
+0x228a5;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:124;POP	%R12;
+0x228a7;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:124;POP	%R13;
+0x228a9;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:124;POP	%R14;
+0x228ab;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:124;POP	%R15;
+0x228ad;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:124;POP	%RBP;
+0x228ae;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:124;RET;
+0x228af;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:124;VZEROUPPER;
+0x228b2;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:124;JMP	2288c <_Z15create_velocitydR5AtomsRK6Thermo+0x8ac>;
+0x228b4;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:124;VZEROUPPER;
+0x228b7;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:124;JMP	226c9 <_Z15create_velocitydR5AtomsRK6Thermo+0x6e9>;
+0x228bc;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	(%RAX),%XMM2;
+0x228c0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:111;ADD	$0x18,%RAX;
+0x228c4;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM2,0x40(%RSP);
+0x228ca;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	-0x10(%RAX),%XMM1;
+0x228cf;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM1,0x48(%RSP);
+0x228d5;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	-0x8(%RAX),%XMM3;
+0x228da;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:112;VMOVSD	%XMM3,0x50(%RSP);
+0x228e0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:111;JMP	220a8 <_Z15create_velocitydR5AtomsRK6Thermo+0xc8>;
+0x228e5;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMULPD	(%R15),%YMM1,%YMM2;
+0x228ea;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;LEA	0x20(%R15),%R13;
+0x228ee;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;VMOVUPD	%YMM2,(%R15);
+0x228f3;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;JMP	22757 <_Z15create_velocitydR5AtomsRK6Thermo+0x777>;
+0x228f8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;LEA	(%R10,%R10,2),%RCX;
+0x228fc;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;MOV	$0xaaaaaaaaaaaaaab,%RBX;
+0x22906;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;LEA	-0x18(,%RCX,8),%RDI;
+0x2290e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;LEA	(%R9,%RCX,8),%RDX;
+0x22912;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;SHR	$0x3,%RDI;
+0x22916;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;IMUL	%RBX,%RDI;
+0x2291a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;INC	%RDI;
+0x2291d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;AND	$0x3,%EDI;
+0x22920;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;JE	229b1 <_Z15create_velocitydR5AtomsRK6Thermo+0x9d1>;
+0x22926;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;CMP	$0x1,%RDI;
+0x2292a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;JE	2296f <_Z15create_velocitydR5AtomsRK6Thermo+0x98f>;
+0x2292c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;CMP	$0x2,%RDI;
+0x22930;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;JNE	22ad7 <_Z15create_velocitydR5AtomsRK6Thermo+0xaf7>;
+0x22936;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	(%R9),%XMM9;
+0x2293b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	0x8(%R9),%XMM7;
+0x22941;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;ADD	$0x18,%R9;
+0x22945;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	-0x8(%R9),%XMM5;
+0x2294b;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBSD	0x20(%RSP),%XMM9,%XMM8;
+0x22951;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	%XMM8,-0x18(%R9);
+0x22957;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBSD	0x28(%RSP),%XMM7,%XMM6;
+0x2295d;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	%XMM6,-0x10(%R9);
+0x22963;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBSD	0x30(%RSP),%XMM5,%XMM1;
+0x22969;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	%XMM1,-0x8(%R9);
+0x2296f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	(%R9),%XMM2;
+0x22974;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	0x8(%R9),%XMM3;
+0x2297a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;ADD	$0x18,%R9;
+0x2297e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	-0x8(%R9),%XMM12;
+0x22984;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBSD	0x20(%RSP),%XMM2,%XMM0;
+0x2298a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	%XMM0,-0x18(%R9);
+0x22990;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBSD	0x28(%RSP),%XMM3,%XMM10;
+0x22996;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	%XMM10,-0x10(%R9);
+0x2299c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBSD	0x30(%RSP),%XMM12,%XMM4;
+0x229a2;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	%XMM4,-0x8(%R9);
+0x229a8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;CMP	%R9,%RDX;
+0x229ab;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;JE	226c9 <_Z15create_velocitydR5AtomsRK6Thermo+0x6e9>;
+0x229b1;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	(%R9),%XMM15;(179) 
+0x229b6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	0x8(%R9),%XMM13;(179) 
+0x229bc;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;ADD	$0x60,%R9;(179) 
+0x229c0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	-0x50(%R9),%XMM9;(179) 
+0x229c6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	-0x48(%R9),%XMM7;(179) 
+0x229cc;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBSD	0x20(%RSP),%XMM15,%XMM14;(179) 
+0x229d2;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	-0x40(%R9),%XMM5;(179) 
+0x229d8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	-0x38(%R9),%XMM2;(179) 
+0x229de;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	-0x30(%R9),%XMM3;(179) 
+0x229e4;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	-0x28(%R9),%XMM12;(179) 
+0x229ea;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	-0x20(%R9),%XMM15;(179) 
+0x229f0;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	%XMM14,-0x60(%R9);(179) 
+0x229f6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBSD	0x28(%RSP),%XMM13,%XMM11;(179) 
+0x229fc;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	-0x18(%R9),%XMM13;(179) 
+0x22a02;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	%XMM11,-0x58(%R9);(179) 
+0x22a08;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBSD	0x30(%RSP),%XMM9,%XMM8;(179) 
+0x22a0e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	-0x10(%R9),%XMM9;(179) 
+0x22a14;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	%XMM8,-0x50(%R9);(179) 
+0x22a1a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBSD	0x20(%RSP),%XMM7,%XMM6;(179) 
+0x22a20;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	%XMM6,-0x48(%R9);(179) 
+0x22a26;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBSD	0x28(%RSP),%XMM5,%XMM1;(179) 
+0x22a2c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	%XMM1,-0x40(%R9);(179) 
+0x22a32;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBSD	0x30(%RSP),%XMM2,%XMM0;(179) 
+0x22a38;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	%XMM0,-0x38(%R9);(179) 
+0x22a3e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBSD	0x20(%RSP),%XMM3,%XMM10;(179) 
+0x22a44;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	%XMM10,-0x30(%R9);(179) 
+0x22a4a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBSD	0x28(%RSP),%XMM12,%XMM4;(179) 
+0x22a50;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	%XMM4,-0x28(%R9);(179) 
+0x22a56;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBSD	0x30(%RSP),%XMM15,%XMM14;(179) 
+0x22a5c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	%XMM14,-0x20(%R9);(179) 
+0x22a62;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBSD	0x20(%RSP),%XMM13,%XMM11;(179) 
+0x22a68;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	%XMM11,-0x18(%R9);(179) 
+0x22a6e;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBSD	0x28(%RSP),%XMM9,%XMM8;(179) 
+0x22a74;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	%XMM8,-0x10(%R9);(179) 
+0x22a7a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	-0x8(%R9),%XMM7;(179) 
+0x22a80;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBSD	0x30(%RSP),%XMM7,%XMM6;(179) 
+0x22a86;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	%XMM6,-0x8(%R9);(179) 
+0x22a8c;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;CMP	%R9,%RDX;(179) 
+0x22a8f;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;JNE	229b1 <_Z15create_velocitydR5AtomsRK6Thermo+0x9d1>;(179) 
+0x22a95;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;JMP	226c9 <_Z15create_velocitydR5AtomsRK6Thermo+0x6e9>;
+0x22a9a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:123;XOR	%EAX,%EAX;
+0x22a9c;/usr/include/c++/15/bits/stl_vector.h:1264;XOR	%R8D,%R8D;
+0x22a9f;/usr/include/c++/15/bits/stl_vector.h:1264;JMP	22864 <_Z15create_velocitydR5AtomsRK6Thermo+0x884>;
+0x22aa4;/usr/include/c++/15/bits/stl_vector.h:1264;VMOVSD	0x20(%RSP),%XMM20;
+0x22aac;/usr/include/c++/15/bits/stl_vector.h:1264;VMOVSD	0x28(%RSP),%XMM21;
+0x22ab4;/usr/include/c++/15/bits/stl_vector.h:1264;XOR	%R15D,%R15D;
+0x22ab7;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;XOR	%R14D,%R14D;
+0x22aba;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;VMOVSD	0x30(%RSP),%XMM22;
+0x22ac2;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;JMP	2260a <_Z15create_velocitydR5AtomsRK6Thermo+0x62a>;
+0x22ac7;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;VZEROUPPER;
+0x22aca;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;JMP	2287e <_Z15create_velocitydR5AtomsRK6Thermo+0x89e>;
+0x22acf;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;VZEROUPPER;
+0x22ad2;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;JMP	22682 <_Z15create_velocitydR5AtomsRK6Thermo+0x6a2>;
+0x22ad7;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	(%R9),%XMM12;
+0x22adc;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	0x8(%R9),%XMM15;
+0x22ae2;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;ADD	$0x18,%R9;
+0x22ae6;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	-0x8(%R9),%XMM13;
+0x22aec;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBSD	0x20(%RSP),%XMM12,%XMM4;
+0x22af2;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	%XMM4,-0x18(%R9);
+0x22af8;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBSD	0x28(%RSP),%XMM15,%XMM14;
+0x22afe;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	%XMM14,-0x10(%R9);
+0x22b04;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VSUBSD	0x30(%RSP),%XMM13,%XMM11;
+0x22b0a;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:120;VMOVSD	%XMM11,-0x8(%R9);
+0x22b10;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:119;JMP	22936 <_Z15create_velocitydR5AtomsRK6Thermo+0x956>;
+0x22b15;/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:124;CALL	38f0 <.plt.sec@start+0x2d0>;
+0x22b1a;:0;NOPW	(%RAX,%RAX,1);

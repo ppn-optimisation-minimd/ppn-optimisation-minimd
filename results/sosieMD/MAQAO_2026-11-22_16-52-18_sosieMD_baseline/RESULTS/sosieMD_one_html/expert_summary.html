@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html translate="no" lang="en-US"><head><title>OV - Expert Summary</title>
+<meta charset="utf-8" />
+<meta name="google" content="notranslate" />
+<link rel="stylesheet" type="text/css" media="screen" href="css/ui.jqgrid.css" />
+<link rel="stylesheet" type="text/css" href="css/themes/redmond_custom/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="css/themes/redmond_custom/jquery.jqplot.min.css" />
+<link rel="stylesheet" type="text/css" href="css/MAQAO_theme.css" />
+<link rel="stylesheet" type="text/css" href="css/maqao_modal.css" />
+<link rel="stylesheet" type="text/css" href="css/global.css" />
+<link rel="stylesheet" type="text/css" href="css/maqao_menu.css" />
+<script src="js/jquery-1.9.0.min.js" ></script>
+<script src="js/jquery-ui-1.10.3.custom.min.js" ></script>
+<script src="js/grid.locale-en.js" ></script>
+<script src="js/jquery.jqGrid.min.js" ></script>
+<script src="js/d3.min.js" ></script>
+<script class="include" src="js/chart.min.js"></script>
+<script class="include" src="js/maqao_utils.js"></script>
+<script src="js/flamegraph.js" ></script>
+<script class="include" src="js/maqao_menu.js"></script>
+<script>
+addLoadEvent(function(){
+  var theme = localStorage.getItem("__MAQAO_OV_theme__");
+  if (theme) {
+    loadCSS("css/"+theme+".css");
+  }
+  else {
+    localStorage.setItem("__MAQAO_OV_theme__", "MAQAO_theme");
+    loadCSS("css/MAQAO_theme.css");
+  }
+});
+</script>
+</head><body>
+<div id="__chartJS_tooltip" class="tt_chartJS"></div>
+<div id="page_title"><img alt="MAQAO" id="maqao_logo" src="images/MAQAO_small_logo.png"/><ul id="maqao_menu"><li ><a  href="index.html">Global</a><ul><li ><a  href="config.html">Configurations</a></li><li ><a  href="env.html">Environment Variables</a></li><li ><a  href="outputs.html">Outputs</a></li><li ><a  href="log.html">Logs</a></li><li ><a  href="tools_status.html">Tools Status</a></li></ul></li><li ><a  href="summary.html">Summary</a></li><li ><a  href="application.html">Application</a></li><li ><a  href="fcts_and_loops.html">Functions</a></li><li ><a  href="loops_index.html">Loops</a></li><li ><a  href="topology.html">Topology</a><ul><li ><a  href="lstopo.html">lstopo</a></li><li ><a  href="lstopo_PU.html">lstopo_PU</a></li><li ><a  href="lstopo_threads.html">lstopo_threads</a></li></ul></li></ul>
+<span><img alt="options" id="menu_options_icon" src="images/gear_20.png" onclick="__open_options ()"/></span>
+</div>
+<script>
+function __change_theme () {
+  var new_theme = document.getElementById("select_theme").value;
+  localStorage.setItem("__MAQAO_OV_theme__", new_theme);
+    loadCSS("css/"+new_theme+".css");
+}
+function __open_options () {
+  var elem = document.getElementById ("options_configuration");
+  if (elem.dataset.open == "false") {
+    elem.dataset.open = "true";
+    elem.style.display = "block";
+  }
+  else {
+    elem.dataset.open = "false";
+    elem.style.display = "none";
+  }
+}
+</script>
+<div id="anchor_file_start"></div>
+<div id="maqao_content">
+<div>
+  <div id="spacer_page_title" ></div>
+  <div id="options_configuration" data-open="false" style="display:none;">
+    <h3 id="options_configuration_header">Report Configuration</h3>
+    <span style="margin-left:10px;"><label for="select_theme">Theme: </label>    <select name="theme" id="select_theme" onchange="__change_theme ()">  <option value="MAQAO_theme">MAQAO_theme</option>  <option value="darkgrey">darkgrey</option>  <option value="cyan">cyan</option></select></span>    <span style="margin-left:10px;"><label for="select_chart_theme">Chart Theme: </label>    <select name="theme" id="select_chart_theme" onchange="__change_chart_theme ()">  <option value="Default_Chart_Theme">Default_Chart_Theme</option>  <option value="grey">grey</option></select></span></div>
+</div>
+<script>
+  let theme = localStorage.getItem("__MAQAO_OV_theme__");
+  if (theme) {
+    document.getElementById("select_theme").value = theme;
+  }
+  theme = localStorage.getItem("__MAQAO_OV_chart_theme__");
+  if (theme) {
+    document.getElementById("select_chart_theme").value = theme;
+  }
+document.getElementById("spacer_page_title").style.height = (document.getElementById("page_title").clientHeight + 25)+"px";
+var obj = document.getElementById("page_title");
+if (obj) {
+  var elems = document.getElementsByClassName ("_first_menu_level")
+  if (obj.clientHeight < 90) {
+    for (var i = 0; i < elems.length; i++) {
+      elems.item(i).style.borderBottomLeftRadius = "";
+      elems.item(i).style.borderBottomRightRadius = "";
+    }
+  }
+  else {
+    for (var i = 0; i < elems.length; i++) {
+      elems.item(i).style.borderBottomLeftRadius = "10px";
+      elems.item(i).style.borderBottomRightRadius = "10px";
+    }
+  }
+}
+</script>
+<button id="button_toggle_loop_index" onclick="toggle_loop_index();" type="button" style="margin-bottom: 10px;margin-right: 10px;cursor:pointer;">Show Innermost Profile</button><div class="_fixed_box" ><h3 class="_header">Expert Summary</h3>
+<div class="_content"><div class="_div_table" ><div class="_accordion_box" ><h3 id="_accordion_header_1" class="_header" onclick="_click_accordion_header(this)" ><span class="_accordion_box_button">&#x25BC;</span>Columns Filter<span class="tooltip-maqao-button help-maqao" title="" tooltip_id="0" ></span></h3><div id="_accordion_content_1" class="_content"><div style="max-height:165px;"><form>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table255_opt3" onclick="click_table_menu('_table255_opt3', '_table255_opt_all', 'list_opts_table255')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="1" >Source Location</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table255_opt4" onclick="click_table_menu('_table255_opt4', '_table255_opt_all', 'list_opts_table255')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="2" >Source Function</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table255_opt5" onclick="click_table_menu('_table255_opt5', '_table255_opt_all', 'list_opts_table255')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="3" >Level</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table255_opt6" onclick="click_table_menu('_table255_opt6', '_table255_opt_all', 'list_opts_table255')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="4" >Max Time Over Threads (s)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table255_opt7" onclick="click_table_menu('_table255_opt7', '_table255_opt_all', 'list_opts_table255')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="5" >Time w.r.t. Wall Time (s)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table255_opt8" onclick="click_table_menu('_table255_opt8', '_table255_opt_all', 'list_opts_table255')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="6" >Coverage (% app. time)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table255_opt9" onclick="click_table_menu('_table255_opt9', '_table255_opt_all', 'list_opts_table255')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="7" >Speedup if no scalar integer</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table255_opt10" onclick="click_table_menu('_table255_opt10', '_table255_opt_all', 'list_opts_table255')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="8" >Speedup if FP arith vectorized</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table255_opt11" onclick="click_table_menu('_table255_opt11', '_table255_opt_all', 'list_opts_table255')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="9" >Speedup if fully vectorized</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table255_opt12" onclick="click_table_menu('_table255_opt12', '_table255_opt_all', 'list_opts_table255')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="10" >Speedup if FP only</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table255_opt13" onclick="click_table_menu('_table255_opt13', '_table255_opt_all', 'list_opts_table255')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="11" >Number of paths</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table255_opt14" onclick="click_table_menu('_table255_opt14', '_table255_opt_all', 'list_opts_table255')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="12" >Vectorization Ratio (%)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table255_opt15" onclick="click_table_menu('_table255_opt15', '_table255_opt_all', 'list_opts_table255')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="13" >Vector Length Use (%)</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table255_opt16" onclick="click_table_menu('_table255_opt16', '_table255_opt_all', 'list_opts_table255')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="14" >CQA cycles</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table255_opt17" onclick="click_table_menu('_table255_opt17', '_table255_opt_all', 'list_opts_table255')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="15" >CQA cycles if no scalar integer</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table255_opt18" onclick="click_table_menu('_table255_opt18', '_table255_opt_all', 'list_opts_table255')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="16" >CQA cycles if FP arith vectorized</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table255_opt19" onclick="click_table_menu('_table255_opt19', '_table255_opt_all', 'list_opts_table255')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="17" >CQA cycles if fully vectorized</span></span>
+<span style="white-space:nowrap;"><input class="input_check_table_menu" type="checkbox" id="_table255_opt20" onclick="click_table_menu('_table255_opt20', '_table255_opt_all', 'list_opts_table255')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" checked ><span class="tooltip-maqao" title="" tooltip_id="18" >CQA cycles if FP only</span></span>
+<span style='white-space:nowrap;'><input class="input_check_table_menu" type="button" id="_table255_opt_all" onclick="set_all_table_menu(this, 'list_opts_table255')" style="margin-left: 30px;vertical-align: middle;cursor:pointer;" value="Select all"></span>
+</form></div>
+</div></div><div style="overflow:auto;">
+<input class='downloadCSVButton' id='save_button_255' type='button' value='Download table as CSV' onclick='downloadFileAsCSV(_tree_table_255)' />
+<table id="_tree_table_255" class="_tree_table"><tr><th class="_freezed_row  _left  tooltip-maqao" title="" tooltip_id="19"><span></span>ID</th><th class="_freezed_row  tooltip-maqao" title="" tooltip_id="20"><span></span>Module</th><th class="_freezed_row  _table255_opt3 tooltip-maqao" title="" tooltip_id="21"><span></span>Source Location</th><th class="_freezed_row  _table255_opt4 tooltip-maqao" title="" tooltip_id="22"><span></span>Source Function</th><th class="_freezed_row  _table255_opt5 tooltip-maqao" title="" tooltip_id="23"><span></span>Level</th><th class="_freezed_row  _table255_opt6 tooltip-maqao" title="" tooltip_id="24"><span></span>Max Time Over Threads (s)</th><th class="_freezed_row  _table255_opt7 tooltip-maqao" title="" tooltip_id="25"><span></span>Time w.r.t. Wall Time (s)</th><th class="_freezed_row  _table255_opt8 tooltip-maqao" title="" tooltip_id="26"><span></span>Coverage (% app. time)</th><th class="_freezed_row  _table255_opt9 tooltip-maqao" title="" tooltip_id="27"><span></span>Speedup if no scalar integer</th><th class="_freezed_row  _table255_opt10 tooltip-maqao" title="" tooltip_id="28"><span></span>Speedup if FP arith vectorized</th><th class="_freezed_row  _table255_opt11 tooltip-maqao" title="" tooltip_id="29"><span></span>Speedup if fully vectorized</th><th class="_freezed_row  _table255_opt12 tooltip-maqao" title="" tooltip_id="30"><span></span>Speedup if FP only</th><th class="_freezed_row  _table255_opt13 tooltip-maqao" title="" tooltip_id="31"><span></span>Number of paths</th><th class="_freezed_row  _table255_opt14 tooltip-maqao" title="" tooltip_id="32"><span></span>Vectorization Ratio (%)</th><th class="_freezed_row  _table255_opt15 tooltip-maqao" title="" tooltip_id="33"><span></span>Vector Length Use (%)</th><th class="_freezed_row  _table255_opt16 tooltip-maqao" title="" tooltip_id="34"><span></span>CQA cycles</th><th class="_freezed_row  _table255_opt17 tooltip-maqao" title="" tooltip_id="35"><span></span>CQA cycles if no scalar integer</th><th class="_freezed_row  _table255_opt18 tooltip-maqao" title="" tooltip_id="36"><span></span>CQA cycles if FP arith vectorized</th><th class="_freezed_row  _table255_opt19 tooltip-maqao" title="" tooltip_id="37"><span></span>CQA cycles if fully vectorized</th><th class="_freezed_row  _table255_opt20 tooltip-maqao" title="" tooltip_id="38"><span></span>CQA cycles if FP only</th></tr>
+<tr class=" _outer_row"  id="_tr_255_1"  ondblclick="_action_200(this,1,-1, 'loops/sosieMD_128.html');"  style="cursor:pointer;"><td id="_tr_255_1-1"  data-_i="1" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 128</td><td id="_tr_255_1-2"  data-_i="1" data-_j="2"  class=" _centered" >sosieMD</td><td id="_tr_255_1-3"  data-_i="1" data-_j="3"  class=" _table255_opt3"  style="word-break:break-all;" >stl_vector.h:1264-1264,force_lj.cpp:39-39,force_lj.cpp:49-64,force_lj.cpp:67-75,force.h:32-33,force.h:36-36</td><td id="_tr_255_1-4"  data-_i="1" data-_j="4"  class=" _table255_opt4"  style="word-break:break-all;" >ForceLJ::compute_half(Atoms&, Neighbor const&, bool) [clone ._omp_fn.1]</td><td id="_tr_255_1-5"  data-_i="1" data-_j="5"  class=" _centered _table255_opt5" >InBetween</td><td id="_tr_255_1-6"  data-_i="1" data-_j="6"  class=" _centered _table255_opt6" >23.36</td><td id="_tr_255_1-7"  data-_i="1" data-_j="7"  class=" _centered _table255_opt7" >23.36</td><td id="_tr_255_1-8"  data-_i="1" data-_j="8"  class=" _centered _table255_opt8" >69.81</td><td id="_tr_255_1-9"  data-_i="1" data-_j="9"  class=" _centered _table255_opt9"  style="background:var(--score_color_acceptable);" >1.41</td><td id="_tr_255_1-10"  data-_i="1" data-_j="10"  class=" _centered _table255_opt10"  style="background:var(--score_color_medium);" >2.08</td><td id="_tr_255_1-11"  data-_i="1" data-_j="11"  class=" _centered _table255_opt11"  style="background:var(--score_color_medium);" >7.37</td><td id="_tr_255_1-12"  data-_i="1" data-_j="12"  class=" _centered _table255_opt12"  style="background:var(--score_color_acceptable);" >1.47</td><td id="_tr_255_1-13"  data-_i="1" data-_j="13"  class=" _centered _table255_opt13" >15</td><td id="_tr_255_1-14"  data-_i="1" data-_j="14"  class=" _centered _table255_opt14"  style="background:var(--score_color_bad);" >30.91</td><td id="_tr_255_1-15"  data-_i="1" data-_j="15"  class=" _centered _table255_opt15"  style="background:var(--score_color_bad);" >16.25</td><td id="_tr_255_1-16"  data-_i="1" data-_j="16"  class=" _centered _table255_opt16" >19.80</td><td id="_tr_255_1-17"  data-_i="1" data-_j="17"  class=" _centered _table255_opt17" >14.00</td><td id="_tr_255_1-18"  data-_i="1" data-_j="18"  class=" _centered _table255_opt18" >9.50</td><td id="_tr_255_1-19"  data-_i="1" data-_j="19"  class=" _centered _table255_opt19" >2.69</td><td id="_tr_255_1-20"  data-_i="1" data-_j="20"  class=" _centered _table255_opt20" >13.50</td></tr>
+<tr class=" _outer_row"  id="_tr_255_2"  ondblclick="_action_200(this,2,-1, 'loops/sosieMD_151.html');"  style="cursor:pointer;"><td id="_tr_255_2-1"  data-_i="2" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 151</td><td id="_tr_255_2-2"  data-_i="2" data-_j="2"  class=" _centered" >sosieMD</td><td id="_tr_255_2-3"  data-_i="2" data-_j="3"  class=" _table255_opt3"  style="word-break:break-all;" >neighbor.cpp:147-151,neighbor.cpp:164-169</td><td id="_tr_255_2-4"  data-_i="2" data-_j="4"  class=" _table255_opt4"  style="word-break:break-all;" >Neighbor::build(Atoms const&) [clone ._omp_fn.0]</td><td id="_tr_255_2-5"  data-_i="2" data-_j="5"  class=" _centered _table255_opt5" >Innermost</td><td id="_tr_255_2-6"  data-_i="2" data-_j="6"  class=" _centered _table255_opt6" >6.48</td><td id="_tr_255_2-7"  data-_i="2" data-_j="7"  class=" _centered _table255_opt7" >6.48</td><td id="_tr_255_2-8"  data-_i="2" data-_j="8"  class=" _centered _table255_opt8" >19.37</td><td id="_tr_255_2-9"  data-_i="2" data-_j="9"  class=" _centered _table255_opt9"  style="background:var(--score_color_acceptable);" >1.39</td><td id="_tr_255_2-10"  data-_i="2" data-_j="10"  class=" _centered _table255_opt10"  style="background:var(--score_color_medium);" >2.35</td><td id="_tr_255_2-11"  data-_i="2" data-_j="11"  class=" _centered _table255_opt11"  style="background:var(--score_color_medium);" >14.04</td><td id="_tr_255_2-12"  data-_i="2" data-_j="12"  class=" _centered _table255_opt12"  style="background:var(--score_color_acceptable);" >1.39</td><td id="_tr_255_2-13"  data-_i="2" data-_j="13"  class=" _centered _table255_opt13" >1</td><td id="_tr_255_2-14"  data-_i="2" data-_j="14"  class=" _centered _table255_opt14"  style="background:var(--score_color_bad);" >7.14</td><td id="_tr_255_2-15"  data-_i="2" data-_j="15"  class=" _centered _table255_opt15"  style="background:var(--score_color_bad);" >8.63</td><td id="_tr_255_2-16"  data-_i="2" data-_j="16"  class=" _centered _table255_opt16" >25.00</td><td id="_tr_255_2-17"  data-_i="2" data-_j="17"  class=" _centered _table255_opt17" >18.00</td><td id="_tr_255_2-18"  data-_i="2" data-_j="18"  class=" _centered _table255_opt18" >10.66</td><td id="_tr_255_2-19"  data-_i="2" data-_j="19"  class=" _centered _table255_opt19" >1.78</td><td id="_tr_255_2-20"  data-_i="2" data-_j="20"  class=" _centered _table255_opt20" >18.00</td></tr>
+<tr class=" _outer_row"  id="_tr_255_3"  ondblclick="_action_200(this,3,-1, 'loops/sosieMD_137.html');"  style="cursor:pointer;"><td id="_tr_255_3-1"  data-_i="3" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 137</td><td id="_tr_255_3-2"  data-_i="3" data-_j="2"  class=" _centered" >sosieMD</td><td id="_tr_255_3-3"  data-_i="3" data-_j="3"  class=" _table255_opt3"  style="word-break:break-all;" >integrate.cpp:17-18</td><td id="_tr_255_3-4"  data-_i="3" data-_j="4"  class=" _table255_opt4"  style="word-break:break-all;" >(anonymous namespace)::initial_integrate(Atoms&, double, double) [clone ._omp_fn.0]</td><td id="_tr_255_3-5"  data-_i="3" data-_j="5"  class=" _centered _table255_opt5" >Single</td><td id="_tr_255_3-6"  data-_i="3" data-_j="6"  class=" _centered _table255_opt6" >0.64</td><td id="_tr_255_3-7"  data-_i="3" data-_j="7"  class=" _centered _table255_opt7" >0.64</td><td id="_tr_255_3-8"  data-_i="3" data-_j="8"  class=" _centered _table255_opt8" >1.91</td><td id="_tr_255_3-9"  data-_i="3" data-_j="9"  class=" _centered _table255_opt9" >1.00</td><td id="_tr_255_3-10"  data-_i="3" data-_j="10"  class=" _centered _table255_opt10" >1.00</td><td id="_tr_255_3-11"  data-_i="3" data-_j="11"  class=" _centered _table255_opt11"  style="background:var(--score_color_acceptable);" >1.50</td><td id="_tr_255_3-12"  data-_i="3" data-_j="12"  class=" _centered _table255_opt12"  style="background:var(--score_color_acceptable);" >1.50</td><td id="_tr_255_3-13"  data-_i="3" data-_j="13"  class=" _centered _table255_opt13" >1</td><td id="_tr_255_3-14"  data-_i="3" data-_j="14"  class=" _centered _table255_opt14"  style="background:var(--score_color_good);" >100.00</td><td id="_tr_255_3-15"  data-_i="3" data-_j="15"  class=" _centered _table255_opt15"  style="background:var(--score_color_bad);" >50.00</td><td id="_tr_255_3-16"  data-_i="3" data-_j="16"  class=" _centered _table255_opt16" >12.00</td><td id="_tr_255_3-17"  data-_i="3" data-_j="17"  class=" _centered _table255_opt17" >12.00</td><td id="_tr_255_3-18"  data-_i="3" data-_j="18"  class=" _centered _table255_opt18" >12.00</td><td id="_tr_255_3-19"  data-_i="3" data-_j="19"  class=" _centered _table255_opt19" >8.00</td><td id="_tr_255_3-20"  data-_i="3" data-_j="20"  class=" _centered _table255_opt20" >8.00</td></tr>
+<tr class=" _outer_row"  id="_tr_255_4"  ondblclick="_action_200(this,4,-1, 'loops/sosieMD_139.html');"  style="cursor:pointer;"><td id="_tr_255_4-1"  data-_i="4" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 139</td><td id="_tr_255_4-2"  data-_i="4" data-_j="2"  class=" _centered" >sosieMD</td><td id="_tr_255_4-3"  data-_i="4" data-_j="3"  class=" _table255_opt3"  style="word-break:break-all;" >integrate.cpp:30-30</td><td id="_tr_255_4-4"  data-_i="4" data-_j="4"  class=" _table255_opt4"  style="word-break:break-all;" >(anonymous namespace)::final_integrate(Atoms&, double) [clone ._omp_fn.0]</td><td id="_tr_255_4-5"  data-_i="4" data-_j="5"  class=" _centered _table255_opt5" >Single</td><td id="_tr_255_4-6"  data-_i="4" data-_j="6"  class=" _centered _table255_opt6" >0.36</td><td id="_tr_255_4-7"  data-_i="4" data-_j="7"  class=" _centered _table255_opt7" >0.36</td><td id="_tr_255_4-8"  data-_i="4" data-_j="8"  class=" _centered _table255_opt8" >1.08</td><td id="_tr_255_4-9"  data-_i="4" data-_j="9"  class=" _centered _table255_opt9" >1.00</td><td id="_tr_255_4-10"  data-_i="4" data-_j="10"  class=" _centered _table255_opt10" >1.00</td><td id="_tr_255_4-11"  data-_i="4" data-_j="11"  class=" _centered _table255_opt11"  style="background:var(--score_color_medium);" >2.00</td><td id="_tr_255_4-12"  data-_i="4" data-_j="12"  class=" _centered _table255_opt12"  style="background:var(--score_color_medium);" >2.00</td><td id="_tr_255_4-13"  data-_i="4" data-_j="13"  class=" _centered _table255_opt13" >1</td><td id="_tr_255_4-14"  data-_i="4" data-_j="14"  class=" _centered _table255_opt14"  style="background:var(--score_color_good);" >100.00</td><td id="_tr_255_4-15"  data-_i="4" data-_j="15"  class=" _centered _table255_opt15"  style="background:var(--score_color_bad);" >50.00</td><td id="_tr_255_4-16"  data-_i="4" data-_j="16"  class=" _centered _table255_opt16" >8.00</td><td id="_tr_255_4-17"  data-_i="4" data-_j="17"  class=" _centered _table255_opt17" >8.00</td><td id="_tr_255_4-18"  data-_i="4" data-_j="18"  class=" _centered _table255_opt18" >8.00</td><td id="_tr_255_4-19"  data-_i="4" data-_j="19"  class=" _centered _table255_opt19" >4.00</td><td id="_tr_255_4-20"  data-_i="4" data-_j="20"  class=" _centered _table255_opt20" >4.00</td></tr>
+<tr class=" _outer_row"  id="_tr_255_5"  ondblclick="_action_200(this,5,-1, 'loops/sosieMD_145.html');"  style="cursor:pointer;"><td id="_tr_255_5-1"  data-_i="5" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 145</td><td id="_tr_255_5-2"  data-_i="5" data-_j="2"  class=" _centered" >sosieMD</td><td id="_tr_255_5-3"  data-_i="5" data-_j="3"  class=" _table255_opt3"  style="word-break:break-all;" >stl_vector.h:1264-1264,neighbor.cpp:136-136,neighbor.cpp:145-151</td><td id="_tr_255_5-4"  data-_i="5" data-_j="4"  class=" _table255_opt4"  style="word-break:break-all;" >Neighbor::build(Atoms const&) [clone ._omp_fn.0]</td><td id="_tr_255_5-5"  data-_i="5" data-_j="5"  class=" _centered _table255_opt5" >InBetween</td><td id="_tr_255_5-6"  data-_i="5" data-_j="6"  class=" _centered _table255_opt6" >0.30</td><td id="_tr_255_5-7"  data-_i="5" data-_j="7"  class=" _centered _table255_opt7" >0.30</td><td id="_tr_255_5-8"  data-_i="5" data-_j="8"  class=" _centered _table255_opt8" >0.90</td><td id="_tr_255_5-9"  data-_i="5" data-_j="9"  class=" _centered _table255_opt9" >1.00</td><td id="_tr_255_5-10"  data-_i="5" data-_j="10"  class=" _centered _table255_opt10" >1.00</td><td id="_tr_255_5-11"  data-_i="5" data-_j="11"  class=" _centered _table255_opt11"  style="background:var(--score_color_medium);" >23.11</td><td id="_tr_255_5-12"  data-_i="5" data-_j="12"  class=" _centered _table255_opt12"  style="background:var(--score_color_medium);" >2.60</td><td id="_tr_255_5-13"  data-_i="5" data-_j="13"  class=" _centered _table255_opt13" >686</td><td id="_tr_255_5-14"  data-_i="5" data-_j="14"  class=" _centered _table255_opt14"  style="background:var(--score_color_bad);" >0.00</td><td id="_tr_255_5-15"  data-_i="5" data-_j="15"  class=" _centered _table255_opt15"  style="background:var(--score_color_bad);" >6.08</td><td id="_tr_255_5-16"  data-_i="5" data-_j="16"  class=" _centered _table255_opt16" >6.50</td><td id="_tr_255_5-17"  data-_i="5" data-_j="17"  class=" _centered _table255_opt17" >6.50</td><td id="_tr_255_5-18"  data-_i="5" data-_j="18"  class=" _centered _table255_opt18" >6.50</td><td id="_tr_255_5-19"  data-_i="5" data-_j="19"  class=" _centered _table255_opt19" >0.28</td><td id="_tr_255_5-20"  data-_i="5" data-_j="20"  class=" _centered _table255_opt20" >2.50</td></tr>
+<tr class=" _outer_row"  id="_tr_255_6"  ondblclick="_action_200(this,6,-1, 'loops/sosieMD_126.html');"  style="cursor:pointer;"><td id="_tr_255_6-1"  data-_i="6" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 126</td><td id="_tr_255_6-2"  data-_i="6" data-_j="2"  class=" _centered" >sosieMD</td><td id="_tr_255_6-3"  data-_i="6" data-_j="3"  class=" _table255_opt3"  style="word-break:break-all;" >neighbor.h:28-28,force_lj.cpp:41-43,force_lj.cpp:47-49,force_lj.cpp:55-55,force_lj.cpp:73-73,force_lj.cpp:81-82,force.h:32-33,force.h:36-36</td><td id="_tr_255_6-4"  data-_i="6" data-_j="4"  class=" _table255_opt4"  style="word-break:break-all;" >ForceLJ::compute_half(Atoms&, Neighbor const&, bool) [clone ._omp_fn.1]</td><td id="_tr_255_6-5"  data-_i="6" data-_j="5"  class=" _centered _table255_opt5" >Outermost</td><td id="_tr_255_6-6"  data-_i="6" data-_j="6"  class=" _centered _table255_opt6" >0.25</td><td id="_tr_255_6-7"  data-_i="6" data-_j="7"  class=" _centered _table255_opt7" >0.25</td><td id="_tr_255_6-8"  data-_i="6" data-_j="8"  class=" _centered _table255_opt8" >0.76</td><td id="_tr_255_6-9"  data-_i="6" data-_j="9"  class=" _centered _table255_opt9"  style="background:var(--score_color_medium);" >2.75</td><td id="_tr_255_6-10"  data-_i="6" data-_j="10"  class=" _centered _table255_opt10"  style="background:var(--score_color_medium);" >2.48</td><td id="_tr_255_6-11"  data-_i="6" data-_j="11"  class=" _centered _table255_opt11"  style="background:var(--score_color_medium);" >11.00</td><td id="_tr_255_6-12"  data-_i="6" data-_j="12"  class=" _centered _table255_opt12"  style="background:var(--score_color_medium);" >5.50</td><td id="_tr_255_6-13"  data-_i="6" data-_j="13"  class=" _centered _table255_opt13" >52</td><td id="_tr_255_6-14"  data-_i="6" data-_j="14"  class=" _centered _table255_opt14"  style="background:var(--score_color_bad);" >36.84</td><td id="_tr_255_6-15"  data-_i="6" data-_j="15"  class=" _centered _table255_opt15"  style="background:var(--score_color_bad);" >16.12</td><td id="_tr_255_6-16"  data-_i="6" data-_j="16"  class=" _centered _table255_opt16" >11.00</td><td id="_tr_255_6-17"  data-_i="6" data-_j="17"  class=" _centered _table255_opt17" >4.00</td><td id="_tr_255_6-18"  data-_i="6" data-_j="18"  class=" _centered _table255_opt18" >4.44</td><td id="_tr_255_6-19"  data-_i="6" data-_j="19"  class=" _centered _table255_opt19" >1.00</td><td id="_tr_255_6-20"  data-_i="6" data-_j="20"  class=" _centered _table255_opt20" >2.00</td></tr>
+<tr class=" _outer_row"  id="_tr_255_7"  ondblclick="_action_200(this,7,-1, 'loops/sosieMD_148.html');"  style="cursor:pointer;"><td id="_tr_255_7-1"  data-_i="7" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 148</td><td id="_tr_255_7-2"  data-_i="7" data-_j="2"  class=" _centered" >sosieMD</td><td id="_tr_255_7-3"  data-_i="7" data-_j="3"  class=" _table255_opt3"  style="word-break:break-all;" >neighbor.cpp:147-152,neighbor.cpp:164-169</td><td id="_tr_255_7-4"  data-_i="7" data-_j="4"  class=" _table255_opt4"  style="word-break:break-all;" >Neighbor::build(Atoms const&) [clone ._omp_fn.0]</td><td id="_tr_255_7-5"  data-_i="7" data-_j="5"  class=" _centered _table255_opt5" >InBetween</td><td id="_tr_255_7-6"  data-_i="7" data-_j="6"  class=" _centered _table255_opt6" >0.14</td><td id="_tr_255_7-7"  data-_i="7" data-_j="7"  class=" _centered _table255_opt7" >0.14</td><td id="_tr_255_7-8"  data-_i="7" data-_j="8"  class=" _centered _table255_opt8" >0.42</td><td id="_tr_255_7-9"  data-_i="7" data-_j="9"  class=" _centered _table255_opt9"  style="background:var(--score_color_acceptable);" >1.52</td><td id="_tr_255_7-10"  data-_i="7" data-_j="10"  class=" _centered _table255_opt10"  style="background:var(--score_color_medium);" >2.48</td><td id="_tr_255_7-11"  data-_i="7" data-_j="11"  class=" _centered _table255_opt11"  style="background:var(--score_color_medium);" >11.05</td><td id="_tr_255_7-12"  data-_i="7" data-_j="12"  class=" _centered _table255_opt12"  style="background:var(--score_color_acceptable);" >1.69</td><td id="_tr_255_7-13"  data-_i="7" data-_j="13"  class=" _centered _table255_opt13" >1</td><td id="_tr_255_7-14"  data-_i="7" data-_j="14"  class=" _centered _table255_opt14"  style="background:var(--score_color_bad);" >17.65</td><td id="_tr_255_7-15"  data-_i="7" data-_j="15"  class=" _centered _table255_opt15"  style="background:var(--score_color_bad);" >12.50</td><td id="_tr_255_7-16"  data-_i="7" data-_j="16"  class=" _centered _table255_opt16" >7.60</td><td id="_tr_255_7-17"  data-_i="7" data-_j="17"  class=" _centered _table255_opt17" >5.00</td><td id="_tr_255_7-18"  data-_i="7" data-_j="18"  class=" _centered _table255_opt18" >3.07</td><td id="_tr_255_7-19"  data-_i="7" data-_j="19"  class=" _centered _table255_opt19" >0.69</td><td id="_tr_255_7-20"  data-_i="7" data-_j="20"  class=" _centered _table255_opt20" >4.50</td></tr>
+<tr class=" _outer_row"  id="_tr_255_8"  ondblclick="_action_200(this,8,-1, 'loops/sosieMD_84.html');"  style="cursor:pointer;"><td id="_tr_255_8-1"  data-_i="8" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 84</td><td id="_tr_255_8-2"  data-_i="8" data-_j="2"  class=" _centered" >sosieMD</td><td id="_tr_255_8-3"  data-_i="8" data-_j="3"  class=" _table255_opt3"  style="word-break:break-all;" >stl_vector.h:1418-1427,new_allocator.h:191-191,domain.cpp:185-187</td><td id="_tr_255_8-4"  data-_i="8" data-_j="4"  class=" _table255_opt4"  style="word-break:break-all;" >Domain::borders(Atoms&)</td><td id="_tr_255_8-5"  data-_i="8" data-_j="5"  class=" _centered _table255_opt5" >Innermost</td><td id="_tr_255_8-6"  data-_i="8" data-_j="6"  class=" _centered _table255_opt6" >0.07</td><td id="_tr_255_8-7"  data-_i="8" data-_j="7"  class=" _centered _table255_opt7" >0.07</td><td id="_tr_255_8-8"  data-_i="8" data-_j="8"  class=" _centered _table255_opt8" >0.21</td><td id="_tr_255_8-9"  data-_i="8" data-_j="9"  class=" _centered _table255_opt9"  style="background:var(--score_color_medium);" >2.06</td><td id="_tr_255_8-10"  data-_i="8" data-_j="10"  class=" _centered _table255_opt10" >1.00</td><td id="_tr_255_8-11"  data-_i="8" data-_j="11"  class=" _centered _table255_opt11"  style="background:var(--score_color_medium);" >10.16</td><td id="_tr_255_8-12"  data-_i="8" data-_j="12"  class=" _centered _table255_opt12"  style="background:var(--score_color_medium);" >3.32</td><td id="_tr_255_8-13"  data-_i="8" data-_j="13"  class=" _centered _table255_opt13" >256</td><td id="_tr_255_8-14"  data-_i="8" data-_j="14"  class=" _centered _table255_opt14"  style="background:var(--score_color_bad);" >9.09</td><td id="_tr_255_8-15"  data-_i="8" data-_j="15"  class=" _centered _table255_opt15"  style="background:var(--score_color_bad);" >12.50</td><td id="_tr_255_8-16"  data-_i="8" data-_j="16"  class=" _centered _table255_opt16" >21.60</td><td id="_tr_255_8-17"  data-_i="8" data-_j="17"  class=" _centered _table255_opt17" >10.50</td><td id="_tr_255_8-18"  data-_i="8" data-_j="18"  class=" _centered _table255_opt18" >21.60</td><td id="_tr_255_8-19"  data-_i="8" data-_j="19"  class=" _centered _table255_opt19" >2.13</td><td id="_tr_255_8-20"  data-_i="8" data-_j="20"  class=" _centered _table255_opt20" >6.50</td></tr>
+<tr class=" _outer_row"  id="_tr_255_9"  ondblclick="_action_200(this,9,-1, 'loops/sosieMD_149.html');"  style="cursor:pointer;"><td id="_tr_255_9-1"  data-_i="9" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 149</td><td id="_tr_255_9-2"  data-_i="9" data-_j="2"  class=" _centered" >sosieMD</td><td id="_tr_255_9-3"  data-_i="9" data-_j="3"  class=" _table255_opt3"  style="word-break:break-all;" >neighbor.cpp:147-166</td><td id="_tr_255_9-4"  data-_i="9" data-_j="4"  class=" _table255_opt4"  style="word-break:break-all;" >Neighbor::build(Atoms const&) [clone ._omp_fn.0]</td><td id="_tr_255_9-5"  data-_i="9" data-_j="5"  class=" _centered _table255_opt5" >Innermost</td><td id="_tr_255_9-6"  data-_i="9" data-_j="6"  class=" _centered _table255_opt6" >0.06</td><td id="_tr_255_9-7"  data-_i="9" data-_j="7"  class=" _centered _table255_opt7" >0.06</td><td id="_tr_255_9-8"  data-_i="9" data-_j="8"  class=" _centered _table255_opt8" >0.19</td><td id="_tr_255_9-9"  data-_i="9" data-_j="9"  class=" _centered _table255_opt9" >1.00</td><td id="_tr_255_9-10"  data-_i="9" data-_j="10"  class=" _centered _table255_opt10" >1.00</td><td id="_tr_255_9-11"  data-_i="9" data-_j="11"  class=" _centered _table255_opt11"  style="background:var(--score_color_medium);" >12.80</td><td id="_tr_255_9-12"  data-_i="9" data-_j="12"  class=" _centered _table255_opt12"  style="background:var(--score_color_acceptable);" >1.33</td><td id="_tr_255_9-13"  data-_i="9" data-_j="13"  class=" _centered _table255_opt13" >1</td><td id="_tr_255_9-14"  data-_i="9" data-_j="14"  class=" _centered _table255_opt14"  style="background:var(--score_color_bad);" >0.00</td><td id="_tr_255_9-15"  data-_i="9" data-_j="15"  class=" _centered _table255_opt15"  style="background:var(--score_color_bad);" >10.42</td><td id="_tr_255_9-16"  data-_i="9" data-_j="16"  class=" _centered _table255_opt16" >6.00</td><td id="_tr_255_9-17"  data-_i="9" data-_j="17"  class=" _centered _table255_opt17" >6.00</td><td id="_tr_255_9-18"  data-_i="9" data-_j="18"  class=" _centered _table255_opt18" >6.00</td><td id="_tr_255_9-19"  data-_i="9" data-_j="19"  class=" _centered _table255_opt19" >0.47</td><td id="_tr_255_9-20"  data-_i="9" data-_j="20"  class=" _centered _table255_opt20" >4.50</td></tr>
+<tr class=" _outer_row"  id="_tr_255_10"  ondblclick="_action_200(this,10,-1, 'loops/sosieMD_73.html');"  style="cursor:pointer;"><td id="_tr_255_10-1"  data-_i="10" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 73</td><td id="_tr_255_10-2"  data-_i="10" data-_j="2"  class=" _centered" >sosieMD</td><td id="_tr_255_10-3"  data-_i="10" data-_j="3"  class=" _table255_opt3"  style="word-break:break-all;" >stl_vector.h:1264-1264,domain.cpp:268-270</td><td id="_tr_255_10-4"  data-_i="10" data-_j="4"  class=" _table255_opt4"  style="word-break:break-all;" >Domain::reverse_forces(Atoms&)</td><td id="_tr_255_10-5"  data-_i="10" data-_j="5"  class=" _centered _table255_opt5" >Innermost</td><td id="_tr_255_10-6"  data-_i="10" data-_j="6"  class=" _centered _table255_opt6" >0.05</td><td id="_tr_255_10-7"  data-_i="10" data-_j="7"  class=" _centered _table255_opt7" >0.05</td><td id="_tr_255_10-8"  data-_i="10" data-_j="8"  class=" _centered _table255_opt8" >0.16</td><td id="_tr_255_10-9"  data-_i="10" data-_j="9"  class=" _centered _table255_opt9"  style="background:var(--score_color_acceptable);" >1.17</td><td id="_tr_255_10-10"  data-_i="10" data-_j="10"  class=" _centered _table255_opt10"  style="background:var(--score_color_acceptable);" >1.14</td><td id="_tr_255_10-11"  data-_i="10" data-_j="11"  class=" _centered _table255_opt11"  style="background:var(--score_color_medium);" >8.00</td><td id="_tr_255_10-12"  data-_i="10" data-_j="12"  class=" _centered _table255_opt12"  style="background:var(--score_color_medium);" >2.33</td><td id="_tr_255_10-13"  data-_i="10" data-_j="13"  class=" _centered _table255_opt13" >1</td><td id="_tr_255_10-14"  data-_i="10" data-_j="14"  class=" _centered _table255_opt14"  style="background:var(--score_color_bad);" >0.00</td><td id="_tr_255_10-15"  data-_i="10" data-_j="15"  class=" _centered _table255_opt15"  style="background:var(--score_color_bad);" >12.50</td><td id="_tr_255_10-16"  data-_i="10" data-_j="16"  class=" _centered _table255_opt16" >7.00</td><td id="_tr_255_10-17"  data-_i="10" data-_j="17"  class=" _centered _table255_opt17" >6.00</td><td id="_tr_255_10-18"  data-_i="10" data-_j="18"  class=" _centered _table255_opt18" >6.13</td><td id="_tr_255_10-19"  data-_i="10" data-_j="19"  class=" _centered _table255_opt19" >0.88</td><td id="_tr_255_10-20"  data-_i="10" data-_j="20"  class=" _centered _table255_opt20" >3.00</td></tr>
+<tr class=" _outer_row"  id="_tr_255_11"  ondblclick="_action_200(this,11,-1, 'loops/sosieMD_13.html');"  style="cursor:pointer;"><td id="_tr_255_11-1"  data-_i="11" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 13</td><td id="_tr_255_11-2"  data-_i="11" data-_j="2"  class=" _centered" >sosieMD</td><td id="_tr_255_11-3"  data-_i="11" data-_j="3"  class=" _table255_opt3"  style="word-break:break-all;" >atoms.cpp:59-64,stl_vector.h:1263-1263,stl_vector.h:1282-1282</td><td id="_tr_255_11-4"  data-_i="11" data-_j="4"  class=" _table255_opt4"  style="word-break:break-all;" >Atoms::reorder(std::vector<int, std::allocator<int> > const&) [clone ._omp_fn.0]</td><td id="_tr_255_11-5"  data-_i="11" data-_j="5"  class=" _centered _table255_opt5" >Single</td><td id="_tr_255_11-6"  data-_i="11" data-_j="6"  class=" _centered _table255_opt6" >0.05</td><td id="_tr_255_11-7"  data-_i="11" data-_j="7"  class=" _centered _table255_opt7" >0.05</td><td id="_tr_255_11-8"  data-_i="11" data-_j="8"  class=" _centered _table255_opt8" >0.16</td><td id="_tr_255_11-9"  data-_i="11" data-_j="9"  class=" _centered _table255_opt9"  style="background:var(--score_color_acceptable);" >1.23</td><td id="_tr_255_11-10"  data-_i="11" data-_j="10"  class=" _centered _table255_opt10" >1.00</td><td id="_tr_255_11-11"  data-_i="11" data-_j="11"  class=" _centered _table255_opt11"  style="background:var(--score_color_medium);" >5.29</td><td id="_tr_255_11-12"  data-_i="11" data-_j="12"  class=" _centered _table255_opt12"  style="background:var(--score_color_medium);" >8.60</td><td id="_tr_255_11-13"  data-_i="11" data-_j="13"  class=" _centered _table255_opt13" >1</td><td id="_tr_255_11-14"  data-_i="11" data-_j="14"  class=" _centered _table255_opt14"  style="background:var(--score_color_bad);" >0.00</td><td id="_tr_255_11-15"  data-_i="11" data-_j="15"  class=" _centered _table255_opt15"  style="background:var(--score_color_bad);" >11.61</td><td id="_tr_255_11-16"  data-_i="11" data-_j="16"  class=" _centered _table255_opt16" >8.60</td><td id="_tr_255_11-17"  data-_i="11" data-_j="17"  class=" _centered _table255_opt17" >7.00</td><td id="_tr_255_11-18"  data-_i="11" data-_j="18"  class=" _centered _table255_opt18" >8.60</td><td id="_tr_255_11-19"  data-_i="11" data-_j="19"  class=" _centered _table255_opt19" >1.63</td><td id="_tr_255_11-20"  data-_i="11" data-_j="20"  class=" _centered _table255_opt20" >1.00</td></tr>
+<tr class=" _outer_row"  id="_tr_255_12"  ondblclick="_action_200(this,12,-1, 'loops/sosieMD_64.html');"  style="cursor:pointer;"><td id="_tr_255_12-1"  data-_i="12" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 64</td><td id="_tr_255_12-2"  data-_i="12" data-_j="2"  class=" _centered" >sosieMD</td><td id="_tr_255_12-3"  data-_i="12" data-_j="3"  class=" _table255_opt3"  style="word-break:break-all;" >domain.cpp:225-228</td><td id="_tr_255_12-4"  data-_i="12" data-_j="4"  class=" _table255_opt4"  style="word-break:break-all;" >Domain::forward_positions(Atoms&)</td><td id="_tr_255_12-5"  data-_i="12" data-_j="5"  class=" _centered _table255_opt5" >Innermost</td><td id="_tr_255_12-6"  data-_i="12" data-_j="6"  class=" _centered _table255_opt6" >0.05</td><td id="_tr_255_12-7"  data-_i="12" data-_j="7"  class=" _centered _table255_opt7" >0.05</td><td id="_tr_255_12-8"  data-_i="12" data-_j="8"  class=" _centered _table255_opt8" >0.15</td><td id="_tr_255_12-9"  data-_i="12" data-_j="9"  class=" _centered _table255_opt9"  style="background:var(--score_color_acceptable);" >1.26</td><td id="_tr_255_12-10"  data-_i="12" data-_j="10"  class=" _centered _table255_opt10"  style="background:var(--score_color_acceptable);" >1.23</td><td id="_tr_255_12-11"  data-_i="12" data-_j="11"  class=" _centered _table255_opt11"  style="background:var(--score_color_medium);" >6.30</td><td id="_tr_255_12-12"  data-_i="12" data-_j="12"  class=" _centered _table255_opt12"  style="background:var(--score_color_medium);" >6.30</td><td id="_tr_255_12-13"  data-_i="12" data-_j="13"  class=" _centered _table255_opt13" >1</td><td id="_tr_255_12-14"  data-_i="12" data-_j="14"  class=" _centered _table255_opt14"  style="background:var(--score_color_bad);" >0.00</td><td id="_tr_255_12-15"  data-_i="12" data-_j="15"  class=" _centered _table255_opt15"  style="background:var(--score_color_bad);" >12.50</td><td id="_tr_255_12-16"  data-_i="12" data-_j="16"  class=" _centered _table255_opt16" >12.60</td><td id="_tr_255_12-17"  data-_i="12" data-_j="17"  class=" _centered _table255_opt17" >10.00</td><td id="_tr_255_12-18"  data-_i="12" data-_j="18"  class=" _centered _table255_opt18" >10.25</td><td id="_tr_255_12-19"  data-_i="12" data-_j="19"  class=" _centered _table255_opt19" >2.00</td><td id="_tr_255_12-20"  data-_i="12" data-_j="20"  class=" _centered _table255_opt20" >2.00</td></tr>
+<tr class=" _outer_row"  id="_tr_255_13"  ondblclick="_action_200(this,13,-1, 'loops/sosieMD_154.html');"  style="cursor:pointer;"><td id="_tr_255_13-1"  data-_i="13" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 154</td><td id="_tr_255_13-2"  data-_i="13" data-_j="2"  class=" _centered" >sosieMD</td><td id="_tr_255_13-3"  data-_i="13" data-_j="3"  class=" _table255_opt3"  style="word-break:break-all;" >stl_vector.h:1263-1263,neighbor.cpp:73-75,neighbor.cpp:84-87,neighbor.cpp:96-96</td><td id="_tr_255_13-4"  data-_i="13" data-_j="4"  class=" _table255_opt4"  style="word-break:break-all;" >Neighbor::bin_atoms(Atoms const&, int) [clone ._omp_fn.0]</td><td id="_tr_255_13-5"  data-_i="13" data-_j="5"  class=" _centered _table255_opt5" >Single</td><td id="_tr_255_13-6"  data-_i="13" data-_j="6"  class=" _centered _table255_opt6" >0.04</td><td id="_tr_255_13-7"  data-_i="13" data-_j="7"  class=" _centered _table255_opt7" >0.04</td><td id="_tr_255_13-8"  data-_i="13" data-_j="8"  class=" _centered _table255_opt8" >0.13</td><td id="_tr_255_13-9"  data-_i="13" data-_j="9"  class=" _centered _table255_opt9"  style="background:var(--score_color_acceptable);" >1.25</td><td id="_tr_255_13-10"  data-_i="13" data-_j="10"  class=" _centered _table255_opt10"  style="background:var(--score_color_acceptable);" >1.46</td><td id="_tr_255_13-11"  data-_i="13" data-_j="11"  class=" _centered _table255_opt11"  style="background:var(--score_color_medium);" >10.00</td><td id="_tr_255_13-12"  data-_i="13" data-_j="12"  class=" _centered _table255_opt12"  style="background:var(--score_color_acceptable);" >1.84</td><td id="_tr_255_13-13"  data-_i="13" data-_j="13"  class=" _centered _table255_opt13" >36</td><td id="_tr_255_13-14"  data-_i="13" data-_j="14"  class=" _centered _table255_opt14"  style="background:var(--score_color_bad);" >0.00</td><td id="_tr_255_13-15"  data-_i="13" data-_j="15"  class=" _centered _table255_opt15"  style="background:var(--score_color_bad);" >10.08</td><td id="_tr_255_13-16"  data-_i="13" data-_j="16"  class=" _centered _table255_opt16" >17.50</td><td id="_tr_255_13-17"  data-_i="13" data-_j="17"  class=" _centered _table255_opt17" >14.00</td><td id="_tr_255_13-18"  data-_i="13" data-_j="18"  class=" _centered _table255_opt18" >12.00</td><td id="_tr_255_13-19"  data-_i="13" data-_j="19"  class=" _centered _table255_opt19" >1.75</td><td id="_tr_255_13-20"  data-_i="13" data-_j="20"  class=" _centered _table255_opt20" >9.50</td></tr>
+<tr class=" _outer_row"  id="_tr_255_14"  ondblclick="_action_200(this,14,-1, 'loops/sosieMD_150.html');"  style="cursor:pointer;"><td id="_tr_255_14-1"  data-_i="14" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 150</td><td id="_tr_255_14-2"  data-_i="14" data-_j="2"  class=" _centered" >sosieMD</td><td id="_tr_255_14-3"  data-_i="14" data-_j="3"  class=" _table255_opt3"  style="word-break:break-all;" >neighbor.cpp:147-147</td><td id="_tr_255_14-4"  data-_i="14" data-_j="4"  class=" _table255_opt4"  style="word-break:break-all;" >Neighbor::build(Atoms const&) [clone ._omp_fn.0]</td><td id="_tr_255_14-5"  data-_i="14" data-_j="5"  class=" _centered _table255_opt5" >Innermost</td><td id="_tr_255_14-6"  data-_i="14" data-_j="6"  class=" _centered _table255_opt6" >0.04</td><td id="_tr_255_14-7"  data-_i="14" data-_j="7"  class=" _centered _table255_opt7" >0.04</td><td id="_tr_255_14-8"  data-_i="14" data-_j="8"  class=" _centered _table255_opt8" >0.10</td><td id="_tr_255_14-9"  data-_i="14" data-_j="9"  class=" _centered _table255_opt9" >1.00</td><td id="_tr_255_14-10"  data-_i="14" data-_j="10"  class=" _centered _table255_opt10" >NA</td><td id="_tr_255_14-11"  data-_i="14" data-_j="11"  class=" _centered _table255_opt11" >NA</td><td id="_tr_255_14-12"  data-_i="14" data-_j="12"  class=" _centered _table255_opt12" >1.00</td><td id="_tr_255_14-13"  data-_i="14" data-_j="13"  class=" _centered _table255_opt13" >1</td><td id="_tr_255_14-14"  data-_i="14" data-_j="14"  class=" _centered _table255_opt14"  style="background:var(--score_color_bad);" >NA</td><td id="_tr_255_14-15"  data-_i="14" data-_j="15"  class=" _centered _table255_opt15"  style="background:var(--score_color_bad);" >NA</td><td id="_tr_255_14-16"  data-_i="14" data-_j="16"  class=" _centered _table255_opt16" >0.50</td><td id="_tr_255_14-17"  data-_i="14" data-_j="17"  class=" _centered _table255_opt17" >0.50</td><td id="_tr_255_14-18"  data-_i="14" data-_j="18"  class=" _centered _table255_opt18" >NA</td><td id="_tr_255_14-19"  data-_i="14" data-_j="19"  class=" _centered _table255_opt19" >NA</td><td id="_tr_255_14-20"  data-_i="14" data-_j="20"  class=" _centered _table255_opt20" >0.50</td></tr>
+<tr class=" _outer_row"  id="_tr_255_15"  ondblclick="_action_200(this,15,-1, 'loops/sosieMD_146.html');"  style="cursor:pointer;"><td id="_tr_255_15-1"  data-_i="15" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 146</td><td id="_tr_255_15-2"  data-_i="15" data-_j="2"  class=" _centered" >sosieMD</td><td id="_tr_255_15-3"  data-_i="15" data-_j="3"  class=" _table255_opt3"  style="word-break:break-all;" >stl_algobase.h:263-263,neighbor.cpp:138-145,neighbor.cpp:173-173</td><td id="_tr_255_15-4"  data-_i="15" data-_j="4"  class=" _table255_opt4"  style="word-break:break-all;" >Neighbor::build(Atoms const&) [clone ._omp_fn.0]</td><td id="_tr_255_15-5"  data-_i="15" data-_j="5"  class=" _centered _table255_opt5" >Outermost</td><td id="_tr_255_15-6"  data-_i="15" data-_j="6"  class=" _centered _table255_opt6" >0.03</td><td id="_tr_255_15-7"  data-_i="15" data-_j="7"  class=" _centered _table255_opt7" >0.03</td><td id="_tr_255_15-8"  data-_i="15" data-_j="8"  class=" _centered _table255_opt8" >0.07</td><td id="_tr_255_15-9"  data-_i="15" data-_j="9"  class=" _centered _table255_opt9"  style="background:var(--score_color_medium);" >2.08</td><td id="_tr_255_15-10"  data-_i="15" data-_j="10"  class=" _centered _table255_opt10" >1.00</td><td id="_tr_255_15-11"  data-_i="15" data-_j="11"  class=" _centered _table255_opt11"  style="background:var(--score_color_medium);" >12.80</td><td id="_tr_255_15-12"  data-_i="15" data-_j="12"  class=" _centered _table255_opt12"  style="background:var(--score_color_medium);" >10.40</td><td id="_tr_255_15-13"  data-_i="15" data-_j="13"  class=" _centered _table255_opt13" >686</td><td id="_tr_255_15-14"  data-_i="15" data-_j="14"  class=" _centered _table255_opt14"  style="background:var(--score_color_bad);" >0.00</td><td id="_tr_255_15-15"  data-_i="15" data-_j="15"  class=" _centered _table255_opt15"  style="background:var(--score_color_bad);" >8.93</td><td id="_tr_255_15-16"  data-_i="15" data-_j="16"  class=" _centered _table255_opt16" >5.20</td><td id="_tr_255_15-17"  data-_i="15" data-_j="17"  class=" _centered _table255_opt17" >2.50</td><td id="_tr_255_15-18"  data-_i="15" data-_j="18"  class=" _centered _table255_opt18" >5.20</td><td id="_tr_255_15-19"  data-_i="15" data-_j="19"  class=" _centered _table255_opt19" >0.41</td><td id="_tr_255_15-20"  data-_i="15" data-_j="20"  class=" _centered _table255_opt20" >0.50</td></tr>
+<tr class=" _outer_row"  id="_tr_255_16"  ondblclick="_action_200(this,16,-1, 'loops/sosieMD_161.html');"  style="cursor:pointer;"><td id="_tr_255_16-1"  data-_i="16" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 161</td><td id="_tr_255_16-2"  data-_i="16" data-_j="2"  class=" _centered" >sosieMD</td><td id="_tr_255_16-3"  data-_i="16" data-_j="3"  class=" _table255_opt3"  style="word-break:break-all;" >stl_vector.h:1264-1264,neighbor.cpp:110-110</td><td id="_tr_255_16-4"  data-_i="16" data-_j="4"  class=" _table255_opt4"  style="word-break:break-all;" >Neighbor::bin_atoms(Atoms const&, int)</td><td id="_tr_255_16-5"  data-_i="16" data-_j="5"  class=" _centered _table255_opt5" >Single</td><td id="_tr_255_16-6"  data-_i="16" data-_j="6"  class=" _centered _table255_opt6" >0.02</td><td id="_tr_255_16-7"  data-_i="16" data-_j="7"  class=" _centered _table255_opt7" >0.02</td><td id="_tr_255_16-8"  data-_i="16" data-_j="8"  class=" _centered _table255_opt8" >0.06</td><td id="_tr_255_16-9"  data-_i="16" data-_j="9"  class=" _centered _table255_opt9" >1.00</td><td id="_tr_255_16-10"  data-_i="16" data-_j="10"  class=" _centered _table255_opt10" >1.00</td><td id="_tr_255_16-11"  data-_i="16" data-_j="11"  class=" _centered _table255_opt11"  style="background:var(--score_color_medium);" >11.60</td><td id="_tr_255_16-12"  data-_i="16" data-_j="12"  class=" _centered _table255_opt12"  style="background:var(--score_color_medium);" >5.80</td><td id="_tr_255_16-13"  data-_i="16" data-_j="13"  class=" _centered _table255_opt13" >1</td><td id="_tr_255_16-14"  data-_i="16" data-_j="14"  class=" _centered _table255_opt14"  style="background:var(--score_color_bad);" >0.00</td><td id="_tr_255_16-15"  data-_i="16" data-_j="15"  class=" _centered _table255_opt15"  style="background:var(--score_color_bad);" >6.25</td><td id="_tr_255_16-16"  data-_i="16" data-_j="16"  class=" _centered _table255_opt16" >5.80</td><td id="_tr_255_16-17"  data-_i="16" data-_j="17"  class=" _centered _table255_opt17" >5.80</td><td id="_tr_255_16-18"  data-_i="16" data-_j="18"  class=" _centered _table255_opt18" >5.80</td><td id="_tr_255_16-19"  data-_i="16" data-_j="19"  class=" _centered _table255_opt19" >0.50</td><td id="_tr_255_16-20"  data-_i="16" data-_j="20"  class=" _centered _table255_opt20" >1.00</td></tr>
+<tr class=" _outer_row"  id="_tr_255_17"  ondblclick="_action_200(this,17,-1, 'loops/sosieMD_12.html');"  style="cursor:pointer;"><td id="_tr_255_17-1"  data-_i="17" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 12</td><td id="_tr_255_17-2"  data-_i="17" data-_j="2"  class=" _centered" >sosieMD</td><td id="_tr_255_17-3"  data-_i="17" data-_j="3"  class=" _table255_opt3"  style="word-break:break-all;" >atoms.cpp:43-46</td><td id="_tr_255_17-4"  data-_i="17" data-_j="4"  class=" _table255_opt4"  style="word-break:break-all;" >Atoms::pbc() [clone ._omp_fn.0]</td><td id="_tr_255_17-5"  data-_i="17" data-_j="5"  class=" _centered _table255_opt5" >Single</td><td id="_tr_255_17-6"  data-_i="17" data-_j="6"  class=" _centered _table255_opt6" >0.02</td><td id="_tr_255_17-7"  data-_i="17" data-_j="7"  class=" _centered _table255_opt7" >0.02</td><td id="_tr_255_17-8"  data-_i="17" data-_j="8"  class=" _centered _table255_opt8" >0.06</td><td id="_tr_255_17-9"  data-_i="17" data-_j="9"  class=" _centered _table255_opt9" >1.01</td><td id="_tr_255_17-10"  data-_i="17" data-_j="10"  class=" _centered _table255_opt10" >1.05</td><td id="_tr_255_17-11"  data-_i="17" data-_j="11"  class=" _centered _table255_opt11"  style="background:var(--score_color_medium);" >8.00</td><td id="_tr_255_17-12"  data-_i="17" data-_j="12"  class=" _centered _table255_opt12"  style="background:var(--score_color_acceptable);" >1.48</td><td id="_tr_255_17-13"  data-_i="17" data-_j="13"  class=" _centered _table255_opt13" >4096</td><td id="_tr_255_17-14"  data-_i="17" data-_j="14"  class=" _centered _table255_opt14"  style="background:var(--score_color_bad);" >0.00</td><td id="_tr_255_17-15"  data-_i="17" data-_j="15"  class=" _centered _table255_opt15"  style="background:var(--score_color_bad);" >12.50</td><td id="_tr_255_17-16"  data-_i="17" data-_j="16"  class=" _centered _table255_opt16" >12.60</td><td id="_tr_255_17-17"  data-_i="17" data-_j="17"  class=" _centered _table255_opt17" >12.50</td><td id="_tr_255_17-18"  data-_i="17" data-_j="18"  class=" _centered _table255_opt18" >12.00</td><td id="_tr_255_17-19"  data-_i="17" data-_j="19"  class=" _centered _table255_opt19" >1.57</td><td id="_tr_255_17-20"  data-_i="17" data-_j="20"  class=" _centered _table255_opt20" >8.50</td></tr>
+<tr class=" _outer_row"  id="_tr_255_18"  ondblclick="_action_200(this,18,-1, 'loops/sosieMD_176.html');"  style="cursor:pointer;"><td id="_tr_255_18-1"  data-_i="18" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 176</td><td id="_tr_255_18-2"  data-_i="18" data-_j="2"  class=" _centered" >sosieMD</td><td id="_tr_255_18-3"  data-_i="18" data-_j="3"  class=" _table255_opt3"  style="word-break:break-all;" >setup.cpp:37-37,setup.cpp:86-102</td><td id="_tr_255_18-4"  data-_i="18" data-_j="4"  class=" _table255_opt4"  style="word-break:break-all;" >create_atoms(Atoms&, int, int, int, double)</td><td id="_tr_255_18-5"  data-_i="18" data-_j="5"  class=" _centered _table255_opt5" >Innermost</td><td id="_tr_255_18-6"  data-_i="18" data-_j="6"  class=" _centered _table255_opt6" >0.01</td><td id="_tr_255_18-7"  data-_i="18" data-_j="7"  class=" _centered _table255_opt7" >0.01</td><td id="_tr_255_18-8"  data-_i="18" data-_j="8"  class=" _centered _table255_opt8" >0.04</td><td id="_tr_255_18-9"  data-_i="18" data-_j="9"  class=" _centered _table255_opt9"  style="background:var(--score_color_acceptable);" >1.77</td><td id="_tr_255_18-10"  data-_i="18" data-_j="10"  class=" _centered _table255_opt10"  style="background:var(--score_color_acceptable);" >1.83</td><td id="_tr_255_18-11"  data-_i="18" data-_j="11"  class=" _centered _table255_opt11"  style="background:var(--score_color_medium);" >12.70</td><td id="_tr_255_18-12"  data-_i="18" data-_j="12"  class=" _centered _table255_opt12"  style="background:var(--score_color_medium);" >2.70</td><td id="_tr_255_18-13"  data-_i="18" data-_j="13"  class=" _centered _table255_opt13" >144</td><td id="_tr_255_18-14"  data-_i="18" data-_j="14"  class=" _centered _table255_opt14"  style="background:var(--score_color_bad);" >12.99</td><td id="_tr_255_18-15"  data-_i="18" data-_j="15"  class=" _centered _table255_opt15"  style="background:var(--score_color_bad);" >11.44</td><td id="_tr_255_18-16"  data-_i="18" data-_j="16"  class=" _centered _table255_opt16" >31.00</td><td id="_tr_255_18-17"  data-_i="18" data-_j="17"  class=" _centered _table255_opt17" >17.50</td><td id="_tr_255_18-18"  data-_i="18" data-_j="18"  class=" _centered _table255_opt18" >16.92</td><td id="_tr_255_18-19"  data-_i="18" data-_j="19"  class=" _centered _table255_opt19" >2.44</td><td id="_tr_255_18-20"  data-_i="18" data-_j="20"  class=" _centered _table255_opt20" >11.50</td></tr>
+<tr class=" _outer_row"  id="_tr_255_19"  ondblclick="_action_200(this,19,-1, 'loops/sosieMD_83.html');"  style="cursor:pointer;"><td id="_tr_255_19-1"  data-_i="19" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 83</td><td id="_tr_255_19-2"  data-_i="19" data-_j="2"  class=" _centered" >sosieMD</td><td id="_tr_255_19-3"  data-_i="19" data-_j="3"  class=" _table255_opt3"  style="word-break:break-all;" >stl_vector.h:1263-1263,domain.cpp:192-197</td><td id="_tr_255_19-4"  data-_i="19" data-_j="4"  class=" _table255_opt4"  style="word-break:break-all;" >Domain::borders(Atoms&)</td><td id="_tr_255_19-5"  data-_i="19" data-_j="5"  class=" _centered _table255_opt5" >Innermost</td><td id="_tr_255_19-6"  data-_i="19" data-_j="6"  class=" _centered _table255_opt6" >0.01</td><td id="_tr_255_19-7"  data-_i="19" data-_j="7"  class=" _centered _table255_opt7" >0.01</td><td id="_tr_255_19-8"  data-_i="19" data-_j="8"  class=" _centered _table255_opt8" >0.04</td><td id="_tr_255_19-9"  data-_i="19" data-_j="9"  class=" _centered _table255_opt9" >1.09</td><td id="_tr_255_19-10"  data-_i="19" data-_j="10"  class=" _centered _table255_opt10"  style="background:var(--score_color_acceptable);" >1.24</td><td id="_tr_255_19-11"  data-_i="19" data-_j="11"  class=" _centered _table255_opt11"  style="background:var(--score_color_medium);" >6.08</td><td id="_tr_255_19-12"  data-_i="19" data-_j="12"  class=" _centered _table255_opt12"  style="background:var(--score_color_medium);" >7.60</td><td id="_tr_255_19-13"  data-_i="19" data-_j="13"  class=" _centered _table255_opt13" >1</td><td id="_tr_255_19-14"  data-_i="19" data-_j="14"  class=" _centered _table255_opt14"  style="background:var(--score_color_bad);" >0.00</td><td id="_tr_255_19-15"  data-_i="19" data-_j="15"  class=" _centered _table255_opt15"  style="background:var(--score_color_bad);" >11.93</td><td id="_tr_255_19-16"  data-_i="19" data-_j="16"  class=" _centered _table255_opt16" >7.60</td><td id="_tr_255_19-17"  data-_i="19" data-_j="17"  class=" _centered _table255_opt17" >7.00</td><td id="_tr_255_19-18"  data-_i="19" data-_j="18"  class=" _centered _table255_opt18" >6.13</td><td id="_tr_255_19-19"  data-_i="19" data-_j="19"  class=" _centered _table255_opt19" >1.25</td><td id="_tr_255_19-20"  data-_i="19" data-_j="20"  class=" _centered _table255_opt20" >1.00</td></tr>
+<tr class=" _outer_row"  id="_tr_255_20"  ondblclick="_action_200(this,20,-1, 'loops/sosieMD_230.html');"  style="cursor:pointer;"><td id="_tr_255_20-1"  data-_i="20" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 230</td><td id="_tr_255_20-2"  data-_i="20" data-_j="2"  class=" _centered" >sosieMD</td><td id="_tr_255_20-3"  data-_i="20" data-_j="3"  class=" _table255_opt3"  style="word-break:break-all;" >thermo.cpp:35-35</td><td id="_tr_255_20-4"  data-_i="20" data-_j="4"  class=" _table255_opt4"  style="word-break:break-all;" >Thermo::temperature(Atoms const&) const [clone ._omp_fn.0]</td><td id="_tr_255_20-5"  data-_i="20" data-_j="5"  class=" _centered _table255_opt5" >Single</td><td id="_tr_255_20-6"  data-_i="20" data-_j="6"  class=" _centered _table255_opt6" >0.01</td><td id="_tr_255_20-7"  data-_i="20" data-_j="7"  class=" _centered _table255_opt7" >0.01</td><td id="_tr_255_20-8"  data-_i="20" data-_j="8"  class=" _centered _table255_opt8" >0.04</td><td id="_tr_255_20-9"  data-_i="20" data-_j="9"  class=" _centered _table255_opt9" >1.00</td><td id="_tr_255_20-10"  data-_i="20" data-_j="10"  class=" _centered _table255_opt10" >1.00</td><td id="_tr_255_20-11"  data-_i="20" data-_j="11"  class=" _centered _table255_opt11"  style="background:var(--score_color_medium);" >2.00</td><td id="_tr_255_20-12"  data-_i="20" data-_j="12"  class=" _centered _table255_opt12"  style="background:var(--score_color_acceptable);" >1.75</td><td id="_tr_255_20-13"  data-_i="20" data-_j="13"  class=" _centered _table255_opt13" >1</td><td id="_tr_255_20-14"  data-_i="20" data-_j="14"  class=" _centered _table255_opt14"  style="background:var(--score_color_good);" >100.00</td><td id="_tr_255_20-15"  data-_i="20" data-_j="15"  class=" _centered _table255_opt15"  style="background:var(--score_color_bad);" >50.00</td><td id="_tr_255_20-16"  data-_i="20" data-_j="16"  class=" _centered _table255_opt16" >28.00</td><td id="_tr_255_20-17"  data-_i="20" data-_j="17"  class=" _centered _table255_opt17" >28.00</td><td id="_tr_255_20-18"  data-_i="20" data-_j="18"  class=" _centered _table255_opt18" >28.00</td><td id="_tr_255_20-19"  data-_i="20" data-_j="19"  class=" _centered _table255_opt19" >14.00</td><td id="_tr_255_20-20"  data-_i="20" data-_j="20"  class=" _centered _table255_opt20" >16.00</td></tr>
+<tr class=" _outer_row"  id="_tr_255_21"  ondblclick="_action_200(this,21,-1, 'loops/sosieMD_178.html');"  style="cursor:pointer;"><td id="_tr_255_21-1"  data-_i="21" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 178</td><td id="_tr_255_21-2"  data-_i="21" data-_j="2"  class=" _centered" >sosieMD</td><td id="_tr_255_21-3"  data-_i="21" data-_j="3"  class=" _table255_opt3"  style="word-break:break-all;" >setup.cpp:123-123</td><td id="_tr_255_21-4"  data-_i="21" data-_j="4"  class=" _table255_opt4"  style="word-break:break-all;" >create_velocity(double, Atoms&, Thermo const&)</td><td id="_tr_255_21-5"  data-_i="21" data-_j="5"  class=" _centered _table255_opt5" >Single</td><td id="_tr_255_21-6"  data-_i="21" data-_j="6"  class=" _centered _table255_opt6" >0.01</td><td id="_tr_255_21-7"  data-_i="21" data-_j="7"  class=" _centered _table255_opt7" >0.01</td><td id="_tr_255_21-8"  data-_i="21" data-_j="8"  class=" _centered _table255_opt8" >0.04</td><td id="_tr_255_21-9"  data-_i="21" data-_j="9"  class=" _centered _table255_opt9" >1.00</td><td id="_tr_255_21-10"  data-_i="21" data-_j="10"  class=" _centered _table255_opt10" >1.00</td><td id="_tr_255_21-11"  data-_i="21" data-_j="11"  class=" _centered _table255_opt11" >1.00</td><td id="_tr_255_21-12"  data-_i="21" data-_j="12"  class=" _centered _table255_opt12" >1.00</td><td id="_tr_255_21-13"  data-_i="21" data-_j="13"  class=" _centered _table255_opt13" >1</td><td id="_tr_255_21-14"  data-_i="21" data-_j="14"  class=" _centered _table255_opt14"  style="background:var(--score_color_good);" >100.00</td><td id="_tr_255_21-15"  data-_i="21" data-_j="15"  class=" _centered _table255_opt15"  style="background:var(--score_color_bad);" >50.00</td><td id="_tr_255_21-16"  data-_i="21" data-_j="16"  class=" _centered _table255_opt16" >4.00</td><td id="_tr_255_21-17"  data-_i="21" data-_j="17"  class=" _centered _table255_opt17" >4.00</td><td id="_tr_255_21-18"  data-_i="21" data-_j="18"  class=" _centered _table255_opt18" >4.00</td><td id="_tr_255_21-19"  data-_i="21" data-_j="19"  class=" _centered _table255_opt19" >4.00</td><td id="_tr_255_21-20"  data-_i="21" data-_j="20"  class=" _centered _table255_opt20" >4.00</td></tr>
+<tr class=" _outer_row"  id="_tr_255_22"  ondblclick="_action_200(this,22,-1, 'loops/sosieMD_180.html');"  style="cursor:pointer;"><td id="_tr_255_22-1"  data-_i="22" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 180</td><td id="_tr_255_22-2"  data-_i="22" data-_j="2"  class=" _centered" >sosieMD</td><td id="_tr_255_22-3"  data-_i="22" data-_j="3"  class=" _table255_opt3"  style="word-break:break-all;" >setup.cpp:119-120</td><td id="_tr_255_22-4"  data-_i="22" data-_j="4"  class=" _table255_opt4"  style="word-break:break-all;" >create_velocity(double, Atoms&, Thermo const&)</td><td id="_tr_255_22-5"  data-_i="22" data-_j="5"  class=" _centered _table255_opt5" >Single</td><td id="_tr_255_22-6"  data-_i="22" data-_j="6"  class=" _centered _table255_opt6" >0.01</td><td id="_tr_255_22-7"  data-_i="22" data-_j="7"  class=" _centered _table255_opt7" >0.01</td><td id="_tr_255_22-8"  data-_i="22" data-_j="8"  class=" _centered _table255_opt8" >0.03</td><td id="_tr_255_22-9"  data-_i="22" data-_j="9"  class=" _centered _table255_opt9" >1.00</td><td id="_tr_255_22-10"  data-_i="22" data-_j="10"  class=" _centered _table255_opt10" >1.00</td><td id="_tr_255_22-11"  data-_i="22" data-_j="11"  class=" _centered _table255_opt11"  style="background:var(--score_color_medium);" >2.00</td><td id="_tr_255_22-12"  data-_i="22" data-_j="12"  class=" _centered _table255_opt12"  style="background:var(--score_color_medium);" >8.00</td><td id="_tr_255_22-13"  data-_i="22" data-_j="13"  class=" _centered _table255_opt13" >1</td><td id="_tr_255_22-14"  data-_i="22" data-_j="14"  class=" _centered _table255_opt14"  style="background:var(--score_color_good);" >100.00</td><td id="_tr_255_22-15"  data-_i="22" data-_j="15"  class=" _centered _table255_opt15"  style="background:var(--score_color_bad);" >50.00</td><td id="_tr_255_22-16"  data-_i="22" data-_j="16"  class=" _centered _table255_opt16" >24.00</td><td id="_tr_255_22-17"  data-_i="22" data-_j="17"  class=" _centered _table255_opt17" >24.00</td><td id="_tr_255_22-18"  data-_i="22" data-_j="18"  class=" _centered _table255_opt18" >24.00</td><td id="_tr_255_22-19"  data-_i="22" data-_j="19"  class=" _centered _table255_opt19" >12.00</td><td id="_tr_255_22-20"  data-_i="22" data-_j="20"  class=" _centered _table255_opt20" >3.00</td></tr>
+<tr class=" _outer_row"  id="_tr_255_23"  ondblclick="_action_200(this,23,-1, 'loops/sosieMD_181.html');"  style="cursor:pointer;"><td id="_tr_255_23-1"  data-_i="23" data-_j="1"  class=" _left"  style="white-space: nowrap;" ><span style="margin-right:10px;margin-left:3px;" >&#x25CB;</span>Loop 181</td><td id="_tr_255_23-2"  data-_i="23" data-_j="2"  class=" _centered" >sosieMD</td><td id="_tr_255_23-3"  data-_i="23" data-_j="3"  class=" _table255_opt3"  style="word-break:break-all;" >setup.cpp:111-112</td><td id="_tr_255_23-4"  data-_i="23" data-_j="4"  class=" _table255_opt4"  style="word-break:break-all;" >create_velocity(double, Atoms&, Thermo const&)</td><td id="_tr_255_23-5"  data-_i="23" data-_j="5"  class=" _centered _table255_opt5" >Single</td><td id="_tr_255_23-6"  data-_i="23" data-_j="6"  class=" _centered _table255_opt6" >0.00</td><td id="_tr_255_23-7"  data-_i="23" data-_j="7"  class=" _centered _table255_opt7" >0.00</td><td id="_tr_255_23-8"  data-_i="23" data-_j="8"  class=" _centered _table255_opt8" >0.01</td><td id="_tr_255_23-9"  data-_i="23" data-_j="9"  class=" _centered _table255_opt9" >1.00</td><td id="_tr_255_23-10"  data-_i="23" data-_j="10"  class=" _centered _table255_opt10"  style="background:var(--score_color_acceptable);" >1.35</td><td id="_tr_255_23-11"  data-_i="23" data-_j="11"  class=" _centered _table255_opt11"  style="background:var(--score_color_medium);" >8.00</td><td id="_tr_255_23-12"  data-_i="23" data-_j="12"  class=" _centered _table255_opt12" >1.00</td><td id="_tr_255_23-13"  data-_i="23" data-_j="13"  class=" _centered _table255_opt13" >1</td><td id="_tr_255_23-14"  data-_i="23" data-_j="14"  class=" _centered _table255_opt14"  style="background:var(--score_color_bad);" >0.00</td><td id="_tr_255_23-15"  data-_i="23" data-_j="15"  class=" _centered _table255_opt15"  style="background:var(--score_color_bad);" >12.50</td><td id="_tr_255_23-16"  data-_i="23" data-_j="16"  class=" _centered _table255_opt16" >32.00</td><td id="_tr_255_23-17"  data-_i="23" data-_j="17"  class=" _centered _table255_opt17" >32.00</td><td id="_tr_255_23-18"  data-_i="23" data-_j="18"  class=" _centered _table255_opt18" >23.76</td><td id="_tr_255_23-19"  data-_i="23" data-_j="19"  class=" _centered _table255_opt19" >4.00</td><td id="_tr_255_23-20"  data-_i="23" data-_j="20"  class=" _centered _table255_opt20" >32.00</td></tr>
+</table></div>
+</div>
+<script>
+function _action_200 (obj, i, j, p){open(""+p+"");}
+</script>
+<script>
+var list_opts_table255 = ['_table255_opt3','_table255_opt4','_table255_opt5','_table255_opt6','_table255_opt7','_table255_opt8','_table255_opt9','_table255_opt10','_table255_opt11','_table255_opt12','_table255_opt13','_table255_opt14','_table255_opt15','_table255_opt16','_table255_opt17','_table255_opt18','_table255_opt19','_table255_opt20',];
+function __reset_checkboxes_table255 () {
+  var displayed_columns = [{id:"_table255_opt1", value:true}, {id:"_table255_opt2", value:true}, {id:"_table255_opt3", value:true}, {id:"_table255_opt4", value:true}, {id:"_table255_opt5", value:true}, {id:"_table255_opt6", value:true}, {id:"_table255_opt7", value:true}, {id:"_table255_opt8", value:true}, {id:"_table255_opt9", value:true}, {id:"_table255_opt10", value:true}, {id:"_table255_opt11", value:true}, {id:"_table255_opt12", value:true}, {id:"_table255_opt13", value:true}, {id:"_table255_opt14", value:true}, {id:"_table255_opt15", value:true}, {id:"_table255_opt16", value:true}, {id:"_table255_opt17", value:true}, {id:"_table255_opt18", value:true}, {id:"_table255_opt19", value:true}, {id:"_table255_opt20", value:true}];
+  // Update initial state using localStorage
+  for (var i = 0; i < displayed_columns.length; i++) {
+    var dcol = displayed_columns[i];
+    var val = localStorage.getItem (dcol.id);
+    if (val) {
+      dcol.value = (val === "true");
+    }
+    var obj = document.getElementById(dcol.id);
+    if (obj) {
+      if (dcol.value == true) {
+        obj.checked = true;
+      }
+      else {
+        obj.checked = false;
+      }
+    }
+  }
+  // Update table
+  var table = document.getElementById("_tree_table_255");
+  for (let i in table.rows) {
+    let row = table.rows[i]
+    for (let j in row.cells) {
+      let col = row.cells[j]
+      if (col.classList) {
+        if (displayed_columns[j].value == true) {
+          col.classList.remove("_tcol_hidden");
+        }
+        else {
+          col.classList.add("_tcol_hidden");
+        }
+      }
+    }
+  }
+  {
+    var value = localStorage.getItem("_table255_opt_all");
+    if (value) {
+      var obj = document.getElementById ("_table255_opt_all");
+      if (obj) {
+        obj.value = value;
+      }
+    }
+  }
+  _check_all_checkbox_ ("_table255_opt_all", "list_opts_table255");
+};
+addLoadEvent(function(){
+  __reset_checkboxes_table255 ();
+});
+</script>
+<style>
+._filter_hidden {display: none;}
+</style>
+<script>
+addLoadEvent(function(){
+  var id = "_tree_table_255";
+  var table_asm = document.getElementById(id);
+  var tab = [];
+  for (var i = 0, row; row = table_asm.rows[i]; i++) {
+    if (i > 0 && row.classList.contains ("_tree_hidden") == false) {
+        tab.push (row.firstChild.firstChild);
+    }
+  }
+  tab.forEach(function(item, index, array) {
+    _click_tree (item);
+  });
+  var qs = getQueryStringArray();
+  if (false) {}
+  else if (qs.view && qs.view !== "undefined" && qs.view == "paths") {
+    for (var i = 0, cell; cell = table_asm.rows[0].cells[i]; i++) {
+      var found = false;
+      if (false) {}
+      else if (cell.textContent == "ID") {
+        found = true;
+      }
+      else if (cell.textContent == "Module") {
+        found = true;
+      }
+      else if (cell.textContent == "Coverage (% app. time)") {
+        found = true;
+      }
+      else if (cell.textContent == "Number of paths") {
+        found = true;
+      }
+      else if (cell.textContent == "Function") {
+        found = true;
+      }
+      else if (cell.textContent == "Source") {
+        found = true;
+      }
+      var e = document.getElementById("_table255_opt" + (i + 1));
+      if (e != null) {
+          e.checked = found;
+          click_table_menu("_table255_opt" + (i + 1), "_table255_opt_all", "list_opts_table255");
+      }
+    }
+  }
+  else if (qs.view && qs.view !== "undefined" && qs.view == "iterations") {
+    for (var i = 0, cell; cell = table_asm.rows[0].cells[i]; i++) {
+      var found = false;
+      if (false) {}
+      else if (cell.textContent == "ID") {
+        found = true;
+      }
+      else if (cell.textContent == "Module") {
+        found = true;
+      }
+      else if (cell.textContent == "Coverage (% app. time)") {
+        found = true;
+      }
+      else if (cell.textContent == "min (Iteration count)") {
+        found = true;
+      }
+      else if (cell.textContent == "avg (Iteration count)") {
+        found = true;
+      }
+      else if (cell.textContent == "max (Iteration count)") {
+        found = true;
+      }
+      else if (cell.textContent == "Function") {
+        found = true;
+      }
+      else if (cell.textContent == "Source") {
+        found = true;
+      }
+      var e = document.getElementById("_table255_opt" + (i + 1));
+      if (e != null) {
+          e.checked = found;
+          click_table_menu("_table255_opt" + (i + 1), "_table255_opt_all", "list_opts_table255");
+      }
+    }
+  }
+  __disable_CSV_generator_buttons (["save_button_255"]);
+});
+function toggle_loop_index() {
+  var table = document.getElementById("_tree_table_255");
+  var last_level;
+  var button = document.getElementById("button_toggle_loop_index");
+  if (button.innerHTML.localeCompare ("Show Full Profile") == 0) {
+    button.innerHTML = "Show Innermost Profile";
+    for (var i = 1, row; row = table.rows[i]; i++) {
+      row.classList.remove ("_filter_hidden");
+    }
+  }
+  else {
+    button.innerHTML = "Show Full Profile";
+    for (var i = 1, row; row = table.rows[i]; i++) {
+      var level = row.cells[4].innerHTML;
+      if (level != "") {
+        last_level = level;
+      }
+      if (last_level.localeCompare("Single") != 0
+      &&  last_level.localeCompare("Innermost") != 0) {
+        row.classList.add ("_filter_hidden");
+      }
+    }
+  }
+}
+function _onresize () {
+  __maqao_legacy_onresize ();
+  var d = document.getElementById ("_tree_table_255").parentNode;
+  d.style.maxHeight = (window.innerHeight - getPos (d).y - 20)+"px";
+}
+window.onresize = _onresize;
+addLoadEvent(function(){
+  _onresize ();
+});
+</script>
+</div></div>
+  <div id="MaqaoModal" class="maqao_modal">
+    <div class="maqao_modal-content">
+      <div class="maqao_modal-header">
+        <span class="maqao_close">&times;</span>
+      </div>
+      <div id="maqao_modal-body" class="maqao_modal-body">
+      </div>
+    </div>
+  </div>
+</div><script>
+var tooltips_texts = ['A set of filters to display / hide some columns',
+'Source file and source lines where the loop is defined',
+'Source function where the loop is defined',
+'Level in the loop hierarchy',
+'Maximal execution time over all threads spent in the loop.',
+'Time of the loop with regard to the global wall time.',
+'Percentage of time spent in the loop.',
+'Potential speedup if all data are in L1 cache and if instructions performing address computation are removed.',
+'Potential speedup if all data are in L1 cache and if floating point computation is vectorized.',
+'Potential speedup if all data are in L1 cache and if both floating point computation and memory accesses are vectorized.',
+'Potential speedup if only floating point computation is kept.',
+'Number of paths in the loop.',
+'Percentage of the loop that have been vectorized. The color is red when the value is lower than 70%, orange when the value is between 70% and 90% and green when it is greater than 90%',
+'Average width (percentage) of vector registers used by the loop. The color is red when the value is lower than 70%, orange when the value is between 70% and 90% and green when it is greater than 90%',
+'Number of cycles needed to run one iteration of the loop if all data are in L1.',
+'Number of cycles needed to run one iteration of the loop if all data are in L1 cache and if instructions performing address computation are removed.',
+'Number of cycles needed to run one iteration of the loop if all data are in L1 and if floating point computation is vectorized.',
+'Number of cycles needed to run one iteration of the loop if all data are in L1 and if both floating point computation and memory accesses are vectorized.',
+'Number of cycles needed to run one iteration of the loop if only floating point computation is kept.',
+'Internal uniq loop identifier. It is recognize by all MAQAO tools.',
+'Assembly file (binary or dynamic librarie) containing the loop.',
+'Source file and source lines where the loop is defined',
+'Source function where the loop is defined',
+'Level in the loop hierarchy',
+'Maximal execution time over all threads spent in the loop.',
+'Time of the loop with regard to the global wall time.',
+'Percentage of time spent in the loop.',
+'Potential speedup if all data are in L1 cache and if instructions performing address computation are removed.',
+'Potential speedup if all data are in L1 cache and if floating point computation is vectorized.',
+'Potential speedup if all data are in L1 cache and if both floating point computation and memory accesses are vectorized.',
+'Potential speedup if only floating point computation is kept.',
+'Number of paths in the loop.',
+'Percentage of the loop that have been vectorized. The color is red when the value is lower than 70%, orange when the value is between 70% and 90% and green when it is greater than 90%',
+'Average width (percentage) of vector registers used by the loop. The color is red when the value is lower than 70%, orange when the value is between 70% and 90% and green when it is greater than 90%',
+'Number of cycles needed to run one iteration of the loop if all data are in L1.',
+'Number of cycles needed to run one iteration of the loop if all data are in L1 cache and if instructions performing address computation are removed.',
+'Number of cycles needed to run one iteration of the loop if all data are in L1 and if floating point computation is vectorized.',
+'Number of cycles needed to run one iteration of the loop if all data are in L1 and if both floating point computation and memory accesses are vectorized.',
+'Number of cycles needed to run one iteration of the loop if only floating point computation is kept.'];
+var modal = document.getElementById('MaqaoModal');
+var span = document.getElementsByClassName("maqao_close")[0];
+span.onclick = function() {
+    modal.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+const comparer = (idx, asc) => (a, b) => ((v1, v2) => 
+    v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v2 - v1 : v1.toString().localeCompare(v2)
+    )(getCellValue(asc ? a : b, idx) === '' ? -1: (getCellValue(asc ? a : b, idx).replace(/\s/g,'')), 
+      getCellValue(asc ? b : a, idx) === '' ? -1: (getCellValue(asc ? b : a, idx).replace(/\s/g,'')));
+addLoadEvent(function(){
+  document.querySelectorAll('._fixed_table:not(._no_auto_sorting) th').forEach(th => th.addEventListener('click', (() => {
+    const table = th.closest('table');
+    // Remove all symbols in header
+    table.querySelectorAll('th').forEach(function (e) {
+      e.firstChild.textContent = "";
+    });
+    // Change the symbol on the clicked header
+    if (this.asc != true) {
+      th.firstChild.textContent = "\u25BC";
+    }
+    else {
+      th.firstChild.textContent = "\u25B2";
+    }
+    Array.from(table.querySelectorAll('tr:nth-child(n+2)'))
+        .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+        .forEach(tr => table.appendChild(tr) );
+  })));
+});
+addLoadEvent(function(){
+  document.querySelectorAll('._tree_table:not(._no_auto_sorting) th').forEach(th => th.addEventListener('click', (() => {
+    const table = th.closest('table');
+    // Remove all symbols in header
+    table.querySelectorAll('th').forEach(function (e) {
+      e.firstChild.textContent = "";
+    });
+    // Change the symbol on the clicked header
+    if (this.asc != true) {
+      th.firstChild.textContent = "\u25BC";
+    }
+    else {
+      th.firstChild.textContent = "\u25B2";
+    }
+    let last_id = "";
+    const t_outermost = new Array ();
+    const t_children  = new Map ();
+    for (let i = 1, row; row = table.rows[i]; i++) {
+      if (row.classList.contains ("_outer_row")) {
+        t_outermost.push (row);
+        last_id = row.id;
+        t_children [last_id] = new Array ();
+      }
+      else {
+        t_children [last_id].push (row);
+      }
+    }
+    t_outermost.sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc));
+    for (let i = 0, row; row = t_outermost[i]; i++) {
+      table.appendChild(row)
+      for (let j = 0, child; child = t_children[row.id][j]; j++) {
+        table.appendChild(child)
+      }
+    }
+  })));
+});
+// Hide unselected tabs
+addLoadEvent(function(){
+  var x = document.getElementsByClassName("_tab_header_li");
+  for (var i = 0; i < x.length; i++) {
+    if (x[i].classList.contains("selected_tab") == false) {
+      var e = document.getElementById (x[i].dataset.tab);
+      e.style.display = "none";
+    }
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,510 @@
+{
+  "_cqa_text_report":
+    {
+      "_objects":
+        {
+          "image_col_maj":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/col_maj.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_4x32_256":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/4x32_256.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_1x64_128":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/1x64_128.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_4x32_512":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/4x32_512.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_8x32_512":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/8x32_512.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_1x32_256":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/1x32_256.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_2x64_512":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/2x64_512.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "tt_insn_vec":
+            {
+              "type": "tooltip",
+              "help": "Portion of vector registers that is actually used. Available only for instructions belonging to a SIMD/vector instructions set (like x86 AVX)",
+              "text": "Vectorization"
+            },
+          "image_1x64_256":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/1x64_256.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "tt_Recip_throughput":
+            {
+              "type": "tooltip",
+              "help": "Average number of cycles to retire that instruction if repeated (assuming independent instructions, with no read-after-write dependency)",
+              "text": "Recip. throughput"
+            },
+          "tt_Nb_FU":
+            {
+              "type": "tooltip",
+              "help": "Number of Fused (Front-end) uops",
+              "text": "Nb FU"
+            },
+          "image_vec_align":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/vec_align.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_1x64_512":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/1x64_512.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_1x32_128":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/1x32_128.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "list_path_1_complex_1":
+            {
+              "dynamic": true,
+              "initial": "closed",
+              "type": "list",
+              "lines":
+                [
+                "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:37",
+                "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:37",
+                "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:37",
+                "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:37",
+                "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:37",
+                "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:37",
+                "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:37",
+                "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:37",
+                "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:37",
+                "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:37",
+                "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:37",
+                "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:37"
+                ],
+              "header": ""
+            },
+          "list_path_1_call_1":
+            {
+              "dynamic": true,
+              "initial": "closed",
+              "type": "list",
+              "lines":
+                [
+                "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:99",
+                "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:100",
+                "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:101",
+                "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:99",
+                "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:100",
+                "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:101"
+                ],
+              "header": ""
+            },
+          "image_2x64_256":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/2x64_256.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_row_maj":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/row_maj.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_4x64_512":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/4x64_512.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "image_1x32_512":
+            {
+              "type": "image",
+              "format": "url",
+              "data": "../images/cqa/1x32_512.svg",
+              "size":
+                {
+                  "x": 500
+                }
+            },
+          "list_path_1_complex_2":
+            {
+              "dynamic": true,
+              "initial": "closed",
+              "type": "list",
+              "lines":
+                [
+                "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:93",
+                "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:93",
+                "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:93",
+                "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:93"
+                ],
+              "header": ""
+            },
+          "list_path_1_cvt_1":
+            {
+              "dynamic": true,
+              "initial": "closed",
+              "type": "list",
+              "lines":
+                [
+                "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:102",
+                "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:102"
+                ],
+              "header": ""
+            },
+          "list_path_1_cvt_2":
+            {
+              "dynamic": true,
+              "initial": "closed",
+              "type": "list",
+              "lines":
+                [
+                "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:93",
+                "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:93",
+                "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:93",
+                "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:93"
+                ],
+              "header": ""
+            },
+          "list_path_1_call_2":
+            {
+              "dynamic": true,
+              "initial": "closed",
+              "type": "list",
+              "lines":
+                [
+                "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:102",
+                "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:102"
+                ],
+              "header": ""
+            }
+        },
+      "AVG":
+        {
+          "hint":
+            [
+              {
+                "details": "Calling (and then returning from) a function prevents many compiler optimizations (like vectorization), breaks control flow (which reduces pipeline performance) and executes extra instructions to save/restore the registers used inside it, which is very expensive (dozens of cycles). Consider to inline small functions.\n - (anonymous namespace)::velocity_component(int&): 6 occurrences<<list_path_1_call_1>>\n - Atoms::add_local(double, double, double, double, double, double): 2 occurrences<<list_path_1_call_2>>\n",
+                "title": "CALL instructions",
+                "txt": "Detected function call instructions.\n"
+              },
+              {
+                "details": "These instructions generate more than one micro-operation and only one of them can be decoded during a cycle and the extra micro-operations increase pressure on execution units.\n - VCOMISD: 12 occurrences<<list_path_1_complex_1>>\n - VCVTSI2SD: 4 occurrences<<list_path_1_complex_2>>\n",
+                "title": "Complex instructions",
+                "txt": "Detected COMPLEX INSTRUCTIONS.\n"
+              },
+              {
+                "workaround": "Avoid mixing data with different types. In particular, check if the type of constants is the same as array elements.",
+                "details": " - MOVZX: 2 occurrences<<list_path_1_cvt_1>>\n - VCVTSI2SD (INT32/64 to FP64, scalar): 4 occurrences<<list_path_1_cvt_2>>\n",
+                "title": "Conversion instructions",
+                "txt": "Detected expensive conversion instructions."
+              },
+              {
+                "title": "Type of elements and instruction set",
+                "txt": "16 SSE or AVX instructions are processing arithmetic or math operations on double precision FP elements in scalar mode (one at a time).\n"
+              },
+              {
+                "title": "Matching between your loop (in the source code) and the binary loop",
+                "txt": "The binary loop is composed of 4 FP arithmetical operations:\n - 4: multiply\nThe binary loop is loading 242 bytes (30 double precision FP elements).\nThe binary loop is storing 122 bytes (15 double precision FP elements)."
+              },
+              {
+                "title": "Arithmetic intensity",
+                "txt": "Arithmetic intensity is 0.01 FP operations per loaded or stored byte."
+              },
+              {
+                "workaround": "Unroll your loop if trip count is significantly higher than target unroll factor and if some data references are common to consecutive iterations. This can be done manually. Or by recompiling with -funroll-loops and/or -floop-unroll-and-jam. Or with the unroll (resp. unroll_and_jam) directive on top of the inner (resp. surrounding) loop. You can enforce an unroll factor: #pragma GCC unroll N",
+                "title": "Unroll opportunity",
+                "txt": "Loop is potentially data access bound."
+              }
+            ],
+          "expert":
+            [
+              {
+                "title": "General properties",
+                "txt": "nb instructions    : 131\nnb uops            : 155\nloop length        : 608\nused x86 registers : 15\nused mmx registers : 0\nused xmm registers : 10\nused ymm registers : 0\nused zmm registers : 0\nnb stack references: 13\n"
+              },
+              {
+                "help": "Front-end corresponds to instructions fetching and decoding into macro/micro operations",
+                "title": "Front-end",
+                "txt": "MACRO FUSION NOT POSSIBLE\nFIT IN UOP CACHE\nmicro-operation queue: 31.00 cycles\nfront end            : 31.00 cycles\n"
+              },
+              {
+                "help": "Back-end corresponds to macro/micro operations execution (includes allocating registers, fetching operands etc.)",
+                "title": "Back-end",
+                "txt": "       | P0    | P1    | P2    | P3    | P4    | P5    | P6    | P7    | P8    | P9\n--------------------------------------------------------------------------------------\nuops   | 22.50 | 14.50 | 19.00 | 19.00 | 16.00 | 14.50 | 22.50 | 16.00 | 16.00 | 16.00\ncycles | 22.50 | 14.50 | 19.00 | 19.00 | 16.00 | 14.50 | 22.50 | 16.00 | 16.00 | 16.00\n\nExecution ports to units layout:\n - P0 (256 bits): VPU, BRU, ALU, DIV/SQRT\n - P1 (256 bits): ALU, VPU\n - P2 (512 bits): load\n - P3 (512 bits): load\n - P4 (256 bits): store data\n - P5 (512 bits): ALU, VPU\n - P6: ALU, BRU\n - P7: store address\n - P8: store address\n - P9 (256 bits): store data\n\nCycles executing div or sqrt instructions: NA\n"
+              },
+              {
+                "title": "Cycles summary",
+                "txt": "Front-end : 31.00\nDispatch  : 22.50\nOverall L1: 31.00\n"
+              },
+              {
+                "help": "Proportion of vectorizable instructions that are actually vectorized. Higher is better.",
+                "title": "Vectorization ratios",
+                "txt": "INT\nall    : 0%\nload   : 0%\nstore  : 0%\nmul    : NA (no mul vectorizable/vectorized instructions)\nadd-sub: NA (no add-sub vectorizable/vectorized instructions)\nfma    : NA (no fma vectorizable/vectorized instructions)\nother  : 0%\nFP\nall     : 26%\nload    : 0%\nstore   : 0%\nmul     : 0%\nadd-sub : NA (no add-sub vectorizable/vectorized instructions)\nfma     : NA (no fma vectorizable/vectorized instructions)\ndiv/sqrt: NA (no div/sqrt vectorizable/vectorized instructions)\nother   : 45%\nINT+FP\nall     : 12%\nload    : 0%\nstore   : 0%\nmul     : 0%\nadd-sub : NA (no add-sub vectorizable/vectorized instructions)\nfma     : NA (no fma vectorizable/vectorized instructions)\ndiv/sqrt: NA (no div/sqrt vectorizable/vectorized instructions)\nother   : 30%\n"
+              },
+              {
+                "help": "Effective/average relative length/width used in vector/SIMD registers. Higher is better.",
+                "title": "Vector efficiency ratios",
+                "txt": "INT\nall    : 7%\nload   : 8%\nstore  : 7%\nmul    : NA (no mul vectorizable/vectorized instructions)\nadd-sub: NA (no add-sub vectorizable/vectorized instructions)\nfma    : NA (no fma vectorizable/vectorized instructions)\nother  : 6%\nFP\nall     : 15%\nload    : 12%\nstore   : 12%\nmul     : 12%\nadd-sub : NA (no add-sub vectorizable/vectorized instructions)\nfma     : NA (no fma vectorizable/vectorized instructions)\ndiv/sqrt: NA (no div/sqrt vectorizable/vectorized instructions)\nother   : 18%\nINT+FP\nall     : 11%\nload    : 10%\nstore   : 8%\nmul     : 12%\nadd-sub : NA (no add-sub vectorizable/vectorized instructions)\nfma     : NA (no fma vectorizable/vectorized instructions)\ndiv/sqrt: NA (no div/sqrt vectorizable/vectorized instructions)\nother   : 14%\n"
+              },
+              {
+                "help": "Compare the CQA-computed load/store/compute metrics with the capacity of the core. For instance if CQA computes 24 bytes in the loop in 2 cycles (that is 12 cycles per cycle) and if the core can process up to 16 bytes per cycle, that metric is 75%.",
+                "title": "Cycles and memory resources usage",
+                "txt": "Assuming all data fit into the L1 cache, each iteration of the binary loop takes 31.00 cycles. At this rate:\n - 6% of peak load performance is reached (7.81 out of 128.00 bytes loaded per cycle (GB/s @ 1GHz))\n - 6% of peak store performance is reached (3.94 out of 64.00 bytes stored per cycle (GB/s @ 1GHz))\n"
+              },
+              {
+                "title": "Front-end bottlenecks",
+                "txt": "Performance is limited by instruction throughput (loading/decoding program instructions to execution core) (front-end is a bottleneck).\n\nBy removing all these bottlenecks, you can lower the cost of an iteration from 31.00 to 22.50 cycles (1.38x speedup).\n"
+              },
+              {
+                "title": "ASM code",
+                "txt": "In the binary file, the address of the loop is: 21aca\n\nInstruction                                            | Nb FU | P0   | P1   | P2   | P3   | P4   | P5   | P6   | P7   | P8   | P9   | Latency | Recip. throughput | Vectorization\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\nINC %EBX                                               | 1     | 0.25 | 0.25 | 0    | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0    | 1       | 0.25              | N/A\nLEA (%RBX,%R12,1),%EDI                                 | 1     | 0.25 | 0.25 | 0    | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0    | 1       | 0.25              | N/A\nAND $0x1,%EDI                                          | 1     | 0.25 | 0.25 | 0    | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0    | 1       | 0.25              | scal (6.3%)\nJNE 21ac0 <_Z12create_atomsR5Atomsiiid+0x290>          | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nCMP %R15D,%EBX                                         | 1     | 0.25 | 0.25 | 0    | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0    | 1       | 0.25              | scal (6.3%)\nJL 21ac0 <_Z12create_atomsR5Atomsiiid+0x290>           | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nCMP %R9D,%EBX                                          | 1     | 0.25 | 0.25 | 0    | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0    | 1       | 0.25              | scal (6.3%)\nJG 21ac0 <_Z12create_atomsR5Atomsiiid+0x290>           | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nTEST %R13B,%R13B                                       | 1     | 0.25 | 0.25 | 0    | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0    | 1       | 0.25              | N/A\nJE 21c48 <_Z12create_atomsR5Atomsiiid+0x418>           | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nNOPW %CS:(%RAX,%RAX,1)                                 | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0       | 0.20              | N/A\nINC %EBX                                               | 1     | 0.25 | 0.25 | 0    | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0    | 1       | 0.25              | N/A\nCMP %EAX,%EBX                                          | 1     | 0.25 | 0.25 | 0    | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0    | 1       | 0.25              | scal (6.3%)\nJE 21be8 <_Z12create_atomsR5Atomsiiid+0x3b8>           | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nLEA (%RBX,%R12,1),%EDI                                 | 1     | 0.25 | 0.25 | 0    | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0    | 1       | 0.25              | N/A\nAND $0x1,%EDI                                          | 1     | 0.25 | 0.25 | 0    | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0    | 1       | 0.25              | scal (6.3%)\nJNE 21a98 <_Z12create_atomsR5Atomsiiid+0x268>          | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nCMP %R15D,%EBX                                         | 1     | 0.25 | 0.25 | 0    | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0    | 1       | 0.25              | scal (6.3%)\nJL 21a98 <_Z12create_atomsR5Atomsiiid+0x268>           | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nCMP %R9D,%EBX                                          | 1     | 0.25 | 0.25 | 0    | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0    | 1       | 0.25              | scal (6.3%)\nJG 21a98 <_Z12create_atomsR5Atomsiiid+0x268>           | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nTEST %R13B,%R13B                                       | 1     | 0.25 | 0.25 | 0    | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0    | 1       | 0.25              | N/A\nJNE 21a98 <_Z12create_atomsR5Atomsiiid+0x268>          | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nTEST %R10B,%R10B                                       | 1     | 0.25 | 0.25 | 0    | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0    | 1       | 0.25              | N/A\nJNE 21a98 <_Z12create_atomsR5Atomsiiid+0x268>          | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nVCVTSI2SD %EBX,%XMM8,%XMM1                             | 2     | 0.50 | 0.50 | 0    | 0    | 0    | 1    | 0    | 0    | 0    | 0    | 4       | 1                 | scal (6.3%)\nVMULSD %XMM7,%XMM1,%XMM6                               | 1     | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 4       | 0.50              | scal (12.5%)\nVCOMISD 0x30(%R11),%XMM6                               | 2     | 1    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 3       | 1                 | scal (12.5%)\nJB 21a98 <_Z12create_atomsR5Atomsiiid+0x268>           | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50              | N/A\nVCOMISD 0x48(%R11),%XMM6                               | 2     | 1    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 3       | 1                 | scal (12.5%)\nJAE 21a98 <_Z12create_atomsR5Atomsiiid+0x268>          | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nVCVTSI2SD %R14D,%XMM8,%XMM1                            | 2     | 0.50 | 0.50 | 0    | 0    | 0    | 1    | 0    | 0    | 0    | 0    | 4       | 1                 | scal (6.3%)\nVMULSD %XMM7,%XMM1,%XMM0                               | 1     | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 4       | 0.50              | scal (12.5%)\nVCOMISD 0x38(%R11),%XMM0                               | 2     | 1    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 3       | 1                 | scal (12.5%)\nJB 21a98 <_Z12create_atomsR5Atomsiiid+0x268>           | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50              | N/A\nVCOMISD 0x50(%R11),%XMM0                               | 2     | 1    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 3       | 1                 | scal (12.5%)\nJAE 21a98 <_Z12create_atomsR5Atomsiiid+0x268>          | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nVCOMISD 0x40(%R11),%XMM2                               | 2     | 1    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 3       | 1                 | scal (12.5%)\nJB 21a98 <_Z12create_atomsR5Atomsiiid+0x268>           | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50              | N/A\nVCOMISD 0x58(%R11),%XMM2                               | 2     | 1    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 3       | 1                 | scal (12.5%)\nJAE 21a98 <_Z12create_atomsR5Atomsiiid+0x268>          | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nMOV -0x50(%RBP),%RDI                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | scal (12.5%)\nMOV %R11,-0x60(%RBP)                                   | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (12.5%)\nLEA 0x1(%RBX,%RCX,1),%R11D                             | 1     | 0    | 1    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 3       | 1                 | N/A\nMOV %EDX,-0x90(%RBP)                                   | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (6.3%)\nMOV %EAX,-0x8c(%RBP)                                   | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (6.3%)\nMOV %R9D,-0x88(%RBP)                                   | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (6.3%)\nMOV %ESI,-0x84(%RBP)                                   | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (6.3%)\nMOV %R10B,-0x70(%RBP)                                  | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | N/A\nMOV %R8D,-0x80(%RBP)                                   | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (6.3%)\nMOV %ECX,-0x6c(%RBP)                                   | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (6.3%)\nMOV %R11D,-0x3c(%RBP)                                  | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (6.3%)\nVMOVSD %XMM7,-0x78(%RBP)                               | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 1       | 0.50              | scal (12.5%)\nVMOVSD %XMM0,-0x98(%RBP)                               | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 1       | 0.50              | scal (12.5%)\nCALL 21340 <_ZN12_GLOBAL__N_1L18velocity_componentERi> | 2     | 0    | 0    | 0    | 0    | 0.50 | 0    | 1    | 0.50 | 0.50 | 0.50 | 0       | 2                 | N/A\nVMOVAPD %XMM0,%XMM3                                    | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0       | 0.20              | vect (25.0%)\nCALL 21340 <_ZN12_GLOBAL__N_1L18velocity_componentERi> | 2     | 0    | 0    | 0    | 0    | 0.50 | 0    | 1    | 0.50 | 0.50 | 0.50 | 0       | 2                 | N/A\nVMOVAPD %XMM0,%XMM4                                    | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0       | 0.20              | vect (25.0%)\nCALL 21340 <_ZN12_GLOBAL__N_1L18velocity_componentERi> | 2     | 0    | 0    | 0    | 0    | 0.50 | 0    | 1    | 0.50 | 0.50 | 0.50 | 0       | 2                 | N/A\nVMOVSD -0x98(%RBP),%XMM1                               | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | scal (12.5%)\nMOV -0x60(%RBP),%RDI                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | scal (12.5%)\nVMOVSD %XMM2,-0x68(%RBP)                               | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 1       | 0.50              | scal (12.5%)\nVMOVAPD %XMM0,%XMM5                                    | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0       | 0.20              | vect (25.0%)\nVMOVAPD %XMM6,%XMM0                                    | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0       | 0.20              | vect (25.0%)\nCALL 7c20 <_ZN5Atoms9add_localEdddddd>                 | 2     | 0    | 0    | 0    | 0    | 0.50 | 0    | 1    | 0.50 | 0.50 | 0.50 | 0       | 2                 | N/A\nMOV -0x90(%RBP),%EDX                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | scal (6.3%)\nMOV -0x8c(%RBP),%EAX                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | N/A\nVXORPS %XMM8,%XMM8,%XMM8                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0       | 0.25              | vect (25.0%)\nMOV -0x88(%RBP),%R9D                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | scal (6.3%)\nMOV -0x84(%RBP),%ESI                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | scal (6.3%)\nMOVZX -0x70(%RBP),%R10D                                | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | N/A\nMOV -0x80(%RBP),%R8D                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | scal (6.3%)\nVMOVSD -0x78(%RBP),%XMM7                               | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | scal (12.5%)\nMOV -0x6c(%RBP),%ECX                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | N/A\nVMOVSD -0x68(%RBP),%XMM2                               | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | scal (12.5%)\nMOV -0x60(%RBP),%R11                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | N/A\nJMP 21a98 <_Z12create_atomsR5Atomsiiid+0x268>          | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 1    | 0    | 0    | 0    | 0       | 1-2               | N/A\nTEST %R10B,%R10B                                       | 1     | 0.25 | 0.25 | 0    | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0    | 1       | 0.25              | N/A\nJNE 21ac0 <_Z12create_atomsR5Atomsiiid+0x290>          | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nVCVTSI2SD %EBX,%XMM8,%XMM3                             | 2     | 0.50 | 0.50 | 0    | 0    | 0    | 1    | 0    | 0    | 0    | 0    | 4       | 1                 | scal (6.3%)\nVMULSD %XMM7,%XMM3,%XMM9                               | 1     | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 4       | 0.50              | scal (12.5%)\nVCOMISD 0x30(%R11),%XMM9                               | 2     | 1    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 3       | 1                 | scal (12.5%)\nJB 21ac0 <_Z12create_atomsR5Atomsiiid+0x290>           | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50              | N/A\nVCOMISD 0x48(%R11),%XMM9                               | 2     | 1    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 3       | 1                 | scal (12.5%)\nJAE 21ac0 <_Z12create_atomsR5Atomsiiid+0x290>          | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nVCVTSI2SD %R14D,%XMM8,%XMM1                            | 2     | 0.50 | 0.50 | 0    | 0    | 0    | 1    | 0    | 0    | 0    | 0    | 4       | 1                 | scal (6.3%)\nVMULSD %XMM7,%XMM1,%XMM4                               | 1     | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 4       | 0.50              | scal (12.5%)\nVCOMISD 0x38(%R11),%XMM4                               | 2     | 1    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 3       | 1                 | scal (12.5%)\nJB 21ac0 <_Z12create_atomsR5Atomsiiid+0x290>           | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50              | N/A\nVCOMISD 0x50(%R11),%XMM4                               | 2     | 1    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 3       | 1                 | scal (12.5%)\nJAE 21ac0 <_Z12create_atomsR5Atomsiiid+0x290>          | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nVCOMISD 0x40(%R11),%XMM2                               | 2     | 1    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 3       | 1                 | scal (12.5%)\nJB 21ac0 <_Z12create_atomsR5Atomsiiid+0x290>           | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50              | N/A\nVCOMISD 0x58(%R11),%XMM2                               | 2     | 1    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 3       | 1                 | scal (12.5%)\nJAE 21ac0 <_Z12create_atomsR5Atomsiiid+0x290>          | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nMOV -0x50(%RBP),%RDI                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | scal (12.5%)\nMOV %EAX,-0x8c(%RBP)                                   | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (6.3%)\nLEA 0x1(%RCX,%RBX,1),%EAX                              | 1     | 0    | 1    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 3       | 1                 | N/A\nMOV %R11,-0x60(%RBP)                                   | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (12.5%)\nMOV %EDX,-0x90(%RBP)                                   | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (6.3%)\nMOV %R9D,-0x88(%RBP)                                   | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (6.3%)\nMOV %ESI,-0x84(%RBP)                                   | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (6.3%)\nMOV %R10B,-0x70(%RBP)                                  | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | N/A\nMOV %R8D,-0x80(%RBP)                                   | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (6.3%)\nMOV %ECX,-0x6c(%RBP)                                   | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (6.3%)\nMOV %EAX,-0x3c(%RBP)                                   | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (6.3%)\nVMOVSD %XMM7,-0x78(%RBP)                               | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 1       | 0.50              | scal (12.5%)\nVMOVSD %XMM4,-0x98(%RBP)                               | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 1       | 0.50              | scal (12.5%)\nCALL 21340 <_ZN12_GLOBAL__N_1L18velocity_componentERi> | 2     | 0    | 0    | 0    | 0    | 0.50 | 0    | 1    | 0.50 | 0.50 | 0.50 | 0       | 2                 | N/A\nVMOVAPD %XMM0,%XMM3                                    | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0       | 0.20              | vect (25.0%)\nCALL 21340 <_ZN12_GLOBAL__N_1L18velocity_componentERi> | 2     | 0    | 0    | 0    | 0    | 0.50 | 0    | 1    | 0.50 | 0.50 | 0.50 | 0       | 2                 | N/A\nVMOVAPD %XMM0,%XMM4                                    | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0       | 0.20              | vect (25.0%)\nCALL 21340 <_ZN12_GLOBAL__N_1L18velocity_componentERi> | 2     | 0    | 0    | 0    | 0    | 0.50 | 0    | 1    | 0.50 | 0.50 | 0.50 | 0       | 2                 | N/A\nVMOVSD -0x98(%RBP),%XMM1                               | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | scal (12.5%)\nMOV -0x60(%RBP),%RDI                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | scal (12.5%)\nVMOVSD %XMM2,-0x68(%RBP)                               | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 1       | 0.50              | scal (12.5%)\nVMOVAPD %XMM0,%XMM5                                    | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0       | 0.20              | vect (25.0%)\nVMOVAPD %XMM9,%XMM0                                    | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0       | 0.20              | vect (25.0%)\nCALL 7c20 <_ZN5Atoms9add_localEdddddd>                 | 2     | 0    | 0    | 0    | 0    | 0.50 | 0    | 1    | 0.50 | 0.50 | 0.50 | 0       | 2                 | N/A\nMOV -0x90(%RBP),%EDX                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | scal (6.3%)\nMOV -0x8c(%RBP),%EAX                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | N/A\nVXORPS %XMM8,%XMM8,%XMM8                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0       | 0.25              | vect (25.0%)\nMOV -0x88(%RBP),%R9D                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | scal (6.3%)\nMOV -0x84(%RBP),%ESI                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | scal (6.3%)\nMOVZX -0x70(%RBP),%R10D                                | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | N/A\nMOV -0x80(%RBP),%R8D                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | scal (6.3%)\nVMOVSD -0x78(%RBP),%XMM7                               | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | scal (12.5%)\nMOV -0x6c(%RBP),%ECX                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | N/A\nVMOVSD -0x68(%RBP),%XMM2                               | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | scal (12.5%)\nMOV -0x60(%RBP),%R11                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | N/A\nJMP 21ac0 <_Z12create_atomsR5Atomsiiid+0x290>          | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 1    | 0    | 0    | 0    | 0       | 1-2               | N/A\n"
+              }
+            ],
+          "header":
+            [
+            "Warnings:\nDetected a function call instruction: ignoring called function instructions.\nRerun with --follow-calls=append to include them to analysis  or with --follow-calls=inline to simulate inlining.",
+            "0% of peak computational performance is used (0.13 out of 32.00 FLOP per cycle (GFLOPS @ 1GHz))"
+            ],
+          "brief":
+            [
+
+            ],
+          "gain":
+            [
+              {
+                "workaround": " - Try to reorganize arrays of structures to structures of arrays\n - Consider to permute loops (see vectorization gain report)\n",
+                "title": "Code clean check",
+                "txt": "Detected a slowdown caused by scalar integer instructions (typically used for address computation).\nBy removing them, you can lower the cost of an iteration from 31.00 to 17.50 cycles (1.77x speedup)."
+              },
+              {
+                "workaround": " - Try another compiler or update/tune your current one\n - Remove inter-iterations dependences from your loop and make it unit-stride:\n  * If your arrays have 2 or more dimensions, check whether elements are accessed contiguously and, otherwise, try to permute loops accordingly:\nC storage order is row-major: for(i) for(j) a[j][i] = b[j][i]; (slow, non stride 1) => for(i) for(j) a[i][j] = b[i][j]; (fast, stride 1)<<image_row_maj>>\n  * If your loop streams arrays of structures (AoS), try to use structures of arrays instead (SoA):\nfor(i) a[i].x = b[i].x; (slow, non stride 1) => for(i) a.x[i] = b.x[i]; (fast, stride 1)\n",
+                "details": "Store and arithmetical SSE/AVX instructions are used in scalar version (process only one data element in vector registers).\nSince your execution units are vector units, only a vectorized loop can use their full power.\n",
+                "title": "Vectorization",
+                "txt": "Your loop is probably not vectorized.\nOnly 11% of vector register length is used (average across all SSE/AVX instructions).\nBy vectorizing your loop, you can lower the cost of an iteration from 31.00 to 2.44 cycles (12.70x speedup)."
+              },
+              {
+                "title": "Execution units bottlenecks",
+                "txt": "Found no such bottlenecks but see expert reports for more complex bottlenecks."
+              }
+            ],
+          "potential":
+            [
+
+            ]
+        },
+      "paths":
+        [
+          {
+            "hint":
+              [
+                {
+                  "details": "Calling (and then returning from) a function prevents many compiler optimizations (like vectorization), breaks control flow (which reduces pipeline performance) and executes extra instructions to save/restore the registers used inside it, which is very expensive (dozens of cycles). Consider to inline small functions.\n - (anonymous namespace)::velocity_component(int&): 6 occurrences<<list_path_1_call_1>>\n - Atoms::add_local(double, double, double, double, double, double): 2 occurrences<<list_path_1_call_2>>\n",
+                  "title": "CALL instructions",
+                  "txt": "Detected function call instructions.\n"
+                },
+                {
+                  "details": "These instructions generate more than one micro-operation and only one of them can be decoded during a cycle and the extra micro-operations increase pressure on execution units.\n - VCOMISD: 12 occurrences<<list_path_1_complex_1>>\n - VCVTSI2SD: 4 occurrences<<list_path_1_complex_2>>\n",
+                  "title": "Complex instructions",
+                  "txt": "Detected COMPLEX INSTRUCTIONS.\n"
+                },
+                {
+                  "workaround": "Avoid mixing data with different types. In particular, check if the type of constants is the same as array elements.",
+                  "details": " - MOVZX: 2 occurrences<<list_path_1_cvt_1>>\n - VCVTSI2SD (INT32/64 to FP64, scalar): 4 occurrences<<list_path_1_cvt_2>>\n",
+                  "title": "Conversion instructions",
+                  "txt": "Detected expensive conversion instructions."
+                },
+                {
+                  "title": "Type of elements and instruction set",
+                  "txt": "16 SSE or AVX instructions are processing arithmetic or math operations on double precision FP elements in scalar mode (one at a time).\n"
+                },
+                {
+                  "title": "Matching between your loop (in the source code) and the binary loop",
+                  "txt": "The binary loop is composed of 4 FP arithmetical operations:\n - 4: multiply\nThe binary loop is loading 242 bytes (30 double precision FP elements).\nThe binary loop is storing 122 bytes (15 double precision FP elements)."
+                },
+                {
+                  "title": "Arithmetic intensity",
+                  "txt": "Arithmetic intensity is 0.01 FP operations per loaded or stored byte."
+                },
+                {
+                  "workaround": "Unroll your loop if trip count is significantly higher than target unroll factor and if some data references are common to consecutive iterations. This can be done manually. Or by recompiling with -funroll-loops and/or -floop-unroll-and-jam. Or with the unroll (resp. unroll_and_jam) directive on top of the inner (resp. surrounding) loop. You can enforce an unroll factor: #pragma GCC unroll N",
+                  "title": "Unroll opportunity",
+                  "txt": "Loop is potentially data access bound."
+                }
+              ],
+            "expert":
+              [
+                {
+                  "title": "General properties",
+                  "txt": "nb instructions    : 131\nnb uops            : 155\nloop length        : 608\nused x86 registers : 15\nused mmx registers : 0\nused xmm registers : 10\nused ymm registers : 0\nused zmm registers : 0\nnb stack references: 13\n"
+                },
+                {
+                  "help": "Front-end corresponds to instructions fetching and decoding into macro/micro operations",
+                  "title": "Front-end",
+                  "txt": "MACRO FUSION NOT POSSIBLE\nFIT IN UOP CACHE\nmicro-operation queue: 31.00 cycles\nfront end            : 31.00 cycles\n"
+                },
+                {
+                  "help": "Back-end corresponds to macro/micro operations execution (includes allocating registers, fetching operands etc.)",
+                  "title": "Back-end",
+                  "txt": "       | P0    | P1    | P2    | P3    | P4    | P5    | P6    | P7    | P8    | P9\n--------------------------------------------------------------------------------------\nuops   | 22.50 | 14.50 | 19.00 | 19.00 | 16.00 | 14.50 | 22.50 | 16.00 | 16.00 | 16.00\ncycles | 22.50 | 14.50 | 19.00 | 19.00 | 16.00 | 14.50 | 22.50 | 16.00 | 16.00 | 16.00\n\nExecution ports to units layout:\n - P0 (256 bits): VPU, BRU, ALU, DIV/SQRT\n - P1 (256 bits): ALU, VPU\n - P2 (512 bits): load\n - P3 (512 bits): load\n - P4 (256 bits): store data\n - P5 (512 bits): ALU, VPU\n - P6: ALU, BRU\n - P7: store address\n - P8: store address\n - P9 (256 bits): store data\n\nCycles executing div or sqrt instructions: NA\n"
+                },
+                {
+                  "title": "Cycles summary",
+                  "txt": "Front-end : 31.00\nDispatch  : 22.50\nOverall L1: 31.00\n"
+                },
+                {
+                  "help": "Proportion of vectorizable instructions that are actually vectorized. Higher is better.",
+                  "title": "Vectorization ratios",
+                  "txt": "INT\nall    : 0%\nload   : 0%\nstore  : 0%\nmul    : NA (no mul vectorizable/vectorized instructions)\nadd-sub: NA (no add-sub vectorizable/vectorized instructions)\nfma    : NA (no fma vectorizable/vectorized instructions)\nother  : 0%\nFP\nall     : 26%\nload    : 0%\nstore   : 0%\nmul     : 0%\nadd-sub : NA (no add-sub vectorizable/vectorized instructions)\nfma     : NA (no fma vectorizable/vectorized instructions)\ndiv/sqrt: NA (no div/sqrt vectorizable/vectorized instructions)\nother   : 45%\nINT+FP\nall     : 12%\nload    : 0%\nstore   : 0%\nmul     : 0%\nadd-sub : NA (no add-sub vectorizable/vectorized instructions)\nfma     : NA (no fma vectorizable/vectorized instructions)\ndiv/sqrt: NA (no div/sqrt vectorizable/vectorized instructions)\nother   : 30%\n"
+                },
+                {
+                  "help": "Effective/average relative length/width used in vector/SIMD registers. Higher is better.",
+                  "title": "Vector efficiency ratios",
+                  "txt": "INT\nall    : 7%\nload   : 8%\nstore  : 7%\nmul    : NA (no mul vectorizable/vectorized instructions)\nadd-sub: NA (no add-sub vectorizable/vectorized instructions)\nfma    : NA (no fma vectorizable/vectorized instructions)\nother  : 6%\nFP\nall     : 15%\nload    : 12%\nstore   : 12%\nmul     : 12%\nadd-sub : NA (no add-sub vectorizable/vectorized instructions)\nfma     : NA (no fma vectorizable/vectorized instructions)\ndiv/sqrt: NA (no div/sqrt vectorizable/vectorized instructions)\nother   : 18%\nINT+FP\nall     : 11%\nload    : 10%\nstore   : 8%\nmul     : 12%\nadd-sub : NA (no add-sub vectorizable/vectorized instructions)\nfma     : NA (no fma vectorizable/vectorized instructions)\ndiv/sqrt: NA (no div/sqrt vectorizable/vectorized instructions)\nother   : 14%\n"
+                },
+                {
+                  "help": "Compare the CQA-computed load/store/compute metrics with the capacity of the core. For instance if CQA computes 24 bytes in the loop in 2 cycles (that is 12 cycles per cycle) and if the core can process up to 16 bytes per cycle, that metric is 75%.",
+                  "title": "Cycles and memory resources usage",
+                  "txt": "Assuming all data fit into the L1 cache, each iteration of the binary loop takes 31.00 cycles. At this rate:\n - 6% of peak load performance is reached (7.81 out of 128.00 bytes loaded per cycle (GB/s @ 1GHz))\n - 6% of peak store performance is reached (3.94 out of 64.00 bytes stored per cycle (GB/s @ 1GHz))\n"
+                },
+                {
+                  "title": "Front-end bottlenecks",
+                  "txt": "Performance is limited by instruction throughput (loading/decoding program instructions to execution core) (front-end is a bottleneck).\n\nBy removing all these bottlenecks, you can lower the cost of an iteration from 31.00 to 22.50 cycles (1.38x speedup).\n"
+                },
+                {
+                  "title": "ASM code",
+                  "txt": "In the binary file, the address of the loop is: 21aca\n\nInstruction                                            | Nb FU | P0   | P1   | P2   | P3   | P4   | P5   | P6   | P7   | P8   | P9   | Latency | Recip. throughput | Vectorization\n----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\nINC %EBX                                               | 1     | 0.25 | 0.25 | 0    | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0    | 1       | 0.25              | N/A\nLEA (%RBX,%R12,1),%EDI                                 | 1     | 0.25 | 0.25 | 0    | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0    | 1       | 0.25              | N/A\nAND $0x1,%EDI                                          | 1     | 0.25 | 0.25 | 0    | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0    | 1       | 0.25              | scal (6.3%)\nJNE 21ac0 <_Z12create_atomsR5Atomsiiid+0x290>          | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nCMP %R15D,%EBX                                         | 1     | 0.25 | 0.25 | 0    | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0    | 1       | 0.25              | scal (6.3%)\nJL 21ac0 <_Z12create_atomsR5Atomsiiid+0x290>           | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nCMP %R9D,%EBX                                          | 1     | 0.25 | 0.25 | 0    | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0    | 1       | 0.25              | scal (6.3%)\nJG 21ac0 <_Z12create_atomsR5Atomsiiid+0x290>           | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nTEST %R13B,%R13B                                       | 1     | 0.25 | 0.25 | 0    | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0    | 1       | 0.25              | N/A\nJE 21c48 <_Z12create_atomsR5Atomsiiid+0x418>           | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nNOPW %CS:(%RAX,%RAX,1)                                 | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0       | 0.20              | N/A\nINC %EBX                                               | 1     | 0.25 | 0.25 | 0    | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0    | 1       | 0.25              | N/A\nCMP %EAX,%EBX                                          | 1     | 0.25 | 0.25 | 0    | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0    | 1       | 0.25              | scal (6.3%)\nJE 21be8 <_Z12create_atomsR5Atomsiiid+0x3b8>           | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nLEA (%RBX,%R12,1),%EDI                                 | 1     | 0.25 | 0.25 | 0    | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0    | 1       | 0.25              | N/A\nAND $0x1,%EDI                                          | 1     | 0.25 | 0.25 | 0    | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0    | 1       | 0.25              | scal (6.3%)\nJNE 21a98 <_Z12create_atomsR5Atomsiiid+0x268>          | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nCMP %R15D,%EBX                                         | 1     | 0.25 | 0.25 | 0    | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0    | 1       | 0.25              | scal (6.3%)\nJL 21a98 <_Z12create_atomsR5Atomsiiid+0x268>           | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nCMP %R9D,%EBX                                          | 1     | 0.25 | 0.25 | 0    | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0    | 1       | 0.25              | scal (6.3%)\nJG 21a98 <_Z12create_atomsR5Atomsiiid+0x268>           | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nTEST %R13B,%R13B                                       | 1     | 0.25 | 0.25 | 0    | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0    | 1       | 0.25              | N/A\nJNE 21a98 <_Z12create_atomsR5Atomsiiid+0x268>          | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nTEST %R10B,%R10B                                       | 1     | 0.25 | 0.25 | 0    | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0    | 1       | 0.25              | N/A\nJNE 21a98 <_Z12create_atomsR5Atomsiiid+0x268>          | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nVCVTSI2SD %EBX,%XMM8,%XMM1                             | 2     | 0.50 | 0.50 | 0    | 0    | 0    | 1    | 0    | 0    | 0    | 0    | 4       | 1                 | scal (6.3%)\nVMULSD %XMM7,%XMM1,%XMM6                               | 1     | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 4       | 0.50              | scal (12.5%)\nVCOMISD 0x30(%R11),%XMM6                               | 2     | 1    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 3       | 1                 | scal (12.5%)\nJB 21a98 <_Z12create_atomsR5Atomsiiid+0x268>           | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50              | N/A\nVCOMISD 0x48(%R11),%XMM6                               | 2     | 1    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 3       | 1                 | scal (12.5%)\nJAE 21a98 <_Z12create_atomsR5Atomsiiid+0x268>          | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nVCVTSI2SD %R14D,%XMM8,%XMM1                            | 2     | 0.50 | 0.50 | 0    | 0    | 0    | 1    | 0    | 0    | 0    | 0    | 4       | 1                 | scal (6.3%)\nVMULSD %XMM7,%XMM1,%XMM0                               | 1     | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 4       | 0.50              | scal (12.5%)\nVCOMISD 0x38(%R11),%XMM0                               | 2     | 1    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 3       | 1                 | scal (12.5%)\nJB 21a98 <_Z12create_atomsR5Atomsiiid+0x268>           | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50              | N/A\nVCOMISD 0x50(%R11),%XMM0                               | 2     | 1    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 3       | 1                 | scal (12.5%)\nJAE 21a98 <_Z12create_atomsR5Atomsiiid+0x268>          | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nVCOMISD 0x40(%R11),%XMM2                               | 2     | 1    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 3       | 1                 | scal (12.5%)\nJB 21a98 <_Z12create_atomsR5Atomsiiid+0x268>           | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50              | N/A\nVCOMISD 0x58(%R11),%XMM2                               | 2     | 1    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 3       | 1                 | scal (12.5%)\nJAE 21a98 <_Z12create_atomsR5Atomsiiid+0x268>          | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nMOV -0x50(%RBP),%RDI                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | scal (12.5%)\nMOV %R11,-0x60(%RBP)                                   | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (12.5%)\nLEA 0x1(%RBX,%RCX,1),%R11D                             | 1     | 0    | 1    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 3       | 1                 | N/A\nMOV %EDX,-0x90(%RBP)                                   | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (6.3%)\nMOV %EAX,-0x8c(%RBP)                                   | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (6.3%)\nMOV %R9D,-0x88(%RBP)                                   | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (6.3%)\nMOV %ESI,-0x84(%RBP)                                   | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (6.3%)\nMOV %R10B,-0x70(%RBP)                                  | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | N/A\nMOV %R8D,-0x80(%RBP)                                   | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (6.3%)\nMOV %ECX,-0x6c(%RBP)                                   | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (6.3%)\nMOV %R11D,-0x3c(%RBP)                                  | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (6.3%)\nVMOVSD %XMM7,-0x78(%RBP)                               | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 1       | 0.50              | scal (12.5%)\nVMOVSD %XMM0,-0x98(%RBP)                               | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 1       | 0.50              | scal (12.5%)\nCALL 21340 <_ZN12_GLOBAL__N_1L18velocity_componentERi> | 2     | 0    | 0    | 0    | 0    | 0.50 | 0    | 1    | 0.50 | 0.50 | 0.50 | 0       | 2                 | N/A\nVMOVAPD %XMM0,%XMM3                                    | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0       | 0.20              | vect (25.0%)\nCALL 21340 <_ZN12_GLOBAL__N_1L18velocity_componentERi> | 2     | 0    | 0    | 0    | 0    | 0.50 | 0    | 1    | 0.50 | 0.50 | 0.50 | 0       | 2                 | N/A\nVMOVAPD %XMM0,%XMM4                                    | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0       | 0.20              | vect (25.0%)\nCALL 21340 <_ZN12_GLOBAL__N_1L18velocity_componentERi> | 2     | 0    | 0    | 0    | 0    | 0.50 | 0    | 1    | 0.50 | 0.50 | 0.50 | 0       | 2                 | N/A\nVMOVSD -0x98(%RBP),%XMM1                               | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | scal (12.5%)\nMOV -0x60(%RBP),%RDI                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | scal (12.5%)\nVMOVSD %XMM2,-0x68(%RBP)                               | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 1       | 0.50              | scal (12.5%)\nVMOVAPD %XMM0,%XMM5                                    | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0       | 0.20              | vect (25.0%)\nVMOVAPD %XMM6,%XMM0                                    | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0       | 0.20              | vect (25.0%)\nCALL 7c20 <_ZN5Atoms9add_localEdddddd>                 | 2     | 0    | 0    | 0    | 0    | 0.50 | 0    | 1    | 0.50 | 0.50 | 0.50 | 0       | 2                 | N/A\nMOV -0x90(%RBP),%EDX                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | scal (6.3%)\nMOV -0x8c(%RBP),%EAX                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | N/A\nVXORPS %XMM8,%XMM8,%XMM8                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0       | 0.25              | vect (25.0%)\nMOV -0x88(%RBP),%R9D                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | scal (6.3%)\nMOV -0x84(%RBP),%ESI                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | scal (6.3%)\nMOVZX -0x70(%RBP),%R10D                                | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | N/A\nMOV -0x80(%RBP),%R8D                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | scal (6.3%)\nVMOVSD -0x78(%RBP),%XMM7                               | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | scal (12.5%)\nMOV -0x6c(%RBP),%ECX                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | N/A\nVMOVSD -0x68(%RBP),%XMM2                               | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | scal (12.5%)\nMOV -0x60(%RBP),%R11                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | N/A\nJMP 21a98 <_Z12create_atomsR5Atomsiiid+0x268>          | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 1    | 0    | 0    | 0    | 0       | 1-2               | N/A\nTEST %R10B,%R10B                                       | 1     | 0.25 | 0.25 | 0    | 0    | 0    | 0.25 | 0.25 | 0    | 0    | 0    | 1       | 0.25              | N/A\nJNE 21ac0 <_Z12create_atomsR5Atomsiiid+0x290>          | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nVCVTSI2SD %EBX,%XMM8,%XMM3                             | 2     | 0.50 | 0.50 | 0    | 0    | 0    | 1    | 0    | 0    | 0    | 0    | 4       | 1                 | scal (6.3%)\nVMULSD %XMM7,%XMM3,%XMM9                               | 1     | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 4       | 0.50              | scal (12.5%)\nVCOMISD 0x30(%R11),%XMM9                               | 2     | 1    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 3       | 1                 | scal (12.5%)\nJB 21ac0 <_Z12create_atomsR5Atomsiiid+0x290>           | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50              | N/A\nVCOMISD 0x48(%R11),%XMM9                               | 2     | 1    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 3       | 1                 | scal (12.5%)\nJAE 21ac0 <_Z12create_atomsR5Atomsiiid+0x290>          | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nVCVTSI2SD %R14D,%XMM8,%XMM1                            | 2     | 0.50 | 0.50 | 0    | 0    | 0    | 1    | 0    | 0    | 0    | 0    | 4       | 1                 | scal (6.3%)\nVMULSD %XMM7,%XMM1,%XMM4                               | 1     | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 4       | 0.50              | scal (12.5%)\nVCOMISD 0x38(%R11),%XMM4                               | 2     | 1    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 3       | 1                 | scal (12.5%)\nJB 21ac0 <_Z12create_atomsR5Atomsiiid+0x290>           | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50              | N/A\nVCOMISD 0x50(%R11),%XMM4                               | 2     | 1    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 3       | 1                 | scal (12.5%)\nJAE 21ac0 <_Z12create_atomsR5Atomsiiid+0x290>          | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nVCOMISD 0x40(%R11),%XMM2                               | 2     | 1    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 3       | 1                 | scal (12.5%)\nJB 21ac0 <_Z12create_atomsR5Atomsiiid+0x290>           | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50              | N/A\nVCOMISD 0x58(%R11),%XMM2                               | 2     | 1    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 3       | 1                 | scal (12.5%)\nJAE 21ac0 <_Z12create_atomsR5Atomsiiid+0x290>          | 1     | 0.50 | 0    | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0    | 0       | 0.50-1            | N/A\nMOV -0x50(%RBP),%RDI                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | scal (12.5%)\nMOV %EAX,-0x8c(%RBP)                                   | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (6.3%)\nLEA 0x1(%RCX,%RBX,1),%EAX                              | 1     | 0    | 1    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 3       | 1                 | N/A\nMOV %R11,-0x60(%RBP)                                   | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (12.5%)\nMOV %EDX,-0x90(%RBP)                                   | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (6.3%)\nMOV %R9D,-0x88(%RBP)                                   | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (6.3%)\nMOV %ESI,-0x84(%RBP)                                   | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (6.3%)\nMOV %R10B,-0x70(%RBP)                                  | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | N/A\nMOV %R8D,-0x80(%RBP)                                   | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (6.3%)\nMOV %ECX,-0x6c(%RBP)                                   | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (6.3%)\nMOV %EAX,-0x3c(%RBP)                                   | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 3       | 0.50              | scal (6.3%)\nVMOVSD %XMM7,-0x78(%RBP)                               | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 1       | 0.50              | scal (12.5%)\nVMOVSD %XMM4,-0x98(%RBP)                               | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 1       | 0.50              | scal (12.5%)\nCALL 21340 <_ZN12_GLOBAL__N_1L18velocity_componentERi> | 2     | 0    | 0    | 0    | 0    | 0.50 | 0    | 1    | 0.50 | 0.50 | 0.50 | 0       | 2                 | N/A\nVMOVAPD %XMM0,%XMM3                                    | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0       | 0.20              | vect (25.0%)\nCALL 21340 <_ZN12_GLOBAL__N_1L18velocity_componentERi> | 2     | 0    | 0    | 0    | 0    | 0.50 | 0    | 1    | 0.50 | 0.50 | 0.50 | 0       | 2                 | N/A\nVMOVAPD %XMM0,%XMM4                                    | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0       | 0.20              | vect (25.0%)\nCALL 21340 <_ZN12_GLOBAL__N_1L18velocity_componentERi> | 2     | 0    | 0    | 0    | 0    | 0.50 | 0    | 1    | 0.50 | 0.50 | 0.50 | 0       | 2                 | N/A\nVMOVSD -0x98(%RBP),%XMM1                               | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | scal (12.5%)\nMOV -0x60(%RBP),%RDI                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | scal (12.5%)\nVMOVSD %XMM2,-0x68(%RBP)                               | 1     | 0    | 0    | 0    | 0    | 0.50 | 0    | 0    | 0.50 | 0.50 | 0.50 | 1       | 0.50              | scal (12.5%)\nVMOVAPD %XMM0,%XMM5                                    | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0       | 0.20              | vect (25.0%)\nVMOVAPD %XMM9,%XMM0                                    | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0       | 0.20              | vect (25.0%)\nCALL 7c20 <_ZN5Atoms9add_localEdddddd>                 | 2     | 0    | 0    | 0    | 0    | 0.50 | 0    | 1    | 0.50 | 0.50 | 0.50 | 0       | 2                 | N/A\nMOV -0x90(%RBP),%EDX                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | scal (6.3%)\nMOV -0x8c(%RBP),%EAX                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | N/A\nVXORPS %XMM8,%XMM8,%XMM8                               | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0    | 0       | 0.25              | vect (25.0%)\nMOV -0x88(%RBP),%R9D                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | scal (6.3%)\nMOV -0x84(%RBP),%ESI                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | scal (6.3%)\nMOVZX -0x70(%RBP),%R10D                                | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | N/A\nMOV -0x80(%RBP),%R8D                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | scal (6.3%)\nVMOVSD -0x78(%RBP),%XMM7                               | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | scal (12.5%)\nMOV -0x6c(%RBP),%ECX                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | N/A\nVMOVSD -0x68(%RBP),%XMM2                               | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 1       | 0.50              | scal (12.5%)\nMOV -0x60(%RBP),%R11                                   | 1     | 0    | 0    | 0.50 | 0.50 | 0    | 0    | 0    | 0    | 0    | 0    | 2       | 0.50              | N/A\nJMP 21ac0 <_Z12create_atomsR5Atomsiiid+0x290>          | 1     | 0    | 0    | 0    | 0    | 0    | 0    | 1    | 0    | 0    | 0    | 0       | 1-2               | N/A\n"
+                }
+              ],
+            "header":
+              [
+              "Warnings:\nDetected a function call instruction: ignoring called function instructions.\nRerun with --follow-calls=append to include them to analysis  or with --follow-calls=inline to simulate inlining.",
+              "0% of peak computational performance is used (0.13 out of 32.00 FLOP per cycle (GFLOPS @ 1GHz))"
+              ],
+            "brief":
+              [
+
+              ],
+            "gain":
+              [
+                {
+                  "workaround": " - Try to reorganize arrays of structures to structures of arrays\n - Consider to permute loops (see vectorization gain report)\n",
+                  "title": "Code clean check",
+                  "txt": "Detected a slowdown caused by scalar integer instructions (typically used for address computation).\nBy removing them, you can lower the cost of an iteration from 31.00 to 17.50 cycles (1.77x speedup)."
+                },
+                {
+                  "workaround": " - Try another compiler or update/tune your current one\n - Remove inter-iterations dependences from your loop and make it unit-stride:\n  * If your arrays have 2 or more dimensions, check whether elements are accessed contiguously and, otherwise, try to permute loops accordingly:\nC storage order is row-major: for(i) for(j) a[j][i] = b[j][i]; (slow, non stride 1) => for(i) for(j) a[i][j] = b[i][j]; (fast, stride 1)<<image_row_maj>>\n  * If your loop streams arrays of structures (AoS), try to use structures of arrays instead (SoA):\nfor(i) a[i].x = b[i].x; (slow, non stride 1) => for(i) a.x[i] = b.x[i]; (fast, stride 1)\n",
+                  "details": "Store and arithmetical SSE/AVX instructions are used in scalar version (process only one data element in vector registers).\nSince your execution units are vector units, only a vectorized loop can use their full power.\n",
+                  "title": "Vectorization",
+                  "txt": "Your loop is probably not vectorized.\nOnly 11% of vector register length is used (average across all SSE/AVX instructions).\nBy vectorizing your loop, you can lower the cost of an iteration from 31.00 to 2.44 cycles (12.70x speedup)."
+                },
+                {
+                  "title": "Execution units bottlenecks",
+                  "txt": "Found no such bottlenecks but see expert reports for more complex bottlenecks."
+                }
+              ],
+            "potential":
+              [
+
+              ]
+          }
+        ],
+      "common":
+        {
+          "header":
+            [
+            "The loop is defined in /home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp:37,86-102.\n",
+            "The related source loop is not unrolled or unrolled with no peel/tail loop.",
+            "Warnings:\n - Ignoring paths for analysis\n - Too many paths. If you really need to analyze all of the 144 paths individually, rerun with max-paths=144\n - RecMII not computed since number of paths is unknown or > max_paths\n - Streams not analyzed since number of paths is unknown or > max_paths\n",
+            "Try to simplify control and/or increase the maximum number of paths per function/loop through the 'max-paths-nb' option.\n",
+            "This loop has 144 execution paths.\n",
+            "The presence of multiple execution paths is typically the main/first bottleneck.\nTry to simplify control inside loop: ideally, try to remove all conditional expressions, for example by (if applicable):\n - hoisting them (moving them outside the loop)\n - turning them into conditional moves, MIN or MAX\n\n",
+            "Ex: if (x<0) x=0 => x = (x<0 ? 0 : x) (or MAX(0,x) after defining the corresponding macro)\n"
+            ],
+          "nb_paths": 144
+        }
+    }
+}

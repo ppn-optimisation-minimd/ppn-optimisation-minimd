@@ -1,0 +1,5 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp: 111 - 112
+--------------------------------------------------------------------------------
+
+111:   for (int i = 0; i < atoms.nlocal; i++)
+112:     for (int d = 0; d < 3; d++) sum[d] += atoms.v[3 * i + d];

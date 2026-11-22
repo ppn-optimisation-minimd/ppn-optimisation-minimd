@@ -1,0 +1,4 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/thermo.cpp: 35 - 35
+--------------------------------------------------------------------------------
+
+35:     sum += (v[3 * i] * v[3 * i] + v[3 * i + 1] * v[3 * i + 1] + v[3 * i + 2] * v[3 * i + 2]) * atoms.mass;

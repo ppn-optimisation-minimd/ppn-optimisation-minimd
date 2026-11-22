@@ -1,0 +1,4 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/neighbor.cpp: 147 - 147
+--------------------------------------------------------------------------------
+
+147:         for (int m = bin_start_[jbin]; m < bin_start_[jbin + 1]; m++) {

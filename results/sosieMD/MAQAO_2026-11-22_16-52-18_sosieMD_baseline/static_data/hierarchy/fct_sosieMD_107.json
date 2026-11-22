@@ -1,0 +1,79 @@
+{
+  "__fct":
+    {
+      "loops":
+        {
+          "_162":
+            {
+              "src_regions":
+                [
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/neighbor.cpp",
+                    "regions":
+                      [
+                        [
+                        106,
+                        106
+                        ]
+                      ]
+                  }
+                ],
+              "src": "neighbor.cpp:106-106"
+            },
+          "_161":
+            {
+              "src_regions":
+                [
+                  {
+                    "path": "/usr/include/c++/15/bits/stl_vector.h",
+                    "regions":
+                      [
+                        [
+                        1264,
+                        1264
+                        ]
+                      ]
+                  },
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/neighbor.cpp",
+                    "regions":
+                      [
+                        [
+                        110,
+                        110
+                        ]
+                      ]
+                  }
+                ],
+              "src": "neighbor.cpp:110-110"
+            },
+          "_163":
+            {
+              "src_regions":
+                [
+                  {
+                    "path": "/usr/include/c++/15/bits/stl_vector.h",
+                    "regions":
+                      [
+                        [
+                        1264,
+                        1264
+                        ]
+                      ]
+                  },
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/neighbor.cpp",
+                    "regions":
+                      [
+                        [
+                        101,
+                        104
+                        ]
+                      ]
+                  }
+                ],
+              "src": "neighbor.cpp:101-104"
+            }
+        }
+    }
+}

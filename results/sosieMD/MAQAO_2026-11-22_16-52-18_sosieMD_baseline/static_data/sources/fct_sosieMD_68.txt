@@ -1,0 +1,89 @@
+/usr/include/c++/15/bits/stl_vector.h: 1119 - 2245
+--------------------------------------------------------------------------------
+
+1119: 	ptrdiff_t __dif = this->_M_impl._M_finish - this->_M_impl._M_start;
+1120: 	if (__dif < 0)
+1121: 	   __builtin_unreachable ();
+1122: 	return size_type(__dif);
+[...]
+1145: 	if (__new_size > size())
+1146: 	  _M_default_append(__new_size - size());
+1147: 	else if (__new_size < size())
+1148: 	  _M_erase_at_end(this->_M_impl._M_start + __new_size);
+[...]
+1263: 	__glibcxx_requires_subscript(__n);
+1264: 	return *(this->_M_impl._M_start + __n);
+[...]
+1418: 	if (this->_M_impl._M_finish != this->_M_impl._M_end_of_storage)
+1419: 	  {
+1420: 	    _GLIBCXX_ASAN_ANNOTATE_GROW(1);
+1421: 	    _Alloc_traits::construct(this->_M_impl, this->_M_impl._M_finish,
+1422: 				     __x);
+1423: 	    ++this->_M_impl._M_finish;
+1424: 	    _GLIBCXX_ASAN_ANNOTATE_GREW(1);
+1425: 	  }
+1426: 	else
+1427: 	  _M_realloc_append(__x);
+[...]
+1864:       { _M_erase_at_end(this->_M_impl._M_start); }
+[...]
+2241: 	if (size_type __n = this->_M_impl._M_finish - __pos)
+2242: 	  {
+2243: 	    std::_Destroy(__pos, this->_M_impl._M_finish,
+2244: 			  _M_get_Tp_allocator());
+2245: 	    this->_M_impl._M_finish = __pos;
+/usr/include/c++/15/bits/new_allocator.h: 191 - 191
+--------------------------------------------------------------------------------
+
+191: 	{ ::new((void *)__p) _Up(std::forward<_Args>(__args)...); }
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/domain.cpp: 166 - 217
+--------------------------------------------------------------------------------
+
+166: {
+167:   atoms.nghost = 0;
+168: 
+169:   int iswap = 0;
+170:   for (int d = 0; d < 3; d++) {
+171:     int first = 0, last = 0;  // atomes candidats à l'envoi : [first, last)
+172:     for (int n = 0; n < 2 * need_[d]; n++) {
+173:       Swap& swap = swaps_[iswap++];
+[...]
+179:       if (n % 2 == 0) {
+180:         first = last;
+181:         last = atoms.nlocal + atoms.nghost;
+182:       }
+183: 
+184:       swap.sendlist.clear();
+185:       for (int i = first; i < last; i++) {
+186:         const double coord = atoms.x[3 * i + d];
+187:         if (coord >= swap.lo && coord <= swap.hi) swap.sendlist.push_back(i);
+188:       }
+189: 
+190:       const int nsend = static_cast<int>(swap.sendlist.size());
+191:       send_.resize(BORDER_WIDTH * static_cast<size_t>(nsend));
+192:       for (int k = 0; k < nsend; k++) {
+193:         const int i = swap.sendlist[k];
+194:         double* buf = &send_[BORDER_WIDTH * k];
+195:         for (int c = 0; c < 3; c++) buf[c] = atoms.x[3 * i + c];
+196:         buf[d] += swap.shift;
+197:         buf[3] = atoms.type[i];
+198:       }
+199: 
+200:       // Vers soi-même (image périodique) : pas de message, le tampon d'envoi
+201:       // sert directement de tampon de réception.
+202:       const bool self = swap.sendproc == me;
+203:       if (!self) send_recv(swap.sendproc, swap.recvproc);
+204:       const std::vector<double>& in = self ? send_ : recv_;
+205: 
+206:       swap.nrecv = static_cast<int>(in.size()) / BORDER_WIDTH;
+207:       swap.firstrecv = atoms.nlocal + atoms.nghost;
+208:       atoms.reserve(swap.firstrecv + swap.nrecv);
+209:       for (int k = 0; k < swap.nrecv; k++) {
+210:         const int i = swap.firstrecv + k;
+211:         for (int c = 0; c < 3; c++) atoms.x[3 * i + c] = in[BORDER_WIDTH * k + c];
+212:         atoms.type[i] = static_cast<int>(in[BORDER_WIDTH * k + 3]);
+213:       }
+214:       atoms.nghost += swap.nrecv;
+215:     }
+216:   }
+217: }

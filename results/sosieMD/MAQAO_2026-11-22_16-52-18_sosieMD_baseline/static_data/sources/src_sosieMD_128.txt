@@ -1,0 +1,44 @@
+/usr/include/c++/15/bits/stl_vector.h: 1264 - 1264
+--------------------------------------------------------------------------------
+
+1264: 	return *(this->_M_impl._M_start + __n);
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/force_lj.cpp: 39 - 75
+--------------------------------------------------------------------------------
+
+39: #pragma omp parallel for schedule(static) reduction(+ : energy_sum, virial_sum) if (threaded)
+[...]
+49:     for (int k = 0; k < numneigh; k++) {
+50:       const int j = neighs[k];
+51:       const double dx = xi - x[3 * j + 0];
+52:       const double dy = yi - x[3 * j + 1];
+53:       const double dz = zi - x[3 * j + 2];
+54:       const double rsq = dx * dx + dy * dy + dz * dz;
+55:       const int pair = type_i * ntypes + type[j];
+56: 
+57:       if (rsq < cutforcesq_[pair]) {
+58:         const double sr2 = 1.0 / rsq;
+59:         const double sr6 = sr2 * sr2 * sr2 * sigma6_[pair];
+60:         const double force = 48.0 * sr6 * (sr6 - 0.5) * sr2 * epsilon_[pair];  // -(de/dr) / r
+61: 
+62:         fix += dx * force;
+63:         fiy += dy * force;
+64:         fiz += dz * force;
+65: 
+66:         const bool update_j = ghost_newton || j < nlocal;
+67:         if (update_j) {
+68:           add_to(f[3 * j + 0], -dx * force, threaded);
+69:           add_to(f[3 * j + 1], -dy * force, threaded);
+70:           add_to(f[3 * j + 2], -dz * force, threaded);
+71:         }
+72:         if (with_energy) {
+73:           const double weight = update_j ? 1.0 : 0.5;
+74:           energy_sum += weight * (4.0 * sr6 * (sr6 - 1.0)) * epsilon_[pair];
+75:           virial_sum += weight * rsq * force;
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/force.h: 32 - 36
+--------------------------------------------------------------------------------
+
+32:   if (shared) {
+33: #pragma omp atomic
+34:     target += value;
+35:   } else {
+36:     target += value;

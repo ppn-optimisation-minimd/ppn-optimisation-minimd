@@ -1,0 +1,146 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/util.h: 27 - 28
+--------------------------------------------------------------------------------
+
+27:   MPI_Abort(MPI_COMM_WORLD, 1);
+28:   std::exit(1);
+/usr/include/c++/15/bits/stl_vector.h: 121 - 2245
+--------------------------------------------------------------------------------
+
+121: 	  _M_start = __x._M_start;
+[...]
+387: 	return __n != 0 ? _Tr::allocate(_M_impl, __n) : pointer();
+[...]
+395: 	if (__p)
+[...]
+407: 	this->_M_impl._M_end_of_storage = this->_M_impl._M_start + __n;
+[...]
+1119: 	ptrdiff_t __dif = this->_M_impl._M_finish - this->_M_impl._M_start;
+[...]
+1145: 	if (__new_size > size())
+1146: 	  _M_default_append(__new_size - size());
+1147: 	else if (__new_size < size())
+1148: 	  _M_erase_at_end(this->_M_impl._M_start + __new_size);
+[...]
+1210: 	ptrdiff_t __dif = this->_M_impl._M_end_of_storage
+1211: 			  - this->_M_impl._M_start;
+[...]
+1264: 	return *(this->_M_impl._M_start + __n);
+[...]
+1401:       { return _M_data_ptr(this->_M_impl._M_start); }
+[...]
+2215: 	if (__n > _S_max_size(_Tp_alloc_type(__a)))
+[...]
+2241: 	if (size_type __n = this->_M_impl._M_finish - __pos)
+2242: 	  {
+2243: 	    std::_Destroy(__pos, this->_M_impl._M_finish,
+2244: 			  _M_get_Tp_allocator());
+2245: 	    this->_M_impl._M_finish = __pos;
+/usr/include/c++/15/bits/new_allocator.h: 151 - 172
+--------------------------------------------------------------------------------
+
+151: 	return static_cast<_Tp*>(_GLIBCXX_OPERATOR_NEW(__n * sizeof(_Tp)));
+[...]
+172: 	_GLIBCXX_OPERATOR_DELETE(_GLIBCXX_SIZED_DEALLOC(__p, __n));
+/usr/include/c++/15/bits/vector.tcc: 274 - 286
+--------------------------------------------------------------------------------
+
+274:       if (__n > capacity())
+[...]
+281:       else if (__n > __sz)
+282: 	{
+283: 	  std::fill(begin(), end(), __val);
+284: 	  const size_type __add = __n - __sz;
+285: 	  _GLIBCXX_ASAN_ANNOTATE_GROW(__add);
+286: 	  this->_M_impl._M_finish =
+/usr/include/c++/15/bits/char_traits.h: 352 - 429
+--------------------------------------------------------------------------------
+
+352: 	__c1 = __c2;
+[...]
+429: 	return static_cast<char_type*>(__builtin_memcpy(__s1, __s2, __n));
+/usr/include/c++/15/bits/stl_algobase.h: 924 - 1149
+--------------------------------------------------------------------------------
+
+924:       for (; __first != __last; ++__first)
+925: 	*__first = __val;
+[...]
+1143:       if (__n <= 0)
+1144: 	return __first;
+1145: 
+1146:       __glibcxx_requires_can_increment(__first, __n);
+1147: 
+1148:       std::__fill_a(__first, __first + __n, __value);
+1149:       return __first + __n;
+/usr/include/x86_64-linux-gnu/bits/stdio2.h: 111 - 111
+--------------------------------------------------------------------------------
+
+111:   return __fprintf_chk (__stream, __USE_FORTIFY_LEVEL - 1, __fmt,
+/usr/include/c++/15/bits/stl_iterator.h: 1059 - 1340
+--------------------------------------------------------------------------------
+
+1059:       : _M_current(__i) { }
+[...]
+1160:       { return __normal_iterator(_M_current - __n); }
+[...]
+1340:     { return __lhs.base() - __rhs.base(); }
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/neighbor.cpp: 91 - 113
+--------------------------------------------------------------------------------
+
+91: {
+92:   const double* x = atoms.x.data();
+93: 
+94:   atom_bin_.resize(count);
+95: #pragma omp parallel for schedule(static)
+96:   for (int i = 0; i < count; i++) atom_bin_[i] = bin_of(&x[3 * i]);
+97: 
+98:   // Tri par comptage : effectif de chaque cellule, puis position de départ,
+99:   // puis rangement des atomes dans l'ordre de leurs indices.
+100:   bin_start_.assign(mbins_ + 1, 0);
+101:   for (int i = 0; i < count; i++) {
+102:     if (atom_bin_[i] < 0)
+103:       abort_run("un atome est sorti de la grille de cellules : simulation instable (pas de temps trop grand ?)");
+104:     bin_start_[atom_bin_[i] + 1]++;
+105:   }
+106:   for (int b = 0; b < mbins_; b++) bin_start_[b + 1] += bin_start_[b];
+107: 
+108:   bin_list_.resize(count);
+109:   std::vector<int> next(bin_start_.begin(), bin_start_.end() - 1);
+110:   for (int i = 0; i < count; i++) bin_list_[next[atom_bin_[i]]++] = i;
+111: 
+112:   return bin_list_;
+113: }
+/usr/include/c++/15/bits/basic_string.tcc: 231 - 257
+--------------------------------------------------------------------------------
+
+231: 	size_type __dnew = static_cast<size_type>(std::distance(__beg, __end));
+232: 
+233: 	if (__dnew > size_type(_S_local_capacity))
+234: 	  {
+235: 	    _M_data(_M_create(__dnew, size_type(0)));
+[...]
+257: 	_M_set_length(__dnew);
+/usr/include/c++/15/bits/stl_construct.h: 133 - 133
+--------------------------------------------------------------------------------
+
+133:       ::new(static_cast<void*>(__p)) _Tp(std::forward<_Args>(__args)...);
+/usr/include/c++/15/bits/basic_string.h: 205 - 896
+--------------------------------------------------------------------------------
+
+205: 	: allocator_type(__a), _M_p(__dat) { }
+[...]
+229:       { _M_dataplus._M_p = __p; }
+230: 
+231:       _GLIBCXX20_CONSTEXPR
+232:       void
+233:       _M_length(size_type __length)
+234:       { _M_string_length = __length; }
+[...]
+266:       { _M_allocated_capacity = __capacity; }
+[...]
+896:       { _M_dispose(); }
+/usr/include/c++/15/bits/stl_uninitialized.h: 273 - 469
+--------------------------------------------------------------------------------
+
+273: 	      __builtin_memcpy(std::__niter_base(__result),
+[...]
+469:       for (; __n--; ++__first)

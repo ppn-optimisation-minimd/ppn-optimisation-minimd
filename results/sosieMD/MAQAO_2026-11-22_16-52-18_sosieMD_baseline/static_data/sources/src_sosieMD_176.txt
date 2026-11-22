@@ -1,0 +1,22 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/setup.cpp: 37 - 102
+--------------------------------------------------------------------------------
+
+37:     if (pos[d] < box.lo[d] || pos[d] >= box.hi[d]) return false;
+[...]
+86:             for (int sx = 0; sx < BLOCK; sx++) {
+87:               const int i = bx * BLOCK + sx;
+88:               const int j = by * BLOCK + sy;
+89:               const int k = bz * BLOCK + sz;
+90:               if ((i + j + k) % 2 != 0) continue;
+91:               if (i < lo[0] || i > hi[0] || j < lo[1] || j > hi[1] || k < lo[2] || k > hi[2]) continue;
+92: 
+93:               const double pos[3] = {half * i, half * j, half * k};
+94:               if (!inside(box, pos)) continue;
+95: 
+96:               // La graine ne dépend que du site : les vitesses sont les
+97:               // mêmes quel que soit le nombre de processus.
+98:               int seed = k * nsites[1] * nsites[0] + j * nsites[0] + i + 1;
+99:               const double vx = velocity_component(seed);
+100:               const double vy = velocity_component(seed);
+101:               const double vz = velocity_component(seed);
+102:               atoms.add_local(pos[0], pos[1], pos[2], vx, vy, vz);

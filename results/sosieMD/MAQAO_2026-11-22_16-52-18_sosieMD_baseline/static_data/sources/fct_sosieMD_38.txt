@@ -1,0 +1,24 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/atoms.cpp: 7 - 28
+--------------------------------------------------------------------------------
+
+7:   if (n <= static_cast<int>(type.size())) return;
+[...]
+16: {
+17:   reserve(nlocal + 1);
+18:   x[3 * nlocal + 0] = px;
+19:   x[3 * nlocal + 1] = py;
+20:   x[3 * nlocal + 2] = pz;
+21:   v[3 * nlocal + 0] = vx;
+22:   v[3 * nlocal + 1] = vy;
+23:   v[3 * nlocal + 2] = vz;
+24:   // Même tirage que miniMD : rand() de la bibliothèque C, initialisé par
+25:   // srand(5413) dans main(). Tous les types ont les mêmes paramètres.
+26:   type[nlocal] = std::rand() % ntypes;
+27:   nlocal++;
+28: }
+/usr/include/c++/15/bits/stl_vector.h: 1119 - 1264
+--------------------------------------------------------------------------------
+
+1119: 	ptrdiff_t __dif = this->_M_impl._M_finish - this->_M_impl._M_start;
+[...]
+1264: 	return *(this->_M_impl._M_start + __n);

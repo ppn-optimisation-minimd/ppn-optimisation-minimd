@@ -1,0 +1,23 @@
+/usr/include/c++/15/bits/stl_vector.h: 1418 - 1427
+--------------------------------------------------------------------------------
+
+1418: 	if (this->_M_impl._M_finish != this->_M_impl._M_end_of_storage)
+1419: 	  {
+1420: 	    _GLIBCXX_ASAN_ANNOTATE_GROW(1);
+1421: 	    _Alloc_traits::construct(this->_M_impl, this->_M_impl._M_finish,
+1422: 				     __x);
+1423: 	    ++this->_M_impl._M_finish;
+1424: 	    _GLIBCXX_ASAN_ANNOTATE_GREW(1);
+1425: 	  }
+1426: 	else
+1427: 	  _M_realloc_append(__x);
+/usr/include/c++/15/bits/new_allocator.h: 191 - 191
+--------------------------------------------------------------------------------
+
+191: 	{ ::new((void *)__p) _Up(std::forward<_Args>(__args)...); }
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/domain.cpp: 185 - 187
+--------------------------------------------------------------------------------
+
+185:       for (int i = first; i < last; i++) {
+186:         const double coord = atoms.x[3 * i + d];
+187:         if (coord >= swap.lo && coord <= swap.hi) swap.sendlist.push_back(i);

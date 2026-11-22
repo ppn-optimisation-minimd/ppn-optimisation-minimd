@@ -1,0 +1,63 @@
+/usr/include/c++/15/bits/stl_vector.h: 1119 - 2245
+--------------------------------------------------------------------------------
+
+1119: 	ptrdiff_t __dif = this->_M_impl._M_finish - this->_M_impl._M_start;
+[...]
+1145: 	if (__new_size > size())
+1146: 	  _M_default_append(__new_size - size());
+1147: 	else if (__new_size < size())
+1148: 	  _M_erase_at_end(this->_M_impl._M_start + __new_size);
+[...]
+1396:       { return _M_data_ptr(this->_M_impl._M_start); }
+[...]
+2241: 	if (size_type __n = this->_M_impl._M_finish - __pos)
+2242: 	  {
+2243: 	    std::_Destroy(__pos, this->_M_impl._M_finish,
+2244: 			  _M_get_Tp_allocator());
+2245: 	    this->_M_impl._M_finish = __pos;
+/usr/include/c++/15/bits/stl_algobase.h: 407 - 431
+--------------------------------------------------------------------------------
+
+407: 	*__out = *__in;
+[...]
+424: 	  if (__builtin_expect(__n > 1, true))
+425: 	    {
+426: 	      __builtin_memmove(_GLIBCXX_TO_ADDR(__result),
+427: 				_GLIBCXX_TO_ADDR(__first),
+428: 				__n * sizeof(*__first));
+429: 	      _GLIBCXX_ADVANCE(__result, __n);
+430: 	    }
+431: 	  else if (__n == 1)
+/usr/include/c++/15/bits/stl_iterator.h: 1059 - 1148
+--------------------------------------------------------------------------------
+
+1059:       : _M_current(__i) { }
+[...]
+1148:       { return __normal_iterator(_M_current + __n); }
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/domain.cpp: 222 - 245
+--------------------------------------------------------------------------------
+
+222:   for (const Swap& swap : swaps_) {
+223:     const int nsend = static_cast<int>(swap.sendlist.size());
+224:     send_.resize(static_cast<size_t>(width) * nsend);
+225:     for (int k = 0; k < nsend; k++) {
+226:       const int i = swap.sendlist[k];
+227:       for (int c = 0; c < width; c++) send_[width * k + c] = values[width * i + c];
+228:       if (with_shift) send_[width * k + swap.dim] += swap.shift;
+229:     }
+230: 
+231:     const bool self = swap.sendproc == me;
+232:     if (!self) {
+233:       recv_.resize(static_cast<size_t>(width) * swap.nrecv);
+234:       MPI_Sendrecv(send_.data(), width * nsend, MPI_DOUBLE, swap.sendproc, 0, recv_.data(), width * swap.nrecv,
+235:                    MPI_DOUBLE, swap.recvproc, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+236:     }
+237:     const std::vector<double>& in = self ? send_ : recv_;
+238:     std::copy(in.begin(), in.begin() + static_cast<size_t>(width) * swap.nrecv, values + width * swap.firstrecv);
+239:   }
+240: }
+241: 
+242: void Domain::forward_positions(Atoms& atoms)
+243: {
+244:   forward(atoms.x.data(), 3, true);
+245: }

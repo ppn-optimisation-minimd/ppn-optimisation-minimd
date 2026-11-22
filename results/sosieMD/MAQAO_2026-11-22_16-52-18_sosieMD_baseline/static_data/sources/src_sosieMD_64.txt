@@ -1,0 +1,7 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/domain.cpp: 225 - 228
+--------------------------------------------------------------------------------
+
+225:     for (int k = 0; k < nsend; k++) {
+226:       const int i = swap.sendlist[k];
+227:       for (int c = 0; c < width; c++) send_[width * k + c] = values[width * i + c];
+228:       if (with_shift) send_[width * k + swap.dim] += swap.shift;

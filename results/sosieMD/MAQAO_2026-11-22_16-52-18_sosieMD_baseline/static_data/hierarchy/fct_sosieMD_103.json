@@ -1,0 +1,43 @@
+{
+  "__fct":
+    {
+      "loops":
+        {
+          "_154":
+            {
+              "src_regions":
+                [
+                  {
+                    "path": "/usr/include/c++/15/bits/stl_vector.h",
+                    "regions":
+                      [
+                        [
+                        1263,
+                        1263
+                        ]
+                      ]
+                  },
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/neighbor.cpp",
+                    "regions":
+                      [
+                        [
+                        73,
+                        75
+                        ],
+                        [
+                        84,
+                        87
+                        ],
+                        [
+                        96,
+                        96
+                        ]
+                      ]
+                  }
+                ],
+              "src": "neighbor.cpp:73-96"
+            }
+        }
+    }
+}

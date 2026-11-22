@@ -1,0 +1,60 @@
+/usr/include/c++/15/bits/stl_vector.h: 1263 - 1264
+--------------------------------------------------------------------------------
+
+1263: 	__glibcxx_requires_subscript(__n);
+1264: 	return *(this->_M_impl._M_start + __n);
+/usr/include/c++/15/bits/stl_algobase.h: 258 - 263
+--------------------------------------------------------------------------------
+
+258:     max(const _Tp& __a, const _Tp& __b)
+259:     {
+260:       // concept requirements
+261:       __glibcxx_function_requires(_LessThanComparableConcept<_Tp>)
+262:       //return  __a < __b ? __b : __a;
+263:       if (__a < __b)
+/usr/include/c++/15/bits/unique_ptr.h: 192 - 192
+--------------------------------------------------------------------------------
+
+192:       pointer    _M_ptr() const noexcept { return std::get<0>(_M_t); }
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/neighbor.cpp: 136 - 174
+--------------------------------------------------------------------------------
+
+136: #pragma omp parallel for schedule(static) reduction(max : most)
+137:     for (int i = 0; i < nlocal; i++) {
+138:       int* list = &neighbors[static_cast<size_t>(i) * maxneighs];
+139:       const double xi = x[3 * i + 0];
+140:       const double yi = x[3 * i + 1];
+141:       const double zi = x[3 * i + 2];
+142:       const int ibin = atom_bin_[i];
+143:       int n = 0;
+144: 
+145:       for (int s = 0; s < nstencil; s++) {
+146:         const int jbin = ibin + stencil_[s];
+147:         for (int m = bin_start_[jbin]; m < bin_start_[jbin + 1]; m++) {
+148:           const int j = bin_list_[m];
+149: 
+150:           if (half && !ghost_newton && j < i) continue;  // paire rangée chez j
+151:           if (jbin == ibin) {
+152:             if (j == i) continue;
+153:             if (half && ghost_newton) {
+154:               if (j < i) continue;
+155:               // Fantôme de la même cellule : la paire revient à celui des
+156:               // deux atomes qui est « en dessous » (z, puis y, puis x).
+157:               if (j >= nlocal) {
+158:                 const double xj = x[3 * j + 0], yj = x[3 * j + 1], zj = x[3 * j + 2];
+159:                 if (zj < zi || (zj == zi && (yj < yi || (yj == yi && xj < xi)))) continue;
+160:               }
+161:             }
+162:           }
+163: 
+164:           const double dx = xi - x[3 * j + 0];
+165:           const double dy = yi - x[3 * j + 1];
+166:           const double dz = zi - x[3 * j + 2];
+167:           if (dx * dx + dy * dy + dz * dz <= cutneighsq) {
+168:             if (n < maxneighs) list[n] = j;
+169:             n++;
+170:           }
+171:         }
+172:       }
+173:       numneigh[i] = n;
+174:       most = std::max(most, n);

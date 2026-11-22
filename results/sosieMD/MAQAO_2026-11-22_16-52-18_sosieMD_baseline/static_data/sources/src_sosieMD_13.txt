@@ -1,0 +1,15 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/generation_miniApp/sosiemd/claude-fable-5/src/atoms.cpp: 59 - 64
+--------------------------------------------------------------------------------
+
+59:     const int old = order[k];
+60:     for (int d = 0; d < 3; d++) {
+61:       x_tmp_[3 * k + d] = x[3 * old + d];
+62:       v_tmp_[3 * k + d] = v[3 * old + d];
+63:     }
+64:     type_tmp_[k] = type[old];
+/usr/include/c++/15/bits/stl_vector.h: 1263 - 1282
+--------------------------------------------------------------------------------
+
+1263: 	__glibcxx_requires_subscript(__n);
+[...]
+1282: 	__glibcxx_requires_subscript(__n);
