@@ -10,7 +10,7 @@
 # attribue le temps aux bonnes fonctions et aux bonnes boucles.
 
 CXX      = mpicxx
-CXXFLAGS = -Ofast -g -march=native -fno-inline-functions -fno-omit-frame-pointer -fopenmp
+CXXFLAGS = -Ofast -g -march=native -funroll-loops -fno-inline-functions -fno-omit-frame-pointer -fopenmp
 WARNINGS = -Wall -Wextra
 LDFLAGS  =
 
