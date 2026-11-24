@@ -2,7 +2,7 @@
 
 THREADS=1
 FILE=in.param_analyse.miniMD
-REPO=optim-llm
+REPO=baseline
 VERSION=ref
 MOMENT=$(date '+%Y-%m-%d_%H-%M-%S')
 
