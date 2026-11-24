@@ -10,3 +10,9 @@
 [submodule "generation_miniApp/sosiemd/baseline"]
 	path = generation_miniApp/sosiemd/baseline
 	url = git@github.com:ppn-optimisation-minimd/sosiemd-baseline
+[submodule "generation_miniApp/sosiemd/optim-group"]
+	path = generation_miniApp/sosiemd/optim-group
+	url = git@github.com:ppn-optimisation-minimd/sosiemd-optim-group
+[submodule "generation_miniApp/sosiemd/optim-llm"]
+	path = generation_miniApp/sosiemd/optim-llm
+	url = git@github.com:ppn-optimisation-minimd/sosiemd-optim-llm
