@@ -1,0 +1,13 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/atom.cpp: 161 - 170
+--------------------------------------------------------------------------------
+
+161: {
+162:   int i;
+163: 
+164:   #pragma omp for schedule(static)
+165:   for(i = 0; i < n; i++) {
+166:     x[(first + i) * PAD + 0] = buf[3 * i];
+167:     x[(first + i) * PAD + 1] = buf[3 * i + 1];
+168:     x[(first + i) * PAD + 2] = buf[3 * i + 2];
+169:   }
+170: }

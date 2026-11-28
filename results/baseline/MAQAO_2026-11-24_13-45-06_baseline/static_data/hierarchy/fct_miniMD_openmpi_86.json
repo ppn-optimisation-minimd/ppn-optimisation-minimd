@@ -1,0 +1,42 @@
+{
+  "__fct":
+    {
+      "loops":
+        {
+          "_164":
+            {
+              "src_regions":
+                [
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/baseline/ref/Obj_openmpi/thermo.cpp",
+                    "regions":
+                      [
+                        [
+                        159,
+                        159
+                        ]
+                      ]
+                  }
+                ],
+              "src": "thermo.cpp:159-159"
+            },
+          "_165":
+            {
+              "src_regions":
+                [
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/baseline/ref/Obj_openmpi/thermo.cpp",
+                    "regions":
+                      [
+                        [
+                        153,
+                        156
+                        ]
+                      ]
+                  }
+                ],
+              "src": "thermo.cpp:153-156"
+            }
+        }
+    }
+}

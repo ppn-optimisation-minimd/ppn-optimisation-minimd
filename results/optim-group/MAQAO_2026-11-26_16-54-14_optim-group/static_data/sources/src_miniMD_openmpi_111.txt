@@ -1,0 +1,39 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/neighbor.cpp: 144 - 179
+--------------------------------------------------------------------------------
+
+144:       for(int k = 0; k < nstencil; k++) {
+145:         const int jbin = ibin + stencil[k];
+146: 
+147:         int* loc_bin = &bins[jbin * atoms_per_bin];
+148: 
+149:         if(ibin == jbin)
+150:           for(int m = 0; m < bincount[jbin]; m++) {
+151:             const int j = loc_bin[m];
+152: 
+153:             //for same bin as atom i skip j if i==j and skip atoms "below and to the left" if using halfneighborlists
+154:             if(((j == i) || (halfneigh && !ghost_newton && (j < i)) ||
+155:                 (halfneigh && ghost_newton && ((j < i) || ((j >= nlocal) &&
+156:                                                ((x[j * PAD + 2] < ztmp) || (x[j * PAD + 2] == ztmp && x[j * PAD + 1] < ytmp) ||
+157:                                                 (x[j * PAD + 2] == ztmp && x[j * PAD + 1]  == ytmp && x[j * PAD + 0] < xtmp))))))) continue;
+158: 
+159:             const MMD_float delx = xtmp - x[j * PAD + 0];
+160:             const MMD_float dely = ytmp - x[j * PAD + 1];
+161:             const MMD_float delz = ztmp - x[j * PAD + 2];
+162:             const int type_j = type[j];
+163:             const MMD_float rsq = delx * delx + dely * dely + delz * delz;
+164: 
+165:             if((rsq <= cutneighsq[type_i*ntypes+type_j])) neighptr[n++] = j;
+166:           }
+167:         else {
+168:           for(int m = 0; m < bincount[jbin]; m++) {
+169:             const int j = loc_bin[m];
+170: 
+171:             if(halfneigh && !ghost_newton && (j < i)) continue;
+172: 
+173:             const MMD_float delx = xtmp - x[j * PAD + 0];
+174:             const MMD_float dely = ytmp - x[j * PAD + 1];
+175:             const MMD_float delz = ztmp - x[j * PAD + 2];
+176:             const int type_j = type[j];
+177:             const MMD_float rsq = delx * delx + dely * dely + delz * delz;
+178: 
+179:             if((rsq <= cutneighsq[type_i*ntypes+type_j])) neighptr[n++] = j;

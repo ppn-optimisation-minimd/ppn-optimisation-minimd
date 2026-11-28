@@ -1,0 +1,19 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/atom.cpp: 107 - 122
+--------------------------------------------------------------------------------
+
+107: {
+108:   #pragma omp for
+109:   for(int i = 0; i < nlocal; i++) {
+110:     if(x[i*PAD + 0] < 0.0) x[i * PAD + 0] += box.xprd;
+111: 
+112:     if(x[i * PAD + 0] >= box.xprd) x[i * PAD + 0] -= box.xprd;
+113: 
+114:     if(x[i * PAD + 1] < 0.0) x[i * PAD + 1] += box.yprd;
+115: 
+116:     if(x[i * PAD + 1] >= box.yprd) x[i * PAD + 1] -= box.yprd;
+117: 
+118:     if(x[i * PAD + 2] < 0.0) x[i * PAD + 2] += box.zprd;
+119: 
+120:     if(x[i * PAD + 2] >= box.zprd) x[i * PAD + 2] -= box.zprd;
+121:   }
+122: }

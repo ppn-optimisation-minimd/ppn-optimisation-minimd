@@ -30,3 +30,8 @@ Modifications globales:
 Modèle: Qwen3.8-27B
 Fichiers: Archive contenant le rapport MAQAO et archive contenant tout le code source de la version ref de MiniMD
 Prompt: En te basant sur le rapport MAQAO fourni, optimise les fichiers de l'application MiniMD joints au prompt. L'application ne tournera que sur un seul thread, tu peux donc omettre les optimisations pour du multi thread, voire retirer les bouts de code gérant la parallélisation.
+
+
+
+TO DO: Optimiser sans les rapports pour pouvoir comparer
+TO DO: Chercher pourquoi on a un contexte < 256k avec qwenn code

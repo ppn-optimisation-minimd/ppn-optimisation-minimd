@@ -1,0 +1,12 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/integrate.cpp: 60 - 68
+--------------------------------------------------------------------------------
+
+60: {
+61:   OMPFORSCHEDULE
+62:   for(MMD_int i = 0; i < nlocal; i++) {
+63:     v[i * PAD + 0] += dtforce * f[i * PAD + 0];
+64:     v[i * PAD + 1] += dtforce * f[i * PAD + 1];
+65:     v[i * PAD + 2] += dtforce * f[i * PAD + 2];
+66:   }
+67: 
+68: }

@@ -1,0 +1,93 @@
+{
+  "__fct":
+    {
+      "loops":
+        {
+          "_30":
+            {
+              "src_regions":
+                [
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/atom.cpp",
+                    "regions":
+                      [
+                        [
+                        369,
+                        370
+                        ]
+                      ]
+                  }
+                ],
+              "src": "atom.cpp:369-370"
+            },
+          "_28":
+            {
+              "_29":
+                {
+                  "src_regions":
+                    [
+                      {
+                        "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/atom.cpp",
+                        "regions":
+                          [
+                            [
+                            394,
+                            403
+                            ]
+                          ]
+                      }
+                    ],
+                  "src": "atom.cpp:394-403"
+                },
+              "src_regions":
+                [
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/atom.cpp",
+                    "regions":
+                      [
+                        [
+                        393,
+                        403
+                        ]
+                      ]
+                  }
+                ],
+              "src": "atom.cpp:393-403"
+            },
+          "_26":
+            {
+              "_27":
+                {
+                  "src_regions":
+                    [
+                      {
+                        "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/atom.cpp",
+                        "regions":
+                          [
+                            [
+                            394,
+                            403
+                            ]
+                          ]
+                      }
+                    ],
+                  "src": "atom.cpp:394-403"
+                },
+              "src_regions":
+                [
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/atom.cpp",
+                    "regions":
+                      [
+                        [
+                        392,
+                        403
+                        ]
+                      ]
+                  }
+                ],
+              "src": "atom.cpp:392-403"
+            }
+        }
+    }
+}

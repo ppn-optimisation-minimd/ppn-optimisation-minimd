@@ -6,3 +6,6 @@ J'ai ensuite forcé la version utilisé à `compute_original`: gros gros speedup
 J'ai enlevé les branches: `if(use_oldcompute)` -> le temps passé dans `void ForceLJ::compute` a augmenté
 
 MAQAO indique de compiler avec `-mprefer-vector-width=512 ` -> aucun changement
+
+
+-> Utiliser PRAGMA OMP SIMD

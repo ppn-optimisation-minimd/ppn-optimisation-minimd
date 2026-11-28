@@ -1,0 +1,37 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/thermo.cpp: 141 - 174
+--------------------------------------------------------------------------------
+
+141: {
+142:   MMD_int i;
+143:   MMD_float vx, vy, vz;
+144: 
+145:   MMD_float t = 0.0;
+146:   t_act = 0;
+147:   #pragma omp barrier
+148: 
+149:   MMD_float* v = atom.v;
+150: 
+151:   OMPFORSCHEDULE
+152:   for(i = 0; i < atom.nlocal; i++) {
+153:     vx = v[i * PAD + 0];
+154:     vy = v[i * PAD + 1];
+155:     vz = v[i * PAD + 2];
+156:     t += (vx * vx + vy * vy + vz * vz) * atom.mass;
+157:   }
+158: 
+159:   #pragma omp atomic
+160:   t_act += t;
+161: 
+162:   #pragma omp barrier
+163: 
+164:   MMD_float t1;
+165:   #pragma omp master
+166:   {
+167:     if(sizeof(MMD_float) == 4)
+168:       MPI_Allreduce(&t_act, &t1, 1, MPI_FLOAT, MPI_SUM, MPI_COMM_WORLD);
+169:     else
+170:       MPI_Allreduce(&t_act, &t1, 1, MPI_DOUBLE, MPI_SUM, MPI_COMM_WORLD);
+171: 
+172:   }
+173:   return t1 * t_scale;
+174: }

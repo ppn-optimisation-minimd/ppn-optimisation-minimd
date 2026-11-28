@@ -1,0 +1,43 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/setup.cpp: 455 - 494
+--------------------------------------------------------------------------------
+
+455: {
+456:   int i;
+457: 
+458:   /* zero center-of-mass motion */
+459: 
+460:   double vxtot = 0.0;
+461:   double vytot = 0.0;
+462:   double vztot = 0.0;
+463: 
+464:   for(i = 0; i < atom.nlocal; i++) {
+465:     vxtot += atom.v[i * PAD + 0];
+466:     vytot += atom.v[i * PAD + 1];
+467:     vztot += atom.v[i * PAD + 2];
+468:   }
+469: 
+470:   double tmp;
+471:   MPI_Allreduce(&vxtot, &tmp, 1, MPI_DOUBLE, MPI_SUM, MPI_COMM_WORLD);
+472:   vxtot = tmp / atom.natoms;
+473:   MPI_Allreduce(&vytot, &tmp, 1, MPI_DOUBLE, MPI_SUM, MPI_COMM_WORLD);
+474:   vytot = tmp / atom.natoms;
+475:   MPI_Allreduce(&vztot, &tmp, 1, MPI_DOUBLE, MPI_SUM, MPI_COMM_WORLD);
+476:   vztot = tmp / atom.natoms;
+477: 
+478:   for(i = 0; i < atom.nlocal; i++) {
+479:     atom.v[i * PAD + 0] -= vxtot;
+480:     atom.v[i * PAD + 1] -= vytot;
+481:     atom.v[i * PAD + 2] -= vztot;
+482:   }
+483: 
+484:   /* rescale velocities, including old ones */
+485:   thermo.t_act = 0;
+486:   double t = thermo.temperature(atom);
+487:   double factor = sqrt(t_request / t);
+488: 
+489:   for(i = 0; i < atom.nlocal; i++) {
+490:     atom.v[i * PAD + 0] *= factor;
+491:     atom.v[i * PAD + 1] *= factor;
+492:     atom.v[i * PAD + 2] *= factor;
+493:   }
+494: }

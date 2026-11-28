@@ -1,0 +1,6 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/atom.cpp: 153 - 155
+--------------------------------------------------------------------------------
+
+153:       buf[3 * i] = x[j * PAD + 0] + pbc_flags[1] * box.xprd;
+154:       buf[3 * i + 1] = x[j * PAD + 1] + pbc_flags[2] * box.yprd;
+155:       buf[3 * i + 2] = x[j * PAD + 2] + pbc_flags[3] * box.zprd;

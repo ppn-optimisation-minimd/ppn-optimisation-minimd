@@ -1,0 +1,71 @@
+/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/neighbor.cpp: 216 - 299
+--------------------------------------------------------------------------------
+
+216: {
+217:   const int nlocal = atom.nlocal;
+218:   const int nall = count<0?atom.nlocal + atom.nghost:count;
+219:   const MMD_float* const x = atom.x;
+220: 
+221:   xprd = atom.box.xprd;
+222:   yprd = atom.box.yprd;
+223:   zprd = atom.box.zprd;
+224: 
+225:   resize = 1;
+226: 
+227:   #pragma omp barrier
+228: 
+229:   while(resize > 0) {
+230:     #pragma omp barrier
+231:     resize = 0;
+232:     #pragma omp barrier
+233:     #pragma omp for schedule(static)
+234:     for(int i = 0; i < mbins; i++) bincount[i] = 0;
+235: 
+236: 
+237:     OMPFORSCHEDULE
+238:     for(int i = 0; i < nall; i++) {
+239:       const int ibin = coord2bin(x[i * PAD + 0], x[i * PAD + 1], x[i * PAD + 2]);
+240: 
+241:       if(bincount[ibin] < atoms_per_bin) {
+[...]
+247:         ac = __sync_fetch_and_add(bincount + ibin, 1);
+248: #endif
+249:         bins[ibin * atoms_per_bin + ac] = i;
+250:       } else resize = 1;
+251:     }
+252: 
+253:     // #pragma omp barrier
+254: 
+255:     #pragma omp master
+256: 
+257:     if(resize) {
+258:       free(bins);
+259:       atoms_per_bin *= 2;
+260:       bins = (int*) malloc(mbins * atoms_per_bin * sizeof(int));
+[...]
+266:   #pragma omp barrier
+267: 
+268: }
+[...]
+278:   if(x >= xprd)
+279:     ix = (int)((x - xprd) * bininvx) + nbinx - mbinxlo;
+280:   else if(x >= 0.0)
+281:     ix = (int)(x * bininvx) - mbinxlo;
+282:   else
+283:     ix = (int)(x * bininvx) - mbinxlo - 1;
+284: 
+285:   if(y >= yprd)
+286:     iy = (int)((y - yprd) * bininvy) + nbiny - mbinylo;
+287:   else if(y >= 0.0)
+288:     iy = (int)(y * bininvy) - mbinylo;
+289:   else
+290:     iy = (int)(y * bininvy) - mbinylo - 1;
+291: 
+292:   if(z >= zprd)
+293:     iz = (int)((z - zprd) * bininvz) + nbinz - mbinzlo;
+294:   else if(z >= 0.0)
+295:     iz = (int)(z * bininvz) - mbinzlo;
+296:   else
+297:     iz = (int)(z * bininvz) - mbinzlo - 1;
+298: 
+299:   return (iz * mbiny * mbinx + iy * mbinx + ix + 1);

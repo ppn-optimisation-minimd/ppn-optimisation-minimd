@@ -1,0 +1,25 @@
+{
+  "__fct":
+    {
+      "loops":
+        {
+          "_18":
+            {
+              "src_regions":
+                [
+                  {
+                    "path": "/home/sacha/Documents/M1-CHPS/PPN/ppn-optimisation-minimd/optim-group/ref/Obj_openmpi/atom.cpp",
+                    "regions":
+                      [
+                        [
+                        110,
+                        120
+                        ]
+                      ]
+                  }
+                ],
+              "src": "atom.cpp:110-120"
+            }
+        }
+    }
+}
